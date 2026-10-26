@@ -1,5 +1,5 @@
 .bear .markdown a {
-  @apply text-red-500 dark:text-red-400;
+  @apply text-brand-link;
 }
 
 .bear .markdown h1,
@@ -79,7 +79,7 @@
 }
 
 .bear .markdown ul > li::marker {
-  @apply text-red-500 dark:text-red-400;
+  @apply text-brand-link;
 }
 
 .bear .markdown ol {

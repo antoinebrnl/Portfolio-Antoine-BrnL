@@ -92,7 +92,7 @@ export default function Dock({
           width: '70%',
           height: 28,
           borderRadius: '50%',
-          background: 'radial-gradient(ellipse at center, rgba(180,200,255,0.22) 0%, rgba(120,160,255,0.10) 60%, transparent 100%)',
+          background: 'radial-gradient(ellipse at center, rgba(153,153,161,0.22) 0%, rgba(153,153,161,0.10) 60%, transparent 100%)',
           filter: 'blur(10px)',
           pointerEvents: 'none',
           zIndex: -1,

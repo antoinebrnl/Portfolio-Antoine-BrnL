@@ -28,7 +28,7 @@ const FILESYSTEM: Record<string, FileItem[]> = {
       kind: "folder",
       date: "Today",
       icon: "/img/icons/sf-icons/desktop.svg",
-      color: "#4A90E2",
+      color: "#9999a1",
       children: [
         { id: "readme", name: "README.md", kind: "file", ext: "md", size: "2 KB", date: "Today", icon: "/img/icons/sf-icons/doc.svg" },
         { id: "notes", name: "notes.txt", kind: "file", ext: "txt", size: "1 KB", date: "Yesterday", icon: "/img/icons/sf-icons/doc.svg" },
@@ -40,11 +40,11 @@ const FILESYSTEM: Record<string, FileItem[]> = {
       kind: "folder",
       date: "Yesterday",
       icon: "/img/icons/sf-icons/folder.svg",
-      color: "#F5A623",
+      color: "#C86A52",
       children: [
         { id: "resume", name: "Antoine_BrnL_Resume.pdf", kind: "file", ext: "pdf", size: "340 KB", date: "Jun 1", icon: "/img/icons/sf-icons/doc.svg" },
         { id: "cover", name: "CoverLetter.docx", kind: "file", ext: "docx", size: "28 KB", date: "Jun 2", icon: "/img/icons/sf-icons/doc.svg" },
-        { id: "projects-folder", name: "Projects", kind: "folder", date: "Jun 3", icon: "/img/icons/sf-icons/folder.svg", color: "#F5A623" },
+        { id: "projects-folder", name: "Projects", kind: "folder", date: "Jun 3", icon: "/img/icons/sf-icons/folder.svg", color: "#C86A52" },
       ],
     },
     {
@@ -53,7 +53,7 @@ const FILESYSTEM: Record<string, FileItem[]> = {
       kind: "folder",
       date: "Today",
       icon: "/img/icons/sf-icons/download.svg",
-      color: "#7B68EE",
+      color: "#9999a1",
       children: [
         { id: "react-zip", name: "react-18.zip", kind: "file", ext: "zip", size: "2.1 MB", date: "Today", icon: "/img/icons/sf-icons/doc.svg" },
         { id: "wallpaper", name: "macOS_Tahoe.jpg", kind: "file", ext: "jpg", size: "4.8 MB", date: "Today", icon: "/img/icons/sf-icons/image.svg" },
@@ -65,7 +65,7 @@ const FILESYSTEM: Record<string, FileItem[]> = {
       kind: "folder",
       date: "Jun 3",
       icon: "/img/icons/sf-icons/image.svg",
-      color: "#FF6B6B",
+      color: "#C86A52",
       children: [
         { id: "avatar", name: "avatar.png", kind: "file", ext: "png", size: "120 KB", date: "May 28", icon: "/img/icons/sf-icons/image.svg" },
       ],
@@ -76,7 +76,7 @@ const FILESYSTEM: Record<string, FileItem[]> = {
       kind: "folder",
       date: "Jun 2",
       icon: "/img/icons/sf-icons/sound.svg",
-      color: "#FF2D55",
+      color: "var(--brand-link)",
       children: [
         { id: "faded", name: "faded.mp3", kind: "file", ext: "mp3", size: "3.5 MB", date: "May 20", icon: "/img/icons/sf-icons/sound.svg" },
         { id: "samantha", name: "Samantha Legacy.wav", kind: "file", ext: "wav", size: "280 KB", date: "Jun 1", icon: "/img/icons/sf-icons/sound.svg" },
@@ -134,8 +134,8 @@ const SIDEBAR_SECTIONS = [
     title: "Tags",
     items: [
       { id: "tag-red", label: "Red", tagColor: "#FF3B30" },
-      { id: "tag-orange", label: "Orange", tagColor: "#FF9500" },
-      { id: "tag-blue", label: "Blue", tagColor: "#007AFF" },
+      { id: "tag-orange", label: "Orange", tagColor: "#c86a52" },
+      { id: "tag-blue", label: "Blue", tagColor: "#c86a52" },
       { id: "tag-green", label: "Green", tagColor: "#34C759" },
     ],
   },
@@ -332,8 +332,8 @@ export default function Finder() {
                     borderRadius: "6px",
                     cursor: "default",
                     userSelect: "none",
-                    background: highlight ? "rgba(0,122,255,0.9)" : "transparent",
-                    color: highlight ? "#fff" : "#1c1c1e",
+                    background: highlight ? "rgba(200,106,82,0.9)" : "transparent",
+                    color: highlight ? "#fff" : "#000000",
                     transition: "background 0.1s ease",
                   }}
                   onMouseEnter={(e) => {
@@ -402,10 +402,10 @@ export default function Finder() {
             borderRadius: "10px",
             cursor: "default",
             background:
-              selected === item.id ? "rgba(0,122,255,0.2)" : "transparent",
+              selected === item.id ? "rgba(200,106,82,0.2)" : "transparent",
             border:
               selected === item.id
-                ? "1.5px solid rgba(0,122,255,0.4)"
+                ? "1.5px solid rgba(200,106,82,0.4)"
                 : "1.5px solid transparent",
             transition: "background 0.15s ease, border 0.15s ease",
             userSelect: "none",
@@ -425,7 +425,7 @@ export default function Finder() {
             style={{
               marginTop: "6px",
               fontSize: "11px",
-              color: "var(--c-text, #1c1c1e)",
+              color: "var(--c-text, #000000)",
               textAlign: "center",
               lineHeight: "1.3",
               maxWidth: "82px",
@@ -464,7 +464,7 @@ export default function Finder() {
               fontSize: "11px",
               fontWeight: sortKey === h.toLowerCase() ? 600 : 400,
               color:
-                sortKey === h.toLowerCase() ? "#007AFF" : "rgba(0,0,0,0.5)",
+                sortKey === h.toLowerCase() ? "#c86a52" : "rgba(0,0,0,0.5)",
               textAlign: "left",
               padding: 0,
             }}
@@ -488,7 +488,7 @@ export default function Finder() {
             cursor: "default",
             background:
               selected === item.id
-                ? "rgba(0,122,255,0.15)"
+                ? "rgba(200,106,82,0.15)"
                 : i % 2 === 0
                   ? "transparent"
                   : "rgba(0,0,0,0.015)",
@@ -532,13 +532,13 @@ export default function Finder() {
       whileTap={{ scale: 0.94 }}
       transition={{ duration: 0.1 }}
       style={{
-        background: active ? "rgba(0,122,255,0.15)" : "transparent",
-        border: active ? "0.5px solid rgba(0,122,255,0.25)" : "0.5px solid transparent",
+        background: active ? "rgba(200,106,82,0.15)" : "transparent",
+        border: active ? "0.5px solid rgba(200,106,82,0.25)" : "0.5px solid transparent",
         borderRadius: "6px",
         cursor: "pointer",
         padding: "4px 7px",
         fontSize: "14px",
-        color: active ? "#007AFF" : "rgba(0,0,0,0.55)",
+        color: active ? "#c86a52" : "rgba(0,0,0,0.55)",
         transition: "background 0.12s ease, border-color 0.12s ease, color 0.12s ease",
         lineHeight: 1,
       }}
@@ -581,7 +581,7 @@ export default function Finder() {
                cursor: "pointer",
                fontSize: "14px",
                fontWeight: 500,
-               color: "#007AFF",
+               color: "var(--brand-link)",
                padding: "4px 8px",
             }}
           >
@@ -615,7 +615,7 @@ export default function Finder() {
             flex: 1,
             fontSize: "13px",
             fontWeight: 600,
-            color: "#1c1c1e",
+            color: "#000000",
             textAlign: "center",
           }}
         >
@@ -641,7 +641,7 @@ export default function Finder() {
             padding: "3px 6px",
             cursor: "pointer",
             outline: "none",
-            color: "#1c1c1e",
+            color: "#000000",
           }}
         >
           <option value="name">{localize("Name")}</option>
@@ -672,7 +672,7 @@ export default function Finder() {
               outline: "none",
               fontSize: "12px",
               width: "100px",
-              color: "#1c1c1e",
+              color: "#000000",
             }}
           />
         </div>
@@ -711,7 +711,7 @@ export default function Finder() {
                 padding: "2px 10px",
                 fontSize: "12px",
                 fontWeight: isActive ? 600 : 400,
-                color: "#1c1c1e",
+                color: "#000000",
                 cursor: "pointer",
                 whiteSpace: "nowrap",
               }}
@@ -765,7 +765,7 @@ export default function Finder() {
                       alignItems: "center",
                       gap: "6px",
                       padding: "5px 12px",
-                      background: active ? "rgba(0,122,255,0.13)" : "transparent",
+                      background: active ? "rgba(200,106,82,0.13)" : "transparent",
                       border: "none",
                       cursor: "pointer",
                       borderRadius: "6px",
@@ -785,7 +785,7 @@ export default function Finder() {
                           bottom: "18%",
                           width: "2.5px",
                           borderRadius: "2px",
-                          background: "#007AFF",
+                          background: "var(--brand-cta)",
                         }}
                         transition={{ type: "spring", stiffness: 500, damping: 35 }}
                       />
@@ -798,7 +798,7 @@ export default function Finder() {
                           width: "14px",
                           height: "14px",
                           flexShrink: 0,
-                          backgroundColor: active ? "#007AFF" : "rgba(0,0,0,0.5)",
+                          backgroundColor: active ? "#c86a52" : "rgba(0,0,0,0.5)",
                           WebkitMask: `url(${item.icon}) center/contain no-repeat`,
                           mask: `url(${item.icon}) center/contain no-repeat`,
                         }}
@@ -807,7 +807,7 @@ export default function Finder() {
                     <span
                       style={{
                         fontSize: "12px",
-                        color: active ? "#007AFF" : "#1c1c1e",
+                        color: active ? "#c86a52" : "#000000",
                         fontWeight: active ? 600 : 400,
                         overflow: "hidden",
                         textOverflow: "ellipsis",
@@ -882,7 +882,7 @@ export default function Finder() {
                   border: "none",
                   cursor: "pointer",
                   fontSize: "11px",
-                  color: i === pathStack.length - 1 ? "#1c1c1e" : "#007AFF",
+                  color: i === pathStack.length - 1 ? "#000000" : "#c86a52",
                   fontWeight: i === pathStack.length - 1 ? 500 : 400,
                   padding: "0 2px",
                 }}

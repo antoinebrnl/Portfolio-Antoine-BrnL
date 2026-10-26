@@ -175,7 +175,7 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
                        notification.type === "timer" ? "Timer" : "Notification")}
                     </div>
                     {localize(notification.type === "timer" ? (
-                      <div style={{ color: "white", fontSize: 22, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>
+                      <div style={{ color: "white", fontSize: 22, fontWeight: 700, fontVariantNumeric: "tabular-nums" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>
                         {localize(timerDisplay)}
                       </div>
                     ) : (

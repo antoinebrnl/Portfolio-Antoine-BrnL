@@ -1,4 +1,5 @@
 export const translations: Record<string, string> = {
+  "Terracotta": "Terracotta",
   "About": "À propos",
   "About Me": "À propos de moi",
   "About This Mac": "À propos de ce Mac",

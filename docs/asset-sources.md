@@ -4,3 +4,6 @@
 - `public/music/mac-startup.mp3`: Mac startup chime from `public/sounds/mac-startup-sound.mp3` in [PuruVJ/macos-web](https://github.com/PuruVJ/macos-web/tree/14204808226d67fce14924d0b2ea889c807f12a9). The source repository's MIT license is preserved alongside the audio as `mac-startup.LICENSE.txt`.
 
 - `src/styles/fonts/Welcome-Caveat.ttf`: Caveat variable font from [Google Fonts](https://github.com/google/fonts/tree/main/ofl/caveat), used locally for the welcome handwriting. The SIL Open Font License is preserved as `Welcome-Caveat.LICENSE.txt`.
+
+- `src/styles/fonts/Metropolis-*.woff2`: Metropolis by Chris Simpson, from [dw5/Metropolis](https://github.com/dw5/Metropolis/tree/85fa62524e9eb40047bbf64830022e59a02cbaed/Fonts/Webfonts/WOFF2). Its Unlicense is preserved as `Metropolis.LICENSE.txt`.
+- `src/styles/fonts/Orbitron.ttf`: Orbitron variable font from [Google Fonts](https://github.com/google/fonts/tree/main/ofl/orbitron), with its SIL Open Font License preserved as `Orbitron.LICENSE.txt`.

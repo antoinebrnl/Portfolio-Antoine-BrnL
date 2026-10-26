@@ -231,9 +231,9 @@ const Window = (props: WindowProps) => {
                 style={{
                   fontSize: "13px",
                   fontWeight: 500,
-                  opacity: 0.7,
-                  letterSpacing: "0.2px",
-                  fontFamily: "var(--font-system)",
+                  opacity: 1,
+                  letterSpacing: "-0.2px",
+                  fontFamily: "var(--font-display)",
                 }}
                 className="text-c-700"
               >

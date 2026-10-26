@@ -22,13 +22,13 @@ const btnStyle = (label: string) => {
   if (label === "AC" || label === "+/-" || label === "%") {
     return {
       background: "rgba(160,160,160,0.35)",
-      color: "#1c1c1e",
+      color: "#000000",
     };
   }
   if (["÷", "×", "-", "+", "="].includes(label)) {
     return {
-      background: "rgba(255,153,0,0.9)",
-      color: "#fff",
+      background: "var(--brand-cta)",
+      color: "var(--brand-cta-ink)",
     };
   }
   return {

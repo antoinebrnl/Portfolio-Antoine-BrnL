@@ -2,10 +2,10 @@ import { localize } from "~/i18n";
 import { motion } from "framer-motion";
 
 const PLACES = [
-  { id: "1", name: "MBM University", type: "University", lat: 26.285, lng: 73.006, color: "#007AFF" },
-  { id: "2", name: "Jodhpur", type: "City", lat: 26.292, lng: 73.014, color: "#FF9500" },
+  { id: "1", name: "MBM University", type: "University", lat: 26.285, lng: 73.006, color: "var(--brand-link)" },
+  { id: "2", name: "Jodhpur", type: "City", lat: 26.292, lng: 73.014, color: "var(--brand-link)" },
   { id: "3", name: "Mehrangarh Fort", type: "Landmark", lat: 26.298, lng: 72.978, color: "#FF3B30" },
-  { id: "4", name: "Umaid Bhawan", type: "Palace", lat: 26.280, lng: 73.022, color: "#AF52DE" },
+  { id: "4", name: "Umaid Bhawan", type: "Palace", lat: 26.280, lng: 73.022, color: "#66666e" },
 ];
 
 export default function Maps() {
@@ -27,10 +27,10 @@ export default function Maps() {
           height: "100%",
           background:
             mapStyle === "satellite"
-              ? "linear-gradient(145deg, #1a2a1a, #0a1f0a, #152515)"
+              ? "linear-gradient(145deg, #000000, #000000, #66666e)"
               : mapStyle === "transit"
-              ? "linear-gradient(145deg, #e8f0fe, #d2e3fc, #c2d7f8)"
-              : "linear-gradient(145deg, #e8e8e0, #d4d4c8, #c8c8b8)",
+              ? "linear-gradient(145deg, #f4f4f6, #e6e6e9, #e6e6e9)"
+              : "linear-gradient(145deg, #f4f4f6, #e6e6e9, #9999a1)",
           position: "relative",
         }}
       >
@@ -57,16 +57,16 @@ export default function Maps() {
                 rx={4}
                 fill={
                   mapStyle === "satellite"
-                    ? "rgba(60,80,60,0.6)"
+                    ? "rgba(102,102,110,0.6)"
                     : mapStyle === "transit"
-                    ? "rgba(200,215,240,0.8)"
-                    : "rgba(210,205,185,0.9)"
+                    ? "rgba(153,153,161,0.8)"
+                    : "rgba(153,153,161,0.9)"
                 }
               />
             ))
           ))}
           {/* Water */}
-          <ellipse cx="320" cy="230" rx="60" ry="40" fill={mapStyle === "satellite" ? "rgba(20,60,100,0.7)" : "rgba(140,190,230,0.7)"} />
+          <ellipse cx="320" cy="230" rx="60" ry="40" fill={mapStyle === "satellite" ? "rgba(102,102,110,0.7)" : "rgba(153,153,161,0.7)"} />
 
           {/* Place pins */}
           {localize(PLACES.map((place, i) => {
@@ -111,13 +111,13 @@ export default function Maps() {
               key={s}
               onClick={() => setMapStyle(s)}
               style={{
-                background: mapStyle === s ? "#007AFF" : "transparent",
+                background: mapStyle === s ? "#c86a52" : "transparent",
                 border: "none",
                 borderRadius: "7px",
                 padding: "4px 8px",
                 fontSize: "10px",
                 cursor: "pointer",
-                color: mapStyle === s ? "white" : "#1c1c1e",
+                color: mapStyle === s ? "white" : "#000000",
                 fontWeight: mapStyle === s ? 600 : 400,
                 textTransform: "capitalize",
                 transition: "all 0.15s ease",
@@ -153,7 +153,7 @@ export default function Maps() {
                 height: 32,
                 cursor: "pointer",
                 fontSize: "18px",
-                color: "#1c1c1e",
+                color: "#000000",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -200,7 +200,7 @@ export default function Maps() {
             <span className="i-ph:map-pin" style={{ width: "18px", height: "18px", color: "white" }} />
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: "14px", fontWeight: 600, color: "#1c1c1e" }}>
+            <div style={{ fontSize: "14px", fontWeight: 600, color: "#000000" }}>
               {localize(activePlace.name)}
             </div>
             <div style={{ fontSize: "11px", color: "rgba(0,0,0,0.5)" }}>
@@ -208,12 +208,12 @@ export default function Maps() {
           </div>
           <button
             style={{
-              background: "#007AFF",
+              background: "var(--brand-cta)",
               border: "none",
               borderRadius: "8px",
               padding: "6px 12px",
               fontSize: "12px",
-              color: "white",
+              color: "var(--brand-cta-ink)",
               cursor: "pointer",
               flexShrink: 0,
             }}
@@ -230,7 +230,7 @@ export default function Maps() {
         display: "flex",
         height: "100%",
         
-        background: "#e8e8e0",
+        background: "#f4f4f6",
         borderRadius: "0 0 14px 14px",
         overflow: "hidden",
       }}
@@ -269,7 +269,7 @@ export default function Maps() {
                 outline: "none",
                 fontSize: "13px",
                 width: "100%",
-                color: "#1c1c1e",
+                color: "#000000",
               }}
             />
           </div>
@@ -296,7 +296,7 @@ export default function Maps() {
               alignItems: "center",
               gap: "10px",
               padding: "8px 12px",
-              background: activePlace.id === place.id ? "rgba(0,122,255,0.1)" : "transparent",
+              background: activePlace.id === place.id ? "rgba(200,106,82,0.1)" : "transparent",
               border: "none",
               cursor: "pointer",
               borderRadius: "8px",
@@ -323,7 +323,7 @@ export default function Maps() {
               <div
                 style={{
                   fontSize: "13px",
-                  color: activePlace.id === place.id ? "#007AFF" : "#1c1c1e",
+                  color: activePlace.id === place.id ? "#c86a52" : "#000000",
                   fontWeight: activePlace.id === place.id ? 600 : 400,
                   overflow: "hidden",
                   textOverflow: "ellipsis",

@@ -29,7 +29,7 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
 
   return (
     <div style={{ margin: "0 auto", width: "100%", maxWidth: "800px", padding: "32px 16px 0" }}>
-      <div style={{ fontWeight: 600, marginLeft: "8px", fontSize: width < 640 ? "20px" : "24px", color: "var(--lg-text-primary, #1c1c1e)" }}>
+      <div style={{ fontWeight: 600, marginLeft: "8px", fontSize: width < 640 ? "20px" : "24px", color: "var(--lg-text-primary, #000000)" }}>
         {localize(section.title)}
       </div>
       <div style={{ marginTop: "16px", display: "grid", gridTemplateColumns: width < 640 ? "repeat(4, 1fr)" : "repeat(8, 1fr)", gap: "16px" }}>
@@ -54,7 +54,7 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
               {localize(site.img ? (
                 <img src={site.img} alt={localize(site.title)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               ) : (
-                <span style={{ fontSize: "18px", color: "#1c1c1e" }}>{localize(site.title.substring(0,2))}</span>
+                <span style={{ fontSize: "18px", color: "#000000" }}>{localize(site.title.substring(0,2))}</span>
               ))}
             </div>
             <span style={{ marginTop: "8px", fontSize: "12px", color: "var(--lg-text-secondary, rgba(0,0,0,0.6))", textAlign: "center" }}>
@@ -96,7 +96,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
 
         {/* Privacy Report */}
         <div style={{ margin: "0 auto", width: "100%", maxWidth: "800px", padding: "48px 16px 64px" }}>
-          <div style={{ fontWeight: 600, fontSize: width < 640 ? "20px" : "24px", color: "var(--lg-text-primary, #1c1c1e)", marginBottom: "16px" }}>
+          <div style={{ fontWeight: 600, fontSize: width < 640 ? "20px" : "24px", color: "var(--lg-text-primary, #000000)", marginBottom: "16px" }}>
             {localize("Privacy Report")}</div>
           <div
             style={{
@@ -113,7 +113,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
           >
             <div style={{ display: "flex", alignItems: "center", gap: "12px", borderRight: "1px solid rgba(0,0,0,0.1)", paddingRight: "20px" }}>
               <span className="i-ph:shield-check-fill" style={{ fontSize: "24px", color: "#34C759" }} />
-              <span style={{ fontSize: "24px", fontWeight: 700, color: "var(--lg-text-primary, #1c1c1e)" }}>{localize(numTracker)}</span>
+              <span style={{ fontSize: "24px", fontWeight: 700, color: "var(--lg-text-primary, #000000)" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>{localize(numTracker)}</span>
             </div>
             <div style={{ paddingLeft: "20px", fontSize: "14px", color: "var(--lg-text-secondary, rgba(0,0,0,0.6))" }}>
               {localize("In the last seven days, Safari has prevented")}{localize(numTracker)} {localize("trackers from profiling you.")}</div>
@@ -140,7 +140,7 @@ const NoInternetPage = () => {
     >
       <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--lg-bg-tinted)", backdropFilter: "var(--lg-blur-heavy)" }}>
         <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: "24px", fontWeight: 700, color: "var(--lg-text-primary, #1c1c1e)" }}>{localize("You Are Not Connected to the Internet")}</div>
+          <div style={{ fontSize: "24px", fontWeight: 700, color: "var(--lg-text-primary, #000000)" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>{localize("You Are Not Connected to the Internet")}</div>
           <div style={{ paddingTop: "16px", fontSize: "14px", color: "var(--lg-text-secondary, rgba(0,0,0,0.6))" }}>
             {localize("This page can't be displayed because your computer is currently offline.")}</div>
         </div>

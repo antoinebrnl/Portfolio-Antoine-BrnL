@@ -69,12 +69,12 @@ export default function Photos() {
           .desktop-only { display: none !important; }
           
           .photos-sidebar { display: none !important; }
-          .photos-main-area { background: #F2F2F7 !important; }
+          .photos-main-area { background: #f4f4f6 !important; }
           
           .photos-header {
             padding: 24px 20px 8px 20px !important;
             border-bottom: none !important;
-            background: #F2F2F7 !important;
+            background: #f4f4f6 !important;
             flex-direction: column !important;
             align-items: flex-start !important;
             position: relative;
@@ -92,7 +92,7 @@ export default function Photos() {
           
           .photos-header-subtitle {
             font-size: 13px !important;
-            color: #8E8E93 !important;
+            color: #9999a1 !important;
             margin-left: 0 !important;
           }
           
@@ -101,7 +101,7 @@ export default function Photos() {
             top: 24px;
             right: 20px;
             background: rgba(0,0,0,0.06) !important;
-            color: #007AFF !important;
+            color: #c86a52 !important;
             border-radius: 20px !important;
             padding: 4px 14px !important;
             font-size: 15px !important;
@@ -116,14 +116,14 @@ export default function Photos() {
             -webkit-overflow-scrolling: touch !important;
             padding: 8px 20px 16px 20px !important;
             gap: 8px !important;
-            background: #F2F2F7 !important;
+            background: #f4f4f6 !important;
             width: 100%;
             box-sizing: border-box;
           }
           .photos-mobile-chips::-webkit-scrollbar { display: none; }
           
           .photos-chip {
-            background: #E5E5EA !important;
+            background: #e6e6e9 !important;
             border-radius: 16px !important;
             font-size: 13px !important;
             padding: 6px 14px !important;
@@ -186,12 +186,12 @@ export default function Photos() {
             gap: 4px;
             font-size: 10px;
             font-weight: 500;
-            color: #8E8E93;
+            color: #9999a1;
             cursor: pointer;
             width: 80px;
           }
           
-          .mobile-tab-item.active { color: #007AFF; }
+          .mobile-tab-item.active { color: #c86a52; }
           
           @media (prefers-color-scheme: dark) {
             .photos-main-area, .photos-header, .photos-mobile-chips { background: #000 !important; }
@@ -261,20 +261,20 @@ export default function Photos() {
                     bottom: "20%",
                     width: "2.5px",
                     borderRadius: "2px",
-                    background: "var(--system-blue, #007AFF)",
+                    background: "var(--system-blue, #c86a52)",
                   }}
                   transition={{ type: "spring", stiffness: 500, damping: 35 }}
                 />
               ))}
               <span
                 className={album.icon}
-                style={{ width: "14px", height: "14px", flexShrink: 0, color: active ? "var(--system-blue, #007AFF)" : "var(--c-text-secondary)" }}
+                style={{ width: "14px", height: "14px", flexShrink: 0, color: active ? "var(--system-blue, #c86a52)" : "var(--c-text-secondary)" }}
               />
               <span
                 style={{
                   flex: 1,
                   fontSize: "13px",
-                  color: active ? "var(--system-blue, #007AFF)" : "var(--c-text)",
+                  color: active ? "var(--system-blue, #c86a52)" : "var(--c-text)",
                   fontWeight: active ? 600 : 500,
                   textAlign: "left",
                 }}
@@ -359,7 +359,7 @@ export default function Photos() {
                 overflow: "hidden",
                 cursor: "default",
                 aspectRatio: "4/3",
-                outline: selected === photo.id ? "2.5px solid var(--system-blue, #007AFF)" : "2.5px solid transparent",
+                outline: selected === photo.id ? "2.5px solid var(--system-blue, #c86a52)" : "2.5px solid transparent",
                 outlineOffset: "1px",
                 boxShadow: "0 2px 8px rgba(0,0,0,0.12)",
                 transition: "outline-color 0.15s ease",
@@ -393,7 +393,7 @@ export default function Photos() {
               </div>
               {localize(photo.liked && (
                 <div className="photo-like-badge" style={{ position: "absolute", top: 5, right: 5 }}>
-                  <span className="i-ph:heart-fill" style={{ width: "13px", height: "13px", color: "var(--system-pink, #FF2D55)", filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.5))" }} />
+                  <span className="i-ph:heart-fill" style={{ width: "13px", height: "13px", color: "var(--system-pink, #c86a52)", filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.5))" }} />
                 </div>
               ))}
             </motion.div>
@@ -473,7 +473,7 @@ export default function Photos() {
               <button
                 onClick={() => toggleLike(viewPhoto.id)}
                 style={{
-                  background: viewPhoto.liked ? "rgba(255,45,85,0.2)" : "transparent",
+                  background: viewPhoto.liked ? "rgba(200,106,82,0.2)" : "transparent",
                   border: "none",
                   borderRadius: "8px",
                   cursor: "pointer",
@@ -486,7 +486,7 @@ export default function Photos() {
               >
                 <span
                   className={viewPhoto.liked ? "i-ph:heart-fill" : "i-ph:heart"}
-                  style={{ width: "16px", height: "16px", color: viewPhoto.liked ? "var(--system-pink, #FF2D55)" : "rgba(255,255,255,0.7)" }}
+                  style={{ width: "16px", height: "16px", color: viewPhoto.liked ? "var(--system-pink, #c86a52)" : "rgba(255,255,255,0.7)" }}
                 />
               </button>
               <button

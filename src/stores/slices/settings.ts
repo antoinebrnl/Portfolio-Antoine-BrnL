@@ -125,6 +125,12 @@ const initialWallpaperSet = (() => {
   return id;
 })();
 
+// Refresh legacy system-color preferences once when adopting the brand palette.
+if (loadSetting("brandPaletteVersion", 0) < 1) {
+  saveSetting("accentColor", "#C86A52");
+  saveSetting("brandPaletteVersion", 1);
+}
+
 export const createSettingsSlice: StateCreator<SettingsSlice> = (set, get) => ({
   // Wallpaper
   wallpaperSets,

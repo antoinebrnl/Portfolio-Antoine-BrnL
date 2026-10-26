@@ -118,7 +118,7 @@ const Sidebar = ({ state, onTake, onSave, onSelect }: SidebarProps) => {
             width: "100%",
             padding: "8px 0",
             color: "white",
-            background: "rgba(52,199,89,0.9)",
+            background: "rgba(102,102,110,0.9)",
             border: "none",
             borderRadius: "8px",
             fontSize: "14px",

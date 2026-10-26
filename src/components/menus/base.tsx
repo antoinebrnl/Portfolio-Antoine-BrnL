@@ -15,7 +15,7 @@ const MenuItem = (props: MenuItemProps) => {
   return (
     <li
       onClick={props.onClick}
-      className="leading-6 cursor-default px-2.5 rounded hover:text-white hover:bg-blue-500"
+      className="leading-6 cursor-default px-2.5 rounded hover:text-black hover:bg-accent"
     >
       {localize(props.children)}
     </li>

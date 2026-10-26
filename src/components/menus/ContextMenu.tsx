@@ -39,7 +39,7 @@ export default function ContextMenu({ x, y, show, onClose, openApp }: ContextMen
         style={{
           ...itemStyle,
           background: hovered && !disabled ? "var(--accent-blue)" : "transparent",
-          color: hovered && !disabled ? "#fff" : "inherit",
+          color: hovered && !disabled ? "var(--brand-cta-ink)" : "inherit",
           opacity: disabled ? 0.5 : 1,
         }}
         onClick={(e) => {

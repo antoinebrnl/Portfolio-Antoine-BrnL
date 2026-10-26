@@ -135,9 +135,9 @@ export default function Login(props: MacActions) {
                     boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = 'rgba(200, 106, 82, 0.25)';
-                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200, 106, 82, 0.6)';
-                    (e.currentTarget as HTMLElement).style.boxShadow = '0 0 12px rgba(200, 106, 82, 0.4)';
+                    (e.currentTarget as HTMLElement).style.background = 'rgba(200,106,82, 0.25)';
+                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200,106,82, 0.6)';
+                    (e.currentTarget as HTMLElement).style.boxShadow = '0 0 12px rgba(200,106,82, 0.4)';
                   }}
                   onMouseLeave={(e) => {
                     (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.12)';
@@ -228,8 +228,8 @@ export default function Login(props: MacActions) {
                       color: 'white',
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = 'rgba(200, 106, 82, 0.25)';
-                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200, 106, 82, 0.6)';
+                      (e.currentTarget as HTMLElement).style.background = 'rgba(200,106,82, 0.25)';
+                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200,106,82, 0.6)';
                       (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)';
                     }}
                     onMouseLeave={(e) => {

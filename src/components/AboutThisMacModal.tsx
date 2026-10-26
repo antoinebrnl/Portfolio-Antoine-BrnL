@@ -9,8 +9,8 @@ interface AboutThisMacModalProps {
 const MacBookSVG = () => (
   <svg width="120" height="80" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg">
     {/* Screen */}
-    <rect x="18" y="6" width="84" height="54" rx="4" fill="#c8c8cc" />
-    <rect x="20" y="8" width="80" height="50" rx="3" fill="#1c1c1e" />
+    <rect x="18" y="6" width="84" height="54" rx="4" fill="#e6e6e9" />
+    <rect x="20" y="8" width="80" height="50" rx="3" fill="#000000" />
     {/* Apple logo on screen */}
     <text x="60" y="38" textAnchor="middle" fontSize="16" fill="rgba(255,255,255,0.15)"></text>
     {/* Base */}
@@ -91,7 +91,7 @@ export default function AboutThisMacModal({ show, onClose }: AboutThisMacModalPr
 
             {/* Model name */}
             <div style={{ textAlign: "center", paddingBottom: 14 }}>
-              <div style={{ fontSize: 17, fontWeight: 700, color: "var(--color-c-black, #1c1c1e)", lineHeight: 1.3 }}>
+              <div style={{ fontSize: 17, fontWeight: 700, color: "var(--color-c-black, #000000)", lineHeight: 1.3 }}>
                 {localize("MacBook Air")}</div>
               <div style={{ fontSize: 12, color: "rgba(100,100,100,0.75)", marginTop: 2 }}>
                 {localize("26, 2025")}</div>
@@ -113,7 +113,7 @@ export default function AboutThisMacModal({ show, onClose }: AboutThisMacModalPr
                   }}
                 >
                   <span style={{ color: "rgba(0,0,0,0.55)" }}>{localize(row.label)}</span>
-                  <span style={{ color: "#1c1c1e", fontWeight: 500 }}>{localize(row.value)}</span>
+                  <span style={{ color: "#000000", fontWeight: 500 }}>{localize(row.value)}</span>
                 </div>
               )))}
             </div>
@@ -127,7 +127,7 @@ export default function AboutThisMacModal({ show, onClose }: AboutThisMacModalPr
                   borderRadius: 7,
                   padding: "5px 16px",
                   fontSize: 12,
-                  color: "#1c1c1e",
+                  color: "#000000",
                   cursor: "pointer",
                   fontFamily: "var(--font-system)",
                 }}

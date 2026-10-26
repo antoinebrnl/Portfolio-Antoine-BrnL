@@ -21,7 +21,7 @@ const PROJECTS: AppEntry[] = [
     category: "Portfolio",
     icon: "img/icons/mac-icon.png",
     description: "A complete macOS Tahoe simulation built with React and Framer Motion.",
-    color: "linear-gradient(135deg, #007AFF 0%, #0051A8 100%)",
+    color: "linear-gradient(135deg, #c86a52 0%, #964833 100%)",
     preview: "img/previews/macos.png"
   },
   {
@@ -31,7 +31,7 @@ const PROJECTS: AppEntry[] = [
     category: "Education",
     icon: "img/icons/skill-exchange.png",
     description: "Exchange skills with peers. Learn anything, teach what you know.",
-    color: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+    color: "linear-gradient(135deg, #C86A52 0%, #66666e 100%)",
     preview: "img/previews/skill.png"
   },
   {
@@ -41,7 +41,7 @@ const PROJECTS: AppEntry[] = [
     category: "Finance",
     icon: "img/icons/paytm.png",
     description: "A full-stack Paytm-inspired payments app with modern UI.",
-    color: "linear-gradient(135deg, #00BAF2 0%, #002970 100%)",
+    color: "linear-gradient(135deg, #C86A52 0%, #66666e 100%)",
     preview: "img/previews/paytm.png"
   },
   {
@@ -51,7 +51,7 @@ const PROJECTS: AppEntry[] = [
     category: "Productivity",
     icon: "img/icons/mbm.png",
     description: "Track your college attendance effortlessly.",
-    color: "linear-gradient(135deg, #4CAF50 0%, #2E7D32 100%)",
+    color: "linear-gradient(135deg, #9999a1 0%, #66666e 100%)",
     preview: "img/previews/mbm.png"
   },
   {
@@ -61,7 +61,7 @@ const PROJECTS: AppEntry[] = [
     category: "Developer Tools",
     icon: "img/icons/sharecode.png",
     description: "Share beautiful code snippets with syntax highlighting.",
-    color: "linear-gradient(135deg, #11998e 0%, #38ef7d 100%)",
+    color: "linear-gradient(135deg, #66666e 0%, #9999a1 100%)",
     preview: "img/previews/sharecode.png"
   },
 ];
@@ -154,7 +154,7 @@ function FeaturedCard({ app, index }: { app: AppEntry; index: number }) {
         <div style={{ display: "flex", alignItems: "center", gap: "12px", minWidth: 0, flex: 1 }}>
             <AppIcon icon={app.icon} color={app.color} size={48} />
             <div style={{ minWidth: 0, paddingRight: "16px" }}>
-                <div style={{ fontSize: "11px", fontWeight: 700, color: "var(--system-blue, #007AFF)", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "2px" }}>
+                <div style={{ fontSize: "11px", fontWeight: 700, color: "var(--system-blue, #c86a52)", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "2px" }}>
                     {localize(app.category)}
                 </div>
                 <div style={{ fontSize: "15px", fontWeight: 600, color: "var(--c-text)", letterSpacing: "-0.2px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
@@ -168,7 +168,7 @@ function FeaturedCard({ app, index }: { app: AppEntry; index: number }) {
         <button
           style={{
             background: "var(--c-bg-tertiary)",
-            color: "var(--system-blue, #007AFF)",
+            color: "var(--system-blue, #c86a52)",
             border: "none",
             borderRadius: "14px",
             padding: "4px 16px",
@@ -217,7 +217,7 @@ function AppRow({ app, index, showBorder = true }: { app: AppEntry; index: numbe
       <button
         style={{
           background: "var(--c-bg-tertiary)",
-          color: "var(--system-blue, #007AFF)",
+          color: "var(--system-blue, #c86a52)",
           border: "none",
           borderRadius: "14px",
           padding: "4px 20px",
@@ -317,7 +317,7 @@ export default function AppStore() {
                 fontWeight: active ? 600 : 500,
               }}
             >
-              <span className={item.icon} style={{ width: "18px", height: "18px", color: active ? "var(--system-blue, #007AFF)" : "inherit" }} />
+              <span className={item.icon} style={{ width: "18px", height: "18px", color: active ? "var(--system-blue, #c86a52)" : "inherit" }} />
               <span style={{ fontSize: "14px" }}>{localize(item.label)}</span>
             </button>
           );
@@ -344,7 +344,7 @@ export default function AppStore() {
           onMouseEnter={(e) => (e.currentTarget.style.background = "var(--c-bg-tertiary)")}
           onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
         >
-          <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "var(--system-blue, #007AFF)", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "bold" }}>
+          <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "var(--system-blue, #c86a52)", color: "var(--brand-cta-ink)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "bold" }}>
             {localize("A")}</div>
           <span style={{ fontSize: "14px", flex: 1 }}>{localize("Antoine BrnL")}</span>
         </button>
@@ -357,7 +357,7 @@ export default function AppStore() {
             
             {/* Header */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px", borderBottom: "0.5px solid var(--c-border)", paddingBottom: "16px" }}>
-              <h1 style={{ fontSize: "34px", fontWeight: 700, color: "var(--c-text)", margin: 0, letterSpacing: "-0.5px" }}>{localize("Discover")}</h1>
+              <h1 style={{ fontSize: "34px", fontWeight: 700, color: "var(--c-text)", margin: 0, letterSpacing: "-0.5px" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>{localize("Discover")}</h1>
               <div style={{ display: "flex", gap: "16px", color: "var(--c-text-secondary)" }}>
                 <span className="i-ph:bell" style={{ width: "22px", height: "22px", cursor: "pointer" }} />
               </div>
@@ -377,8 +377,8 @@ export default function AppStore() {
             {/* List Section (Top Charts / New Apps) */}
             <div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px" }}>
-                <h2 style={{ fontSize: "24px", fontWeight: 700, color: "var(--c-text)", margin: 0, letterSpacing: "-0.3px" }}>{localize("Top Projects")}</h2>
-                <span style={{ fontSize: "15px", color: "var(--system-blue, #007AFF)", cursor: "pointer", fontWeight: 500 }}>{localize("See All")}</span>
+                <h2 style={{ fontSize: "24px", fontWeight: 700, color: "var(--c-text)", margin: 0, letterSpacing: "-0.3px" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>{localize("Top Projects")}</h2>
+                <span style={{ fontSize: "15px", color: "var(--system-blue, #c86a52)", cursor: "pointer", fontWeight: 500 }}>{localize("See All")}</span>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 64px" }}>
                 {/* Column 1 */}

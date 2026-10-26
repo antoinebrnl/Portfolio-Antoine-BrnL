@@ -21,7 +21,7 @@ const INITIAL_NOTES: Note[] = [
     date: "Thursday",
     dateISO: "2025-09-11",
     pinned: true,
-    color: "#FFCC00",
+    color: "#C86A52",
   },
   {
     id: "2",
@@ -51,7 +51,7 @@ const INITIAL_NOTES: Note[] = [
     date: "10/21/21",
     dateISO: "2021-10-21",
     pinned: false,
-    color: "#007AFF",
+    color: "var(--brand-link)",
   },
   {
     id: "6",
@@ -59,7 +59,7 @@ const INITIAL_NOTES: Note[] = [
     body: "1. Portfolio macOS 26 upgrade\n2. Terminal redesign\n3. Finder column view",
     date: "Yesterday",
     dateISO: "2025-09-10",
-    color: "#34C759",
+    color: "#9999a1",
   },
   {
     id: "7",
@@ -155,7 +155,7 @@ export default function Notes() {
         borderRadius: "8px",
         margin: "1px 6px",
         cursor: "default",
-        background: selected === note.id ? "rgba(255,204,0,0.22)" : "transparent",
+        background: selected === note.id ? "rgba(200,106,82,0.22)" : "transparent",
         transition: "background 0.15s ease",
         display: "flex",
         gap: "8px",
@@ -178,7 +178,7 @@ export default function Notes() {
           style={{
             fontSize: "13px",
             fontWeight: 600,
-            color: "#1c1c1e",
+            color: "#000000",
             overflow: "hidden",
             textOverflow: "ellipsis",
             whiteSpace: "nowrap",
@@ -263,7 +263,7 @@ export default function Notes() {
             justifyContent: "space-between",
           }}
         >
-          <span style={{ fontSize: "13px", fontWeight: 600, color: "#1c1c1e" }}>{localize("Notes")}</span>
+          <span style={{ fontSize: "13px", fontWeight: 600, color: "#000000" }}>{localize("Notes")}</span>
           <button
             onClick={newNote}
             title={localize("New Note")}
@@ -273,7 +273,7 @@ export default function Notes() {
               cursor: "pointer",
               padding: "2px 4px",
               borderRadius: "5px",
-              color: "#886800",
+              color: "#964833",
             }}
           >
             <span className="i-ph:note-pencil" style={{ width: "16px", height: "16px" }} />
@@ -292,7 +292,7 @@ export default function Notes() {
               justifyContent: "space-between",
               padding: "5px 12px",
               width: "calc(100% - 8px)",
-              background: activeSection === "notes" ? "rgba(0,122,255,0.12)" : "transparent",
+              background: activeSection === "notes" ? "rgba(200,106,82,0.12)" : "transparent",
               border: "none",
               borderRadius: "6px",
               margin: "0 4px",
@@ -301,7 +301,7 @@ export default function Notes() {
           >
             <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
               <img src="/img/icons/sf-icons/folder.svg" alt={localize("Folder")} style={{ width: "13px", height: "13px", opacity: 0.8 }} className="dark:invert" />
-              <span style={{ fontSize: "12px", fontWeight: activeSection === "notes" ? 600 : 400, color: activeSection === "notes" ? "#007AFF" : "#1c1c1e" }}>
+              <span style={{ fontSize: "12px", fontWeight: activeSection === "notes" ? 600 : 400, color: activeSection === "notes" ? "#c86a52" : "#000000" }}>
                 {localize("Notes")}</span>
             </div>
             <span style={{ fontSize: "11px", color: "rgba(0,0,0,0.35)", background: "rgba(0,0,0,0.07)", borderRadius: "8px", padding: "1px 6px" }}>
@@ -317,7 +317,7 @@ export default function Notes() {
               padding: "5px 12px",
               width: "calc(100% - 8px)",
               margin: "0 4px",
-              background: activeSection === "shared" ? "rgba(0,122,255,0.12)" : "transparent",
+              background: activeSection === "shared" ? "rgba(200,106,82,0.12)" : "transparent",
               border: "none",
               borderRadius: "6px",
               cursor: "pointer",
@@ -325,7 +325,7 @@ export default function Notes() {
           >
             <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
               <img src="/img/icons/sf-icons/folder-user.svg" alt={localize("Shared Folder")} style={{ width: "13px", height: "13px", opacity: 0.6 }} className="dark:invert" />
-              <span style={{ fontSize: "12px", color: "#1c1c1e" }}>{localize("Shared")}</span>
+              <span style={{ fontSize: "12px", color: "#000000" }}>{localize("Shared")}</span>
             </div>
             <span style={{ fontSize: "11px", color: "rgba(0,0,0,0.35)", background: "rgba(0,0,0,0.07)", borderRadius: "8px", padding: "1px 6px" }}>{localize("1")}</span>
           </button>
@@ -344,7 +344,7 @@ export default function Notes() {
                   borderRadius: "12px",
                   padding: "3px 9px",
                   fontSize: "11px",
-                  color: "#1c1c1e",
+                  color: "#000000",
                   cursor: "default",
                   userSelect: "none",
                 }}
@@ -395,14 +395,14 @@ export default function Notes() {
               placeholder={localize("Search")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              style={{ background: "none", border: "none", outline: "none", fontSize: "12px", width: "100%", color: "#1c1c1e" }}
+              style={{ background: "none", border: "none", outline: "none", fontSize: "12px", width: "100%", color: "#000000" }}
             />
           </div>
           <button
             onClick={newNote}
             title={localize("New Note")}
             style={{
-              background: "rgba(255,204,0,0.3)",
+              background: "rgba(200,106,82,0.3)",
               border: "none",
               borderRadius: "7px",
               width: "28px",
@@ -414,7 +414,7 @@ export default function Notes() {
               flexShrink: 0,
             }}
           >
-            <span style={{ fontSize: "18px", lineHeight: 1, color: "#886800" }}>{localize("+")}</span>
+            <span style={{ fontSize: "18px", lineHeight: 1, color: "#964833" }}>{localize("+")}</span>
           </button>
         </div>
 
@@ -445,7 +445,7 @@ export default function Notes() {
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
           {/* Editor toolbar */}
           {localize(isMobile && (
-            <button onClick={() => setMobileView("list")} style={{ padding: "8px 12px", background: "none", border: "none", color: "#007AFF", fontWeight: 500, display: "flex", alignItems: "center", gap: "4px" }}>
+            <button onClick={() => setMobileView("list")} style={{ padding: "8px 12px", background: "none", border: "none", color: "var(--brand-link)", fontWeight: 500, display: "flex", alignItems: "center", gap: "4px" }}>
               {localize("‹ Back")}</button>
           ))}
           <div
@@ -520,7 +520,7 @@ export default function Notes() {
               outline: "none",
               fontSize: "20px",
               fontWeight: 700,
-              color: "#1c1c1e",
+              color: "#000000",
               padding: "8px 20px 4px",
               background: "transparent",
             }}
@@ -538,7 +538,7 @@ export default function Notes() {
               resize: "none",
               fontSize: "14px",
               lineHeight: "1.6",
-              color: "#1c1c1e",
+              color: "#000000",
               padding: "0 20px 20px",
               background: "transparent",
               

@@ -51,11 +51,11 @@
   --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
 
   /* Typography */
-  --font-system: 'Fira Sans', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', system-ui, sans-serif;
-  --font-display: 'Orbitron', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Inter', 'Helvetica Neue', system-ui, sans-serif;
+  --font-system: 'Metropolis', sans-serif;
+  --font-display: 'Orbitron', 'Metropolis', sans-serif;
   --font-mono: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
-  --font-rounded: 'Orbitron', 'SF Pro Rounded', -apple-system, ui-rounded, 'Inter', 'Helvetica Neue', sans-serif;
-  --font-avenir: 'Avenir Next LT Pro', 'Helvetica Neue', SFCompactRounded, -apple-system, Roboto, Oxygen, Ubuntu, 'Fira Sans', 'Droid Sans', sans-serif;
+  --font-rounded: 'Orbitron', 'Metropolis', sans-serif;
+  --font-avenir: 'Metropolis', sans-serif;
 
   /* Accent Colors */
   --accent-blue: #007AFF;
@@ -473,10 +473,10 @@
 
 /* --- Accent-tinted text selection (matches macOS highlight) --- */
 ::selection {
-  background: rgba(0, 122, 255, 0.28);
+  background: rgba(200,106,82, 0.28);
 }
 .dark ::selection {
-  background: rgba(10, 132, 255, 0.4);
+  background: rgba(200,106,82, 0.4);
 }
 
 /* ========================================
@@ -490,11 +490,11 @@
   --window-bar-bg: var(--lg-bg-tinted);
 }
 [data-tint-windows="off"] {
-  --window-bar-bg: rgba(250, 250, 252, 0.72);
+  --window-bar-bg: rgba(244, 244, 246, 0.9);
 }
 .dark[data-tint-windows="off"],
 [data-tint-windows="off"].dark {
-  --window-bar-bg: rgba(46, 46, 48, 0.72);
+  --window-bar-bg: rgba(0, 0, 0, 0.9);
 }
 
 /* Icon & widget style — applied to dock app icons.
@@ -507,5 +507,5 @@
   filter: saturate(0.55) brightness(1.12) opacity(0.9);
 }
 [data-icon-style="tinted"] .dock img {
-  filter: grayscale(0.85) brightness(0.95) sepia(0.25) hue-rotate(180deg) saturate(1.3);
+  filter: grayscale(0.85) brightness(0.95) sepia(0.25) hue-rotate(335deg) saturate(1.3);
 }

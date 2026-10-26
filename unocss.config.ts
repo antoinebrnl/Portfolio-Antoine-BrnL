@@ -78,24 +78,30 @@ export default defineConfig({
   ],
   theme: {
     colors: {
-      accent: 'var(--accent-primary)',
+      accent: 'var(--brand-cta)',
+      'brand-link': 'var(--brand-link)',
+      black: '#000000',
+      white: '#f4f4f6',
+      gray: { 50: '#f4f4f6', 100: '#e6e6e9', 200: '#e6e6e9', 300: '#9999a1', 400: '#9999a1', 500: '#66666e', 600: '#66666e', 700: '#000000', 800: '#000000', 900: '#000000', 950: '#000000' },
+      // Legacy utility names now resolve to the brand accent, not system blue.
+      blue: { 50: '#f4f4f6', 100: '#e6e6e9', 200: '#e6e6e9', 300: '#db8f7b', 400: '#c86a52', 500: '#c86a52', 600: '#964833', 700: '#964833', 800: '#964833', 900: '#000000' },
       neon: {
-        purple: '#5239fa',
-        cyan: '#1abcfe',
-        orange: '#fe8015',
-        mint: '#51cb9c',
-        yellow: '#fcc400'
+        purple: '#66666e',
+        cyan: '#9999a1',
+        orange: '#c86a52',
+        mint: '#e6e6e9',
+        yellow: '#c86a52'
       },
       dark: {
-        navy: '#1c1e53',
-        deep: '#151d53',
-        slate: '#282938'
+        navy: '#000000',
+        deep: '#000000',
+        slate: '#66666e'
       }
     },
     fontFamily: {
-      sans: ['"Fira Sans"', 'var(--font-system)'],
-      display: ['Orbitron', 'var(--font-display)'],
-      rounded: ['Orbitron', 'var(--font-rounded)'],
+      sans: ['var(--font-system)'],
+      display: ['var(--font-display)'],
+      rounded: ['var(--font-rounded)'],
       mono: ['var(--font-mono)'],
     }
   },

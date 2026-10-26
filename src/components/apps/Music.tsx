@@ -117,7 +117,7 @@ export default function MusicApp() {
           <button
             onClick={() => controls.toggle(!audioState.playing)}
             style={{
-              background: "var(--system-pink, #FF2D55)",
+              background: "var(--system-pink, #c86a52)",
               border: "none",
               borderRadius: "50%",
               width: 40,
@@ -126,8 +126,8 @@ export default function MusicApp() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "white",
-              boxShadow: "0 4px 12px rgba(255,45,85,0.3)"
+              color: "var(--brand-cta-ink)",
+              boxShadow: "0 4px 12px rgba(200,106,82,0.3)"
             }}
           >
             <span className={audioState.playing ? "i-ph:pause-fill" : "i-ph:play-fill"} style={{ width: "20px", height: "20px" }} />
@@ -210,10 +210,10 @@ export default function MusicApp() {
               alignItems: "center",
               gap: "8px",
               padding: "8px 12px",
-              background: label === "Library" ? "rgba(255,45,85,0.15)" : "transparent",
+              background: label === "Library" ? "rgba(200,106,82,0.15)" : "transparent",
               border: "none",
               cursor: "pointer",
-              color: label === "Library" ? "var(--system-pink, #FF2D55)" : "var(--c-text)",
+              color: label === "Library" ? "var(--system-pink, #c86a52)" : "var(--c-text)",
               fontSize: "13px",
               fontWeight: label === "Library" ? 600 : 500,
               borderRadius: "6px",
@@ -222,7 +222,7 @@ export default function MusicApp() {
               transition: "background 0.15s ease",
             }}
           >
-            <span className={icon} style={{ width: "16px", height: "16px", flexShrink: 0, color: label === "Library" ? "var(--system-pink, #FF2D55)" : "var(--system-pink, #FF2D55)" }} />
+            <span className={icon} style={{ width: "16px", height: "16px", flexShrink: 0, color: label === "Library" ? "var(--system-pink, #c86a52)" : "var(--system-pink, #c86a52)" }} />
             {localize(label)}
           </button>
         )))}
@@ -272,7 +272,7 @@ export default function MusicApp() {
               padding: "0 0 24px 0",
               color: "var(--c-text)",
               letterSpacing: "-0.5px"
-            }}
+            , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}
           >
             {localize("Library")}</div>
           {localize(TRACKS.map((track, i) => (
@@ -290,7 +290,7 @@ export default function MusicApp() {
                 cursor: "pointer",
                 background:
                   activeTrack.id === track.id
-                    ? "rgba(255,45,85,0.1)"
+                    ? "rgba(200,106,82,0.1)"
                     : "transparent",
                 borderRadius: "12px",
                 margin: "4px 0",
@@ -324,7 +324,7 @@ export default function MusicApp() {
                     fontSize: "14px",
                     fontWeight: activeTrack.id === track.id ? 600 : 500,
                     color:
-                      activeTrack.id === track.id ? "var(--system-pink, #FF2D55)" : "var(--c-text)",
+                      activeTrack.id === track.id ? "var(--system-pink, #c86a52)" : "var(--c-text)",
                     overflow: "hidden",
                     textOverflow: "ellipsis",
                     whiteSpace: "nowrap",
@@ -357,7 +357,7 @@ export default function MusicApp() {
                       style={{
                         width: 3,
                         borderRadius: 2,
-                        background: "var(--system-pink, #FF2D55)",
+                        background: "var(--system-pink, #c86a52)",
                       }}
                     />
                   )))}

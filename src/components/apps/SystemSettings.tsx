@@ -47,38 +47,38 @@ interface PanelItem {
 }
 
 const PANEL_ITEMS: PanelItem[] = [
-  { id: "wifi", label: "Wi-Fi", icon: "/img/icons/sf-icons/wifi.svg", color: "#007AFF" },
-  { id: "bluetooth", label: "Bluetooth", icon: "/img/icons/sf-icons/bluetooth.svg", color: "#007AFF" },
-  { id: "network", label: "Network", icon: "/img/icons/sf-icons/network.svg", color: "#007AFF" },
-  { id: "notifications", label: "Notifications", icon: "/img/icons/sf-icons/notifications.svg", color: "#FF3B30" },
-  { id: "sound", label: "Sound", icon: "/img/icons/sf-icons/sound.svg", color: "#FF2D55" },
-  { id: "focus", label: "Focus", icon: "/img/icons/sf-icons/focus.svg", color: "#5856D6" },
-  { id: "screen-time", label: "Screen Time", icon: "/img/icons/sf-icons/screen-time.svg", color: "#5856D6" },
-  { id: "general", label: "General", icon: "/img/icons/sf-icons/general.svg", color: "#8E8E93" },
+  { id: "wifi", label: "Wi-Fi", icon: "/img/icons/sf-icons/wifi.svg", color: "var(--brand-link)" },
+  { id: "bluetooth", label: "Bluetooth", icon: "/img/icons/sf-icons/bluetooth.svg", color: "var(--brand-link)" },
+  { id: "network", label: "Network", icon: "/img/icons/sf-icons/network.svg", color: "var(--brand-link)" },
+  { id: "notifications", label: "Notifications", icon: "/img/icons/sf-icons/notifications.svg", color: "#C86A52" },
+  { id: "sound", label: "Sound", icon: "/img/icons/sf-icons/sound.svg", color: "var(--brand-link)" },
+  { id: "focus", label: "Focus", icon: "/img/icons/sf-icons/focus.svg", color: "#66666e" },
+  { id: "screen-time", label: "Screen Time", icon: "/img/icons/sf-icons/screen-time.svg", color: "#66666e" },
+  { id: "general", label: "General", icon: "/img/icons/sf-icons/general.svg", color: "#9999a1" },
   { id: "appearance", label: "Appearance", icon: "/img/icons/sf-icons/appearance.svg", color: "#000000" },
-  { id: "accessibility", label: "Accessibility", icon: "/img/icons/sf-icons/accessibility.svg", color: "#007AFF" },
-  { id: "control-center", label: "Control Center", icon: "/img/icons/sf-icons/control-center.svg", color: "#8E8E93" },
-  { id: "siri", label: "Siri & Spotlight", icon: "/img/icons/sf-icons/siri.svg", color: "#AF52DE" },
-  { id: "spotlight", label: "Spotlight", icon: "/img/icons/sf-icons/spotlight.svg", color: "#8E8E93" },
-  { id: "privacy", label: "Privacy & Security", icon: "/img/icons/sf-icons/privacy.svg", color: "#007AFF" },
-  { id: "desktop", label: "Desktop", icon: "/img/icons/sf-icons/desktop.svg", color: "#6E6E73" },
-  { id: "dock", label: "Dock & Menu Bar", icon: "/img/icons/sf-icons/dock.svg", color: "#5AC8FA" },
-  { id: "displays", label: "Displays", icon: "/img/icons/sf-icons/displays.svg", color: "#007AFF" },
-  { id: "wallpaper", label: "Wallpaper", icon: "/img/icons/sf-icons/wallpaper.svg", color: "#5AC8FA" },
-  { id: "battery", label: "Battery", icon: "/img/icons/sf-icons/battery.svg", color: "#34C759" },
-  { id: "storage", label: "Storage", icon: "/img/icons/sf-icons/storage.svg", color: "#5856D6" },
-  { id: "cloud", label: "Cloud Storage", icon: "/img/icons/sf-icons/cloud.svg", color: "#007AFF" },
-  { id: "touch-id", label: "Touch ID & Password", icon: "/img/icons/sf-icons/touch-id.svg", color: "#FF2D55" },
-  { id: "users", label: "Users & Groups", icon: "/img/icons/sf-icons/users.svg", color: "#8E8E93" },
-  { id: "internet-accounts", label: "Internet Accounts", icon: "/img/icons/sf-icons/internet-accounts.svg", color: "#007AFF" },
-  { id: "game-center", label: "Game Center", icon: "/img/icons/sf-icons/game-center.svg", color: "#34C759" },
-  { id: "wallet", label: "Wallet & Apple Pay", icon: "/img/icons/sf-icons/wallet.svg", color: "#1c1c1e" },
-  { id: "keyboard", label: "Keyboard", icon: "/img/icons/sf-icons/keyboard.svg", color: "#8E8E93" },
-  { id: "mouse", label: "Mouse", icon: "/img/icons/sf-icons/mouse.svg", color: "#8E8E93" },
-  { id: "trackpad", label: "Trackpad", icon: "/img/icons/sf-icons/trackpad.svg", color: "#8E8E93" },
-  { id: "printers", label: "Printers & Scanners", icon: "/img/icons/sf-icons/printer.svg", color: "#8E8E93" },
-  { id: "weather", label: "Weather", icon: "/img/icons/sf-icons/sun.max.svg", color: "#007AFF" },
-  { id: "about", label: "About", icon: "/img/icons/sf-icons/about.svg", color: "#8E8E93" }
+  { id: "accessibility", label: "Accessibility", icon: "/img/icons/sf-icons/accessibility.svg", color: "var(--brand-link)" },
+  { id: "control-center", label: "Control Center", icon: "/img/icons/sf-icons/control-center.svg", color: "#9999a1" },
+  { id: "siri", label: "Siri & Spotlight", icon: "/img/icons/sf-icons/siri.svg", color: "#66666e" },
+  { id: "spotlight", label: "Spotlight", icon: "/img/icons/sf-icons/spotlight.svg", color: "#9999a1" },
+  { id: "privacy", label: "Privacy & Security", icon: "/img/icons/sf-icons/privacy.svg", color: "var(--brand-link)" },
+  { id: "desktop", label: "Desktop", icon: "/img/icons/sf-icons/desktop.svg", color: "#66666e" },
+  { id: "dock", label: "Dock & Menu Bar", icon: "/img/icons/sf-icons/dock.svg", color: "#9999a1" },
+  { id: "displays", label: "Displays", icon: "/img/icons/sf-icons/displays.svg", color: "var(--brand-link)" },
+  { id: "wallpaper", label: "Wallpaper", icon: "/img/icons/sf-icons/wallpaper.svg", color: "#9999a1" },
+  { id: "battery", label: "Battery", icon: "/img/icons/sf-icons/battery.svg", color: "#66666e" },
+  { id: "storage", label: "Storage", icon: "/img/icons/sf-icons/storage.svg", color: "#66666e" },
+  { id: "cloud", label: "Cloud Storage", icon: "/img/icons/sf-icons/cloud.svg", color: "var(--brand-link)" },
+  { id: "touch-id", label: "Touch ID & Password", icon: "/img/icons/sf-icons/touch-id.svg", color: "var(--brand-link)" },
+  { id: "users", label: "Users & Groups", icon: "/img/icons/sf-icons/users.svg", color: "#9999a1" },
+  { id: "internet-accounts", label: "Internet Accounts", icon: "/img/icons/sf-icons/internet-accounts.svg", color: "var(--brand-link)" },
+  { id: "game-center", label: "Game Center", icon: "/img/icons/sf-icons/game-center.svg", color: "#66666e" },
+  { id: "wallet", label: "Wallet & Apple Pay", icon: "/img/icons/sf-icons/wallet.svg", color: "#000000" },
+  { id: "keyboard", label: "Keyboard", icon: "/img/icons/sf-icons/keyboard.svg", color: "#9999a1" },
+  { id: "mouse", label: "Mouse", icon: "/img/icons/sf-icons/mouse.svg", color: "#9999a1" },
+  { id: "trackpad", label: "Trackpad", icon: "/img/icons/sf-icons/trackpad.svg", color: "#9999a1" },
+  { id: "printers", label: "Printers & Scanners", icon: "/img/icons/sf-icons/printer.svg", color: "#9999a1" },
+  { id: "weather", label: "Weather", icon: "/img/icons/sf-icons/sun.max.svg", color: "var(--brand-link)" },
+  { id: "about", label: "About", icon: "/img/icons/sf-icons/about.svg", color: "#9999a1" }
 ];
 
 const PANEL_GROUPS = [
@@ -104,7 +104,7 @@ const Toggle = ({ checked, onChange }: { checked: boolean; onChange: (v: boolean
         width: "36px",
         height: "20px",
         borderRadius: "10px",
-        background: checked ? "#30d158" : dark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)",
+        background: checked ? "#c86a52" : dark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)",
         position: "relative",
         cursor: "pointer",
         transition: "background-color 0.2s ease",
@@ -148,7 +148,7 @@ const Select = ({
         borderRadius: "6px",
         padding: "4px 8px",
         cursor: "pointer",
-        color: dark ? "#fff" : "#1c1c1e",
+        color: dark ? "#fff" : "#000000",
         outline: "none",
       }}
     >
@@ -161,7 +161,7 @@ const Select = ({
             value={val}
             style={{
               background: dark ? "#1e1e1e" : "#fff",
-              color: dark ? "#fff" : "#1c1c1e",
+              color: dark ? "#fff" : "#000000",
             }}
           >
             {localize(label)}
@@ -190,7 +190,7 @@ const Row = ({
         borderBottom: dark ? "0.5px solid rgba(255,255,255,0.08)" : "0.5px solid rgba(0,0,0,0.06)",
       }}
     >
-      <span style={{ fontSize: "13px", color: dark ? "#f5f5f7" : "#1c1c1e" }}>{localize(label)}</span>
+      <span style={{ fontSize: "13px", color: dark ? "#f4f4f6" : "#000000" }}>{localize(label)}</span>
       {localize(children)}
     </div>
   );
@@ -277,26 +277,17 @@ const AppearancePanel = () => {
   }));
 
   const wallpaper = getWallpaper();
-  const colors = [
-    { label: "Blue", value: "#007AFF" },
-    { label: "Purple", value: "#AF52DE" },
-    { label: "Pink", value: "#FF2D55" },
-    { label: "Red", value: "#FF3B30" },
-    { label: "Orange", value: "#FF9500" },
-    { label: "Yellow", value: "#FFCC00" },
-    { label: "Green", value: "#34C759" },
-    { label: "Graphite", value: "#8E8E93" },
-  ];
+  const colors = [{ label: "Terracotta", value: "#C86A52" }];
 
   const appearanceOptions: { label: string; value: "auto" | "light" | "dark"; preview: string }[] = [
-    { label: "Auto", value: "auto", preview: "linear-gradient(135deg,#f5f5f7 0% 50%,#1c1c1e 50% 100%)" },
-    { label: "Light", value: "light", preview: "linear-gradient(135deg,#f5f5f7,#e5e5ea)" },
-    { label: "Dark", value: "dark", preview: "linear-gradient(135deg,#2c2c2e,#1c1c1e)" },
+    { label: "Auto", value: "auto", preview: "linear-gradient(135deg,#f4f4f6 0% 50%,#000000 50% 100%)" },
+    { label: "Light", value: "light", preview: "linear-gradient(135deg,#f4f4f6,#e6e6e9)" },
+    { label: "Dark", value: "dark", preview: "linear-gradient(135deg,#2c2c2e,#000000)" },
   ];
 
   const iconStyles: { label: string; value: "default" | "dark" | "clear" | "tinted"; preview: string }[] = [
-    { label: "Default", value: "default", preview: "linear-gradient(135deg,#4a90ff,#0a63d8)" },
-    { label: "Dark", value: "dark", preview: "linear-gradient(135deg,#3a3a3c,#1c1c1e)" },
+    { label: "Default", value: "default", preview: "linear-gradient(135deg,#C86A52,#66666e)" },
+    { label: "Dark", value: "dark", preview: "linear-gradient(135deg,#3a3a3c,#000000)" },
     { label: "Clear", value: "clear", preview: "linear-gradient(135deg,rgba(255,255,255,0.5),rgba(200,200,210,0.35))" },
     { label: "Tinted", value: "tinted", preview: `linear-gradient(135deg,${accentColor},${accentColor}99)` },
   ];
@@ -334,13 +325,13 @@ const AppearancePanel = () => {
                     backgroundPosition: "center",
                     position: "relative",
                     overflow: "hidden",
-                    border: active ? "2px solid #007AFF" : dark ? "2px solid rgba(255,255,255,0.12)" : "2px solid rgba(0,0,0,0.1)",
+                    border: active ? "2px solid #c86a52" : dark ? "2px solid rgba(255,255,255,0.12)" : "2px solid rgba(0,0,0,0.1)",
                     boxShadow: "inset 0 0 0 100px transparent",
                   }}
                 >
                   <div style={{ position: "absolute", inset: 0, background: opt.preview, opacity: 0.55 }} />
                 </div>
-                <span style={{ fontSize: "12px", fontWeight: active ? 600 : 400, color: dark ? "#f5f5f7" : "#1c1c1e" }}>
+                <span style={{ fontSize: "12px", fontWeight: active ? 600 : 400, color: dark ? "#f4f4f6" : "#000000" }}>
                   {localize(opt.label)}
                 </span>
               </button>
@@ -353,20 +344,6 @@ const AppearancePanel = () => {
       <Card>
         <Row label={localize("Color")}>
           <div style={{ display: "flex", gap: "7px", alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" }}>
-            {/* Multicolor swatch */}
-            <button
-              title={localize("Multicolor")}
-              onClick={() => setAccentColor("#007AFF")}
-              style={{
-                width: "20px",
-                height: "20px",
-                borderRadius: "50%",
-                background: "conic-gradient(#FF3B30,#FF9500,#FFCC00,#34C759,#007AFF,#AF52DE,#FF2D55,#FF3B30)",
-                border: "2px solid transparent",
-                cursor: "pointer",
-                padding: 0,
-              }}
-            />
             {localize(colors.map((c) => (
               <button
                 key={c.value}
@@ -425,11 +402,11 @@ const AppearancePanel = () => {
                     height: "42px",
                     borderRadius: "10px",
                     background: opt.preview,
-                    border: active ? "2px solid #007AFF" : dark ? "2px solid rgba(255,255,255,0.12)" : "2px solid rgba(0,0,0,0.1)",
+                    border: active ? "2px solid #c86a52" : dark ? "2px solid rgba(255,255,255,0.12)" : "2px solid rgba(0,0,0,0.1)",
                     boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
                   }}
                 />
-                <span style={{ fontSize: "11px", fontWeight: active ? 600 : 400, color: dark ? "#f5f5f7" : "#1c1c1e" }}>
+                <span style={{ fontSize: "11px", fontWeight: active ? 600 : 400, color: dark ? "#f4f4f6" : "#000000" }}>
                   {localize(opt.label)}
                 </span>
               </button>
@@ -484,7 +461,7 @@ const WallpaperPanel = () => {
               whileTap={{ scale: 0.98 }}
               style={{
                 background: "none",
-                border: active ? "2.5px solid #007AFF" : "2.5px solid transparent",
+                border: active ? "2.5px solid #c86a52" : "2.5px solid transparent",
                 borderRadius: "12px",
                 padding: "0",
                 cursor: "pointer",
@@ -504,7 +481,7 @@ const WallpaperPanel = () => {
                     position: "absolute",
                     top: "6px",
                     right: "6px",
-                    background: "#007AFF",
+                    background: "var(--brand-cta)",
                     borderRadius: "50%",
                     width: "18px",
                     height: "18px",
@@ -512,7 +489,7 @@ const WallpaperPanel = () => {
                     alignItems: "center",
                     justifyContent: "center",
                     fontSize: "11px",
-                    color: "#fff",
+                    color: "var(--brand-cta-ink)",
                   }}
                 >
                   {localize("✓")}</div>
@@ -521,7 +498,7 @@ const WallpaperPanel = () => {
                 style={{
                   padding: "4px 8px",
                   fontSize: "11px",
-                  color: active ? "#007AFF" : dark ? "#f5f5f7" : "#1c1c1e",
+                  color: active ? "#c86a52" : dark ? "#f4f4f6" : "#000000",
                   fontWeight: active ? 600 : 400,
                   textAlign: "left",
                 }}
@@ -582,7 +559,7 @@ const DockPanel = () => {
             max={max}
             value={value}
             onChange={(e) => onChange(Number(e.target.value))}
-            style={{ width: "120px", accentColor: "#007AFF" }}
+            style={{ width: "120px", accentColor: "var(--brand-cta)" }}
           />
           <span style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
             {localize(displayVal ?? value)}
@@ -725,7 +702,7 @@ const SoundPanel = () => {
               max="100"
               value={volume}
               onChange={(e) => setVolume(Number(e.target.value))}
-              style={{ width: "120px", accentColor: "#007AFF" }}
+              style={{ width: "120px", accentColor: "var(--brand-cta)" }}
             />
             <img src="/img/icons/sf-icons/sound.svg" alt={localize("sound")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
             <span style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
@@ -847,7 +824,7 @@ const DisplaysPanel = () => {
               max="100"
               value={brightness}
               onChange={(e) => setBrightness(Number(e.target.value))}
-              style={{ width: "120px", accentColor: "#007AFF" }}
+              style={{ width: "120px", accentColor: "var(--brand-cta)" }}
             />
             <img src="/img/icons/sf-icons/sun.svg" alt={localize("sun")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
             <span style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
@@ -895,7 +872,7 @@ const BatteryPanel = () => {
     <div>
       {/* Battery Status Display */}
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "24px 16px 12px" }}>
-        <div style={{ position: "relative", width: "80px", height: "40px", border: `3.5px solid ${dark ? "#fff" : "#1c1c1e"}`, borderRadius: "8px", display: "flex", alignItems: "center", padding: "2px" }}>
+        <div style={{ position: "relative", width: "80px", height: "40px", border: `3.5px solid ${dark ? "#fff" : "#000000"}`, borderRadius: "8px", display: "flex", alignItems: "center", padding: "2px" }}>
           <div
             style={{
               height: "100%",
@@ -914,7 +891,7 @@ const BatteryPanel = () => {
               transform: "translateY(-50%)",
               width: "5px",
               height: "12px",
-              background: dark ? "#fff" : "#1c1c1e",
+              background: dark ? "#fff" : "#000000",
               borderRadius: "0 2px 2px 0",
             }}
           />
@@ -932,7 +909,7 @@ const BatteryPanel = () => {
           >
             {localize("94%")}</div>
         </div>
-        <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#1c1c1e", marginTop: "12px" }}>
+        <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#000000", marginTop: "12px" }}>
           {localize("Power Source: Battery")}</div>
         <div style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>
           {localize("Battery Health: 100% (Maximum Capacity)")}</div>
@@ -990,17 +967,17 @@ const StoragePanel = () => {
   const dark = useStore((s) => s.dark);
   const totalSize = 512;
   const storageCategories = [
-    { name: "System Data", size: 64, color: "#8E8E93" },
+    { name: "System Data", size: 64, color: "#9999a1" },
     { name: "Apps", size: 42, color: "#FF3B30" },
     { name: "Documents", size: 120, color: "#34C759" },
-    { name: "Developer", size: 85, color: "#FF9500" },
+    { name: "Developer", size: 85, color: "var(--brand-link)" },
     { name: "Free Space", size: 201, color: "rgba(0,0,0,0.08)" },
   ];
 
   return (
     <div>
       <div style={{ padding: "16px 16px 4px" }}>
-        <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#1c1c1e" }}>
+        <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#000000" }}>
           {localize("Macintosh HD")}</div>
         <div style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>
           {localize("311 GB used of 512 GB")}</div>
@@ -1048,7 +1025,7 @@ const StoragePanel = () => {
                   background: cat.name === "Free Space" && dark ? "#444" : cat.color,
                 }}
               />
-              <span style={{ fontSize: "12px", fontWeight: 500, color: dark ? "#fff" : "#1c1c1e" }}>
+              <span style={{ fontSize: "12px", fontWeight: 500, color: dark ? "#fff" : "#000000" }}>
                 {localize(cat.size)} {localize("GB")}</span>
             </div>
           </Row>
@@ -1071,11 +1048,11 @@ const CloudPanel = () => {
                 <img src="/img/icons/sf-icons/cloud.svg" alt={localize("Google Drive")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
               </span>
               <div>
-                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#1c1c1e" }}>{localize("Google Drive")}</div>
+                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#000000" }}>{localize("Google Drive")}</div>
                 <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
               </div>
             </div>
-            <button style={{ background: "#007AFF", color: "#fff", border: "none", borderRadius: "8px", padding: "6px 14px", fontSize: "12px", cursor: "pointer" }}>
+            <button style={{ background: "var(--brand-cta)", color: "var(--brand-cta-ink)", border: "none", borderRadius: "8px", padding: "6px 14px", fontSize: "12px", cursor: "pointer" }}>
               {localize("Connect")}</button>
           </div>
           <div style={{ background: dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)", borderRadius: "8px", padding: "10px", fontSize: "11px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.5)", textAlign: "center" }}>
@@ -1090,7 +1067,7 @@ const CloudPanel = () => {
                 <img src="/img/icons/sf-icons/cloud.svg" alt={localize("Dropbox")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
               </span>
               <div>
-                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#1c1c1e" }}>{localize("Dropbox")}</div>
+                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#000000" }}>{localize("Dropbox")}</div>
                 <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
               </div>
             </div>
@@ -1107,7 +1084,7 @@ const CloudPanel = () => {
                 <img src="/img/icons/sf-icons/cloud.svg" alt={localize("OneDrive")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
               </span>
               <div>
-                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#1c1c1e" }}>{localize("OneDrive")}</div>
+                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#000000" }}>{localize("OneDrive")}</div>
                 <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
               </div>
             </div>
@@ -1166,7 +1143,7 @@ const PrivacyPanel = () => {
             >
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                 {localize(p.icon.startsWith("i-ph:") ? <span className={p.icon} style={{ width: "18px", height: "18px" }} /> : <img src={p.icon} alt={localize(p.name)} style={{ width: "18px", height: "18px", filter: dark ? "invert(1)" : "none" }} />)}
-                <span style={{ fontSize: "13px", color: dark ? "#f5f5f7" : "#1c1c1e" }}>{localize(p.name)}</span>
+                <span style={{ fontSize: "13px", color: dark ? "#f4f4f6" : "#000000" }}>{localize(p.name)}</span>
               </div>
               <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>
                 {localize(p.apps.length)} {localize(p.apps.length === 1 ? "app" : "apps")} {localize(selectedPermission === p.name ? "▲" : "▼")}
@@ -1176,7 +1153,7 @@ const PrivacyPanel = () => {
               <div style={{ background: dark ? "rgba(0,0,0,0.2)" : "rgba(0,0,0,0.03)", padding: "4px 16px" }}>
                 {localize(p.apps.map((app) => (
                   <div key={app} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: dark ? "0.5px solid rgba(255,255,255,0.05)" : "0.5px solid rgba(0,0,0,0.04)" }}>
-                    <span style={{ fontSize: "12px", color: dark ? "#f5f5f7" : "#1c1c1e", paddingLeft: "24px" }}>{localize(app)}</span>
+                    <span style={{ fontSize: "12px", color: dark ? "#f4f4f6" : "#000000", paddingLeft: "24px" }}>{localize(app)}</span>
                     <Toggle checked={true} onChange={() => {}} />
                   </div>
                 )))}
@@ -1197,7 +1174,7 @@ const AboutPanel = () => {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1, marginTop: "8px" }}>
           <span className="i-fa6-brands:apple" style={{ width: "72px", height: "72px" }} />
         </div>
-        <div style={{ fontSize: "22px", fontWeight: 700, color: dark ? "#fff" : "#1c1c1e", marginTop: "8px" }}>{localize("macOS Tahoe")}</div>
+        <div style={{ fontSize: "22px", fontWeight: 700, color: dark ? "#fff" : "#000000", marginTop: "8px" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>{localize("macOS Tahoe")}</div>
         <div style={{ fontSize: "13px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Version 26.0 (Portfolio Edition)")}</div>
       </div>
       <Card>
@@ -1228,7 +1205,7 @@ const GenericPanel = ({ id }: { id: SettingsPanel }) => {
             width: "64px",
             height: "64px",
             borderRadius: "14px",
-            background: PANEL_ITEMS.find((p) => p.id === id)?.color || "#8E8E93",
+            background: PANEL_ITEMS.find((p) => p.id === id)?.color || "#9999a1",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -1246,7 +1223,7 @@ const GenericPanel = ({ id }: { id: SettingsPanel }) => {
           />
         </div>
       </div>
-      <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#1c1c1e", marginBottom: "4px" }}>
+      <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#000000", marginBottom: "4px" }}>
         {localize(PANEL_ITEMS.find((p) => p.id === id)?.label)}
       </div>
       <div style={{ fontSize: "12px" }}>{localize("Settings coming soon")}</div>
@@ -1294,7 +1271,7 @@ export default function SystemSettings() {
         height: "100%",
         flexDirection: isMobile ? "column" : "row",
         background: dark ? "rgba(30,30,30,0.95)" : "rgba(242,242,247,0.98)",
-        color: dark ? "#f5f5f7" : "#1c1c1e",
+        color: dark ? "#f4f4f6" : "#000000",
         borderRadius: isMobile ? "0" : "0 0 14px 14px",
         overflow: "hidden",
       }}
@@ -1306,7 +1283,7 @@ export default function SystemSettings() {
             width: isMobile ? "100%" : "220px",
             flexShrink: 0,
             borderRight: isMobile ? "none" : (dark ? "0.5px solid rgba(255,255,255,0.1)" : "var(--lg-border)"),
-            background: isMobile ? (dark ? "#000" : "#f2f2f7") : (dark ? "rgba(42,42,42,0.95)" : "var(--lg-bg-tinted)"),
+            background: isMobile ? (dark ? "#000" : "#f4f4f6") : (dark ? "rgba(42,42,42,0.95)" : "var(--lg-bg-tinted)"),
             backdropFilter: isMobile ? "none" : "var(--lg-blur-light)",
             WebkitBackdropFilter: isMobile ? "none" : "var(--lg-blur-light)",
             display: "flex",
@@ -1315,7 +1292,7 @@ export default function SystemSettings() {
           }}
         >
           {localize(isMobile && (
-            <div style={{ fontSize: "32px", fontWeight: 700, padding: "20px 16px 10px", color: dark ? "#fff" : "#000" }}>
+            <div style={{ fontSize: "32px", fontWeight: 700, padding: "20px 16px 10px", color: dark ? "#fff" : "#000" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>
               {localize("Settings")}</div>
           ))}
           {/* Search */}
@@ -1325,7 +1302,7 @@ export default function SystemSettings() {
               display: "flex",
               alignItems: "center",
               gap: "8px",
-              background: isMobile ? (dark ? "#1c1c1e" : "#e3e3e8") : (dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.06)"),
+              background: isMobile ? (dark ? "#000000" : "#e3e3e8") : (dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.06)"),
               borderRadius: isMobile ? "10px" : "8px",
               padding: isMobile ? "8px 12px" : "5px 10px",
             }}
@@ -1341,7 +1318,7 @@ export default function SystemSettings() {
                 outline: "none",
                 fontSize: "12px",
                 width: "100%",
-                color: dark ? "#fff" : "#1c1c1e",
+                color: dark ? "#fff" : "#000000",
               }}
             />
           </div>
@@ -1352,7 +1329,7 @@ export default function SystemSettings() {
           {localize(isMobile && !search.trim() && (
             <div
               style={{
-                background: dark ? "#1c1c1e" : "#fff",
+                background: dark ? "#000000" : "#fff",
                 borderRadius: "10px",
                 padding: "12px 16px",
                 display: "flex",
@@ -1367,7 +1344,7 @@ export default function SystemSettings() {
                   width: "60px",
                   height: "60px",
                   borderRadius: "50%",
-                  background: "#d1d1d6",
+                  background: "#e6e6e9",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -1386,12 +1363,12 @@ export default function SystemSettings() {
 
           {localize(isMobile ? (
             search.trim() ? (
-              <div style={{ margin: "0 16px", background: dark ? "#1c1c1e" : "#fff", borderRadius: "10px", overflow: "hidden" }}>
+              <div style={{ margin: "0 16px", background: dark ? "#000000" : "#fff", borderRadius: "10px", overflow: "hidden" }}>
                 {localize(filtered.map((item, idx) => {
                   return (
                     <motion.button
                       key={item.id}
-                      whileTap={{ backgroundColor: dark ? "#2c2c2e" : "#e5e5ea" }}
+                      whileTap={{ backgroundColor: dark ? "#2c2c2e" : "#e6e6e9" }}
                       onClick={() => {
                         setActivePanel(item.id);
                         setMobileView("panel");
@@ -1424,12 +1401,12 @@ export default function SystemSettings() {
                 const groupItems = group.map(id => PANEL_ITEMS.find(p => p.id === id)).filter(Boolean) as PanelItem[];
                 if (groupItems.length === 0) return null;
                 return (
-                  <div key={gIdx} style={{ margin: "0 16px 20px", background: dark ? "#1c1c1e" : "#fff", borderRadius: "10px", overflow: "hidden" }}>
+                  <div key={gIdx} style={{ margin: "0 16px 20px", background: dark ? "#000000" : "#fff", borderRadius: "10px", overflow: "hidden" }}>
                     {localize(groupItems.map((item, idx) => {
                       return (
                         <motion.button
                           key={item.id}
-                          whileTap={{ backgroundColor: dark ? "#2c2c2e" : "#e5e5ea" }}
+                          whileTap={{ backgroundColor: dark ? "#2c2c2e" : "#e6e6e9" }}
                           onClick={() => {
                             setActivePanel(item.id);
                             setMobileView("panel");
@@ -1474,7 +1451,7 @@ export default function SystemSettings() {
                     gap: "10px",
                     padding: "7px 12px",
                     background: active
-                      ? dark ? "rgba(0,122,255,0.2)" : "rgba(0,122,255,0.12)"
+                      ? dark ? "rgba(200,106,82,0.2)" : "rgba(200,106,82,0.12)"
                       : "transparent",
                     border: "none",
                     cursor: "pointer",
@@ -1504,7 +1481,7 @@ export default function SystemSettings() {
                         bottom: "18%",
                         width: "2.5px",
                         borderRadius: "2px",
-                        background: "#007AFF",
+                        background: "var(--brand-cta)",
                       }}
                       transition={{ type: "spring", stiffness: 500, damping: 35 }}
                     />
@@ -1536,7 +1513,7 @@ export default function SystemSettings() {
                   <span
                     style={{
                       fontSize: "13px",
-                      color: active ? "#007AFF" : dark ? "#f5f5f7" : "#1c1c1e",
+                      color: active ? "#c86a52" : dark ? "#f4f4f6" : "#000000",
                       fontWeight: active ? 600 : 400,
                       textAlign: "left",
                       overflow: "hidden",
@@ -1556,13 +1533,13 @@ export default function SystemSettings() {
 
       {/* ── Content ── */}
       {localize((!isMobile || mobileView === "panel") && (
-        <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", background: isMobile ? (dark ? "#000" : "#f2f2f7") : "transparent" }}>
+        <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", background: isMobile ? (dark ? "#000" : "#f4f4f6") : "transparent" }}>
           {localize(isMobile && (
             <div style={{ display: "flex", alignItems: "center", padding: "12px 16px", borderBottom: dark ? "0.5px solid rgba(255,255,255,0.1)" : "0.5px solid rgba(0,0,0,0.1)" }}>
               <button
                 onClick={() => setMobileView("list")}
                 style={{
-                  background: "none", border: "none", color: "#007AFF", fontSize: "16px", display: "flex", alignItems: "center", gap: "4px", cursor: "pointer", padding: 0
+                  background: "none", border: "none", color: "var(--brand-link)", fontSize: "16px", display: "flex", alignItems: "center", gap: "4px", cursor: "pointer", padding: 0
                 }}
               >
                 <img src="/img/icons/sf-icons/caret-right.svg" alt={localize("back")} style={{ width: "12px", height: "12px", transform: "rotate(180deg)", filter: "invert(40%) sepia(100%) saturate(3000%) hue-rotate(200deg) brightness(100%) contrast(100%)" }} />
@@ -1585,7 +1562,7 @@ export default function SystemSettings() {
                     style={{
                       fontSize: "20px",
                       fontWeight: 700,
-                      color: dark ? "#fff" : "#1c1c1e",
+                      color: dark ? "#fff" : "#000000",
                       padding: "16px 16px 8px",
                       borderBottom: dark ? "0.5px solid rgba(255,255,255,0.1)" : "0.5px solid rgba(0,0,0,0.06)",
                       marginBottom: "4px",
@@ -1595,7 +1572,7 @@ export default function SystemSettings() {
                   </div>
                 ))}
                 {localize(isMobile && (
-                   <div style={{ fontSize: "28px", fontWeight: 700, padding: "16px 16px 8px", color: dark ? "#fff" : "#000" }}>
+                   <div style={{ fontSize: "28px", fontWeight: 700, padding: "16px 16px 8px", color: dark ? "#fff" : "#000" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>
                      {localize(PANEL_ITEMS.find((p) => p.id === activePanel)?.label)}
                    </div>
                 ))}

@@ -1,32 +1,32 @@
 @font-face{font-family:Welcome Script;src:url('./fonts/Welcome-Caveat.ttf') format('truetype');font-display:swap;font-weight:400 700}
-.welcome-screen{position:absolute;inset:0;isolation:isolate;overflow:auto;display:grid;place-items:center;min-height:100%;background:#f5f3f0;color:#242424;font-family:var(--font-system),-apple-system,BlinkMacSystemFont,sans-serif;color-scheme:light}
+.welcome-screen{position:absolute;inset:0;isolation:isolate;overflow:auto;display:grid;place-items:center;min-height:100%;background:#f4f4f6;color:#000000;font-family:var(--font-system),-apple-system,BlinkMacSystemFont,sans-serif;color-scheme:light}
 .welcome-aura{position:absolute;z-index:-1;width:70vw;height:70vw;max-width:1050px;max-height:1050px;filter:blur(90px);border-radius:50%;pointer-events:none;opacity:.65}
-.welcome-aura-blue{left:-25%;top:-45%;background:radial-gradient(ellipse,#bedee9,transparent 68%)}
-.welcome-aura-peach{right:-25%;bottom:-65%;background:radial-gradient(ellipse,#ecc6b3,transparent 70%)}
+.welcome-aura-blue{left:-25%;top:-45%;background:radial-gradient(ellipse,#9999a1,transparent 68%)}
+.welcome-aura-peach{right:-25%;bottom:-65%;background:radial-gradient(ellipse,#c86a52,transparent 70%)}
 .welcome-hello,.welcome-language{position:relative;text-align:center;width:min(90vw,610px);padding:72px 20px 90px;box-sizing:border-box}
-.welcome-eyebrow{font-size:11px;letter-spacing:.25em;color:#827d78}
+.welcome-eyebrow{font-size:11px;letter-spacing:.25em;color:#66666e}
 .welcome-writing{margin:12px -8vw 0;height:clamp(180px,28vw,280px)}
 .welcome-writing svg{width:100%;height:100%;overflow:visible}
-.welcome-script{font-family:Welcome Script,cursive;font-size:180px;font-weight:450;letter-spacing:-5px;fill:#4d646c;stroke:#4d646c;stroke-width:.5;stroke-dasharray:1400;animation:welcome-write 1.4s ease-out both}
+.welcome-script{font-family:Welcome Script,cursive;font-size:180px;font-weight:450;letter-spacing:-5px;fill:#66666e;stroke:#66666e;stroke-width:.5;stroke-dasharray:1400;animation:welcome-write 1.4s ease-out both}
 @keyframes welcome-write{0%{stroke-dashoffset:1400;fill-opacity:0;clip-path:inset(0 100% 0 0)}65%{fill-opacity:.6}100%{stroke-dashoffset:0;fill-opacity:1;clip-path:inset(0 0 0 0)}}
-.welcome-intro{font-size:14px;font-weight:400;color:#767570;margin:0 0 38px}
-.welcome-next{display:inline-grid;place-items:center;width:45px;height:45px;border-radius:50%;background:transparent;border:1.5px solid #8b918e;color:#626d69;cursor:pointer;transition:background .2s,transform .2s}
+.welcome-intro{font-size:14px;font-weight:400;color:#66666e;margin:0 0 38px}
+.welcome-next{display:inline-grid;place-items:center;width:45px;height:45px;border-radius:50%;background:transparent;border:1.5px solid #9999a1;color:#66666e;cursor:pointer;transition:background .2s,transform .2s}
 .welcome-next:hover{background:#ffffffa8;transform:translateX(2px)}
-.welcome-globe{color:#697c84;margin:0 auto 24px}
-.welcome-language h1{font-size:clamp(30px,5vw,40px);font-weight:600;letter-spacing:-1.2px;margin:0 0 13px;outline:none}
-.welcome-subtitle{color:#737373;font-size:15px;line-height:1.5;margin:0 auto 32px;max-width:360px}
-.welcome-options{display:grid;gap:4px;max-width:350px;margin:0 auto 30px;padding:6px;border:1px solid #d6d3cf;border-radius:12px;background:#ffffff90;box-shadow:0 4px 18px #00000004}
+.welcome-globe{color:#66666e;margin:0 auto 24px}
+.welcome-language h1{font-family:var(--font-display);font-size:clamp(25px,4vw,36px);font-weight:600;letter-spacing:-1.2px;margin:0 0 13px;outline:none}
+.welcome-subtitle{color:#66666e;font-size:15px;line-height:1.5;margin:0 auto 32px;max-width:360px}
+.welcome-options{display:grid;gap:4px;max-width:350px;margin:0 auto 30px;padding:6px;border:1px solid #e6e6e9;border-radius:12px;background:#ffffff90;box-shadow:0 4px 18px #00000004}
 .welcome-option{position:relative;display:grid;grid-template-columns:1fr auto;gap:3px;text-align:left;padding:12px 16px;border-radius:7px;cursor:pointer;font-size:15px;line-height:1.4}
 .welcome-option input{position:absolute;opacity:0;width:100%;height:100%;inset:0;cursor:pointer}
-.welcome-option-note{grid-column:1;font-size:11px;color:#7e7e7e}
-.welcome-check{grid-column:2;grid-row:1/3;align-self:center;color:#007aff;font-size:18px}
-.welcome-option.is-selected{background:#007aff0d;color:#0068d8}
-.welcome-option:focus-within{outline:3px solid #007aff7d;outline-offset:1px}
-.welcome-continue{border:0;border-radius:8px;padding:9px 24px;background:#007aff;color:white;font-size:14px;font-weight:500;box-shadow:0 1px 2px #0002;cursor:pointer;min-width:135px}
-.welcome-continue:hover{background:#006de2}
-.welcome-next:focus-visible,.welcome-continue:focus-visible{outline:3px solid #007aff7d;outline-offset:4px}
+.welcome-option-note{grid-column:1;font-size:11px;color:#66666e}
+.welcome-check{grid-column:2;grid-row:1/3;align-self:center;color:#c86a52;font-size:18px}
+.welcome-option.is-selected{background:#c86a520d;color:#964833}
+.welcome-option:focus-within{outline:3px solid #c86a527d;outline-offset:1px}
+.welcome-continue{border:0;border-radius:8px;padding:9px 24px;background:#c86a52;color:var(--brand-cta-ink);font-size:14px;font-weight:500;box-shadow:0 1px 2px #0002;cursor:pointer;min-width:135px}
+.welcome-continue:hover{background:#b65c46}
+.welcome-next:focus-visible,.welcome-continue:focus-visible{outline:3px solid #c86a527d;outline-offset:4px}
 .welcome-footnote{font-size:11px;color:#777;margin:17px 0 0}
-.welcome-footer{position:absolute;bottom:24px;font-size:11px;color:#96908a;letter-spacing:.04em;pointer-events:none}.welcome-footer span{padding:0 8px}
+.welcome-footer{position:absolute;bottom:24px;font-size:11px;color:#66666e;letter-spacing:.04em;pointer-events:none}.welcome-footer span{padding:0 8px}
 .welcome-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-height:600px){.welcome-hello,.welcome-language{padding-block:30px 65px}.welcome-globe{width:42px;height:42px;margin-bottom:12px}.welcome-subtitle{margin-bottom:18px}.welcome-options{margin-bottom:18px}.welcome-writing{height:170px}}
 @media(prefers-reduced-motion:reduce){.welcome-script{animation:none}.welcome-next{transition:none}.welcome-aura{filter:blur(60px)}}

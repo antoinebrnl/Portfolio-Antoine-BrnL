@@ -173,7 +173,7 @@ export default function Mobile(props: MacActions) {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: "100%", opacity: 0.5 }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="absolute inset-0 z-40 bg-white/85 dark:bg-[#1c1c1e]/85 backdrop-blur-2xl"
+            className="absolute inset-0 z-40 bg-white/85 dark:bg-[#000000]/85 backdrop-blur-2xl"
           >
              {/* Render the active app's content inside a mobile container */}
              <div className="w-full h-full pt-12 relative overflow-hidden flex flex-col">

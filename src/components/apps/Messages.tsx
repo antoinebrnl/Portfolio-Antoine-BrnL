@@ -158,7 +158,7 @@ export default function MessagesApp() {
                 outline: "none",
                 fontSize: "16px",
                 width: "100%",
-                color: "#1c1c1e",
+                color: "#000000",
               }}
             />
           </div>
@@ -168,7 +168,7 @@ export default function MessagesApp() {
               border: "none",
               cursor: "pointer",
               fontSize: "18px",
-              color: "#007AFF",
+              color: "var(--brand-link)",
               padding: "0 2px",
               display: "flex",
               alignItems: "center",
@@ -195,7 +195,7 @@ export default function MessagesApp() {
                 alignItems: "center",
                 gap: "10px",
                 padding: "10px 12px",
-                background: activeConv.id === conv.id ? "rgba(0,122,255,0.1)" : "transparent",
+                background: activeConv.id === conv.id ? "rgba(200,106,82,0.1)" : "transparent",
                 border: "none",
                 cursor: "pointer",
                 textAlign: "left",
@@ -212,7 +212,7 @@ export default function MessagesApp() {
                     width: 40,
                     height: 40,
                     borderRadius: "50%",
-                    background: "linear-gradient(135deg, #007AFF, #AF52DE)",
+                    background: "linear-gradient(135deg, #c86a52, #66666e)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
@@ -245,7 +245,7 @@ export default function MessagesApp() {
                     style={{
                       fontSize: "13px",
                       fontWeight: conv.unread ? 700 : 500,
-                      color: "#1c1c1e",
+                      color: "#000000",
                       overflow: "hidden",
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
@@ -262,7 +262,7 @@ export default function MessagesApp() {
                   <span
                     style={{
                       fontSize: "12px",
-                      color: conv.unread ? "#1c1c1e" : "rgba(0,0,0,0.4)",
+                      color: conv.unread ? "#000000" : "rgba(0,0,0,0.4)",
                       fontWeight: conv.unread ? 500 : 400,
                       overflow: "hidden",
                       textOverflow: "ellipsis",
@@ -278,12 +278,12 @@ export default function MessagesApp() {
                         minWidth: 18,
                         height: 18,
                         borderRadius: 9,
-                        background: "#007AFF",
+                        background: "var(--brand-cta)",
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         fontSize: "11px",
-                        color: "white",
+                        color: "var(--brand-cta-ink)",
                         fontWeight: 700,
                         padding: "0 4px",
                         flexShrink: 0,
@@ -317,7 +317,7 @@ export default function MessagesApp() {
               width: 32,
               height: 32,
               borderRadius: "50%",
-              background: "linear-gradient(135deg, #007AFF, #AF52DE)",
+              background: "linear-gradient(135deg, #c86a52, #66666e)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -329,7 +329,7 @@ export default function MessagesApp() {
               : activeConv.avatar)}
           </div>
           <div>
-            <div style={{ fontSize: "14px", fontWeight: 600, color: "#1c1c1e" }}>
+            <div style={{ fontSize: "14px", fontWeight: 600, color: "#000000" }}>
               {localize(activeConv.name)}
             </div>
             {localize(activeConv.online && (
@@ -372,9 +372,9 @@ export default function MessagesApp() {
                         : "18px 18px 18px 4px",
                     background:
                       msg.from === "me"
-                        ? "linear-gradient(135deg, #007AFF, #0055D4)"
+                        ? "linear-gradient(135deg, #c86a52, #964833)"
                         : "rgba(229,229,234,0.9)",
-                    color: msg.from === "me" ? "white" : "#1c1c1e",
+                    color: msg.from === "me" ? "white" : "#000000",
                     fontSize: "14px",
                     lineHeight: "1.4",
                     boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
@@ -420,7 +420,7 @@ export default function MessagesApp() {
                 border: "none",
                 outline: "none",
                 fontSize: "16px",
-                color: "#1c1c1e",
+                color: "#000000",
               }}
             />
           </div>
@@ -431,7 +431,7 @@ export default function MessagesApp() {
               width: 32,
               height: 32,
               borderRadius: "50%",
-              background: input.trim() ? "#007AFF" : "rgba(0,0,0,0.15)",
+              background: input.trim() ? "#c86a52" : "rgba(0,0,0,0.15)",
               border: "none",
               cursor: input.trim() ? "pointer" : "default",
               display: "flex",

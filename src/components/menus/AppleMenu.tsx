@@ -72,7 +72,7 @@ export default function AppleMenu({
         style={{
           ...itemStyle,
           background: hovered ? "var(--accent-blue)" : "transparent",
-          color: hovered ? "#fff" : "inherit",
+          color: hovered ? "var(--brand-cta-ink)" : "inherit",
         }}
         onClick={onClick}
         onMouseEnter={() => setHovered(true)}

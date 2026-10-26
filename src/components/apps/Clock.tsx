@@ -147,10 +147,10 @@ export default function Clock() {
         x1="60" y1="60"
         x2={60 + 44 * Math.sin((secDeg * Math.PI) / 180)}
         y2={60 - 44 * Math.cos((secDeg * Math.PI) / 180)}
-        stroke="#FF3B30" strokeWidth="1.5" strokeLinecap="round"
+        stroke="#66666e" strokeWidth="1.5" strokeLinecap="round"
       />
       {/* Center dot */}
-      <circle cx="60" cy="60" r="3" fill="#FF3B30" />
+      <circle cx="60" cy="60" r="3" fill="#66666e" />
     </svg>
   );
 
@@ -335,7 +335,7 @@ export default function Clock() {
                         width: 44,
                         height: 26,
                         borderRadius: 13,
-                        background: alarm.enabled ? "#34C759" : "var(--c-bg-tertiary)",
+                        background: alarm.enabled ? "#C86A52" : "var(--c-bg-tertiary)",
                         cursor: "pointer",
                         position: "relative",
                         transition: "background 0.25s ease",
@@ -412,10 +412,10 @@ export default function Clock() {
                       width: 64,
                       height: 64,
                       borderRadius: "50%",
-                      background: stopwatch.running ? "rgba(255,59,48,0.15)" : "rgba(52,199,89,0.15)",
-                      border: `2px solid ${stopwatch.running ? "#FF3B30" : "#34C759"}`,
+                      background: stopwatch.running ? "rgba(200,106,82,0.15)" : "rgba(102,102,110,0.15)",
+                      border: `2px solid ${stopwatch.running ? "#66666e" : "#C86A52"}`,
                       cursor: "pointer",
-                      color: stopwatch.running ? "#FF3B30" : "#34C759",
+                      color: stopwatch.running ? "#66666e" : "#C86A52",
                       fontSize: "14px",
                       fontWeight: 600,
                     }}
@@ -495,7 +495,7 @@ export default function Clock() {
                     fontSize: "72px",
                     fontWeight: 200,
                     letterSpacing: "-2px",
-                    color: timer.remaining === 0 ? "#FF3B30" : "var(--c-text)",
+                    color: timer.remaining === 0 ? "#66666e" : "var(--c-text)",
                     transition: "color 0.3s ease"
                   }}
                 >
@@ -531,11 +531,11 @@ export default function Clock() {
                       width: 64,
                       height: 64,
                       borderRadius: "50%",
-                      background: timer.running ? "rgba(255,59,48,0.15)" : "rgba(52,199,89,0.15)",
-                      border: `2px solid ${timer.running ? "#FF3B30" : "#34C759"}`,
+                      background: timer.running ? "rgba(200,106,82,0.15)" : "rgba(102,102,110,0.15)",
+                      border: `2px solid ${timer.running ? "#66666e" : "#C86A52"}`,
                       cursor: timer.remaining === 0 ? "default" : "pointer",
                       opacity: timer.remaining === 0 ? 0.4 : 1,
-                      color: timer.running ? "#FF3B30" : "#34C759",
+                      color: timer.running ? "#66666e" : "#C86A52",
                       fontSize: "14px",
                       fontWeight: 600,
                     }}

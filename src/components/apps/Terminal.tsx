@@ -181,7 +181,7 @@ export default class Terminal extends React.Component<{}, TerminalState> {
       result.push(
         <span
           key={`terminal-result-ls-${this.curInputTimes}-${item.id}`}
-          className={`${item.type === "file" ? "text-white" : "text-purple-300"}`}
+          className={`${item.type === "file" ? "text-white" : "text-gray-400"}`}
         >
           {localize(item.title)}
         </span>
@@ -219,22 +219,22 @@ export default class Terminal extends React.Component<{}, TerminalState> {
     const help = (
       <ul className="list-disc ml-6 pb-1.5">
         <li>
-          <span text-red-400>{localize("cat ")}{localize("<file>")}</span> {localize(" - See the content of ")}{localize("<file>")}
+          <span text-accent>{localize("cat ")}{localize("<file>")}</span> {localize(" - See the content of ")}{localize("<file>")}
         </li>
         <li>
-          <span text-red-400>{localize("cd ")}{localize("<dir>")}</span> {localize("- Move into")}{localize(" <dir>")}{localize(", \"cd ..\" to move to the parent directory, \"cd\" or \"cd ~\" to return to root")}</li>
+          <span text-accent>{localize("cd ")}{localize("<dir>")}</span> {localize("- Move into")}{localize(" <dir>")}{localize(", \"cd ..\" to move to the parent directory, \"cd\" or \"cd ~\" to return to root")}</li>
         <li>
-          <span text-red-400>{localize("ls")}</span> {localize("- See files and directories in the current directory")}</li>
+          <span text-accent>{localize("ls")}</span> {localize("- See files and directories in the current directory")}</li>
         <li>
-          <span text-red-400>{localize("clear")}</span> {localize("- Clear the screen")}</li>
+          <span text-accent>{localize("clear")}</span> {localize("- Clear the screen")}</li>
         <li>
-          <span text-red-400>{localize("help")}</span> {localize("- Display this help menu")}</li>
+          <span text-accent>{localize("help")}</span> {localize("- Display this help menu")}</li>
         <li>
-          <span text-red-400>{localize("rm -rf /")}</span> {localize("- :)")}</li>
+          <span text-accent>{localize("rm -rf /")}</span> {localize("- :)")}</li>
         <li>
-          {localize("press")}<span text-red-400>{localize("up arrow / down arrow")}</span> {localize("- Select history commands")}</li>
+          {localize("press")}<span text-accent>{localize("up arrow / down arrow")}</span> {localize("- Select history commands")}</li>
         <li>
-          {localize("press")}<span text-red-400>{localize("tab")}</span> {localize("- Auto complete")}</li>
+          {localize("press")}<span text-accent>{localize("tab")}</span> {localize("- Auto complete")}</li>
       </ul>
     );
     this.generateResultRow(this.curInputTimes, help);
@@ -332,10 +332,10 @@ export default class Terminal extends React.Component<{}, TerminalState> {
     const newRow = (
       <div key={`terminal-input-row-${id}`} flex>
         <div className="w-max hstack space-x-1.5">
-          <span text-yellow-200>
-            {localize("@demaxxer")}<span text-green-300>{localize(this.getCurDirName())}</span>
+          <span text-white>
+            {localize("@demaxxer")}<span text-gray-300>{localize(this.getCurDirName())}</span>
           </span>
-          <span text-red-400>{localize(">")}</span>
+          <span text-accent>{localize(">")}</span>
         </div>
         <input
           id={`terminal-input-${id}`}
@@ -368,7 +368,7 @@ export default class Terminal extends React.Component<{}, TerminalState> {
           <HowDare setRMRF={(value: boolean) => this.setState({ rmrf: value })} />
         ))}
         <div p="y-2 x-1.5">
-          <span className="text-green-300">{localize("help")}</span>{localize(": Hey, you found the terminal! Type `help` to get started.")}</div>
+          <span className="text-gray-300">{localize("help")}</span>{localize(": Hey, you found the terminal! Type `help` to get started.")}</div>
         <div id="terminal-content" p="x-1.5 b-2">
           {localize(this.state.content)}
         </div>

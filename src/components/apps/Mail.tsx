@@ -96,7 +96,7 @@ export default function Mail() {
         display: "flex",
         height: "100%",
         
-        background: "#f5f5f7",
+        background: "#f4f4f6",
         borderRadius: "0 0 14px 14px",
         overflow: "hidden",
       }}
@@ -136,8 +136,8 @@ export default function Mail() {
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
-              background: activeFolder === folder ? "rgba(0,122,255,0.12)" : "transparent",
-              color: activeFolder === folder ? "#007AFF" : "#1c1c1e",
+              background: activeFolder === folder ? "rgba(200,106,82,0.12)" : "transparent",
+              color: activeFolder === folder ? "#c86a52" : "#000000",
               fontSize: "13px",
               transition: "background 0.15s ease",
             }}
@@ -146,8 +146,8 @@ export default function Mail() {
             {localize(folder === "Inbox" && (
               <span
                 style={{
-                  background: "#007AFF",
-                  color: "#fff",
+                  background: "var(--brand-cta)",
+                  color: "var(--brand-cta-ink)",
                   borderRadius: "10px",
                   fontSize: "10px",
                   fontWeight: 600,
@@ -166,8 +166,8 @@ export default function Mail() {
           onClick={() => setComposing(true)}
           style={{
             margin: "8px 12px",
-            background: "#007AFF",
-            color: "#fff",
+            background: "var(--brand-cta)",
+            color: "var(--brand-cta-ink)",
             border: "none",
             borderRadius: "8px",
             padding: "7px",
@@ -218,7 +218,7 @@ export default function Mail() {
                 outline: "none",
                 fontSize: "12px",
                 width: "100%",
-                color: "#1c1c1e",
+                color: "#000000",
               }}
             />
           </div>
@@ -237,7 +237,7 @@ export default function Mail() {
                 cursor: "default",
                 background:
                   selected === msg.id
-                    ? "rgba(0,122,255,0.1)"
+                    ? "rgba(200,106,82,0.1)"
                     : "transparent",
                 transition: "background 0.12s ease",
                 position: "relative",
@@ -250,14 +250,14 @@ export default function Mail() {
                     width: "36px",
                     height: "36px",
                     borderRadius: "50%",
-                    background: msg.unread ? "rgba(0,122,255,0.15)" : "rgba(0,0,0,0.08)",
+                    background: msg.unread ? "rgba(200,106,82,0.15)" : "rgba(0,0,0,0.08)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     fontSize: "16px",
                     flexShrink: 0,
                     fontWeight: 600,
-                    color: msg.unread ? "#007AFF" : "#666",
+                    color: msg.unread ? "#c86a52" : "#666",
                   }}
                 >
                   {localize(msg.avatar.startsWith("i-")
@@ -270,7 +270,7 @@ export default function Mail() {
                       style={{
                         fontSize: "13px",
                         fontWeight: msg.unread ? 700 : 500,
-                        color: "#1c1c1e",
+                        color: "#000000",
                         overflow: "hidden",
                         textOverflow: "ellipsis",
                         whiteSpace: "nowrap",
@@ -286,7 +286,7 @@ export default function Mail() {
                   <div
                     style={{
                       fontSize: "12px",
-                      color: "#1c1c1e",
+                      color: "#000000",
                       fontWeight: msg.unread ? 600 : 400,
                       overflow: "hidden",
                       textOverflow: "ellipsis",
@@ -320,7 +320,7 @@ export default function Mail() {
                     width: "8px",
                     height: "8px",
                     borderRadius: "50%",
-                    background: "#007AFF",
+                    background: "var(--brand-cta)",
                   }}
                 />
               ))}
@@ -352,7 +352,7 @@ export default function Mail() {
                 style={{
                   fontSize: "20px",
                   fontWeight: 700,
-                  color: "#1c1c1e",
+                  color: "#000000",
                   margin: "0 0 12px",
                 }}
               >
@@ -364,13 +364,13 @@ export default function Mail() {
                     width: "42px",
                     height: "42px",
                     borderRadius: "50%",
-                    background: "rgba(0,122,255,0.12)",
+                    background: "rgba(200,106,82,0.12)",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     fontSize: "18px",
                     fontWeight: 600,
-                    color: "#007AFF",
+                    color: "var(--brand-link)",
                   }}
                 >
                   {localize(activeMsg.avatar.startsWith("i-")
@@ -378,14 +378,14 @@ export default function Mail() {
                     : activeMsg.avatar)}
                 </div>
                 <div>
-                  <div style={{ fontSize: "14px", fontWeight: 600, color: "#1c1c1e" }}>{localize(activeMsg.from)}</div>
+                  <div style={{ fontSize: "14px", fontWeight: 600, color: "#000000" }}>{localize(activeMsg.from)}</div>
                   <div style={{ fontSize: "11px", color: "rgba(0,0,0,0.4)" }}>
                     {localize(activeMsg.fromEmail)} {localize(" · ")}{localize(activeMsg.time)}
                   </div>
                 </div>
                 {localize(activeMsg.starred && (
                   <span style={{ marginLeft: "auto" }}>
-                    <span className="i-ph:star-fill" style={{ width: "18px", height: "18px", color: "#FF9500" }} />
+                    <span className="i-ph:star-fill" style={{ width: "18px", height: "18px", color: "var(--brand-link)" }} />
                   </span>
                 ))}
               </div>
@@ -393,7 +393,7 @@ export default function Mail() {
                 style={{
                   fontSize: "14px",
                   lineHeight: "1.65",
-                  color: "#1c1c1e",
+                  color: "#000000",
                   whiteSpace: "pre-wrap",
                 }}
               >
@@ -449,7 +449,7 @@ export default function Mail() {
                 justifyContent: "space-between",
               }}
             >
-              <span style={{ fontSize: "13px", fontWeight: 600, color: "#1c1c1e" }}>{localize("New Message")}</span>
+              <span style={{ fontSize: "13px", fontWeight: 600, color: "#000000" }}>{localize("New Message")}</span>
               <button
                 onClick={() => setComposing(false)}
                 style={{
@@ -483,7 +483,7 @@ export default function Mail() {
                     outline: "none",
                     fontSize: "13px",
                     background: "transparent",
-                    color: "#1c1c1e",
+                    color: "#000000",
                   }}
                 />
               </div>
@@ -497,7 +497,7 @@ export default function Mail() {
                 resize: "none",
                 fontSize: "13px",
                 lineHeight: "1.6",
-                color: "#1c1c1e",
+                color: "#000000",
                 padding: "12px 14px",
                 background: "transparent",
                 height: "180px",
@@ -513,8 +513,8 @@ export default function Mail() {
             >
               <button
                 style={{
-                  background: "#007AFF",
-                  color: "#fff",
+                  background: "var(--brand-cta)",
+                  color: "var(--brand-cta-ink)",
                   border: "none",
                   borderRadius: "7px",
                   padding: "6px 16px",

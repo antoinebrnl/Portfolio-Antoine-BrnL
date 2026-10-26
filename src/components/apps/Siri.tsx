@@ -687,8 +687,8 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
           <div
             className={`w-[140px] h-[140px] rounded-full mix-blend-screen transition-all duration-700 blur-[20px] ${isAuraActive ? 'siri-aura' : 'opacity-0 scale-90'}`}
             style={{
-              background: "radial-gradient(circle at 40% 40%, rgba(60,220,255,0.8) 0%, rgba(200,50,255,0.7) 35%, rgba(255,0,150,0.4) 70%, rgba(0,0,0,0) 100%)",
-              boxShadow: "0 0 50px 20px rgba(255, 0, 150, 0.4), inset 0 0 20px 10px rgba(60,220,255,0.5)"
+              background: "radial-gradient(circle at 40% 40%, rgba(153,153,161,0.8) 0%, rgba(102,102,110,0.7) 35%, rgba(200,106,82,0.4) 70%, rgba(0,0,0,0) 100%)",
+              boxShadow: "0 0 50px 20px rgba(200,106,82, 0.4), inset 0 0 20px 10px rgba(153,153,161,0.5)"
             }}
           />
         </div>

@@ -48,7 +48,7 @@ export default function StatusBar({ isAppOpen, appTitle, onLeftTap, onRightTap }
           fontSize: "16px",
           fontWeight: 700,
           color: "white",
-          fontFamily: "-apple-system, sans-serif",
+          fontFamily: "var(--font-system)",
           letterSpacing: "-0.3px",
           textShadow: "0px 1px 3px rgba(0,0,0,0.4)"
         }}>{localize(h)}{localize(":")}{localize(m)}</span>

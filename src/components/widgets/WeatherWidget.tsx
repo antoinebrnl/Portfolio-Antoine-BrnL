@@ -33,19 +33,19 @@ const WeatherIcon = ({ type, size = 36 }: { type: string; size?: number }) => {
   if (type === "rainy") return (
     <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
       <path d="M6 13a5 5 0 1 1 9.9-1H17a3 3 0 0 1 0 6H7a4 4 0 0 1-1-7.87" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" fill="none"/>
-      <line x1="9" y1="19" x2="7" y2="22" stroke="#64D2FF" strokeWidth="1.5" strokeLinecap="round"/>
-      <line x1="13" y1="19" x2="11" y2="22" stroke="#64D2FF" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="9" y1="19" x2="7" y2="22" stroke="#9999a1" strokeWidth="1.5" strokeLinecap="round"/>
+      <line x1="13" y1="19" x2="11" y2="22" stroke="#9999a1" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
   );
   if (type === "cloudy") return (
     <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
-      <path d="M5 13a5 5 0 1 1 9.9-1H16a3 3 0 0 1 0 6H7a4 4 0 0 1-2-7.46" stroke="rgba(200,210,230,0.8)" strokeWidth="1.5" fill="rgba(200,210,230,0.12)"/>
+      <path d="M5 13a5 5 0 1 1 9.9-1H16a3 3 0 0 1 0 6H7a4 4 0 0 1-2-7.46" stroke="rgba(153,153,161,0.8)" strokeWidth="1.5" fill="rgba(153,153,161,0.12)"/>
     </svg>
   );
   // Moon icon (for night / partly-cloudy-night)
   if (type === "moon") return (
     <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="rgba(200,220,255,0.9)" strokeWidth="1.6" fill="rgba(160,180,255,0.15)" strokeLinejoin="round"/>
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="rgba(153,153,161,0.9)" strokeWidth="1.6" fill="rgba(153,153,161,0.15)" strokeLinejoin="round"/>
     </svg>
   );
   // partly-cloudy default
@@ -69,7 +69,7 @@ interface WeatherWidgetProps {
 
 export default function WeatherWidget({ compact }: WeatherWidgetProps) {
   const GLASS: React.CSSProperties = {
-    background: "linear-gradient(145deg, rgba(22,28,42,0.84) 0%, rgba(16,22,36,0.92) 100%)",
+    background: "linear-gradient(145deg, rgba(0,0,0,0.84) 0%, rgba(102,102,110,0.72) 100%)",
     backdropFilter: "blur(64px) saturate(200%)",
     WebkitBackdropFilter: "blur(64px) saturate(200%)",
     border: "0.5px solid rgba(255,255,255,0.12)",

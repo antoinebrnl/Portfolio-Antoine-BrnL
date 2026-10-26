@@ -228,38 +228,38 @@ export default function ControlCenterMenu({
               {/* CONNECTIVITY TILE */}
               <div style={{ width: "100%", height: "160px", background: "rgba(44,44,48,0.95)", borderRadius: "20px", padding: "14px" }}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px", height: "100%" }}>
-                  <motion.div whileTap={{ scale: 0.88 }} onClick={toggleAirdrop} style={{ width: "100%", height: "60px", borderRadius: "14px", background: airdrop ? "#0A84FF" : "rgba(28,28,30,0.9)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", cursor: "pointer" }}>
-                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "white" }}>
+                  <motion.div whileTap={{ scale: 0.88 }} onClick={toggleAirdrop} style={{ width: "100%", height: "60px", borderRadius: "14px", color: airdrop ? "var(--brand-cta-ink)" : "#f4f4f6", background: airdrop ? "#c86a52" : "rgba(28,28,30,0.9)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", cursor: "pointer" }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "inherit" }}>
                       <path d="M6.5 20C4.01 20 2 17.99 2 15.5c0-2.03 1.37-3.74 3.24-4.27C5.08 10.82 5 10.42 5 10c0-2.76 2.24-5 5-5 1.8 0 3.37.96 4.24 2.4.26-.03.51-.04.76-.04 2.76 0 5 2.24 5 5 0 .11 0 .22-.01.33C21.67 13.24 23 14.73 23 16.5c0 1.93-1.57 3.5-3.5 3.5H6.5zM13 11V8h-2v3H9l3 4 3-4h-2z"/>
                     </svg>
-                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>{localize("AirDrop")}</span>
+                    <span style={{ fontSize: "10px", color: "inherit" }}>{localize("AirDrop")}</span>
                   </motion.div>
                   
-                  <motion.div whileTap={{ scale: 0.88 }} style={{ width: "100%", height: "60px", borderRadius: "14px", background: "#0A84FF", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", cursor: "pointer" }}>
-                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "white" }}>
+                  <motion.div whileTap={{ scale: 0.88 }} style={{ width: "100%", height: "60px", borderRadius: "14px", color: "var(--brand-cta-ink)", background: "var(--brand-cta)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", cursor: "pointer" }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "inherit" }}>
                       <path d="M15.5 5H13l2.5-3 2.5 3h-2.5zM13 19h2.5l-2.5 3-2.5-3H13zM3 6h2v12H3V6zm4-2h2v16H7V4zm4 2h2v12h-2V6zm4-4h2v16h-2V2z"/>
                     </svg>
-                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>{localize("Mobile Data")}</span>
+                    <span style={{ fontSize: "10px", color: "inherit" }}>{localize("Mobile Data")}</span>
                   </motion.div>
                   
-                  <motion.div whileTap={{ scale: 0.88 }} onClick={toggleWIFI} style={{ width: "100%", height: "60px", borderRadius: "14px", background: wifi ? "#0A84FF" : "rgba(28,28,30,0.9)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", cursor: "pointer" }}>
-                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "white" }}>
+                  <motion.div whileTap={{ scale: 0.88 }} onClick={toggleWIFI} style={{ width: "100%", height: "60px", borderRadius: "14px", color: wifi ? "var(--brand-cta-ink)" : "#f4f4f6", background: wifi ? "#c86a52" : "rgba(28,28,30,0.9)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", cursor: "pointer" }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "inherit" }}>
                       <path d="M1 9l2 2c5.523-5.523 14.477-5.523 20 0l2-2C19.261 3.261 4.739 3.261 1 9zm8 8l3 3 3-3c-1.657-1.657-4.343-1.657-6 0zm-4-4l2 2c2.761-2.761 7.239-2.761 10 0l2-2C15.522 9.478 8.478 9.478 5 13z"/>
                     </svg>
-                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>{localize("Wi-Fi")}</span>
+                    <span style={{ fontSize: "10px", color: "inherit" }}>{localize("Wi-Fi")}</span>
                   </motion.div>
                   
-                  <motion.div whileTap={{ scale: 0.88 }} onClick={toggleBluetooth} style={{ width: "100%", height: "60px", borderRadius: "14px", background: bluetooth ? "#0A84FF" : "rgba(28,28,30,0.9)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", cursor: "pointer" }}>
-                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "white" }}>
+                  <motion.div whileTap={{ scale: 0.88 }} onClick={toggleBluetooth} style={{ width: "100%", height: "60px", borderRadius: "14px", color: bluetooth ? "var(--brand-cta-ink)" : "#f4f4f6", background: bluetooth ? "#c86a52" : "rgba(28,28,30,0.9)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", cursor: "pointer" }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "inherit" }}>
                       <path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/>
                     </svg>
-                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>{localize("Bluetooth")}</span>
+                    <span style={{ fontSize: "10px", color: "inherit" }}>{localize("Bluetooth")}</span>
                   </motion.div>
                 </div>
               </div>
 
               {/* NOW PLAYING TILE */}
-              <div style={{ width: "100%", height: "160px", background: "rgba(50,40,70,0.9)", borderRadius: "20px", padding: "16px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
+              <div style={{ width: "100%", height: "160px", background: "rgba(102,102,110,0.9)", borderRadius: "20px", padding: "16px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   {localize(playing ? (
                     <img style={{ width: "40px", height: "40px", borderRadius: "6px", boxShadow: "0 1px 3px rgba(0,0,0,0.3)", objectFit: "cover" }} src={music.cover} alt={localize("cover")} />
@@ -304,20 +304,20 @@ export default function ControlCenterMenu({
               <div style={{ display: "flex", flexDirection: "column" }}>
                 <div style={{ display: "flex", flexDirection: "row", gap: "10px" }}>
                   <motion.div whileTap={{ scale: 0.88 }} onClick={() => setRotationLock(!rotationLock)} style={{ width: "58px", height: "58px", borderRadius: "50%", background: rotationLock ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.18)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", border: "none" }}>
-                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "24px", height: "24px", color: "#FF9500" }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "24px", height: "24px", color: "var(--brand-link)" }}>
                       <path d="M7.11 8.53L5.7 7.11C4.8 8.27 4.24 9.61 4.07 11h2.02c.14-.87.49-1.72 1.02-2.47zM6.09 13H4.07c.17 1.39.72 2.73 1.62 3.89l1.41-1.42c-.52-.75-.87-1.59-1.01-2.47zm1.01 5.32c1.16.9 2.51 1.44 3.9 1.61V17.9c-.87-.15-1.71-.49-2.46-1.03L7.1 18.32zM13 4.07V1L8.45 5.55 13 10V6.09c2.84.48 5 2.94 5 5.91s-2.16 5.43-5 5.91v2.02c3.95-.49 7-3.85 7-7.93s-3.05-7.44-7-7.93z"/>
                     </svg>
                   </motion.div>
                   <motion.div whileTap={{ scale: 0.88 }} onClick={() => setSilentMode(!silentMode)} style={{ width: "58px", height: "58px", borderRadius: "50%", background: silentMode ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.18)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer", border: "none" }}>
-                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "24px", height: "24px", color: "#FF3B30" }}>
+                    <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "24px", height: "24px", color: "#C86A52" }}>
                       <path d="M4.34 2.93L2.93 4.34 7.29 8.7 7 9H3v6h4l5 5v-6.59l4.18 4.18A6.992 6.992 0 0115.95 19.05L17.37 20.47A8.97 8.97 0 0019.73 17l1.61 1.61 1.41-1.41L4.34 2.93zM19 12c0 .82-.15 1.61-.41 2.34l1.53 1.53c.56-1.17.88-2.48.88-3.87 0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zm-7-8l-1.88 1.88L12 7.76V4z"/>
                     </svg>
                   </motion.div>
                 </div>
                 
                 {/* FOCUS PILL */}
-                <motion.div whileTap={{ scale: 0.95 }} onClick={toggleFocus} style={{ marginTop: "10px", display: "flex", alignItems: "center", width: "100%", height: "46px", borderRadius: "14px", background: focusMode ? "rgba(90,60,140,0.7)" : "rgba(44,44,48,0.95)", padding: "0 14px", gap: "10px", cursor: "pointer" }}>
-                  <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "18px", height: "18px", color: focusMode ? "#BF5AF2" : "#FFFFFF" }}>
+                <motion.div whileTap={{ scale: 0.95 }} onClick={toggleFocus} style={{ marginTop: "10px", display: "flex", alignItems: "center", width: "100%", height: "46px", borderRadius: "14px", background: focusMode ? "rgba(102,102,110,0.7)" : "rgba(44,44,48,0.95)", padding: "0 14px", gap: "10px", cursor: "pointer" }}>
+                  <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "18px", height: "18px", color: focusMode ? "#9999a1" : "#FFFFFF" }}>
                     <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
                   </svg>
                   <span style={{ fontSize: "15px", fontWeight: 500, color: "#FFFFFF", flex: 1 }}>{localize("Focus")}</span>
@@ -352,7 +352,7 @@ export default function ControlCenterMenu({
             {/* ROW 3: Bottom Icons */}
             <div style={{ display: "flex", justifyContent: "space-between", padding: "0 6px", marginTop: "12px" }}>
               <motion.div whileTap={{ scale: 0.88 }} onClick={() => setFlashlight(!flashlight)} style={{ width: "64px", height: "64px", borderRadius: "50%", background: "rgba(44,44,48,0.95)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
-                <svg viewBox="0 0 24 24" fill={flashlight ? "rgba(255, 214, 0, 0.9)" : "white"} style={{ width: "28px", height: "28px", color: flashlight ? "black" : "white" }}><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
+                <svg viewBox="0 0 24 24" fill={flashlight ? "rgba(200,106,82, 0.9)" : "white"} style={{ width: "28px", height: "28px", color: flashlight ? "black" : "white" }}><path d="M7 2v11h3v9l7-12h-4l4-8z"/></svg>
               </motion.div>
               <motion.div whileTap={{ scale: 0.88 }} style={{ width: "64px", height: "64px", borderRadius: "50%", background: "rgba(44,44,48,0.95)", display: "flex", alignItems: "center", justifyContent: "center", cursor: "pointer" }}>
                 <svg viewBox="0 0 24 24" fill="white" style={{ width: "28px", height: "28px" }}><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
