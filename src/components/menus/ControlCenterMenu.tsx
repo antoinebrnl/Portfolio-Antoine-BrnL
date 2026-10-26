@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React, { useRef } from "react";
 import Slider from "react-rangeslider";
 import "react-rangeslider/lib/index.css";
@@ -17,11 +18,11 @@ interface SliderProps {
 const SliderComponent = ({ icon, value, setValue, dark }: SliderProps) => (
   <div className="slider flex">
     <div className="size-7 flex-center bg-c-100" border="t l b c-300 rounded-l-full">
-      {icon.startsWith("i-ph:") ? (
+      {localize(icon.startsWith("i-ph:") ? (
         <span className={icon} text="xs c-500" />
       ) : (
-        <img src={icon} alt="" style={{ width: "14px", height: "14px", filter: dark ? "invert(1)" : "none", opacity: 0.7 }} />
-      )}
+        <img src={icon} alt={localize("")} style={{ width: "14px", height: "14px", filter: dark ? "invert(1)" : "none", opacity: 0.7 }} />
+      ))}
     </div>
     <Slider
       min={1}
@@ -90,7 +91,7 @@ const VerticalSlider = ({ icon, value, setValue }: { icon: React.ReactNode, valu
           pointerEvents: "none"
         }}
       >
-        {icon}
+        {localize(icon)}
       </div>
     </div>
   );
@@ -147,8 +148,8 @@ export default function ControlCenterMenu({
 
   return (
     <>
-      {isMobile && (
-        <style>{`
+      {localize(isMobile && (
+        <style>{localize(`
           .mobile-cc::-webkit-scrollbar {
             display: none;
           }
@@ -156,11 +157,11 @@ export default function ControlCenterMenu({
             -ms-overflow-style: none;
             scrollbar-width: none;
           }
-        `}</style>
-      )}
+        `)}</style>
+      ))}
       
       {/* FULLSCREEN OVERLAY */}
-      {isMobile && (
+      {localize(isMobile && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -176,7 +177,7 @@ export default function ControlCenterMenu({
           }}
           onClick={toggleControlCenter}
         />
-      )}
+      ))}
       
       <motion.div
         className={`text-c-black ${isMobile ? "mobile-cc" : ""}`}
@@ -218,7 +219,7 @@ export default function ControlCenterMenu({
           overflowY: "visible"
         }}
       >
-        {isMobile ? (
+        {localize(isMobile ? (
           <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%" }}>
             
             {/* ROW 1: Connectivity & Now Playing */}
@@ -231,28 +232,28 @@ export default function ControlCenterMenu({
                     <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "white" }}>
                       <path d="M6.5 20C4.01 20 2 17.99 2 15.5c0-2.03 1.37-3.74 3.24-4.27C5.08 10.82 5 10.42 5 10c0-2.76 2.24-5 5-5 1.8 0 3.37.96 4.24 2.4.26-.03.51-.04.76-.04 2.76 0 5 2.24 5 5 0 .11 0 .22-.01.33C21.67 13.24 23 14.73 23 16.5c0 1.93-1.57 3.5-3.5 3.5H6.5zM13 11V8h-2v3H9l3 4 3-4h-2z"/>
                     </svg>
-                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>AirDrop</span>
+                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>{localize("AirDrop")}</span>
                   </motion.div>
                   
                   <motion.div whileTap={{ scale: 0.88 }} style={{ width: "100%", height: "60px", borderRadius: "14px", background: "#0A84FF", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", cursor: "pointer" }}>
                     <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "white" }}>
                       <path d="M15.5 5H13l2.5-3 2.5 3h-2.5zM13 19h2.5l-2.5 3-2.5-3H13zM3 6h2v12H3V6zm4-2h2v16H7V4zm4 2h2v12h-2V6zm4-4h2v16h-2V2z"/>
                     </svg>
-                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>Mobile Data</span>
+                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>{localize("Mobile Data")}</span>
                   </motion.div>
                   
                   <motion.div whileTap={{ scale: 0.88 }} onClick={toggleWIFI} style={{ width: "100%", height: "60px", borderRadius: "14px", background: wifi ? "#0A84FF" : "rgba(28,28,30,0.9)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", cursor: "pointer" }}>
                     <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "white" }}>
                       <path d="M1 9l2 2c5.523-5.523 14.477-5.523 20 0l2-2C19.261 3.261 4.739 3.261 1 9zm8 8l3 3 3-3c-1.657-1.657-4.343-1.657-6 0zm-4-4l2 2c2.761-2.761 7.239-2.761 10 0l2-2C15.522 9.478 8.478 9.478 5 13z"/>
                     </svg>
-                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>Wi-Fi</span>
+                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>{localize("Wi-Fi")}</span>
                   </motion.div>
                   
                   <motion.div whileTap={{ scale: 0.88 }} onClick={toggleBluetooth} style={{ width: "100%", height: "60px", borderRadius: "14px", background: bluetooth ? "#0A84FF" : "rgba(28,28,30,0.9)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "4px", cursor: "pointer" }}>
                     <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "22px", height: "22px", color: "white" }}>
                       <path d="M17.71 7.71L12 2h-1v7.59L6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 11 14.41V22h1l5.71-5.71-4.3-4.29 4.3-4.29zM13 5.83l1.88 1.88L13 9.59V5.83zm1.88 10.46L13 18.17v-3.76l1.88 1.88z"/>
                     </svg>
-                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>Bluetooth</span>
+                    <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.7)" }}>{localize("Bluetooth")}</span>
                   </motion.div>
                 </div>
               </div>
@@ -260,22 +261,22 @@ export default function ControlCenterMenu({
               {/* NOW PLAYING TILE */}
               <div style={{ width: "100%", height: "160px", background: "rgba(50,40,70,0.9)", borderRadius: "20px", padding: "16px", display: "flex", flexDirection: "column", justifyContent: "space-between" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                  {playing ? (
-                    <img style={{ width: "40px", height: "40px", borderRadius: "6px", boxShadow: "0 1px 3px rgba(0,0,0,0.3)", objectFit: "cover" }} src={music.cover} alt="cover" />
+                  {localize(playing ? (
+                    <img style={{ width: "40px", height: "40px", borderRadius: "6px", boxShadow: "0 1px 3px rgba(0,0,0,0.3)", objectFit: "cover" }} src={music.cover} alt={localize("cover")} />
                   ) : (
                     <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "20px", height: "20px", color: "white" }}>
                       <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
                     </svg>
-                  )}
+                  ))}
                   <div style={{ display: "flex", flexDirection: "column", overflow: "hidden" }}>
-                    {playing ? (
+                    {localize(playing ? (
                       <>
-                        <span style={{ fontSize: "14px", fontWeight: 600, color: "white", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{music.title}</span>
-                        <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.8)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{music.artist}</span>
+                        <span style={{ fontSize: "14px", fontWeight: 600, color: "white", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{localize(music.title)}</span>
+                        <span style={{ fontSize: "12px", color: "rgba(255,255,255,0.8)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{localize(music.artist)}</span>
                       </>
                     ) : (
-                      <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.8)" }}>Not Playing</span>
-                    )}
+                      <span style={{ fontSize: "15px", color: "rgba(255,255,255,0.8)" }}>{localize("Not Playing")}</span>
+                    ))}
                   </div>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-around", alignItems: "center" }}>
@@ -283,11 +284,11 @@ export default function ControlCenterMenu({
                     <svg viewBox="0 0 24 24" fill="white" style={{ width: "30px", height: "30px" }}><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
                   </motion.div>
                   <motion.div whileTap={{ opacity: 0.5 }} style={{ cursor: "pointer" }} onClick={(e) => { e.stopPropagation(); toggleAudio(!playing); }}>
-                    {playing ? (
+                    {localize(playing ? (
                       <svg viewBox="0 0 24 24" fill="white" style={{ width: "38px", height: "38px" }}><path d="M8 5v14l11-7z"/></svg>
                     ) : (
                       <svg viewBox="0 0 24 24" fill="white" style={{ width: "38px", height: "38px" }}><path d="M8 5v14l11-7z"/></svg>
-                    )}
+                    ))}
                   </motion.div>
                   <motion.div whileTap={{ opacity: 0.5 }} style={{ cursor: "pointer" }}>
                     <svg viewBox="0 0 24 24" fill="white" style={{ width: "30px", height: "30px" }}><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
@@ -319,7 +320,7 @@ export default function ControlCenterMenu({
                   <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "18px", height: "18px", color: focusMode ? "#BF5AF2" : "#FFFFFF" }}>
                     <path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/>
                   </svg>
-                  <span style={{ fontSize: "15px", fontWeight: 500, color: "#FFFFFF", flex: 1 }}>Focus</span>
+                  <span style={{ fontSize: "15px", fontWeight: 500, color: "#FFFFFF", flex: 1 }}>{localize("Focus")}</span>
                   <svg viewBox="0 0 24 24" fill="currentColor" style={{ width: "12px", height: "12px", color: "rgba(255,255,255,0.4)" }}>
                     <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
                   </svg>
@@ -373,8 +374,8 @@ export default function ControlCenterMenu({
                   <span className="i-ph:wifi-high text-base" />
                 </div>
                 <div p="t-0.5">
-                  <div className="font-medium leading-4" style={{ fontSize: '12px' }}>Wi-Fi</div>
-                  <div className="cc-text">{wifi ? "Home" : "Off"}</div>
+                  <div className="font-medium leading-4" style={{ fontSize: '12px' }}>{localize("Wi-Fi")}</div>
+                  <div className="cc-text">{localize(wifi ? "Home" : "Off")}</div>
                 </div>
               </div>
               <div className="hstack space-x-2">
@@ -382,8 +383,8 @@ export default function ControlCenterMenu({
                   <span className="i-ph:bluetooth text-base" />
                 </div>
                 <div p="t-0.5">
-                  <div className="font-medium leading-4" style={{ fontSize: '12px' }}>Bluetooth</div>
-                  <div className="cc-text">{bluetooth ? "On" : "Off"}</div>
+                  <div className="font-medium leading-4" style={{ fontSize: '12px' }}>{localize("Bluetooth")}</div>
+                  <div className="cc-text">{localize(bluetooth ? "On" : "Off")}</div>
                 </div>
               </div>
               <div className="hstack space-x-2">
@@ -391,8 +392,8 @@ export default function ControlCenterMenu({
                   <span className="i-ph:rss text-base" />
                 </div>
                 <div p="t-0.5">
-                  <div className="font-medium leading-4" style={{ fontSize: '12px' }}>AirDrop</div>
-                  <div className="cc-text">{airdrop ? "Everyone" : "Off"}</div>
+                  <div className="font-medium leading-4" style={{ fontSize: '12px' }}>{localize("AirDrop")}</div>
+                  <div className="cc-text">{localize(airdrop ? "Everyone" : "Off")}</div>
                 </div>
               </div>
             </div>
@@ -403,51 +404,51 @@ export default function ControlCenterMenu({
                   <span className="i-ph:moon text-base" />
                 </div>
                 <div p="t-0.5">
-                  <div className="font-medium leading-4" style={{ fontSize: '12px' }}>Focus</div>
-                  <div className="cc-text">{focusMode ? "Do Not Disturb" : "Off"}</div>
+                  <div className="font-medium leading-4" style={{ fontSize: '12px' }}>{localize("Focus")}</div>
+                  <div className="cc-text">{localize(focusMode ? "Do Not Disturb" : "Off")}</div>
                 </div>
               </div>
               <div className="hstack space-x-2.5 cursor-pointer" onClick={toggleDark}>
                 <div className={`${dark ? "cc-btn" : "cc-btn-active"}`}>
-                  {dark ? (
+                  {localize(dark ? (
                     <span className="i-ph:moon text-base" />
                   ) : (
                     <span className="i-ph:sun text-base" />
-                  )}
+                  ))}
                 </div>
-                <div className="font-medium" style={{ fontSize: '12px' }}>{dark ? "Dark Mode" : "Light Mode"}</div>
+                <div className="font-medium" style={{ fontSize: '12px' }}>{localize(dark ? "Dark Mode" : "Light Mode")}</div>
               </div>
             </div>
 
             <div className="cc-grid flex-center flex-col cursor-pointer py-2">
               <span className="i-ph:sun text-xl" />
-              <span className="text-center mt-1" style={{ fontSize: '10px', lineHeight: '12px' }}>Keyboard Brightness</span>
+              <span className="text-center mt-1" style={{ fontSize: '10px', lineHeight: '12px' }}>{localize("Keyboard Brightness")}</span>
             </div>
             <div className="cc-grid flex-center flex-col cursor-pointer py-2" onClick={() => toggleFullScreen(!fullscreen)}>
-              {fullscreen ? (
+              {localize(fullscreen ? (
                 <span className="i-ph:arrows-in text-base" />
               ) : (
                 <span className="i-ph:arrows-out text-base" />
-              )}
-              <span className="text-center mt-1.5" style={{ fontSize: '10px', lineHeight: '12px' }}>{fullscreen ? "Exit Fullscreen" : "Enter Fullscreen"}</span>
+              ))}
+              <span className="text-center mt-1.5" style={{ fontSize: '10px', lineHeight: '12px' }}>{localize(fullscreen ? "Exit Fullscreen" : "Enter Fullscreen")}</span>
             </div>
 
             <div className="cc-grid flex-center flex-col cursor-pointer py-2">
               <span className="i-ph:squares-four text-base" />
-              <span className="text-center mt-1.5" style={{ fontSize: '10px', lineHeight: '12px' }}>Stage Manager</span>
+              <span className="text-center mt-1.5" style={{ fontSize: '10px', lineHeight: '12px' }}>{localize("Stage Manager")}</span>
             </div>
             <div className="cc-grid flex-center flex-col cursor-pointer py-2">
               <span className="i-ph:screencast text-base" />
-              <span className="text-center mt-1.5" style={{ fontSize: '10px', lineHeight: '12px' }}>Screen Mirroring</span>
+              <span className="text-center mt-1.5" style={{ fontSize: '10px', lineHeight: '12px' }}>{localize("Screen Mirroring")}</span>
             </div>
 
             <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
-              <span className="font-medium ml-0.5" style={{ fontSize: '12px' }}>Display</span>
+              <span className="font-medium ml-0.5" style={{ fontSize: '12px' }}>{localize("Display")}</span>
               <SliderComponent icon="i-ph:sun" value={brightness} setValue={setBrightness} />
             </div>
 
             <div className="cc-grid col-span-4 px-2.5 py-2 space-y-1 flex flex-col justify-around">
-              <span className="font-medium ml-0.5" style={{ fontSize: '12px' }}>Sound</span>
+              <span className="font-medium ml-0.5" style={{ fontSize: '12px' }}>{localize("Sound")}</span>
               <SliderComponent icon="i-ph:speaker-high" value={volume} setValue={setVolume} />
             </div>
 
@@ -455,18 +456,18 @@ export default function ControlCenterMenu({
               <img
                 className="w-12 rounded-lg"
                 src={music.cover}
-                alt="cover art"
+                alt={localize("cover art")}
                 style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.2)' }}
               />
               <div className="flex-1">
-                <div className="font-medium" style={{ fontSize: '12px' }}>{music.title}</div>
-                <div className="cc-text">{music.artist}</div>
+                <div className="font-medium" style={{ fontSize: '12px' }}>{localize(music.title)}</div>
+                <div className="cc-text">{localize(music.artist)}</div>
               </div>
-              {playing ? (
+              {localize(playing ? (
                 <span className="i-ph:pause-fill text-2xl play cursor-pointer" onClick={() => toggleAudio(false)} />
               ) : (
                 <span className="i-ph:play-fill text-2xl pause cursor-pointer" onClick={() => toggleAudio(true)} />
-              )}
+              ))}
             </div>
 
             <div className="col-span-4 flex-center pt-0.5 pb-0.5">
@@ -481,11 +482,11 @@ export default function ControlCenterMenu({
                 }}
               >
                 <span className="i-ph:sliders text-sm" />
-                <span>Edit Controls</span>
+                <span>{localize("Edit Controls")}</span>
               </button>
             </div>
           </>
-        )}
+        ))}
       </motion.div>
     </>
   );

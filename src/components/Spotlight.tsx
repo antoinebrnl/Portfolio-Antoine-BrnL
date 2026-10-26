@@ -1,5 +1,6 @@
+import { localize } from "~/i18n";
 import React from "react";
-import { format } from "date-fns";
+import { formatDate as format } from "~/i18n";
 import { apps, launchpadApps } from "~/configs";
 import type { LaunchpadData, AppsData } from "~/types";
 
@@ -65,11 +66,11 @@ const AppIcon = ({ app, sizeClass }: { app: any; sizeClass: string }) => {
   if (isPortfolio) {
     return (
       <div className={`${sizeClass} rounded-[22.5%] shadow-sm overflow-hidden flex items-center justify-center border border-black/10 dark:border-white/10 relative ${app.id === 'skill-exchange' ? 'bg-black' : 'bg-white'}`}>
-        <img src={app.img} alt={app.title} title={app.title} className={`${app.id === "library" ? "w-[60%] h-[60%] object-contain" : "w-full h-full object-cover"}`} />
+        <img src={app.img} alt={localize(app.title)} title={localize(app.title)} className={`${app.id === "library" ? "w-[60%] h-[60%] object-contain" : "w-full h-full object-cover"}`} />
       </div>
     );
   }
-  return <img src={app.img} alt={app.title} title={app.title} className={`${sizeClass} object-contain drop-shadow-sm`} />;
+  return <img src={app.img} alt={localize(app.title)} title={localize(app.title)} className={`${sizeClass} object-contain drop-shadow-sm`} />;
 };
 
 export default function Spotlight({
@@ -131,7 +132,7 @@ export default function Spotlight({
     const text = searchText.toLowerCase();
     return APPS[type].filter(
       (item: LaunchpadData | AppsData) =>
-        item.title.toLowerCase().includes(text) || item.id.toLowerCase().includes(text)
+        localize(item.title).toLowerCase().includes(text) || item.id.toLowerCase().includes(text)
     );
   };
 
@@ -181,7 +182,7 @@ export default function Spotlight({
             <AppIcon app={app} sizeClass="w-5 h-5" />
           </div>
           <div className="flex-1 hstack overflow-hidden whitespace-nowrap pl-1">
-            {app.title}
+            {localize(app.title)}
           </div>
         </li>
       );
@@ -204,20 +205,19 @@ export default function Spotlight({
 
     const newAppList = (
       <div>
-        {app.appList.length !== 0 && (
+        {localize(app.appList.length !== 0 && (
           <div>
-            <div className="spotlight-type">Applications</div>
-            <ul className="w-full text-xs">{app.appList}</ul>
+            <div className="spotlight-type">{localize("Applications")}</div>
+            <ul className="w-full text-xs">{localize(app.appList)}</ul>
           </div>
-        )}
-        {portfolio.appList.length !== 0 && (
+        ))}
+        {localize(portfolio.appList.length !== 0 && (
           <div>
             <div className="spotlight-type mt-1.5 before:(content-empty absolute left-0 top-0 ml-2 w-63.5 border-t border-menu)">
-              Portfolio
-            </div>
-            <ul className="w-full text-xs">{portfolio.appList}</ul>
+              {localize("Portfolio")}</div>
+            <ul className="w-full text-xs">{localize(portfolio.appList)}</ul>
           </div>
-        )}
+        ))}
       </div>
     );
 
@@ -299,11 +299,11 @@ export default function Spotlight({
   const renderAppLibrary = () => {
     return (
       <div className="w-full h-full bg-transparent overflow-y-scroll p-4 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-6 content-start">
-        {appLibraryCategories.map((cat) => (
+        {localize(appLibraryCategories.map((cat) => (
           <div key={cat.name} className="flex flex-col">
-            <span className="text-[13px] text-c-600 font-medium ml-3 mb-1.5">{cat.name}</span>
+            <span className="text-[13px] text-c-600 font-medium ml-3 mb-1.5">{localize(cat.name)}</span>
             <div className="bg-gray-200/50 dark:bg-gray-800/50 rounded-[24px] p-3.5 grid grid-cols-2 gap-3 backdrop-blur-md shadow-sm">
-              {Array.from({ length: 4 }).map((_, index) => {
+              {localize(Array.from({ length: 4 }).map((_, index) => {
                 const appId = cat.apps[index];
                 const app = appId ? apps.find((a) => a.id === appId) : null;
                 if (!app) return <div key={index} className="w-11 h-11" />;
@@ -319,10 +319,10 @@ export default function Spotlight({
                     <AppIcon app={app} sizeClass="w-11 h-11" />
                   </div>
                 );
-              })}
+              }))}
             </div>
           </div>
-        ))}
+        )))}
       </div>
     );
   };
@@ -336,11 +336,11 @@ export default function Spotlight({
 
     return (
       <div className="w-full h-full bg-transparent overflow-y-scroll p-4 grid grid-cols-2 sm:grid-cols-3 gap-x-6 gap-y-6 content-start">
-        {chunks.map((chunk, chunkIndex) => (
+        {localize(chunks.map((chunk, chunkIndex) => (
           <div key={chunkIndex} className="flex flex-col">
-            <span className="text-[13px] text-c-600 font-medium ml-3 mb-1.5">{categoryNames[chunkIndex] || `Category ${chunkIndex + 1}`}</span>
+            <span className="text-[13px] text-c-600 font-medium ml-3 mb-1.5">{localize(categoryNames[chunkIndex] || `Category ${chunkIndex + 1}`)}</span>
             <div className="bg-gray-200/50 dark:bg-gray-800/50 rounded-[24px] p-3.5 grid grid-cols-2 gap-3 backdrop-blur-md shadow-sm">
-              {Array.from({ length: 4 }).map((_, index) => {
+              {localize(Array.from({ length: 4 }).map((_, index) => {
                 const app = chunk[index];
                 if (!app) return <div key={index} className="w-11 h-11" />;
                 return (
@@ -355,10 +355,10 @@ export default function Spotlight({
                     <AppIcon app={app} sizeClass="w-11 h-11" />
                   </div>
                 );
-              })}
+              }))}
             </div>
           </div>
-        ))}
+        )))}
       </div>
     );
   };
@@ -375,7 +375,7 @@ export default function Spotlight({
         grid="~ cols-8 sm:cols-11"
       >
         <div className="col-start-1 col-span-1 flex-center">
-          <img src="/img/icons/sf-icons/search.svg" alt="Search" className="ml-1 opacity-60 dark:invert" style={{ width: "24px", height: "24px" }} />
+          <img src="/img/icons/sf-icons/search.svg" alt={localize("Search")} className="ml-1 opacity-60 dark:invert" style={{ width: "24px", height: "24px" }} />
         </div>
         <input
           ref={inputRef}
@@ -383,16 +383,16 @@ export default function Spotlight({
             curDetails ? "sm:col-span-9" : "sm:col-span-10"
           } bg-transparent no-outline px-1`}
           text="c-black xl sm:2xl"
-          placeholder="Spotlight Search"
+          placeholder={localize("Spotlight Search")}
           value={searchText}
           onChange={handleInputChange}
           autoFocus={true}
         />
-        {curDetails && (
+        {localize(curDetails && (
           <div className="hidden sm:flex col-start-11 col-span-1 flex-center">
             <AppIcon app={curDetails} sizeClass="w-8 h-8" />
           </div>
-        )}
+        ))}
       </div>
       {/* Category pills */}
       <div
@@ -404,7 +404,7 @@ export default function Spotlight({
           borderBottom: searchText !== "" || activeTab !== "All" ? "1px solid rgba(0,0,0,0.08)" : "none",
         }}
       >
-        {["All", "Applications", "Portfolio"].map((label) => (
+        {localize(["All", "Applications", "Portfolio"].map((label) => (
           <span
             key={label}
             onClick={() => {
@@ -422,65 +422,65 @@ export default function Spotlight({
               userSelect: "none",
             }}
           >
-            {label}
+            {localize(label)}
           </span>
-        ))}
+        )))}
       </div>
       {/* Inline calculator result */}
-      {mathResult !== null && activeTab === "All" && (
+      {localize(mathResult !== null && activeTab === "All" && (
         <div
           className="px-4 pb-2 flex items-baseline gap-2"
           style={{ borderBottom: '1px solid var(--lg-border-subtle)' }}
         >
-          <img src="/img/icons/sf-icons/calculator.svg" alt="Calculator" className="dark:invert opacity-60" style={{ width: "18px", height: "18px" }} />
-          <span className="text-c-500 text-sm">{searchText} =</span>
-          <span className="text-c-black font-semibold text-2xl">{mathResult}</span>
+          <img src="/img/icons/sf-icons/calculator.svg" alt={localize("Calculator")} className="dark:invert opacity-60" style={{ width: "18px", height: "18px" }} />
+          <span className="text-c-500 text-sm">{localize(searchText)} {localize(" =")}</span>
+          <span className="text-c-black font-semibold text-2xl">{localize(mathResult)}</span>
         </div>
-      )}
-      {(searchText !== "" || activeTab !== "All") && (
+      ))}
+      {localize((searchText !== "" || activeTab !== "All") && (
         <div flex h-85 bg-transparent border="t menu">
-          {activeTab === "Applications" ? (
+          {localize(activeTab === "Applications" ? (
             renderAppLibrary()
           ) : activeTab === "Portfolio" ? (
             renderPortfolio()
           ) : (
             <>
               <div w="32 sm:72" border="r menu" p="x-2.5" overflow-y-scroll>
-                {appList}
+                {localize(appList)}
               </div>
-              {curDetails && (
+              {localize(curDetails && (
                 <div className="flex-1 vstack">
                   <div className="w-4/5 h-56" flex="center col" border="b menu">
                     <AppIcon app={curDetails} sizeClass="w-32 h-32" />
                     <div m="t-4" text="xl c-black">
-                      {curDetails.title}
+                      {localize(curDetails.title)}
                     </div>
                     <div text="xs c-500">
-                      {`Version: ${getRandom(0, 99)}.${getRandom(0, 999)}`}
+                      {localize(`Version: ${getRandom(0, 99)}.${getRandom(0, 999)}`)}
                     </div>
                   </div>
                   <div className="flex-1 hstack text-xs">
                     <div w="1/2" text="right c-500">
-                      <div>Kind</div>
-                      <div>Size</div>
-                      <div>Created</div>
-                      <div>Modified</div>
-                      <div>Last opened</div>
+                      <div>{localize("Kind")}</div>
+                      <div>{localize("Size")}</div>
+                      <div>{localize("Created")}</div>
+                      <div>{localize("Modified")}</div>
+                      <div>{localize("Last opened")}</div>
                     </div>
                     <div className="flex-1 pl-2 text-c-black">
-                      <div>{curDetails.type === "app" ? "Application" : "Portfolio"}</div>
-                      <div>{`${getRandom(0, 999)} MB`}</div>
-                      <div>{getRandomDate()}</div>
-                      <div>{getRandomDate()}</div>
-                      <div>{getRandomDate()}</div>
+                      <div>{localize(curDetails.type === "app" ? "Application" : "Portfolio")}</div>
+                      <div>{localize(`${getRandom(0, 999)} MB`)}</div>
+                      <div>{localize(getRandomDate())}</div>
+                      <div>{localize(getRandomDate())}</div>
+                      <div>{localize(getRandomDate())}</div>
                     </div>
                   </div>
                 </div>
-              )}
+              ))}
             </>
-          )}
+          ))}
         </div>
-      )}
+      ))}
     </div>
   );
 }

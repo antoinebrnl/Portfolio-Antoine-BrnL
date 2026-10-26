@@ -1,3 +1,4 @@
+import { markdownURL, localize } from "~/i18n";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -48,10 +49,10 @@ const Highlighter = (dark: boolean): any => {
           PreTag="div"
           {...props}
         >
-          {String(children).replace(/\n$/, "")}
+          {localize(String(children).replace(/\n$/, ""))}
         </SyntaxHighlighter>
       ) : (
-        <code className={className}>{children}</code>
+        <code className={className}>{localize(children)}</code>
       );
     }
   };
@@ -65,7 +66,7 @@ const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
         <span className="i-ph:sliders-horizontal text-xl" />
       </div>
       <ul>
-        {bear.map((item, index) => (
+        {localize(bear.map((item, index) => (
           <li
             key={`bear-sidebar-${item.id}`}
             className={`pl-6 h-8 hstack cursor-default ${cur === index ? "bg-red-500" : "bg-transparent"
@@ -73,9 +74,9 @@ const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
             onClick={() => setMidBar(item.md, index)}
           >
             <span className={item.icon} />
-            <span className="ml-2">{item.title}</span>
+            <span className="ml-2">{localize(item.title)}</span>
           </li>
-        ))}
+        )))}
       </ul>
     </div>
   );
@@ -84,7 +85,7 @@ const Sidebar = ({ cur, setMidBar }: SidebarProps) => {
 const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
   return (
     <ul>
-      {items.map((item: BearMdData, index: number) => (
+      {localize(items.map((item: BearMdData, index: number) => (
         <li
           key={`bear-midbar-${item.id}`}
           className={`h-24 flex flex-col cursor-default border-l-2 ${cur === index
@@ -98,8 +99,8 @@ const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
               <span className={item.icon} />
             </div>
             <span className="relative flex-1 font-bold" text="gray-900 dark:gray-100">
-              {item.title}
-              {item.link && (
+              {localize(item.title)}
+              {localize(item.link && (
                 <a
                   pos="absolute top-1 right-4"
                   href={item.link}
@@ -108,14 +109,14 @@ const Middlebar = ({ items, cur, setContent }: MiddlebarProps) => {
                 >
                   <span className="i-ph:link text-c-500" />
                 </a>
-              )}
+              ))}
             </span>
           </div>
           <div className="flex-1 ml-10" p="b-2 r-1" text="sm c-500" border="b c-300">
-            {item.excerpt}
+            {localize(item.excerpt)}
           </div>
         </li>
-      ))}
+      )))}
     </ul>
   );
 };
@@ -153,7 +154,7 @@ const Content = ({ contentID, contentURL }: ContentProps) => {
   const fetchMarkdown = useCallback(
     (id: string, url: string) => {
       if (!storeMd[id]) {
-        fetch(url)
+        fetch(markdownURL(url))
           .then((response) => response.text())
           .then((text) => {
             storeMd[id] = fixImageURL(text, url);
@@ -179,7 +180,7 @@ const Content = ({ contentID, contentURL }: ContentProps) => {
         ]}
         components={Highlighter(dark as boolean)}
       >
-        {storeMd[contentID]}
+        {localize(storeMd[contentID])}
       </ReactMarkdown>
     </div>
   );

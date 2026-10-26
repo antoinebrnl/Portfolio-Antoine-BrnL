@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import { motion } from "framer-motion";
 
 type CalcOp = "+" | "-" | "×" | "÷" | null;
@@ -155,7 +156,7 @@ export default function Calculator() {
             lineHeight: 1,
           }}
         >
-          {state.display}
+          {localize(state.display)}
         </motion.span>
       </div>
 
@@ -169,7 +170,7 @@ export default function Calculator() {
           padding: "1px",
         }}
       >
-        {BTN_ROWS.map((row, ri) =>
+        {localize(BTN_ROWS.map((row, ri) =>
           row.map((label, ci) => {
             const isZero = label === "0";
             return (
@@ -194,11 +195,11 @@ export default function Calculator() {
                   outline: "none",
                 }}
               >
-                {label}
+                {localize(label)}
               </motion.button>
             );
           })
-        )}
+        ))}
       </div>
     </div>
   );

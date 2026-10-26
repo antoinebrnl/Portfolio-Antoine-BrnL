@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React from "react";
 import { apps, launchpadApps } from "~/configs";
 import { minMarginY, isFullScreen, enterFullScreen, exitFullScreen } from "~/utils";
@@ -225,9 +226,9 @@ export default function Desktop(props: MacActions) {
             key={`desktop-app-${app.id}`}
             className="fixed top-8 right-4 z-[1000] drop-shadow-2xl flex items-start justify-end"
           >
-            {React.cloneElement(app.content as React.ReactElement, {
+            {localize(React.cloneElement(app.content as React.ReactElement, {
               closeSiri: () => closeApp("siri"),
-            })}
+            }))}
           </div>
         );
       }
@@ -256,11 +257,11 @@ export default function Desktop(props: MacActions) {
 
       return (
         <AnimatePresence key={`desktop-app-${app.id}`}>
-          {state.showApps[app.id] && (
+          {localize(state.showApps[app.id] && (
             <AppWindow {...windowProps}>
-              {app.content}
+              {localize(app.content)}
             </AppWindow>
-          )}
+          ))}
         </AnimatePresence>
       );
     });
@@ -289,7 +290,7 @@ export default function Desktop(props: MacActions) {
     >
       {/* Top Menu Bar */}
       <TopBar
-        title={state.currentTitle}
+        title={localize(state.currentTitle)}
         setLogin={props.setLogin}
         shutMac={props.shutMac}
         sleepMac={props.sleepMac}
@@ -342,48 +343,48 @@ export default function Desktop(props: MacActions) {
       >
       </div>
 
-      {isMobile && (
+      {localize(isMobile && (
         <div className="absolute top-[48px] left-0 right-0 bottom-24 p-6 grid grid-cols-4 gap-y-6 gap-x-2 content-start z-40">
-          {apps.filter(a => !a.hideOnMobile && !a.dockOnMobile && a.id !== "launchpad").map(app => (
+          {localize(apps.filter(a => !a.hideOnMobile && !a.dockOnMobile && a.id !== "launchpad").map(app => (
             <div key={app.id} className="flex flex-col items-center gap-1.5 cursor-pointer" onClick={() => openApp(app.id)}>
               <div className="w-[60px] h-[60px] bg-transparent rounded-[22.5%] shadow-sm overflow-hidden flex items-center justify-center border border-black/5 dark:border-white/5">
-                <img src={app.mobileImg || app.img} alt={app.title} className="w-full h-full object-cover" />
+                <img src={app.mobileImg || app.img} alt={localize(app.title)} className="w-full h-full object-cover" />
               </div>
               <span className="text-white text-xs font-light text-center tracking-wide" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.6)" }}>
-                {app.mobileTitle || app.title}
+                {localize(app.mobileTitle || app.title)}
               </span>
             </div>
-          ))}
-          {launchpadApps.map(app => (
+          )))}
+          {localize(launchpadApps.map(app => (
             <div key={app.id} className="flex flex-col items-center gap-1.5 cursor-pointer" onClick={(e) => handleLaunchpadAppClick(e, app.link)}>
               <div className={`w-[60px] h-[60px] rounded-[22.5%] shadow-sm overflow-hidden flex items-center justify-center border border-black/10 dark:border-white/10 ${app.img.includes('skill-exchange') ? 'bg-black' : 'bg-white'}`}>
-                <img src={app.mobileImg || app.img} alt={app.title} className="w-[60%] h-[60%] object-contain" />
+                <img src={app.mobileImg || app.img} alt={localize(app.title)} className="w-[60%] h-[60%] object-contain" />
               </div>
               <span className="text-white text-xs font-light text-center tracking-wide" style={{ textShadow: "0 1px 3px rgba(0,0,0,0.6)" }}>
-                {app.mobileTitle || app.title}
+                {localize(app.mobileTitle || app.title)}
               </span>
             </div>
-          ))}
+          )))}
         </div>
-      )}
+      ))}
 
       {/* Desktop App Windows */}
       <div className="window-bound absolute" style={{ top: minMarginY, zIndex: 60, pointerEvents: "none" }}>
-        {renderAppWindows()}
+        {localize(renderAppWindows())}
       </div>
 
       {/* About This Mac modal */}
       <AboutThisMacModal show={showAboutMac} onClose={() => setShowAboutMac(false)} />
 
       {/* Spotlight */}
-      {state.spotlight && (
+      {localize(state.spotlight && (
         <Spotlight
           openApp={openApp}
           toggleLaunchpad={toggleLaunchpad}
           toggleSpotlight={toggleSpotlight}
           btnRef={spotlightBtnRef as React.RefObject<HTMLDivElement>}
         />
-      )}
+      ))}
 
       {/* Launchpad */}
       <Launchpad show={state.showLaunchpad} toggleLaunchpad={toggleLaunchpad} />

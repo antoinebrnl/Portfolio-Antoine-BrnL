@@ -1,4 +1,5 @@
-import { format } from "date-fns";
+import { localize } from "~/i18n";
+import { formatDate as format } from "~/i18n";
 
 export default function ClockWidget() {
   const [now, setNow] = useState(new Date());
@@ -34,14 +35,14 @@ export default function ClockWidget() {
       <svg width={54} height={54} viewBox="0 0 54 54">
         <circle cx={27} cy={27} r={26} fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" strokeWidth={0.5} />
         {/* tick marks */}
-        {Array.from({ length: 12 }).map((_, i) => {
+        {localize(Array.from({ length: 12 }).map((_, i) => {
           const angle = (i * 30 * Math.PI) / 180;
           const x1 = 27 + 22 * Math.sin(angle);
           const y1 = 27 - 22 * Math.cos(angle);
           const x2 = 27 + 24 * Math.sin(angle);
           const y2 = 27 - 24 * Math.cos(angle);
           return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(255,255,255,0.4)" strokeWidth={1} />;
-        })}
+        }))}
         {/* hour hand */}
         <line
           x1={27} y1={27}
@@ -69,11 +70,11 @@ export default function ClockWidget() {
       {/* Digital */}
       <div>
         <div style={{ fontSize: 22, fontWeight: 300, color: "white", letterSpacing: "-0.5px", lineHeight: 1.1, fontVariantNumeric: "tabular-nums" }}>
-          {format(now, "h:mm")}
-          <span style={{ fontSize: 14, opacity: 0.6, marginLeft: 3 }}>{format(now, "ss")}</span>
+          {localize(format(now, "h:mm"))}
+          <span style={{ fontSize: 14, opacity: 0.6, marginLeft: 3 }}>{localize(format(now, "ss"))}</span>
         </div>
         <div style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", marginTop: 2 }}>
-          {format(now, "EEEE, MMMM d")}
+          {localize(format(now, "EEEE, MMMM d"))}
         </div>
       </div>
     </div>

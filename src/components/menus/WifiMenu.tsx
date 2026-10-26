@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React from "react";
 import "react-rangeslider/lib/index.css";
 
@@ -21,7 +22,7 @@ export default function WifiMenu({ toggleWifiMenu, btnRef }: WifiMenuProps) {
       ref={wifiRef}
       style={{ fontFamily: "var(--font-system)" }}
     >
-      <div className="px-2.5 font-medium">Wi-Fi</div>
+      <div className="px-2.5 font-medium">{localize("Wi-Fi")}</div>
       <div className="px-2.5">
         <label className="switch-toggle">
           <input type="checkbox" checked={wifi} onChange={toggleWIFI} />

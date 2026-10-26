@@ -1,3 +1,6 @@
+import { getLanguage } from "~/i18n";
+import "moment/locale/fr";
+import { localize } from "~/i18n";
 import React from "react";
 import { user } from "~/configs";
 import type { MacActions } from "~/types";
@@ -11,15 +14,15 @@ export default function Login(props: MacActions) {
   const getWallpaper = useStore((state) => state.getWallpaper);
   const activeWallpaper = getWallpaper();
   const [isloginOpen, setIsLoginOpen] = useState(false);
-  const [time, setTime] = useState(moment().format("h:mm"));
-  const [period, setPeriod] = useState(moment().format("A"));
-  const [date, setDate] = useState(moment().format("dddd, MMMM D"));
+  const [time, setTime] = useState(moment().locale(getLanguage()).format(getLanguage() === "fr" ? "HH:mm" : "h:mm"));
+  const [period, setPeriod] = useState(moment().locale(getLanguage()).format("A"));
+  const [date, setDate] = useState(moment().locale(getLanguage()).format("dddd, MMMM D"));
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(moment().format("h:mm"));
-      setPeriod(moment().format("A"));
-      setDate(moment().format("dddd, MMMM D"));
+      setTime(moment().locale(getLanguage()).format(getLanguage() === "fr" ? "HH:mm" : "h:mm"));
+      setPeriod(moment().locale(getLanguage()).format("A"));
+      setDate(moment().locale(getLanguage()).format("dddd, MMMM D"));
     }, 1000);
 
     return () => clearInterval(interval);
@@ -46,7 +49,7 @@ export default function Login(props: MacActions) {
       onClick={() => !isloginOpen && setIsLoginOpen(true)}
     >
       <AnimatePresence mode="wait">
-        {isloginOpen ? (
+        {localize(isloginOpen ? (
           <motion.div
             key="login-panel"
             className="size-full absolute inset-0"
@@ -83,7 +86,7 @@ export default function Login(props: MacActions) {
                 <img
                   className="rounded-full size-full"
                   src={user.avatar}
-                  alt="avatar"
+                  alt={localize("avatar")}
                   style={{
                     objectFit: 'cover',
                     border: '2px solid rgba(255,255,255,0.15)',
@@ -103,7 +106,7 @@ export default function Login(props: MacActions) {
                   textShadow: '0 1px 4px rgba(0,0,0,0.3)',
                 }}
               >
-                {user.name}
+                {localize(user.name)}
               </div>
 
               {/* Login button styled as password field */}
@@ -153,8 +156,7 @@ export default function Login(props: MacActions) {
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 256 256" fill="currentColor" style={{ opacity: 0.8, flexShrink: 0 }}>
                     <path d="M184,128a8,8,0,0,1-8,8H99.31l34.35,34.34a8,8,0,0,1-11.32,11.32l-48-48a8,8,0,0,1,0-11.32l48-48a8,8,0,0,1,11.32,11.32L99.31,120H176A8,8,0,0,1,184,128ZM216,32V224a8,8,0,0,1-16,0V32a8,8,0,0,1,16,0Z" />
                   </svg>
-                  Sign In
-                </button>
+                  {localize("Sign In")}</button>
               </motion.div>
 
               {/* Touch ID hint */}
@@ -169,8 +171,7 @@ export default function Login(props: MacActions) {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.5 }}
               >
-                Press Enter to sign in
-              </motion.div>
+                {localize("Press Enter to sign in")}</motion.div>
             </motion.div>
 
             {/* Power buttons */}
@@ -180,7 +181,7 @@ export default function Login(props: MacActions) {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.5 }}
             >
-              {[
+              {localize([
                 {
                   label: 'Sleep',
                   svg: (
@@ -240,7 +241,7 @@ export default function Login(props: MacActions) {
                       (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
                     }}
                   >
-                    {item.svg}
+                    {localize(item.svg)}
                   </div>
                   <span
                     style={{
@@ -250,10 +251,10 @@ export default function Login(props: MacActions) {
                       fontWeight: 400,
                     }}
                   >
-                    {item.label}
+                    {localize(item.label)}
                   </span>
                 </div>
-              ))}
+              )))}
             </motion.div>
           </motion.div>
         ) : (
@@ -284,7 +285,7 @@ export default function Login(props: MacActions) {
                   textShadow: '0 2px 20px rgba(0,0,0,0.3)',
                 }}
               >
-                {time}
+                {localize(time)}
               </div>
               <div
                 className="font-rounded"
@@ -297,7 +298,7 @@ export default function Login(props: MacActions) {
                   textShadow: '0 1px 8px rgba(0,0,0,0.2)',
                 }}
               >
-                {date}
+                {localize(date)}
               </div>
             </motion.div>
 
@@ -320,11 +321,10 @@ export default function Login(props: MacActions) {
                   cursor: 'pointer',
                 }}
               >
-                Click anywhere to unlock
-              </div>
+                {localize("Click anywhere to unlock")}</div>
             </motion.div>
           </motion.div>
-        )}
+        ))}
       </AnimatePresence>
     </div>
   );

@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import type { TerminalData } from "~/types";
 
 const terminal: TerminalData[] = [
@@ -13,12 +14,9 @@ const terminal: TerminalData[] = [
         content: (
           <div className="py-1">
             <div>
-              Je pense, j'invente, je code... Bref, j'entreprends.
-            </div>
+              {localize("Je pense, j'invente, je code... Bref, j'entreprends.")}</div>
             <div className="mt-2">
-              Je suis Antoine BrnL — développeur, designer et entrepreneur.
-              Je crée des expériences digitales qui repoussent les limites du possible.
-            </div>
+              {localize("Je suis Antoine BrnL — développeur, designer et entrepreneur. Je crée des expériences digitales qui repoussent les limites du possible.")}</div>
           </div>
         )
       },
@@ -42,59 +40,54 @@ const terminal: TerminalData[] = [
         content: (
           <ul className="list-disc ml-6">
             <li>
-              Email:{" "}
+              {localize("Email:")}{localize(" ")}
               <a
                 className="text-blue-300"
                 href="mailto:antoine.brnl@proton.me"
                 target="_blank"
                 rel="noreferrer"
               >
-                antoine.brnl@proton.me
-              </a>
+                {localize("antoine.brnl@proton.me")}</a>
             </li>
             <li>
-              Github:{" "}
+              {localize("Github:")}{localize(" ")}
               <a
                 className="text-blue-300"
                 href="https://github.com/antoinebrnl"
                 target="_blank"
                 rel="noreferrer"
               >
-                @antoinebrnl
-              </a>
+                {localize("@antoinebrnl")}</a>
             </li>
             <li>
-              Linkedin:{" "}
+              {localize("Linkedin:")}{localize(" ")}
               <a
                 className="text-blue-300"
                 href="https://www.linkedin.com/in/antoine-brnl-7a7791385"
                 target="_blank"
                 rel="noreferrer"
               >
-                Antoine BrnL
-              </a>
+                {localize("Antoine BrnL")}</a>
             </li>
             <li>
-              Instagram:{" "}
+              {localize("Instagram:")}{localize(" ")}
               <a
                 className="text-blue-300"
                 href="https://www.instagram.com/data_horizon1"
                 target="_blank"
                 rel="noreferrer"
               >
-                @data_horizon1
-              </a>
+                {localize("@data_horizon1")}</a>
             </li>
             <li>
-              Portfolio:{" "}
+              {localize("Portfolio:")}{localize(" ")}
               <a
                 className="text-blue-300"
                 href="https://antoine-brnl.com"
                 target="_blank"
                 rel="noreferrer"
               >
-                antoine-brnl.com
-              </a>
+                {localize("antoine-brnl.com")}</a>
             </li>
           </ul>
         )
@@ -108,39 +101,29 @@ const terminal: TerminalData[] = [
     content: (
       <div className="py-1">
         <div>
-          <span className="text-purple-400">const</span>{" "}
-          <span className="text-blue-400">antoine</span> = {"{"} 
+          <span className="text-purple-400">{localize("const")}</span>{localize(" ")}
+          <span className="text-blue-400">{localize("antoine")}</span> {localize(" = ")}{localize("{")}
         </div>
         <div className="ml-6">
-          <span className="text-green-400">mindset</span>:{" "}
-          <span className="text-yellow-400">"think different"</span>,
-        </div>
+          <span className="text-green-400">{localize("mindset")}</span>{localize(":")}{localize(" ")}
+          <span className="text-yellow-400">{localize("\"think different\"")}</span>{localize(",")}</div>
         <div className="ml-6">
-          <span className="text-green-400">passion</span>:{" "}
-          <span className="text-yellow-400">"turning ideas into reality"</span>,
-        </div>
+          <span className="text-green-400">{localize("passion")}</span>{localize(":")}{localize(" ")}
+          <span className="text-yellow-400">{localize("\"turning ideas into reality\"")}</span>{localize(",")}</div>
         <div className="ml-6">
-          <span className="text-green-400">motto</span>:{" "}
-          <span className="text-yellow-400">"je pense, j'invente, je code"</span>,
-        </div>
-        <div>{"}"}</div>
+          <span className="text-green-400">{localize("motto")}</span>{localize(":")}{localize(" ")}
+          <span className="text-yellow-400">{localize("\"je pense, j'invente, je code\"")}</span>{localize(",")}</div>
+        <div>{localize("}")}</div>
         <div className="mt-2">
-          <span className="text-purple-400">while</span>(
-          <span className="text-blue-400">true</span>) {"{"}
+          <span className="text-purple-400">{localize("while")}</span>{localize("(")}<span className="text-blue-400">{localize("true")}</span>{localize(") ")}{localize("{")}
         </div>
         <div className="ml-6">
-          <span className="text-blue-400">antoine</span>.
-          <span className="text-yellow-400">build</span>();
-        </div>
+          <span className="text-blue-400">{localize("antoine")}</span>{localize(".")}<span className="text-yellow-400">{localize("build")}</span>{localize("();")}</div>
         <div className="ml-6">
-          <span className="text-blue-400">antoine</span>.
-          <span className="text-yellow-400">innovate</span>();
-        </div>
+          <span className="text-blue-400">{localize("antoine")}</span>{localize(".")}<span className="text-yellow-400">{localize("innovate")}</span>{localize("();")}</div>
         <div className="ml-6">
-          <span className="text-blue-400">antoine</span>.
-          <span className="text-yellow-400">disrupt</span>();
-        </div>
-        <div>{"}"}</div>
+          <span className="text-blue-400">{localize("antoine")}</span>{localize(".")}<span className="text-yellow-400">{localize("disrupt")}</span>{localize("();")}</div>
+        <div>{localize("}")}</div>
       </div>
     )
   }

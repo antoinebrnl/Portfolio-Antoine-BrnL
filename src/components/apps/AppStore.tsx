@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
@@ -86,11 +87,11 @@ function AppIcon({ icon, color, size = 64 }: { icon: string; color: string; size
         overflow: "hidden"
       }}
     >
-      {isImage ? (
-        <img src={icon} alt="App Icon" style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: size * 0.225 }} onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.style.background = color; }} />
+      {localize(isImage ? (
+        <img src={icon} alt={localize("App Icon")} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: size * 0.225 }} onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.style.background = color; }} />
       ) : (
         <span className={icon} style={{ width: size * 0.5, height: size * 0.5, color: "white" }} />
-      )}
+      ))}
     </div>
   );
 }
@@ -128,14 +129,14 @@ function FeaturedCard({ app, index }: { app: AppEntry; index: number }) {
           overflow: "hidden"
         }}
       >
-        {app.preview ? (
+        {localize(app.preview ? (
           <img 
             src={app.preview} 
-            alt={app.name} 
+            alt={localize(app.name)}
             style={{ width: "100%", height: "100%", objectFit: "cover" }} 
             onError={(e) => { e.currentTarget.style.display = 'none'; }}
           />
-        ) : null}
+        ) : null)}
         {/* Fallback pattern if image is missing */}
         <div style={{ position: "absolute", opacity: 0.1, backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)", backgroundSize: "16px 16px", inset: 0 }} />
       </div>
@@ -154,13 +155,13 @@ function FeaturedCard({ app, index }: { app: AppEntry; index: number }) {
             <AppIcon icon={app.icon} color={app.color} size={48} />
             <div style={{ minWidth: 0, paddingRight: "16px" }}>
                 <div style={{ fontSize: "11px", fontWeight: 700, color: "var(--system-blue, #007AFF)", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "2px" }}>
-                    {app.category}
+                    {localize(app.category)}
                 </div>
                 <div style={{ fontSize: "15px", fontWeight: 600, color: "var(--c-text)", letterSpacing: "-0.2px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                    {app.name}
+                    {localize(app.name)}
                 </div>
                 <div style={{ fontSize: "13px", color: "var(--c-text-secondary)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                    {app.subtitle}
+                    {localize(app.subtitle)}
                 </div>
             </div>
         </div>
@@ -184,8 +185,7 @@ function FeaturedCard({ app, index }: { app: AppEntry; index: number }) {
           onMouseEnter={(e) => (e.currentTarget.style.background = "var(--c-border)")}
           onMouseLeave={(e) => (e.currentTarget.style.background = "var(--c-bg-tertiary)")}
         >
-          VIEW
-        </button>
+          {localize("VIEW")}</button>
       </div>
     </motion.div>
   );
@@ -210,8 +210,8 @@ function AppRow({ app, index, showBorder = true }: { app: AppEntry; index: numbe
       <AppIcon icon={app.icon} color={app.color} size={64} />
       
       <div style={{ flex: 1, minWidth: 0, marginLeft: "16px", paddingRight: "16px" }}>
-        <div style={{ fontSize: "15px", fontWeight: 600, color: "var(--c-text)", letterSpacing: "-0.2px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{app.name}</div>
-        <div style={{ fontSize: "13px", color: "var(--c-text-secondary)", marginTop: "2px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{app.subtitle || app.category}</div>
+        <div style={{ fontSize: "15px", fontWeight: 600, color: "var(--c-text)", letterSpacing: "-0.2px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{localize(app.name)}</div>
+        <div style={{ fontSize: "13px", color: "var(--c-text-secondary)", marginTop: "2px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{localize(app.subtitle || app.category)}</div>
       </div>
       
       <button
@@ -234,8 +234,7 @@ function AppRow({ app, index, showBorder = true }: { app: AppEntry; index: numbe
         onMouseEnter={(e) => (e.currentTarget.style.background = "var(--c-border)")}
         onMouseLeave={(e) => (e.currentTarget.style.background = "var(--c-bg-tertiary)")}
       >
-        VIEW
-      </button>
+        {localize("VIEW")}</button>
     </motion.div>
   );
 }
@@ -293,11 +292,11 @@ export default function AppStore() {
                 border: "0.5px solid var(--c-border)"
             }}>
                 <span className="i-ph:magnifying-glass" style={{ width: "14px", height: "14px", color: "var(--c-text-tertiary)" }} />
-                <span style={{ fontSize: "13px", color: "var(--c-text-tertiary)" }}>Search</span>
+                <span style={{ fontSize: "13px", color: "var(--c-text-tertiary)" }}>{localize("Search")}</span>
             </div>
         </div>
 
-        {SIDEBAR_ITEMS.map((item) => {
+        {localize(SIDEBAR_ITEMS.map((item) => {
           const active = activeTab === item.id;
           return (
             <button
@@ -319,10 +318,10 @@ export default function AppStore() {
               }}
             >
               <span className={item.icon} style={{ width: "18px", height: "18px", color: active ? "var(--system-blue, #007AFF)" : "inherit" }} />
-              <span style={{ fontSize: "14px" }}>{item.label}</span>
+              <span style={{ fontSize: "14px" }}>{localize(item.label)}</span>
             </button>
           );
-        })}
+        }))}
         
         {/* User Account Item at the bottom */}
         <div style={{ flex: 1 }} />
@@ -346,20 +345,19 @@ export default function AppStore() {
           onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
         >
           <div style={{ width: "24px", height: "24px", borderRadius: "50%", background: "var(--system-blue, #007AFF)", color: "white", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "12px", fontWeight: "bold" }}>
-            A
-          </div>
-          <span style={{ fontSize: "14px", flex: 1 }}>Antoine BrnL</span>
+            {localize("A")}</div>
+          <span style={{ fontSize: "14px", flex: 1 }}>{localize("Antoine BrnL")}</span>
         </button>
       </div>
 
       {/* Main Content */}
       <div style={{ flex: 1, overflowY: "auto", background: "var(--c-bg)", position: "relative", WebkitFontSmoothing: "antialiased" }}>
-        {activeTab === "discover" ? (
+        {localize(activeTab === "discover" ? (
           <div style={{ padding: "48px 56px", maxWidth: "1040px", margin: "0 auto" }}>
             
             {/* Header */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px", borderBottom: "0.5px solid var(--c-border)", paddingBottom: "16px" }}>
-              <h1 style={{ fontSize: "34px", fontWeight: 700, color: "var(--c-text)", margin: 0, letterSpacing: "-0.5px" }}>Discover</h1>
+              <h1 style={{ fontSize: "34px", fontWeight: 700, color: "var(--c-text)", margin: 0, letterSpacing: "-0.5px" }}>{localize("Discover")}</h1>
               <div style={{ display: "flex", gap: "16px", color: "var(--c-text-secondary)" }}>
                 <span className="i-ph:bell" style={{ width: "22px", height: "22px", cursor: "pointer" }} />
               </div>
@@ -368,32 +366,32 @@ export default function AppStore() {
             {/* Horizontal Scroll section (Large Featured Cards) */}
             <div style={{ marginBottom: "56px" }}>
               <div style={{ display: "flex", gap: "24px", overflowX: "auto", paddingBottom: "24px", margin: "0 -8px", padding: "0 8px 24px", scrollSnapType: "x mandatory", WebkitOverflowScrolling: "touch" }}>
-                {FEATURED.map((app, i) => (
+                {localize(FEATURED.map((app, i) => (
                   <div key={app.id} style={{ scrollSnapAlign: "start" }}>
                     <FeaturedCard app={app} index={i} />
                   </div>
-                ))}
+                )))}
               </div>
             </div>
 
             {/* List Section (Top Charts / New Apps) */}
             <div>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "24px" }}>
-                <h2 style={{ fontSize: "24px", fontWeight: 700, color: "var(--c-text)", margin: 0, letterSpacing: "-0.3px" }}>Top Projects</h2>
-                <span style={{ fontSize: "15px", color: "var(--system-blue, #007AFF)", cursor: "pointer", fontWeight: 500 }}>See All</span>
+                <h2 style={{ fontSize: "24px", fontWeight: 700, color: "var(--c-text)", margin: 0, letterSpacing: "-0.3px" }}>{localize("Top Projects")}</h2>
+                <span style={{ fontSize: "15px", color: "var(--system-blue, #007AFF)", cursor: "pointer", fontWeight: 500 }}>{localize("See All")}</span>
               </div>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0 64px" }}>
                 {/* Column 1 */}
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  {TOP_CHARTS.map((app, i) => (
+                  {localize(TOP_CHARTS.map((app, i) => (
                     <AppRow key={app.id} app={app} index={i} showBorder={i !== TOP_CHARTS.length - 1} />
-                  ))}
+                  )))}
                 </div>
                 {/* Column 2 */}
                 <div style={{ display: "flex", flexDirection: "column" }}>
-                  {FEATURED.map((app, i) => (
+                  {localize(FEATURED.map((app, i) => (
                     <AppRow key={app.id} app={app} index={i + TOP_CHARTS.length} showBorder={i !== FEATURED.length - 1} />
-                  ))}
+                  )))}
                 </div>
               </div>
             </div>
@@ -403,11 +401,11 @@ export default function AppStore() {
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", height: "100%", color: "var(--c-text-tertiary)" }}>
             <div style={{ textAlign: "center" }}>
                 <span className="i-ph:cone" style={{ width: "48px", height: "48px", marginBottom: "16px" }} />
-                <h2 style={{ fontSize: "20px", fontWeight: 600 }}>Under Construction</h2>
-                <p style={{ fontSize: "14px" }}>This section is currently being updated.</p>
+                <h2 style={{ fontSize: "20px", fontWeight: 600 }}>{localize("Under Construction")}</h2>
+                <p style={{ fontSize: "14px" }}>{localize("This section is currently being updated.")}</p>
             </div>
           </div>
-        )}
+        ))}
       </div>
     </div>
   );

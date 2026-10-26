@@ -1,4 +1,7 @@
-import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameDay, isSameMonth } from "date-fns";
+import { getLanguage } from "~/i18n";
+import { localize } from "~/i18n";
+import { startOfMonth, endOfMonth, startOfWeek, endOfWeek, eachDayOfInterval, isSameDay, isSameMonth } from "date-fns";
+import { formatDate as format } from "~/i18n";
 
 interface CalendarWidgetProps {
   compact?: boolean;
@@ -14,10 +17,10 @@ const GLASS: React.CSSProperties = {
 
 export default function CalendarWidget({ compact }: CalendarWidgetProps) {
   const today = new Date();
-  const start = startOfWeek(startOfMonth(today));
-  const end = endOfWeek(endOfMonth(today));
+  const start = startOfWeek(startOfMonth(today), { weekStartsOn: getLanguage() === "fr" ? 1 : 0 });
+  const end = endOfWeek(endOfMonth(today), { weekStartsOn: getLanguage() === "fr" ? 1 : 0 });
   const days = eachDayOfInterval({ start, end });
-  const dayLabels = ["S", "M", "T", "W", "T", "F", "S"];
+  const dayLabels = getLanguage() === "fr" ? ["L", "M", "M", "J", "V", "S", "D"] : ["S", "M", "T", "W", "T", "F", "S"];
 
   return (
     <div
@@ -40,13 +43,13 @@ export default function CalendarWidget({ compact }: CalendarWidgetProps) {
           letterSpacing: "0.08em",
           display: "block",
         }}>
-          {format(today, "MMMM")}
+          {localize(format(today, "MMMM"))}
         </span>
       </div>
 
       {/* Day of week labels */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", marginBottom: 3 }}>
-        {dayLabels.map((d, i) => (
+        {localize(dayLabels.map((d, i) => (
           <div key={i} style={{
             textAlign: "center",
             fontSize: compact ? 8 : 9,
@@ -54,14 +57,14 @@ export default function CalendarWidget({ compact }: CalendarWidgetProps) {
             color: "rgba(255,255,255,0.32)",
             paddingBottom: 3,
           }}>
-            {d}
+            {localize(d)}
           </div>
-        ))}
+        )))}
       </div>
 
       {/* Day cells */}
       <div style={{ display: "grid", gridTemplateColumns: "repeat(7, 1fr)", gap: compact ? 1 : 2 }}>
-        {days.map((day) => {
+        {localize(days.map((day) => {
           const isToday = isSameDay(day, today);
           const inMonth = isSameMonth(day, today);
           const size = compact ? 18 : 22;
@@ -81,10 +84,10 @@ export default function CalendarWidget({ compact }: CalendarWidgetProps) {
               margin: "0 auto",
               transition: "background 0.15s ease",
             }}>
-              {format(day, "d")}
+              {localize(format(day, "d"))}
             </div>
           );
-        })}
+        }))}
       </div>
     </div>
   );

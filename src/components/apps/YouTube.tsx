@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React from "react";
 import { useStore } from "~/stores";
 
@@ -19,7 +20,7 @@ export default function YouTube() {
     >
       <iframe
         src={YOUTUBE_URL}
-        title="YouTube"
+        title={localize("YouTube")}
         style={{
           width: "100%",
           height: "100%",

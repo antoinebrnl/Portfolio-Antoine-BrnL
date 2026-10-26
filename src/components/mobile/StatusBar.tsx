@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React, { useState, useEffect } from "react";
 import { useStore } from "~/stores";
 
@@ -50,7 +51,7 @@ export default function StatusBar({ isAppOpen, appTitle, onLeftTap, onRightTap }
           fontFamily: "-apple-system, sans-serif",
           letterSpacing: "-0.3px",
           textShadow: "0px 1px 3px rgba(0,0,0,0.4)"
-        }}>{h}:{m}</span>
+        }}>{localize(h)}{localize(":")}{localize(m)}</span>
       </div>
 
       {/* CENTER - Dynamic Island */}

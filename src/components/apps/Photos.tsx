@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Photo {
@@ -58,7 +59,7 @@ export default function Photos() {
         position: "relative",
       }}
     >
-      <style>{`
+      <style>{localize(`
         .mobile-only { display: none !important; }
         .mobile-only-block { display: none !important; }
         
@@ -201,7 +202,7 @@ export default function Photos() {
             .photos-select-btn { background: rgba(255,255,255,0.2) !important; }
           }
         }
-      `}</style>
+      `)}</style>
       {/* Sidebar */}
       <div
         className="photos-sidebar"
@@ -226,9 +227,8 @@ export default function Photos() {
             padding: "8px 14px 4px",
           }}
         >
-          Library
-        </div>
-        {ALBUMS.map((album) => {
+          {localize("Library")}</div>
+        {localize(ALBUMS.map((album) => {
           const active = activeAlbum === album.id;
           return (
             <motion.button
@@ -251,7 +251,7 @@ export default function Photos() {
                 position: "relative",
               }}
             >
-              {active && (
+              {localize(active && (
                 <motion.div
                   layoutId="photos-sidebar-indicator"
                   style={{
@@ -265,7 +265,7 @@ export default function Photos() {
                   }}
                   transition={{ type: "spring", stiffness: 500, damping: 35 }}
                 />
-              )}
+              ))}
               <span
                 className={album.icon}
                 style={{ width: "14px", height: "14px", flexShrink: 0, color: active ? "var(--system-blue, #007AFF)" : "var(--c-text-secondary)" }}
@@ -279,14 +279,14 @@ export default function Photos() {
                   textAlign: "left",
                 }}
               >
-                {album.label}
+                {localize(album.label)}
               </span>
               <span style={{ fontSize: "11px", color: "var(--c-text-tertiary)" }}>
-                {album.count}
+                {localize(album.count)}
               </span>
             </motion.button>
           );
-        })}
+        }))}
       </div>
 
       {/* Grid */}
@@ -302,8 +302,8 @@ export default function Photos() {
             display: "block"
           }}
         >
-          <span className="desktop-only">{ALBUMS.find((a) => a.id === activeAlbum)?.label}</span>
-          <span className="mobile-only-block photos-header-title">Library</span>
+          <span className="desktop-only">{localize(ALBUMS.find((a) => a.id === activeAlbum)?.label)}</span>
+          <span className="mobile-only-block photos-header-title">{localize("Library")}</span>
           
           <span
             className="photos-header-subtitle"
@@ -314,21 +314,20 @@ export default function Photos() {
               color: "var(--c-text-tertiary)",
             }}
           >
-            {displayed.length} items
-          </span>
-          <button className="mobile-only-block photos-select-btn">Select</button>
+            {localize(displayed.length)} {localize("items")}</span>
+          <button className="mobile-only-block photos-select-btn">{localize("Select")}</button>
         </div>
 
         <div className="mobile-only photos-mobile-chips">
-          {ALBUMS.map((album) => (
+          {localize(ALBUMS.map((album) => (
             <button
               key={album.id}
               className={`photos-chip ${activeAlbum === album.id ? "active" : ""}`}
               onClick={() => setActiveAlbum(album.id)}
             >
-              {album.label}
+              {localize(album.label)}
             </button>
-          ))}
+          )))}
         </div>
 
         <div
@@ -344,7 +343,7 @@ export default function Photos() {
           }}
         >
           <AnimatePresence mode="popLayout">
-          {displayed.map((photo, i) => (
+          {localize(displayed.map((photo, i) => (
             <motion.div
               key={photo.id}
               layout
@@ -370,7 +369,7 @@ export default function Photos() {
             >
               <img
                 src={photo.url}
-                alt={photo.label}
+                alt={localize(photo.label)}
                 style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
                 loading="lazy"
               />
@@ -389,23 +388,23 @@ export default function Photos() {
                 className="photo-hover-label"
               >
                 <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.9)", fontWeight: 500, lineHeight: 1.2 }}>
-                  {photo.label}
+                  {localize(photo.label)}
                 </span>
               </div>
-              {photo.liked && (
+              {localize(photo.liked && (
                 <div className="photo-like-badge" style={{ position: "absolute", top: 5, right: 5 }}>
                   <span className="i-ph:heart-fill" style={{ width: "13px", height: "13px", color: "var(--system-pink, #FF2D55)", filter: "drop-shadow(0 1px 2px rgba(0,0,0,0.5))" }} />
                 </div>
-              )}
+              ))}
             </motion.div>
-          ))}
+          )))}
           </AnimatePresence>
         </div>
       </div>
 
       {/* Lightbox */}
       <AnimatePresence>
-        {viewPhoto && (
+        {localize(viewPhoto && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -428,7 +427,7 @@ export default function Photos() {
           >
             <motion.img
               src={viewPhoto.url}
-              alt={viewPhoto.label}
+              alt={localize(viewPhoto.label)}
               initial={{ scale: 0.82, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -464,10 +463,10 @@ export default function Photos() {
             >
               <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
                 <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.95)", fontWeight: 600 }}>
-                  {viewPhoto.label}
+                  {localize(viewPhoto.label)}
                 </span>
                 <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)" }}>
-                  {viewPhoto.date}
+                  {localize(viewPhoto.date)}
                 </span>
               </div>
               <div style={{ width: "0.5px", height: "28px", background: "rgba(255,255,255,0.2)" }} />
@@ -504,11 +503,10 @@ export default function Photos() {
                   transition: "background 0.15s ease",
                 }}
               >
-                Done
-              </button>
+                {localize("Done")}</button>
             </motion.div>
           </motion.div>
-        )}
+        ))}
       </AnimatePresence>
 
       {/* Mobile Tab Bar */}
@@ -518,20 +516,20 @@ export default function Photos() {
           onClick={() => { if (window.innerWidth <= 768) setActiveAlbum("recents"); }}
         >
           <span className="i-ph:images mobile-tab-icon" style={{ width: "24px", height: "24px" }} />
-          <span>Library</span>
+          <span>{localize("Library")}</span>
         </div>
         <div 
           className="mobile-tab-item"
           onClick={() => { if (window.innerWidth <= 768) setActiveAlbum("projects"); }}
         >
           <span className="i-ph:squares-four mobile-tab-icon" style={{ width: "24px", height: "24px" }} />
-          <span>Collections</span>
+          <span>{localize("Collections")}</span>
         </div>
         <div 
           className="mobile-tab-item"
         >
           <span className="i-ph:magnifying-glass mobile-tab-icon" style={{ width: "24px", height: "24px" }} />
-          <span>Search</span>
+          <span>{localize("Search")}</span>
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWindowSize } from "~/hooks/useWindowSize";
@@ -98,7 +99,7 @@ function groupNotes(notes: Note[]): { bucket: string; notes: Note[] }[] {
 }
 
 export default function Notes() {
-  const [notes, setNotes] = useState<Note[]>(INITIAL_NOTES);
+  const [notes, setNotes] = useState<Note[]>(() => INITIAL_NOTES.map((note) => ({ ...note, title: localize(note.title), body: localize(note.body), date: localize(note.date) })));
   const [selected, setSelected] = useState<string>(INITIAL_NOTES[0].id);
   const [search, setSearch] = useState("");
   const [activeSection, setActiveSection] = useState<"notes" | "shared">("notes");
@@ -113,8 +114,8 @@ export default function Notes() {
   const filtered = search.trim()
     ? notes.filter(
         (n) =>
-          n.title.toLowerCase().includes(search.toLowerCase()) ||
-          n.body.toLowerCase().includes(search.toLowerCase())
+          localize(n.title).toLowerCase().includes(search.toLowerCase()) ||
+          localize(n.body).toLowerCase().includes(search.toLowerCase())
       )
     : notes;
 
@@ -169,9 +170,9 @@ export default function Notes() {
           (e.currentTarget as HTMLElement).style.background = "transparent";
       }}
     >
-      {note.color && (
+      {localize(note.color && (
         <div style={{ width: 3, borderRadius: 2, background: note.color, alignSelf: "stretch", flexShrink: 0 }} />
-      )}
+      ))}
       <div style={{ flex: 1, minWidth: 0 }}>
         <div
           style={{
@@ -183,10 +184,10 @@ export default function Notes() {
             whiteSpace: "nowrap",
           }}
         >
-          {note.title || "Untitled"}
+          {localize(note.title || "Untitled")}
         </div>
         <div style={{ display: "flex", gap: "6px", marginTop: "1px" }}>
-          <span style={{ fontSize: "11px", color: "rgba(0,0,0,0.4)", flexShrink: 0 }}>{note.date}</span>
+          <span style={{ fontSize: "11px", color: "rgba(0,0,0,0.4)", flexShrink: 0 }}>{localize(note.date)}</span>
           <span
             style={{
               fontSize: "11px",
@@ -196,7 +197,7 @@ export default function Notes() {
               whiteSpace: "nowrap",
             }}
           >
-            {note.body.slice(0, 28) || "No additional text"}
+            {localize(note.body.slice(0, 28) || "No additional text")}
           </span>
         </div>
       </div>
@@ -213,7 +214,7 @@ export default function Notes() {
         letterSpacing: "0.01em",
       }}
     >
-      {label}
+      {localize(label)}
     </div>
   );
 
@@ -240,7 +241,7 @@ export default function Notes() {
       }}
     >
       {/* ── Left sidebar (iCloud/sections) ── */}
-      {(!isMobile || mobileView === "sidebar") && (
+      {localize((!isMobile || mobileView === "sidebar") && (
       <div
         style={{
           width: isMobile ? "100%" : "180px",
@@ -262,10 +263,10 @@ export default function Notes() {
             justifyContent: "space-between",
           }}
         >
-          <span style={{ fontSize: "13px", fontWeight: 600, color: "#1c1c1e" }}>Notes</span>
+          <span style={{ fontSize: "13px", fontWeight: 600, color: "#1c1c1e" }}>{localize("Notes")}</span>
           <button
             onClick={newNote}
-            title="New Note"
+            title={localize("New Note")}
             style={{
               background: "none",
               border: "none",
@@ -282,8 +283,7 @@ export default function Notes() {
         {/* iCloud section */}
         <div style={{ padding: "10px 0 4px" }}>
           <div style={{ fontSize: "10px", fontWeight: 700, color: "rgba(0,0,0,0.35)", textTransform: "uppercase", letterSpacing: "0.5px", padding: "0 12px 4px" }}>
-            iCloud
-          </div>
+            {localize("iCloud")}</div>
           <button
             onClick={() => setActiveSection("notes")}
             style={{
@@ -300,13 +300,12 @@ export default function Notes() {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <img src="/img/icons/sf-icons/folder.svg" alt="Folder" style={{ width: "13px", height: "13px", opacity: 0.8 }} className="dark:invert" />
+              <img src="/img/icons/sf-icons/folder.svg" alt={localize("Folder")} style={{ width: "13px", height: "13px", opacity: 0.8 }} className="dark:invert" />
               <span style={{ fontSize: "12px", fontWeight: activeSection === "notes" ? 600 : 400, color: activeSection === "notes" ? "#007AFF" : "#1c1c1e" }}>
-                Notes
-              </span>
+                {localize("Notes")}</span>
             </div>
             <span style={{ fontSize: "11px", color: "rgba(0,0,0,0.35)", background: "rgba(0,0,0,0.07)", borderRadius: "8px", padding: "1px 6px" }}>
-              {notes.length}
+              {localize(notes.length)}
             </span>
           </button>
           <button
@@ -325,20 +324,19 @@ export default function Notes() {
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-              <img src="/img/icons/sf-icons/folder-user.svg" alt="Shared Folder" style={{ width: "13px", height: "13px", opacity: 0.6 }} className="dark:invert" />
-              <span style={{ fontSize: "12px", color: "#1c1c1e" }}>Shared</span>
+              <img src="/img/icons/sf-icons/folder-user.svg" alt={localize("Shared Folder")} style={{ width: "13px", height: "13px", opacity: 0.6 }} className="dark:invert" />
+              <span style={{ fontSize: "12px", color: "#1c1c1e" }}>{localize("Shared")}</span>
             </div>
-            <span style={{ fontSize: "11px", color: "rgba(0,0,0,0.35)", background: "rgba(0,0,0,0.07)", borderRadius: "8px", padding: "1px 6px" }}>1</span>
+            <span style={{ fontSize: "11px", color: "rgba(0,0,0,0.35)", background: "rgba(0,0,0,0.07)", borderRadius: "8px", padding: "1px 6px" }}>{localize("1")}</span>
           </button>
         </div>
 
         {/* Tags */}
         <div style={{ padding: "8px 12px 4px", borderTop: "0.5px solid rgba(0,0,0,0.06)" }}>
           <div style={{ fontSize: "10px", fontWeight: 700, color: "rgba(0,0,0,0.35)", textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "6px" }}>
-            Tags
-          </div>
+            {localize("Tags")}</div>
           <div style={{ display: "flex", gap: "5px", flexWrap: "wrap" }}>
-            {["All Tags", "#tags"].map((tag) => (
+            {localize(["All Tags", "#tags"].map((tag) => (
               <span
                 key={tag}
                 style={{
@@ -351,16 +349,16 @@ export default function Notes() {
                   userSelect: "none",
                 }}
               >
-                {tag}
+                {localize(tag)}
               </span>
-            ))}
+            )))}
           </div>
         </div>
       </div>
-      )}
+      ))}
 
       {/* ── Note list ── */}
-      {(!isMobile || mobileView === "list") && (
+      {localize((!isMobile || mobileView === "list") && (
       <div
         style={{
           width: isMobile ? "100%" : "220px",
@@ -392,9 +390,9 @@ export default function Notes() {
               padding: "4px 8px",
             }}
           >
-            <img src="/img/icons/sf-icons/search.svg" alt="Search" style={{ width: "11px", height: "11px", opacity: 0.5 }} className="dark:invert" />
+            <img src="/img/icons/sf-icons/search.svg" alt={localize("Search")} style={{ width: "11px", height: "11px", opacity: 0.5 }} className="dark:invert" />
             <input
-              placeholder="Search"
+              placeholder={localize("Search")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               style={{ background: "none", border: "none", outline: "none", fontSize: "12px", width: "100%", color: "#1c1c1e" }}
@@ -402,7 +400,7 @@ export default function Notes() {
           </div>
           <button
             onClick={newNote}
-            title="New Note"
+            title={localize("New Note")}
             style={{
               background: "rgba(255,204,0,0.3)",
               border: "none",
@@ -416,41 +414,40 @@ export default function Notes() {
               flexShrink: 0,
             }}
           >
-            <span style={{ fontSize: "18px", lineHeight: 1, color: "#886800" }}>+</span>
+            <span style={{ fontSize: "18px", lineHeight: 1, color: "#886800" }}>{localize("+")}</span>
           </button>
         </div>
 
         {/* Grouped note list */}
         <div style={{ flex: 1, overflowY: "auto", paddingTop: "4px" }}>
-          {pinned.length > 0 && (
+          {localize(pinned.length > 0 && (
             <>
-              <GroupHeader label="Pinned" />
-              {pinned.map((n) => <NoteRow key={n.id} note={n} />)}
+              <GroupHeader label={localize("Pinned")} />
+              {localize(pinned.map((n) => <NoteRow key={n.id} note={n} />))}
             </>
-          )}
+          ))}
           <AnimatePresence>
-            {groups.map(({ bucket, notes: gNotes }) => (
+            {localize(groups.map(({ bucket, notes: gNotes }) => (
               <div key={bucket}>
-                <GroupHeader label={bucket} />
-                {gNotes.map((n) => <NoteRow key={n.id} note={n} />)}
+                <GroupHeader label={localize(bucket)} />
+                {localize(gNotes.map((n) => <NoteRow key={n.id} note={n} />))}
               </div>
-            ))}
+            )))}
           </AnimatePresence>
         </div>
       </div>
-      )}
+      ))}
 
       {/* ── Editor ── */}
-      {(!isMobile || mobileView === "editor") && (
+      {localize((!isMobile || mobileView === "editor") && (
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden", width: isMobile ? "100%" : "auto" }}>
-      {activeNote ? (
+      {localize(activeNote ? (
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
           {/* Editor toolbar */}
-          {isMobile && (
+          {localize(isMobile && (
             <button onClick={() => setMobileView("list")} style={{ padding: "8px 12px", background: "none", border: "none", color: "#007AFF", fontWeight: 500, display: "flex", alignItems: "center", gap: "4px" }}>
-              ‹ Back
-            </button>
-          )}
+              {localize("‹ Back")}</button>
+          ))}
           <div
             style={{
               padding: "6px 12px",
@@ -461,10 +458,10 @@ export default function Notes() {
               background: "rgba(250,250,248,0.99)",
             }}
           >
-            {toolbarIcons.map((t) => (
+            {localize(toolbarIcons.map((t) => (
               <button
                 key={t.title}
-                title={t.title}
+                title={localize(t.title)}
                 onClick={t.action}
                 style={{
                   background: "none",
@@ -489,28 +486,28 @@ export default function Notes() {
               >
                 <span className={t.icon} style={{ width: "16px", height: "16px" }} />
               </button>
-            ))}
+            )))}
             <div style={{ flex: 1 }} />
             {/* Search in note */}
             <button
-              title="Search"
+              title={localize("Search")}
               style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 6px", borderRadius: "6px", opacity: 0.55 }}
             >
-              <img src="/img/icons/sf-icons/search.svg" alt="Search" style={{ width: "16px", height: "16px", opacity: 0.7 }} className="dark:invert" />
+              <img src="/img/icons/sf-icons/search.svg" alt={localize("Search")} style={{ width: "16px", height: "16px", opacity: 0.7 }} className="dark:invert" />
             </button>
             {/* Delete */}
             <button
               onClick={() => deleteNote(activeNote.id)}
-              title="Delete"
+              title={localize("Delete")}
               style={{ background: "none", border: "none", cursor: "pointer", padding: "4px 6px", borderRadius: "6px", opacity: 0.4 }}
             >
-              <img src="/img/icons/sf-icons/trash.svg" alt="Trash" style={{ width: "14px", height: "14px", opacity: 0.7 }} className="dark:invert" />
+              <img src="/img/icons/sf-icons/trash.svg" alt={localize("Trash")} style={{ width: "14px", height: "14px", opacity: 0.7 }} className="dark:invert" />
             </button>
           </div>
 
           {/* Date */}
           <div style={{ fontSize: "11px", color: "rgba(0,0,0,0.4)", padding: "10px 20px 0", textAlign: "center" }}>
-            {activeNote.dateISO ?? activeNote.date}
+            {localize(activeNote.dateISO ?? activeNote.date)}
           </div>
 
           {/* Title */}
@@ -550,11 +547,10 @@ export default function Notes() {
         </div>
       ) : (
         <div style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(0,0,0,0.3)", fontSize: "14px" }}>
-          Select or create a note
-        </div>
-      )}
+          {localize("Select or create a note")}</div>
+      ))}
       </div>
-      )}
+      ))}
     </div>
   );
 }

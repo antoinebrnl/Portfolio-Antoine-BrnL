@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 import { formatDistanceToNow } from "date-fns";
 import CalendarWidget from "./widgets/CalendarWidget";
@@ -51,7 +52,7 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
 
   return (
     <AnimatePresence>
-      {show && (
+      {localize(show && (
         <>
           {/* Transparent click-outside overlay — frosted on mobile */}
           <motion.div
@@ -101,8 +102,7 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
               style={{ ...CARD, padding: "12px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}
             >
               <span style={{ fontSize: 15, fontWeight: 600, color: "white" }}>
-                Notification Center
-                {unread > 0 && (
+                {localize("Notification Center")}{localize(unread > 0 && (
                   <span style={{
                     background: "var(--accent-red)",
                     color: "white",
@@ -111,18 +111,17 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
                     fontWeight: 700,
                     padding: "1px 6px",
                     marginLeft: 6,
-                  }}>{unread}</span>
-                )}
+                  }}>{localize(unread)}</span>
+                ))}
               </span>
               <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
-                {notifications.length > 0 && (
+                {localize(notifications.length > 0 && (
                   <button
                     onClick={clearAllNotifications}
                     style={{ background: "none", border: "none", color: "rgba(255,255,255,0.4)", fontSize: 11, cursor: "pointer", padding: "2px 4px" }}
                   >
-                    Clear All
-                  </button>
-                )}
+                    {localize("Clear All")}</button>
+                ))}
                 <button
                   onClick={toggleFocus}
                   style={{
@@ -137,21 +136,20 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
                     transition: "background 0.2s ease",
                   }}
                 >
-                  {focusMode ? "Focus On" : "Focus"}
+                  {localize(focusMode ? "Focus On" : "Focus")}
                 </button>
               </div>
             </motion.div>
 
             {/* Notifications card */}
             <motion.div variants={cardVariants} style={{ ...CARD, overflow: "hidden" }}>
-              {notifications.length === 0 ? (
+              {localize(notifications.length === 0 ? (
                 <div style={{ padding: "20px 16px", textAlign: "center", color: "rgba(255,255,255,0.3)", fontSize: 13 }}>
-                  No notifications
-                </div>
+                  {localize("No notifications")}</div>
               ) : (
                 <div style={{ padding: "6px 8px", display: "flex", flexDirection: "column", gap: 4 }}>
                   <AnimatePresence initial={false}>
-                    {notifications.map((n) => (
+                    {localize(notifications.map((n) => (
                       <motion.div
                         key={n.id}
                         initial={{ opacity: 0, x: 40, scale: 0.96 }}
@@ -168,18 +166,18 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
                           alignItems: "flex-start",
                         }}
                       >
-                        <img src={n.icon} alt={n.app} style={{ width: 30, height: 30, borderRadius: 7, flexShrink: 0 }} />
+                        <img src={n.icon} alt={localize(n.app)} style={{ width: 30, height: 30, borderRadius: 7, flexShrink: 0 }} />
                         <div style={{ flex: 1, minWidth: 0 }}>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 2 }}>
                             <span style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.85)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                              {n.title}
+                              {localize(n.title)}
                             </span>
                             <span style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", flexShrink: 0, marginLeft: 6 }}>
-                              {formatDistanceToNow(n.timestamp, { addSuffix: true })}
+                              {localize(formatDistanceToNow(n.timestamp, { addSuffix: true }))}
                             </span>
                           </div>
                           <p style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", margin: 0, lineHeight: 1.4, overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
-                            {n.message}
+                            {localize(n.message)}
                           </p>
                         </div>
                         <button
@@ -201,13 +199,12 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
                             marginTop: -2,
                           }}
                         >
-                          ×
-                        </button>
+                          {localize("×")}</button>
                       </motion.div>
-                    ))}
+                    )))}
                   </AnimatePresence>
                 </div>
-              )}
+              ))}
             </motion.div>
 
             {/* Weather card */}
@@ -236,12 +233,11 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
                   cursor: "pointer",
                 }}
               >
-                Edit Widgets
-              </button>
+                {localize("Edit Widgets")}</button>
             </motion.div>
           </motion.div>
         </>
-      )}
+      ))}
     </AnimatePresence>
   );
 }

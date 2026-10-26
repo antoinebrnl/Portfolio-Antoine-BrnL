@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React, { useRef, useState } from "react";
 import { useClickOutside } from "~/hooks";
 
@@ -77,12 +78,12 @@ export default function AppleMenu({
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <span>{children}</span>
-        {hint && (
+        <span>{localize(children)}</span>
+        {localize(hint && (
           <span style={{ fontSize: "12px", opacity: hovered ? 0.9 : 0.5, marginLeft: "auto", fontFamily: "var(--font-system)", letterSpacing: "1px" }}>
-            {hint}
+            {localize(hint)}
           </span>
-        )}
+        ))}
       </div>
     );
   };
@@ -102,21 +103,21 @@ export default function AppleMenu({
         fontWeight: 400,
       }}
     >
-      <MenuItem onClick={handleAbout}>About This Mac</MenuItem>
+      <MenuItem onClick={handleAbout}>{localize("About This Mac")}</MenuItem>
       <div className="h-px bg-gray-300 dark:bg-white/10 my-1 mx-2" />
-      <MenuItem onClick={() => open("system-settings")}>System Settings...</MenuItem>
-      <MenuItem onClick={() => open("app-store")}>App Store...</MenuItem>
+      <MenuItem onClick={() => open("system-settings")}>{localize("System Settings...")}</MenuItem>
+      <MenuItem onClick={() => open("app-store")}>{localize("App Store...")}</MenuItem>
       <div className="h-px bg-gray-300 dark:bg-white/10 my-1 mx-2" />
-      <MenuItem>Recent Items ›</MenuItem>
+      <MenuItem>{localize("Recent Items ›")}</MenuItem>
       <div className="h-px bg-gray-300 dark:bg-white/10 my-1 mx-2" />
-      <MenuItem hint="⌥⌘⎋">Force Quit...</MenuItem>
+      <MenuItem hint="⌥⌘⎋">{localize("Force Quit...")}</MenuItem>
       <div className="h-px bg-gray-300 dark:bg-white/10 my-1 mx-2" />
-      <MenuItem onClick={handleSleep}>Sleep</MenuItem>
-      <MenuItem onClick={handleRestart}>Restart...</MenuItem>
-      <MenuItem onClick={handleShut}>Shut Down...</MenuItem>
+      <MenuItem onClick={handleSleep}>{localize("Sleep")}</MenuItem>
+      <MenuItem onClick={handleRestart}>{localize("Restart...")}</MenuItem>
+      <MenuItem onClick={handleShut}>{localize("Shut Down...")}</MenuItem>
       <div className="h-px bg-gray-300 dark:bg-white/10 my-1 mx-2" />
-      <MenuItem onClick={logout} hint="⌃⌘Q">Lock Screen</MenuItem>
-      <MenuItem onClick={logout} hint="⇧⌘Q">Log Out Antoine...</MenuItem>
+      <MenuItem onClick={logout} hint="⌃⌘Q">{localize("Lock Screen")}</MenuItem>
+      <MenuItem onClick={logout} hint="⇧⌘Q">{localize("Log Out Antoine...")}</MenuItem>
     </div>
   );
 }

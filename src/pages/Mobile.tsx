@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React, { useState, useRef } from "react";
 import { apps } from "~/configs";
 import { useStore } from "~/stores";
@@ -105,7 +106,7 @@ export default function Mobile(props: MacActions) {
 
       {/* Control Center */}
       <AnimatePresence>
-        {showControlCenter && (
+        {localize(showControlCenter && (
           <ControlCenterMenu
             playing={audioState.playing}
             toggleAudio={controls.toggle}
@@ -114,7 +115,7 @@ export default function Mobile(props: MacActions) {
             toggleControlCenter={() => setShowControlCenter(false)}
             btnRef={statusBarRightRef}
           />
-        )}
+        ))}
       </AnimatePresence>
 
       {/* Notification Center */}
@@ -125,7 +126,7 @@ export default function Mobile(props: MacActions) {
 
       {/* Home Screen (App Grid + Dock) */}
       <AnimatePresence>
-        {!activeApp && (
+        {localize(!activeApp && (
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -136,7 +137,7 @@ export default function Mobile(props: MacActions) {
               {/* App Grid */}
              <div className="flex-1 px-5 pt-6">
                 <div className="grid grid-cols-4 gap-x-3 gap-y-7">
-                  {apps
+                  {localize(apps
                     .filter((app) => app.desktop && !dockApps.includes(app.id) && !["terminal", "vscode", "typora", "siri", "github", "bear", "youtube", "spotify"].includes(app.id))
                     .map((app) => (
                     <div 
@@ -146,26 +147,26 @@ export default function Mobile(props: MacActions) {
                     >
                        <img 
                          src={`/${app.id === 'finder' ? 'img/icons/folder-generic.png' : app.img}`} 
-                         alt={app.id === 'finder' ? 'Files' : app.id === 'system-settings' ? 'Settings' : app.title} 
+                         alt={localize(app.id === 'finder' ? 'Files' : app.id === 'system-settings' ? 'Settings' : app.title)}
                          className="w-[60px] h-[60px] object-cover rounded-[14px]" 
                        />
                        <span className="text-white text-[11px] font-medium tracking-wide drop-shadow-md text-center whitespace-nowrap overflow-hidden text-ellipsis w-full px-0.5">
-                         {app.id === 'finder' ? 'Files' : app.id === 'system-settings' ? 'Settings' : app.title}
+                         {localize(app.id === 'finder' ? 'Files' : app.id === 'system-settings' ? 'Settings' : app.title)}
                        </span>
                     </div>
-                  ))}
+                  )))}
                 </div>
              </div>
 
              {/* Dock */}
              <MobileDock openApp={openApp} />
           </motion.div>
-        )}
+        ))}
       </AnimatePresence>
 
       {/* Active App Window */}
       <AnimatePresence>
-        {activeApp && (
+        {localize(activeApp && (
           <motion.div
             key="activeApp"
             initial={{ y: "100%", opacity: 0.5 }}
@@ -177,11 +178,11 @@ export default function Mobile(props: MacActions) {
              {/* Render the active app's content inside a mobile container */}
              <div className="w-full h-full pt-12 relative overflow-hidden flex flex-col">
                <div className="flex-1 overflow-y-auto no-scrollbar relative">
-                 {(() => {
+                 {localize((() => {
                     const app = apps.find(a => a.id === activeApp);
                     if (!app) return null;
                     return app.content;
-                 })()}
+                 })())}
                </div>
 
                {/* Home Indicator line at the bottom to go back */}
@@ -190,7 +191,7 @@ export default function Mobile(props: MacActions) {
                </div>
              </div>
           </motion.div>
-        )}
+        ))}
       </AnimatePresence>
 
     </div>

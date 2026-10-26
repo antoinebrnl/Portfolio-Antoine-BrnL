@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React from "react";
 import { apps } from "~/configs";
 import { useStore } from "~/stores";
@@ -19,7 +20,7 @@ export default function MobileDock({ openApp }: { openApp: (id: string) => void 
       <div 
         className={`pointer-events-auto flex items-center justify-around w-full max-w-[380px] h-[84px] px-2 rounded-[32px] backdrop-blur-3xl saturate-[2] ${bgClass}`}
       >
-        {dockApps.map((id) => {
+        {localize(dockApps.map((id) => {
           const app = apps.find((a) => a.id === id);
           if (!app) return null;
           return (
@@ -30,12 +31,12 @@ export default function MobileDock({ openApp }: { openApp: (id: string) => void 
             >
               <img 
                 src={`/${app.img}`} 
-                alt={app.title} 
+                alt={localize(app.title)}
                 className="w-[58px] h-[58px] object-cover rounded-[14px]"
               />
             </div>
           );
-        })}
+        }))}
       </div>
     </div>
   );

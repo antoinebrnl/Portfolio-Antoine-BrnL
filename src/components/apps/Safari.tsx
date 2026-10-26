@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React, { useState, useEffect } from "react";
 import websites from "~/configs/websites";
 import wallpapers from "~/configs/wallpapers";
@@ -29,10 +30,10 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
   return (
     <div style={{ margin: "0 auto", width: "100%", maxWidth: "800px", padding: "32px 16px 0" }}>
       <div style={{ fontWeight: 600, marginLeft: "8px", fontSize: width < 640 ? "20px" : "24px", color: "var(--lg-text-primary, #1c1c1e)" }}>
-        {section.title}
+        {localize(section.title)}
       </div>
       <div style={{ marginTop: "16px", display: "grid", gridTemplateColumns: width < 640 ? "repeat(4, 1fr)" : "repeat(8, 1fr)", gap: "16px" }}>
-        {section.sites.map((site: SiteData) => (
+        {localize(section.sites.map((site: SiteData) => (
           <div key={`safari-nav-${site.id}`} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
             <div 
               style={{
@@ -50,17 +51,17 @@ const NavSection = ({ width, section, setGoURL }: NavSectionProps) => {
               }}
               onClick={site.inner ? () => setGoURL(site.link) : () => window.open(site.link)}
             >
-              {site.img ? (
-                <img src={site.img} alt={site.title} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              {localize(site.img ? (
+                <img src={site.img} alt={localize(site.title)} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               ) : (
-                <span style={{ fontSize: "18px", color: "#1c1c1e" }}>{site.title.substring(0,2)}</span>
-              )}
+                <span style={{ fontSize: "18px", color: "#1c1c1e" }}>{localize(site.title.substring(0,2))}</span>
+              ))}
             </div>
             <span style={{ marginTop: "8px", fontSize: "12px", color: "var(--lg-text-secondary, rgba(0,0,0,0.6))", textAlign: "center" }}>
-              {site.title}
+              {localize(site.title)}
             </span>
           </div>
-        ))}
+        )))}
       </div>
     </div>
   );
@@ -96,8 +97,7 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
         {/* Privacy Report */}
         <div style={{ margin: "0 auto", width: "100%", maxWidth: "800px", padding: "48px 16px 64px" }}>
           <div style={{ fontWeight: 600, fontSize: width < 640 ? "20px" : "24px", color: "var(--lg-text-primary, #1c1c1e)", marginBottom: "16px" }}>
-            Privacy Report
-          </div>
+            {localize("Privacy Report")}</div>
           <div
             style={{
                 height: "64px",
@@ -113,11 +113,10 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
           >
             <div style={{ display: "flex", alignItems: "center", gap: "12px", borderRight: "1px solid rgba(0,0,0,0.1)", paddingRight: "20px" }}>
               <span className="i-ph:shield-check-fill" style={{ fontSize: "24px", color: "#34C759" }} />
-              <span style={{ fontSize: "24px", fontWeight: 700, color: "var(--lg-text-primary, #1c1c1e)" }}>{numTracker}</span>
+              <span style={{ fontSize: "24px", fontWeight: 700, color: "var(--lg-text-primary, #1c1c1e)" }}>{localize(numTracker)}</span>
             </div>
             <div style={{ paddingLeft: "20px", fontSize: "14px", color: "var(--lg-text-secondary, rgba(0,0,0,0.6))" }}>
-              In the last seven days, Safari has prevented {numTracker} trackers from profiling you.
-            </div>
+              {localize("In the last seven days, Safari has prevented")}{localize(numTracker)} {localize("trackers from profiling you.")}</div>
           </div>
         </div>
       </div>
@@ -141,10 +140,9 @@ const NoInternetPage = () => {
     >
       <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--lg-bg-tinted)", backdropFilter: "var(--lg-blur-heavy)" }}>
         <div style={{ textAlign: "center" }}>
-          <div style={{ fontSize: "24px", fontWeight: 700, color: "var(--lg-text-primary, #1c1c1e)" }}>You Are Not Connected to the Internet</div>
+          <div style={{ fontSize: "24px", fontWeight: 700, color: "var(--lg-text-primary, #1c1c1e)" }}>{localize("You Are Not Connected to the Internet")}</div>
           <div style={{ paddingTop: "16px", fontSize: "14px", color: "var(--lg-text-secondary, rgba(0,0,0,0.6))" }}>
-            This page can't be displayed because your computer is currently offline.
-          </div>
+            {localize("This page can't be displayed because your computer is currently offline.")}</div>
         </div>
       </div>
     </div>
@@ -266,7 +264,7 @@ const Safari = ({ width = 800 }: SafariProps) => {
                     value={state.currentURL}
                     onChange={(e) => setState({ ...state, currentURL: e.target.value })}
                     onKeyPress={pressURL}
-                    placeholder="Search or enter website name"
+                    placeholder={localize("Search or enter website name")}
                     style={{
                         flex: 1,
                         background: "transparent",
@@ -319,19 +317,19 @@ const Safari = ({ width = 800 }: SafariProps) => {
 
       {/* browser content */}
       <div style={{ flex: 1, position: "relative", zIndex: 0 }}>
-        {wifi ? (
+        {localize(wifi ? (
             state.goURL === "" ? (
             <NavPage setGoURL={setGoURL} width={width} />
             ) : (
             <iframe
-                title={"Safari clone browser"}
+                title={localize("Safari clone browser")}
                 src={state.goURL}
                 style={{ width: "100%", height: "100%", border: "none", background: "#fff" }}
             />
             )
         ) : (
             <NoInternetPage />
-        )}
+        ))}
       </div>
     </div>
   );

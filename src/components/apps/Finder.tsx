@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useWindowSize } from "~/hooks/useWindowSize";
@@ -153,7 +154,7 @@ const FileIcon = ({ item, size = 56 }: { item: FileItem; size?: number }) => {
     return (
       <img
         src={customImg}
-        alt={item.name}
+        alt={localize(item.name)}
         style={{ width: size, height: size, display: "inline-block", filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))", objectFit: "contain" }}
       />
     );
@@ -169,7 +170,7 @@ const FileIcon = ({ item, size = 56 }: { item: FileItem; size?: number }) => {
   return (
     <img
       src={customImg}
-      alt={item.name}
+      alt={localize(item.name)}
       style={{ width: size, height: size, display: "inline-block", filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))", objectFit: "contain" }}
     />
   );
@@ -195,7 +196,7 @@ export default function Finder() {
       return Object.values(FILESYSTEM)
         .flat()
         .flatMap((f) => [f, ...(f.children ?? [])])
-        .filter((f) => f.name.toLowerCase().includes(q));
+        .filter((f) => localize(f.name).toLowerCase().includes(q));
     }
 
     const rootItem = FILESYSTEM.home.find((f) => f.id === location);
@@ -287,7 +288,7 @@ export default function Finder() {
 
   const renderColumns = () => (
     <div style={{ display: "flex", height: "100%", minHeight: "100%" }}>
-      {pathStack.map((segId, colIdx) => {
+      {localize(pathStack.map((segId, colIdx) => {
         const items = sortItems(getChildrenOf(segId));
         const activeChild = pathStack[colIdx + 1]; // highlighted = the path we descended into
         return (
@@ -301,12 +302,11 @@ export default function Finder() {
               padding: "6px 6px",
             }}
           >
-            {items.length === 0 && (
+            {localize(items.length === 0 && (
               <div style={{ fontSize: "11px", color: "rgba(0,0,0,0.35)", padding: "8px" }}>
-                Empty
-              </div>
-            )}
-            {items.map((item) => {
+                {localize("Empty")}</div>
+            ))}
+            {localize(items.map((item) => {
               const isActive = item.id === activeChild;
               const isSelected = colIdx === pathStack.length - 1 && item.id === selected;
               const highlight = isActive || isSelected;
@@ -355,9 +355,9 @@ export default function Finder() {
                       flex: 1,
                     }}
                   >
-                    {item.name}
+                    {localize(item.name)}
                   </span>
-                  {item.kind === "folder" && (
+                  {localize(item.kind === "folder" && (
                     <div
                       style={{
                         width: "11px",
@@ -367,13 +367,13 @@ export default function Finder() {
                         mask: `url(/img/icons/sf-icons/caret-right.svg) center/contain no-repeat`,
                       }}
                     />
-                  )}
+                  ))}
                 </div>
               );
-            })}
+            }))}
           </div>
         );
-      })}
+      }))}
     </div>
   );
 
@@ -386,7 +386,7 @@ export default function Finder() {
         padding: "16px",
       }}
     >
-      {sorted.map((item, i) => (
+      {localize(sorted.map((item, i) => (
         <motion.div
           key={item.id}
           initial={{ opacity: 0, scale: 0.85 }}
@@ -434,10 +434,10 @@ export default function Finder() {
               whiteSpace: "nowrap",
             }}
           >
-            {item.name}
+            {localize(item.name)}
           </span>
         </motion.div>
-      ))}
+      )))}
     </div>
   );
 
@@ -453,7 +453,7 @@ export default function Finder() {
           background: "rgba(0,0,0,0.03)",
         }}
       >
-        {["Name", "Date", "Size", "Kind"].map((h) => (
+        {localize(["Name", "Date", "Size", "Kind"].map((h) => (
           <button
             key={h}
             onClick={() => setSortKey(h.toLowerCase() as SortKey)}
@@ -469,11 +469,11 @@ export default function Finder() {
               padding: 0,
             }}
           >
-            {h} {sortKey === h.toLowerCase() ? "↑" : ""}
+            {localize(h)} {localize(sortKey === h.toLowerCase() ? "↑" : "")}
           </button>
-        ))}
+        )))}
       </div>
-      {sorted.map((item, i) => (
+      {localize(sorted.map((item, i) => (
         <motion.div
           key={item.id}
           initial={{ opacity: 0, x: -8 }}
@@ -506,27 +506,27 @@ export default function Finder() {
                 whiteSpace: "nowrap",
               }}
             >
-              {item.name}
+              {localize(item.name)}
             </span>
           </div>
           <span style={{ fontSize: "11px", color: "rgba(0,0,0,0.5)", alignSelf: "center" }}>
-            {item.date}
+            {localize(item.date)}
           </span>
           <span style={{ fontSize: "11px", color: "rgba(0,0,0,0.5)", alignSelf: "center" }}>
-            {item.size ?? "—"}
+            {localize(item.size ?? "—")}
           </span>
           <span style={{ fontSize: "11px", color: "rgba(0,0,0,0.5)", alignSelf: "center" }}>
-            {item.kind === "folder" ? "Folder" : item.ext?.toUpperCase() ?? "File"}
+            {localize(item.kind === "folder" ? "Folder" : item.ext?.toUpperCase() ?? "File")}
           </span>
         </motion.div>
-      ))}
+      )))}
     </div>
   );
 
   // ── Toolbar ───────────────────────────────────────────────────────────────
   const toolbarBtn = (label: string, icon: string, active = false, action = () => { }) => (
     <motion.button
-      title={label}
+      title={localize(label)}
       onClick={action}
       whileHover={{ scale: 1.08 }}
       whileTap={{ scale: 0.94 }}
@@ -543,7 +543,7 @@ export default function Finder() {
         lineHeight: 1,
       }}
     >
-      {icon}
+      {localize(icon)}
     </motion.button>
   );
 
@@ -572,7 +572,7 @@ export default function Finder() {
           flexWrap: isMobile ? "wrap" : "nowrap",
         }}
       >
-        {isMobile && (
+        {localize(isMobile && (
           <button
             onClick={() => setMobileView(mobileView === "sidebar" ? "content" : "sidebar")}
             style={{
@@ -585,9 +585,9 @@ export default function Finder() {
                padding: "4px 8px",
             }}
           >
-            {mobileView === "sidebar" ? "Done" : "Browse"}
+            {localize(mobileView === "sidebar" ? "Done" : "Browse")}
           </button>
-        )}
+        ))}
         
         {/* Back / Forward */}
         <button
@@ -602,14 +602,12 @@ export default function Finder() {
             padding: "2px 6px",
           }}
         >
-          ‹
-        </button>
+          {localize("‹")}</button>
         <button
           onClick={goForward}
           style={{ background: "none", border: "none", fontSize: "16px", opacity: 0.3, padding: "2px 6px" }}
         >
-          ›
-        </button>
+          {localize("›")}</button>
 
         {/* Location label */}
         <span
@@ -621,14 +619,14 @@ export default function Finder() {
             textAlign: "center",
           }}
         >
-          {locationLabel()}
+          {localize(locationLabel())}
         </span>
 
         {/* View mode */}
         <div style={{ display: "flex", gap: "2px" }}>
-          {toolbarBtn("Icons", "⊞", viewMode === "icons", () => setViewMode("icons"))}
-          {toolbarBtn("List", "≡", viewMode === "list", () => setViewMode("list"))}
-          {toolbarBtn("Columns", "⊟", viewMode === "columns", () => setViewMode("columns"))}
+          {localize(toolbarBtn("Icons", "⊞", viewMode === "icons", () => setViewMode("icons")))}
+          {localize(toolbarBtn("List", "≡", viewMode === "list", () => setViewMode("list")))}
+          {localize(toolbarBtn("Columns", "⊟", viewMode === "columns", () => setViewMode("columns")))}
         </div>
 
         {/* Sort */}
@@ -646,10 +644,10 @@ export default function Finder() {
             color: "#1c1c1e",
           }}
         >
-          <option value="name">Name</option>
-          <option value="date">Date</option>
-          <option value="size">Size</option>
-          <option value="kind">Kind</option>
+          <option value="name">{localize("Name")}</option>
+          <option value="date">{localize("Date")}</option>
+          <option value="size">{localize("Size")}</option>
+          <option value="kind">{localize("Kind")}</option>
         </select>
 
         {/* Search */}
@@ -665,7 +663,7 @@ export default function Finder() {
         >
           <div style={{ width: "11px", height: "11px", opacity: 0.5, backgroundColor: "currentColor", WebkitMask: "url(/img/icons/sf-icons/magnifying-glass.svg) center/contain no-repeat", mask: "url(/img/icons/sf-icons/magnifying-glass.svg) center/contain no-repeat" }} />
           <input
-            placeholder="Search"
+            placeholder={localize("Search")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{
@@ -692,7 +690,7 @@ export default function Finder() {
           overflowX: "auto",
         }}
       >
-        {pathStack.map((seg, i) => {
+        {localize(pathStack.map((seg, i) => {
           const label =
             seg === "home"
               ? "Antoine"
@@ -718,16 +716,16 @@ export default function Finder() {
                 whiteSpace: "nowrap",
               }}
             >
-              {label}
+              {localize(label)}
             </button>
           );
-        })}
+        }))}
       </div>
 
       {/* ── Body ── */}
       <div style={{ display: "flex", flex: 1, overflow: "hidden" }}>
         {/* Sidebar */}
-        {(!isMobile || mobileView === "sidebar") && (
+        {localize((!isMobile || mobileView === "sidebar") && (
           <div
             style={{
               width: isMobile ? "100%" : "160px",
@@ -740,7 +738,7 @@ export default function Finder() {
               padding: "8px 0",
             }}
           >
-          {SIDEBAR_SECTIONS.map((section) => (
+          {localize(SIDEBAR_SECTIONS.map((section) => (
             <div key={section.title} style={{ marginBottom: "4px" }}>
               <div
                 style={{
@@ -752,9 +750,9 @@ export default function Finder() {
                   padding: "8px 12px 2px",
                 }}
               >
-                {section.title}
+                {localize(section.title)}
               </div>
-              {section.items.map((item: any) => {
+              {localize(section.items.map((item: any) => {
                 const active = location === item.id || (item.id === "home" && location === "home");
                 return (
                   <motion.button
@@ -777,7 +775,7 @@ export default function Finder() {
                       position: "relative",
                     }}
                   >
-                    {active && (
+                    {localize(active && (
                       <motion.div
                         layoutId="finder-sidebar-indicator"
                         style={{
@@ -791,8 +789,8 @@ export default function Finder() {
                         }}
                         transition={{ type: "spring", stiffness: 500, damping: 35 }}
                       />
-                    )}
-                    {item.tagColor ? (
+                    ))}
+                    {localize(item.tagColor ? (
                       <div style={{ width: 10, height: 10, borderRadius: "50%", background: item.tagColor, flexShrink: 0 }} />
                     ) : (
                       <div
@@ -805,7 +803,7 @@ export default function Finder() {
                           mask: `url(${item.icon}) center/contain no-repeat`,
                         }}
                       />
-                    )}
+                    ))}
                     <span
                       style={{
                         fontSize: "12px",
@@ -816,18 +814,18 @@ export default function Finder() {
                         whiteSpace: "nowrap",
                       }}
                     >
-                      {item.label}
+                      {localize(item.label)}
                     </span>
                   </motion.button>
                 );
-              })}
+              }))}
             </div>
-          ))}
+          )))}
         </div>
-        )}
+        ))}
 
         {/* Content */}
-        {(!isMobile || mobileView === "content") && (
+        {localize((!isMobile || mobileView === "content") && (
         <div style={{ flex: 1, overflowY: "auto", overflowX: viewMode === "columns" && !search.trim() ? "auto" : "hidden" }}>
           <AnimatePresence mode="wait">
             <motion.div
@@ -838,17 +836,17 @@ export default function Finder() {
               transition={{ duration: 0.15 }}
               style={viewMode === "columns" && !search.trim() ? { height: "100%" } : undefined}
             >
-              {search.trim()
+              {localize(search.trim()
                 ? renderIcons()
                 : viewMode === "columns"
                   ? renderColumns()
                   : viewMode === "list"
                     ? renderList()
-                    : renderIcons()}
+                    : renderIcons())}
             </motion.div>
           </AnimatePresence>
         </div>
-        )}
+        ))}
       </div>
 
       {/* ── Path bar ── */}
@@ -864,7 +862,7 @@ export default function Finder() {
           color: "rgba(0,0,0,0.5)",
         }}
       >
-        {pathStack.map((seg, i) => {
+        {localize(pathStack.map((seg, i) => {
           const label =
             seg === "home"
               ? "Antoine"
@@ -872,7 +870,7 @@ export default function Finder() {
               seg;
           return (
             <React.Fragment key={seg}>
-              {i > 0 && <span>›</span>}
+              {localize(i > 0 && <span>{localize("›")}</span>)}
               <button
                 onClick={() => {
                   const newStack = pathStack.slice(0, i + 1);
@@ -889,11 +887,11 @@ export default function Finder() {
                   padding: "0 2px",
                 }}
               >
-                {label}
+                {localize(label)}
               </button>
             </React.Fragment>
           );
-        })}
+        }))}
       </div>
     </div>
   );

@@ -1,3 +1,6 @@
+import { getLanguage } from "~/i18n";
+import { getLocale } from "~/i18n";
+import { localize } from "~/i18n";
 import { useRef, useState, useEffect, useCallback } from "react";
 import { useAudioContext } from "~/context/AudioContext";
 import { useStore } from "~/stores";
@@ -19,7 +22,7 @@ const SIRI_FALLBACK = "Hey, j'apprécie ta curiosité ! Mais je ne peux effectue
 
 const SYSTEM_PROMPT = `Tu es Siri, une assistante virtuelle sympathique tournant dans le portfolio web façon macOS d'Antoine BrnL.
 Tu contrôles l'interface via des appels d'outils (tool calls). Fais des réponses courtes, chaleureuses et conversationnelles (1-2 phrases max).
-Utilise un ton décontracté et amical, parle en français. Dis des choses comme "Bien sûr !", "C'est parti !", "Pas de problème !", "Et voilà !".
+Utilise un ton décontracté et amical. Respecte la langue demandée à la fin de ces instructions. Dis des choses comme "Bien sûr !", "C'est parti !", "Pas de problème !", "Et voilà !".
 
 Voici des infos sur Antoine (utilise-les si on te pose des questions sur lui ou son CV) :
 \${ANTOINE_INFO}
@@ -216,8 +219,8 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
 
       case "get_current_time": {
         const now = new Date();
-        const time = now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", hour12: true });
-        const date = now.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+        const time = now.toLocaleTimeString(getLocale(), { hour: "numeric", minute: "2-digit", hour12: true });
+        const date = now.toLocaleDateString(getLocale(), { weekday: "long", month: "long", day: "numeric", year: "numeric" });
         // console.log(`[Tool]  Time: ${time}`);
         return `It is ${time} on ${date}.`;
       }
@@ -267,13 +270,14 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
     setPhase("speaking");
     // console.log("[TTS] Speaking:", text);
 
-    const utt = new SpeechSynthesisUtterance(text);
+    const utt = new SpeechSynthesisUtterance(localize(text));
     const voices = window.speechSynthesis.getVoices();
-    const voice = voices.find((v) => v.lang.startsWith("en") && v.name.toLowerCase().includes("female"))
-      || voices.find((v) => v.lang.startsWith("en-US"))
-      || voices.find((v) => v.lang.startsWith("en"))
+    const voice = voices.find((v) => v.lang.startsWith(getLanguage()) && v.name.toLowerCase().includes("female"))
+      || voices.find((v) => v.lang.startsWith(getLocale()))
+      || voices.find((v) => v.lang.startsWith(getLanguage()))
       || voices[0];
     if (voice) utt.voice = voice;
+    utt.lang = getLocale();
     utt.rate = 1.0;
     utt.pitch = 1.1;
     utt.onend = () => {
@@ -302,7 +306,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
   const executeAgent = useCallback(async (userText: string) => {
     try {
       const messages: ChatMessage[] = [
-        { role: "system", content: SYSTEM_PROMPT },
+        { role: "system", content: SYSTEM_PROMPT + (getLanguage() === "fr" ? "\nRéponds toujours en français." : "\nAlways respond exclusively in English, including fallback replies and tool confirmations. Translate the information above into English when responding.") },
         { role: "user", content: userText }
       ];
 
@@ -365,7 +369,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
   const handleTextInput = useCallback(async (text: string) => {
     const cleaned = (text || "").trim();
     if (!cleaned) return;
-    setResponseText(`You typed: "${cleaned}"`);
+    setResponseText(`${localize("You typed:")} "${cleaned}"`);
     setPhase("processing");
     await executeAgent(cleaned);
     setInputText("");
@@ -380,7 +384,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
       setPhase("idle");
       return;
     }
-    setResponseText(`You said: "${cleaned}"`);
+    setResponseText(`${localize("You said:")} "${cleaned}"`);
     setPhase("processing");
     await executeAgent(cleaned);
   }, [executeAgent]);
@@ -390,7 +394,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
     if (!SpeechRecognitionAPI) return;
 
     const recognition = new SpeechRecognitionAPI();
-    recognition.lang = "en-US";
+    recognition.lang = getLocale();
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
     recognition.continuous = false;
@@ -613,7 +617,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
   return (
     <div className="flex items-start justify-end gap-4 relative pointer-events-auto group mt-4 mr-4">
       <audio id="siri-audio" src="/music/siri.mp3" preload="auto" className="hidden" />
-      <style>{`
+      <style>{localize(`
         @keyframes siri-aura-pulse {
           0%, 100% { opacity: 0; transform: scale(0.8); }
           50% { opacity: 0.8; transform: scale(1.15); }
@@ -634,7 +638,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
           border: 1px solid rgba(255, 255, 255, 0.1);
           box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
         }
-      `}</style>
+      `)}</style>
 
       {/* Box Text (Siri's Response as a Large Glass Panel) */}
       <div
@@ -644,22 +648,21 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
         {/* Header containing Siri icon and Title */}
         <div className="flex items-center gap-2 mb-2">
           <div className="w-5 h-5 rounded-md overflow-hidden bg-black/5 dark:bg-white/5 flex items-center justify-center">
-            <img src="/img/icons/siri.png" className="w-full h-full object-cover" alt="Siri" />
+            <img src="/img/icons/siri.png" className="w-full h-full object-cover" alt={localize("Siri")} />
           </div>
           <span className="text-[13px] font-semibold text-black/60 dark:text-white/60 tracking-wide uppercase">
-            Siri
-          </span>
+            {localize("Siri")}</span>
         </div>
 
         {/* Content Area */}
         <div
           className="text-black/90 dark:text-white text-[16px] leading-relaxed font-medium tracking-tight font-sans drop-shadow-sm"
         >
-          {statusText ? (
-             <span className="opacity-60 text-[16px] font-normal">{statusText}</span>
+          {localize(statusText ? (
+             <span className="opacity-60 text-[16px] font-normal">{localize(statusText)}</span>
           ) : (
             boxText
-          )}
+          ))}
         </div>
 
         {/* Close Button on the Top-Right of the panel */}
@@ -670,7 +673,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
             setResponseText("");
             setPhase("idle");
           }}
-          title="Dismiss"
+          title={localize("Dismiss")}
         >
           <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
         </button>
@@ -694,7 +697,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
         <div
           className="relative z-10 flex justify-center items-center w-[130px] h-[130px] rounded-full cursor-pointer transform hover:scale-105 active:scale-95 transition-transform duration-300"
           onClick={handleClick}
-          title="Tap to listen / Stop"
+          title={localize("Tap to listen / Stop")}
         >
           {/* Specifically removed white backdrop behind the video */}
 
@@ -712,7 +715,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
         <button
           className="absolute top-4 right-4 w-7 h-7 flex items-center justify-center rounded-full bg-black/40 text-white/70 hover:text-white hover:bg-black/80 transition-all opacity-0 group-hover:opacity-100 z-30 shadow-md backdrop-blur-sm"
           onClick={(e) => { e.stopPropagation(); if (closeSiri) closeSiri(); else closeAppById('siri'); }}
-          title="Close Siri App completely"
+          title={localize("Close Siri App completely")}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
         </button>

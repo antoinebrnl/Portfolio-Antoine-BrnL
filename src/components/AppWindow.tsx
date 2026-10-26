@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React from "react";
 import { Rnd } from "react-rnd";
 import { minMarginX, minMarginY, appBarHeight } from "~/utils";
@@ -80,21 +81,21 @@ const TrafficLights = ({ id, close, aspectRatio, max, setMax, setMin }: TrafficP
         style={{ ...btnStyle, backgroundColor: "#FF5F57" }}
         onClick={(e) => { e.stopPropagation(); close(id); }}
       >
-        {hovered && <span className="icon i-ph:x-bold" style={{ fontSize: "8px", color: "rgba(0,0,0,0.5)" }} />}
+        {localize(hovered && <span className="icon i-ph:x-bold" style={{ fontSize: "8px", color: "rgba(0,0,0,0.5)" }} />)}
       </button>
       <button
         style={{ ...btnStyle, backgroundColor: max ? "#999" : "#FDBC40", opacity: max ? 0.5 : 1 }}
         onClick={(e) => { e.stopPropagation(); setMin(id); }}
         disabled={max}
       >
-        {hovered && !max && <span className="icon i-ph:minus-bold" style={{ fontSize: "9px", color: "rgba(0,0,0,0.5)" }} />}
+        {localize(hovered && !max && <span className="icon i-ph:minus-bold" style={{ fontSize: "9px", color: "rgba(0,0,0,0.5)" }} />)}
       </button>
       <button
         style={{ ...btnStyle, backgroundColor: disableMax ? "#999" : "#28C840", opacity: disableMax ? 0.5 : 1 }}
         onClick={(e) => { e.stopPropagation(); !disableMax && setMax(id); }}
         disabled={disableMax}
       >
-        {hovered && !disableMax && (max ? <ExitFullIcon size={8} /> : <FullIcon size={6} />)}
+        {localize(hovered && !disableMax && (max ? <ExitFullIcon size={8} /> : <FullIcon size={6} />))}
       </button>
     </div>
   );
@@ -195,7 +196,7 @@ const Window = (props: WindowProps) => {
         }}
       >
         {/* Tahoe title bar */}
-        {props.titlebar !== "hidden" && (
+        {localize(props.titlebar !== "hidden" && (
           <div
             className="window-bar relative text-center"
             style={{
@@ -225,7 +226,7 @@ const Window = (props: WindowProps) => {
               setMin={props.setMin}
               close={props.close}
             />
-            {props.titlebar !== "transparent" && (
+            {localize(props.titlebar !== "transparent" && (
               <span
                 style={{
                   fontSize: "13px",
@@ -236,11 +237,11 @@ const Window = (props: WindowProps) => {
                 }}
                 className="text-c-700"
               >
-                {props.title}
+                {localize(props.title)}
               </span>
-            )}
+            ))}
           </div>
-        )}
+        ))}
 
         {/* Window content */}
         <motion.div 
@@ -250,7 +251,7 @@ const Window = (props: WindowProps) => {
           animate={{ opacity: 1, filter: "blur(0px)" }}
           transition={{ duration: 0.15, delay: 0.35, ease: "easeOut" }}
         >
-          {children}
+          {localize(children)}
         </motion.div>
       </motion.div>
     </Rnd>

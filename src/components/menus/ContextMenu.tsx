@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React, { useRef, useState } from "react";
 import { useClickOutside } from "~/hooks";
 
@@ -51,12 +52,12 @@ export default function ContextMenu({ x, y, show, onClose, openApp }: ContextMen
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
-        <span>{children}</span>
-        {hint && (
+        <span>{localize(children)}</span>
+        {localize(hint && (
           <span style={{ fontSize: "12px", opacity: hovered && !disabled ? 0.9 : 0.5, marginLeft: "auto", fontFamily: "var(--font-system)", letterSpacing: "1px" }}>
-            {hint}
+            {localize(hint)}
           </span>
-        )}
+        ))}
       </div>
     );
   };
@@ -76,16 +77,16 @@ export default function ContextMenu({ x, y, show, onClose, openApp }: ContextMen
         fontWeight: 400,
       }}
     >
-      <MenuItem disabled>New Folder</MenuItem>
+      <MenuItem disabled>{localize("New Folder")}</MenuItem>
       <div className="h-px bg-gray-300 dark:bg-white/10 my-1 mx-2" />
-      <MenuItem disabled>Get Info</MenuItem>
-      <MenuItem onClick={() => openApp("system-settings")}>Change Desktop Background...</MenuItem>
+      <MenuItem disabled>{localize("Get Info")}</MenuItem>
+      <MenuItem onClick={() => openApp("system-settings")}>{localize("Change Desktop Background...")}</MenuItem>
       <div className="h-px bg-gray-300 dark:bg-white/10 my-1 mx-2" />
-      <MenuItem disabled>Use Stacks</MenuItem>
-      <MenuItem disabled>Sort By</MenuItem>
-      <MenuItem disabled>Clean Up</MenuItem>
-      <MenuItem disabled>Clean Up By</MenuItem>
-      <MenuItem disabled>Show View Options</MenuItem>
+      <MenuItem disabled>{localize("Use Stacks")}</MenuItem>
+      <MenuItem disabled>{localize("Sort By")}</MenuItem>
+      <MenuItem disabled>{localize("Clean Up")}</MenuItem>
+      <MenuItem disabled>{localize("Clean Up By")}</MenuItem>
+      <MenuItem disabled>{localize("Show View Options")}</MenuItem>
     </div>
   );
 }

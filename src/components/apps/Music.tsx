@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAudioContext } from "~/context/AudioContext";
 import music from "~/configs/music";
@@ -141,14 +142,14 @@ export default function MusicApp() {
         {/* Track info & Progress (LCD Display) */}
         <div style={{ flex: 1, maxWidth: "500px", margin: "0 auto", background: "var(--c-bg-tertiary)", borderRadius: "8px", border: "1px solid var(--c-border)", padding: "6px 12px", display: "flex", flexDirection: "column", gap: "4px" }}>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}>
-            <img src={activeTrack.cover} alt="" style={{ width: 20, height: 20, borderRadius: 4, objectFit: "cover", boxShadow: "0 1px 4px rgba(0,0,0,0.1)" }} />
+            <img src={activeTrack.cover} alt={localize("")} style={{ width: 20, height: 20, borderRadius: 4, objectFit: "cover", boxShadow: "0 1px 4px rgba(0,0,0,0.1)" }} />
             <div style={{ fontSize: "12px", fontWeight: 600, color: "var(--c-text)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-              {activeTrack.title} <span style={{ fontWeight: 400, color: "var(--c-text-secondary)" }}>— {activeTrack.artist}</span>
+              {localize(activeTrack.title)} <span style={{ fontWeight: 400, color: "var(--c-text-secondary)" }}>{localize("— ")}{localize(activeTrack.artist)}</span>
             </div>
           </div>
           
           <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-            <span style={{ fontSize: "10px", color: "var(--c-text-tertiary)", minWidth: 28 }}>{fmt(progressSeconds)}</span>
+            <span style={{ fontSize: "10px", color: "var(--c-text-tertiary)", minWidth: 28 }}>{localize(fmt(progressSeconds))}</span>
             <div
               style={{ flex: 1, height: 4, background: "var(--c-bg-tertiary)", borderRadius: 2, overflow: "hidden", cursor: "pointer" }}
               onClick={(e) => {
@@ -158,7 +159,7 @@ export default function MusicApp() {
             >
               <div style={{ width: `${progress}%`, height: "100%", background: "var(--c-text)", borderRadius: 2, transition: "width 0.3s linear" }} />
             </div>
-            <span style={{ fontSize: "10px", color: "var(--c-text-tertiary)", minWidth: 28, textAlign: "right" }}>-{fmt(totalSeconds(activeTrack.duration) - progressSeconds)}</span>
+            <span style={{ fontSize: "10px", color: "var(--c-text-tertiary)", minWidth: 28, textAlign: "right" }}>{localize("-")}{localize(fmt(totalSeconds(activeTrack.duration) - progressSeconds))}</span>
           </div>
         </div>
 
@@ -192,11 +193,11 @@ export default function MusicApp() {
         <div style={{ marginBottom: "16px", padding: "0 8px" }}>
             <div style={{ display: "flex", alignItems: "center", background: "var(--c-bg-tertiary)", borderRadius: "6px", padding: "4px 8px", gap: "6px" }}>
                 <span className="i-ph:magnifying-glass" style={{ width: "12px", height: "12px", color: "var(--c-text-secondary)" }} />
-                <span style={{ fontSize: "12px", color: "var(--c-text-tertiary)" }}>Search</span>
+                <span style={{ fontSize: "12px", color: "var(--c-text-tertiary)" }}>{localize("Search")}</span>
             </div>
         </div>
 
-        {[
+        {localize([
           { icon: "i-ph:music-note", label: "Listen Now" },
           { icon: "i-ph:magnifying-glass", label: "Browse" },
           { icon: "i-ph:radio", label: "Radio" },
@@ -222,9 +223,9 @@ export default function MusicApp() {
             }}
           >
             <span className={icon} style={{ width: "16px", height: "16px", flexShrink: 0, color: label === "Library" ? "var(--system-pink, #FF2D55)" : "var(--system-pink, #FF2D55)" }} />
-            {label}
+            {localize(label)}
           </button>
-        ))}
+        )))}
 
         <div
           style={{
@@ -236,9 +237,8 @@ export default function MusicApp() {
             padding: "16px 12px 4px",
           }}
         >
-          Library
-        </div>
-        {["Songs", "Albums", "Artists", "Playlists"].map((item) => (
+          {localize("Library")}</div>
+        {localize(["Songs", "Albums", "Artists", "Playlists"].map((item) => (
           <button
             key={item}
             style={{
@@ -256,9 +256,9 @@ export default function MusicApp() {
               width: "100%",
             }}
           >
-            {item}
+            {localize(item)}
           </button>
-        ))}
+        )))}
       </div>
 
       {/* Main content */}
@@ -274,9 +274,8 @@ export default function MusicApp() {
               letterSpacing: "-0.5px"
             }}
           >
-            Library
-          </div>
-          {TRACKS.map((track, i) => (
+            {localize("Library")}</div>
+          {localize(TRACKS.map((track, i) => (
             <motion.div
               key={track.id}
               initial={{ opacity: 0, y: 6 }}
@@ -309,7 +308,7 @@ export default function MusicApp() {
             >
               <img
                 src={track.cover}
-                alt={track.album}
+                alt={localize(track.album)}
                 style={{
                   width: 48,
                   height: 48,
@@ -331,7 +330,7 @@ export default function MusicApp() {
                     whiteSpace: "nowrap",
                   }}
                 >
-                  {track.title}
+                  {localize(track.title)}
                 </div>
                 <div
                   style={{
@@ -342,15 +341,15 @@ export default function MusicApp() {
                     whiteSpace: "nowrap",
                   }}
                 >
-                  {track.artist}
+                  {localize(track.artist)}
                 </div>
               </div>
               <span style={{ fontSize: "12px", color: "var(--c-text-tertiary)", flexShrink: 0 }}>
-                {track.duration}
+                {localize(track.duration)}
               </span>
-              {activeTrack.id === track.id && audioState.playing && (
+              {localize(activeTrack.id === track.id && audioState.playing && (
                 <div style={{ display: "flex", gap: "3px", alignItems: "flex-end", flexShrink: 0 }}>
-                  {[0, 1, 2].map((i) => (
+                  {localize([0, 1, 2].map((i) => (
                     <motion.div
                       key={i}
                       animate={{ height: [4, 12, 6, 10, 4] }}
@@ -361,11 +360,11 @@ export default function MusicApp() {
                         background: "var(--system-pink, #FF2D55)",
                       }}
                     />
-                  ))}
+                  )))}
                 </div>
-              )}
+              ))}
             </motion.div>
-          ))}
+          )))}
         </div>
 
       </div>

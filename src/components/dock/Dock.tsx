@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import { useMotionValue } from "framer-motion";
 import { motion } from "framer-motion";
 import { apps } from "~/configs";
@@ -106,11 +107,11 @@ export default function Dock({
           padding: '4px 10px',
         }}
       >
-        {desktopApps.map((app) => (
+        {localize(desktopApps.map((app) => (
           <DockItem
             key={`dock-${app.id}`}
             id={app.id}
-            title={(isMobile && app.mobileTitle) ? app.mobileTitle : app.title}
+            title={localize((isMobile && app.mobileTitle) ? app.mobileTitle : app.title)}
             img={(isMobile && app.mobileImg) ? app.mobileImg : app.img}
             mouseX={mouseX}
             desktop={app.desktop}
@@ -121,10 +122,10 @@ export default function Dock({
             dockMag={dockMag}
             isBouncing={bouncingApp === app.id}
           />
-        ))}
+        )))}
 
         {/* Separator */}
-        {externalApps.length > 0 && (
+        {localize(externalApps.length > 0 && (
           <li className="flex items-center mx-1.5" style={{ height: `${dockSize / 16}rem` }}>
             <div
               style={{
@@ -135,13 +136,13 @@ export default function Dock({
               }}
             />
           </li>
-        )}
+        ))}
 
-        {externalApps.map((app) => (
+        {localize(externalApps.map((app) => (
           <DockItem
             key={`dock-${app.id}`}
             id={app.id}
-            title={(isMobile && app.mobileTitle) ? app.mobileTitle : app.title}
+            title={localize((isMobile && app.mobileTitle) ? app.mobileTitle : app.title)}
             img={(isMobile && app.mobileImg) ? app.mobileImg : app.img}
             mouseX={mouseX}
             desktop={app.desktop}
@@ -152,7 +153,7 @@ export default function Dock({
             dockMag={dockMag}
             isBouncing={bouncingApp === app.id}
           />
-        ))}
+        )))}
       </ul>
     </motion.div>
   );

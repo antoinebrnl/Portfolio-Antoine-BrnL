@@ -1,3 +1,5 @@
+import { localize, useLanguage } from "~/i18n";
+import Welcome from "~/pages/Welcome";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { motion, AnimatePresence } from "framer-motion";
@@ -55,6 +57,8 @@ const bootVariants = {
 };
 
 export default function App() {
+  const language = useLanguage();
+  useEffect(() => { document.documentElement.lang = language ?? "fr"; }, [language]);
   const [login, setLogin] = useState<boolean>(false);
   const [booting, setBooting] = useState<boolean>(true);
   const [restart, setRestart] = useState<boolean>(true);
@@ -127,6 +131,7 @@ export default function App() {
 
   const getPage = () => {
     if (booting) return "boot";
+    if (!language) return "welcome";
     if (login) return "desktop";
     return "login";
   };
@@ -159,6 +164,12 @@ export default function App() {
             style={{ position: "absolute", inset: 0, zIndex: 1 }}
           >
             <Boot restart={restart} sleep={sleep} onComplete={completeBoot} />
+          </motion.div>
+        )}
+
+        {page === "welcome" && (
+          <motion.div key="welcome" className="size-full" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} style={{ position: "absolute", inset: 0, zIndex: 2 }}>
+            <Welcome />
           </motion.div>
         )}
 
@@ -214,12 +225,12 @@ export default function App() {
           onClick={startupChime.play}
           style={{ position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)", zIndex: 10000, padding: "10px 18px", borderRadius: 20, border: "1px solid #666", background: "#171717", color: "#eee", fontSize: 13, cursor: "pointer", maxWidth: "90vw" }}
         >
-          Écouter le son de démarrage
+          {localize("Écouter le son de démarrage")}
         </button>
       )}
       {startupChime.status === "error" && (
         <p role="status" style={{ position: "fixed", bottom: 24, insetInline: 20, zIndex: 10000, textAlign: "center", color: "white" }}>
-          Le son de démarrage n’a pas pu être chargé.
+          {localize("Le son de démarrage n’a pas pu être chargé.")}
         </p>
       )}
 

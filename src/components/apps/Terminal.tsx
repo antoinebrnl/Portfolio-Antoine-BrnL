@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React from "react";
 import terminal from "~/configs/terminal";
 import type { TerminalData } from "~/types";
@@ -76,9 +77,9 @@ const HowDare = ({ setRMRF }: { setRMRF: (value: boolean) => void }) => {
     >
       <canvas ref={canvasRef}></canvas>
       <div className="font-avenir absolute h-28 text-center space-y-4 m-auto inset-0">
-        <div text-4xl>{emoji}</div>
-        <div text-3xl>HOW DARE YOU!</div>
-        <div>Click to go back</div>
+        <div text-4xl>{localize(emoji)}</div>
+        <div text-3xl>{localize("HOW DARE YOU!")}</div>
+        <div>{localize("Click to go back")}</div>
       </div>
     </div>
   );
@@ -164,7 +165,7 @@ export default class Terminal extends React.Component<{}, TerminalState> {
       if (target === undefined) {
         this.generateResultRow(
           this.curInputTimes,
-          <span>{`cd: no such file or directory: ${args}`}</span>
+          <span>{localize(`cd: no such file or directory: ${args}`)}</span>
         );
       } else {
         this.curChildren = target.children;
@@ -182,13 +183,13 @@ export default class Terminal extends React.Component<{}, TerminalState> {
           key={`terminal-result-ls-${this.curInputTimes}-${item.id}`}
           className={`${item.type === "file" ? "text-white" : "text-purple-300"}`}
         >
-          {item.title}
+          {localize(item.title)}
         </span>
       );
     }
     this.generateResultRow(
       this.curInputTimes,
-      <div className="grid grid-cols-4 w-full">{result}</div>
+      <div className="grid grid-cols-4 w-full">{localize(result)}</div>
     );
   };
 
@@ -201,10 +202,10 @@ export default class Terminal extends React.Component<{}, TerminalState> {
     if (file === undefined) {
       this.generateResultRow(
         this.curInputTimes,
-        <span>{`cat: ${args}: No such file or directory`}</span>
+        <span>{localize(`cat: ${args}: No such file or directory`)}</span>
       );
     } else {
-      this.generateResultRow(this.curInputTimes, <span>{file.content}</span>);
+      this.generateResultRow(this.curInputTimes, <span>{localize(file.content)}</span>);
     }
   };
 
@@ -218,32 +219,22 @@ export default class Terminal extends React.Component<{}, TerminalState> {
     const help = (
       <ul className="list-disc ml-6 pb-1.5">
         <li>
-          <span text-red-400>cat {"<file>"}</span> - See the content of {"<file>"}
+          <span text-red-400>{localize("cat ")}{localize("<file>")}</span> {localize(" - See the content of ")}{localize("<file>")}
         </li>
         <li>
-          <span text-red-400>cd {"<dir>"}</span> - Move into
-          {" <dir>"}, "cd .." to move to the parent directory, "cd" or "cd ~" to return to
-          root
-        </li>
+          <span text-red-400>{localize("cd ")}{localize("<dir>")}</span> {localize("- Move into")}{localize(" <dir>")}{localize(", \"cd ..\" to move to the parent directory, \"cd\" or \"cd ~\" to return to root")}</li>
         <li>
-          <span text-red-400>ls</span> - See files and directories in the current
-          directory
-        </li>
+          <span text-red-400>{localize("ls")}</span> {localize("- See files and directories in the current directory")}</li>
         <li>
-          <span text-red-400>clear</span> - Clear the screen
-        </li>
+          <span text-red-400>{localize("clear")}</span> {localize("- Clear the screen")}</li>
         <li>
-          <span text-red-400>help</span> - Display this help menu
-        </li>
+          <span text-red-400>{localize("help")}</span> {localize("- Display this help menu")}</li>
         <li>
-          <span text-red-400>rm -rf /</span> - :)
-        </li>
+          <span text-red-400>{localize("rm -rf /")}</span> {localize("- :)")}</li>
         <li>
-          press <span text-red-400>up arrow / down arrow</span> - Select history commands
-        </li>
+          {localize("press")}<span text-red-400>{localize("up arrow / down arrow")}</span> {localize("- Select history commands")}</li>
         <li>
-          press <span text-red-400>tab</span> - Auto complete
-        </li>
+          {localize("press")}<span text-red-400>{localize("tab")}</span> {localize("- Auto complete")}</li>
       </ul>
     );
     this.generateResultRow(this.curInputTimes, help);
@@ -297,7 +288,7 @@ export default class Terminal extends React.Component<{}, TerminalState> {
       } else {
         this.generateResultRow(
           this.curInputTimes,
-          <span>{`zsh: command not found: ${cmd}`}</span>
+          <span>{localize(`zsh: command not found: ${cmd}`)}</span>
         );
       }
 
@@ -342,9 +333,9 @@ export default class Terminal extends React.Component<{}, TerminalState> {
       <div key={`terminal-input-row-${id}`} flex>
         <div className="w-max hstack space-x-1.5">
           <span text-yellow-200>
-            @demaxxer <span text-green-300>{this.getCurDirName()}</span>
+            {localize("@demaxxer")}<span text-green-300>{localize(this.getCurDirName())}</span>
           </span>
-          <span text-red-400>{">"}</span>
+          <span text-red-400>{localize(">")}</span>
         </div>
         <input
           id={`terminal-input-${id}`}
@@ -360,7 +351,7 @@ export default class Terminal extends React.Component<{}, TerminalState> {
   generateResultRow = (id: number, result: JSX.Element) => {
     const newRow = (
       <div key={`terminal-result-row-${id}`} break-all>
-        {result}
+        {localize(result)}
       </div>
     );
     this.addRow(newRow);
@@ -373,15 +364,13 @@ export default class Terminal extends React.Component<{}, TerminalState> {
         text="white sm"
         onClick={() => this.focusOnInput(this.curInputTimes)}
       >
-        {this.state.rmrf && (
+        {localize(this.state.rmrf && (
           <HowDare setRMRF={(value: boolean) => this.setState({ rmrf: value })} />
-        )}
+        ))}
         <div p="y-2 x-1.5">
-          <span className="text-green-300">help</span>: Hey, you found the terminal!
-          Type `help` to get started.
-        </div>
+          <span className="text-green-300">{localize("help")}</span>{localize(": Hey, you found the terminal! Type `help` to get started.")}</div>
         <div id="terminal-content" p="x-1.5 b-2">
-          {this.state.content}
+          {localize(this.state.content)}
         </div>
       </div>
     );

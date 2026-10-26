@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import React from "react";
 import {
   motion,
@@ -133,9 +134,9 @@ export default function DockItem({
           letterSpacing: '0.2px',
         }}
       >
-        {title}
+        {localize(title)}
       </p>
-      {(() => {
+      {localize((() => {
         const isPortfolio = img.includes("launchpad/");
         const content = isPortfolio ? (
           <motion.div
@@ -148,8 +149,8 @@ export default function DockItem({
           >
             <img
               src={img}
-              alt={title}
-              title={title}
+              alt={localize(title)}
+              title={localize(title)}
               className={id === "library" ? "w-[60%] h-[60%] object-contain" : "w-full h-full object-cover"}
               draggable={false}
             />
@@ -158,8 +159,8 @@ export default function DockItem({
           <motion.img
             ref={imgRef as React.RefObject<HTMLImageElement>}
             src={img}
-            alt={title}
-            title={title}
+            alt={localize(title)}
+            title={localize(title)}
             draggable={false}
             style={
               winWidth < 640
@@ -171,12 +172,12 @@ export default function DockItem({
 
         return link ? (
           <a href={link} target="_blank" rel="noreferrer">
-            {content}
+            {localize(content)}
           </a>
         ) : (
           content
         );
-      })()}
+      })())}
       {/* Shadow beneath icon */}
       <div
         aria-hidden

@@ -1,3 +1,5 @@
+import { getLocale } from "~/i18n";
+import { localize } from "~/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Message {
@@ -88,7 +90,7 @@ export default function MessagesApp() {
       id: Date.now().toString(),
       text: input.trim(),
       from: "me",
-      time: new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }),
+      time: new Date().toLocaleTimeString(getLocale(), { hour: "2-digit", minute: "2-digit" }),
     };
     setConversations((prev) =>
       prev.map((c) =>
@@ -149,7 +151,7 @@ export default function MessagesApp() {
           >
             <span className="i-ph:magnifying-glass" style={{ width: "11px", height: "11px", opacity: 0.5 }} />
             <input
-              placeholder="Search"
+              placeholder={localize("Search")}
               style={{
                 background: "none",
                 border: "none",
@@ -179,7 +181,7 @@ export default function MessagesApp() {
 
         {/* Conversations */}
         <div style={{ flex: 1, overflowY: "auto" }}>
-          {conversations.map((conv) => (
+          {localize(conversations.map((conv) => (
             <button
               key={conv.id}
               onClick={() => {
@@ -217,11 +219,11 @@ export default function MessagesApp() {
                     fontSize: "18px",
                   }}
                 >
-                  {conv.avatar.startsWith("i-")
+                  {localize(conv.avatar.startsWith("i-")
                     ? <span className={conv.avatar} style={{ width: "20px", height: "20px", color: "white" }} />
-                    : conv.avatar}
+                    : conv.avatar)}
                 </div>
-                {conv.online && (
+                {localize(conv.online && (
                   <div
                     style={{
                       position: "absolute",
@@ -234,7 +236,7 @@ export default function MessagesApp() {
                       border: "2px solid rgba(242,242,247,0.98)",
                     }}
                   />
-                )}
+                ))}
               </div>
 
               <div style={{ flex: 1, minWidth: 0 }}>
@@ -250,10 +252,10 @@ export default function MessagesApp() {
                       maxWidth: "120px",
                     }}
                   >
-                    {conv.name}
+                    {localize(conv.name)}
                   </span>
                   <span style={{ fontSize: "11px", color: "rgba(0,0,0,0.4)", flexShrink: 0 }}>
-                    {conv.time}
+                    {localize(conv.time)}
                   </span>
                 </div>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "1px" }}>
@@ -268,9 +270,9 @@ export default function MessagesApp() {
                       maxWidth: "130px",
                     }}
                   >
-                    {conv.preview}
+                    {localize(conv.preview)}
                   </span>
-                  {conv.unread ? (
+                  {localize(conv.unread ? (
                     <div
                       style={{
                         minWidth: 18,
@@ -287,13 +289,13 @@ export default function MessagesApp() {
                         flexShrink: 0,
                       }}
                     >
-                      {conv.unread}
+                      {localize(conv.unread)}
                     </div>
-                  ) : null}
+                  ) : null)}
                 </div>
               </div>
             </button>
-          ))}
+          )))}
         </div>
       </div>
 
@@ -322,17 +324,17 @@ export default function MessagesApp() {
               fontSize: "14px",
             }}
           >
-            {activeConv.avatar.startsWith("i-")
+            {localize(activeConv.avatar.startsWith("i-")
               ? <span className={activeConv.avatar} style={{ width: "16px", height: "16px", color: "white" }} />
-              : activeConv.avatar}
+              : activeConv.avatar)}
           </div>
           <div>
             <div style={{ fontSize: "14px", fontWeight: 600, color: "#1c1c1e" }}>
-              {activeConv.name}
+              {localize(activeConv.name)}
             </div>
-            {activeConv.online && (
-              <div style={{ fontSize: "11px", color: "#34C759" }}>Active now</div>
-            )}
+            {localize(activeConv.online && (
+              <div style={{ fontSize: "11px", color: "#34C759" }}>{localize("Active now")}</div>
+            ))}
           </div>
         </div>
 
@@ -349,7 +351,7 @@ export default function MessagesApp() {
           }}
         >
           <AnimatePresence>
-            {activeConv.messages.map((msg, i) => (
+            {localize(activeConv.messages.map((msg, i) => (
               <motion.div
                 key={msg.id}
                 initial={{ opacity: 0, y: 10, scale: 0.95 }}
@@ -378,10 +380,10 @@ export default function MessagesApp() {
                     boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
                   }}
                 >
-                  {msg.text}
+                  {localize(msg.text)}
                 </div>
               </motion.div>
-            ))}
+            )))}
           </AnimatePresence>
         </div>
 
@@ -411,7 +413,7 @@ export default function MessagesApp() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && send()}
-              placeholder="iMessage"
+              placeholder={localize("iMessage")}
               style={{
                 flex: 1,
                 background: "none",
@@ -441,8 +443,7 @@ export default function MessagesApp() {
               transition: "background 0.15s ease",
             }}
           >
-            ↑
-          </button>
+            {localize("↑")}</button>
         </div>
       </div>
     </div>

@@ -113,7 +113,7 @@ const saveSetting = (key: string, value: unknown) => {
 
 // Upgrade the old default once; subsequent wallpaper choices remain persistent.
 const initialWallpaperSet = (() => {
-  const id = loadSetting("activeWallpaperSet", loadSetting("wallpaperId", "pro-black"));
+  const id = loadSetting<string>("activeWallpaperSet", loadSetting<string>("wallpaperId", "pro-black"));
   if (loadSetting("wallpaperVersion", 0) < 1) {
     saveSetting("wallpaperVersion", 1);
     if (id === "tahoe" || id === "tahoe-beach") {

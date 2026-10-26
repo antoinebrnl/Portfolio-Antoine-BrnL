@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 export default function BatteryWidget() {
   const [level, setLevel] = useState<number | null>(null);
   const [charging, setCharging] = useState(false);
@@ -60,11 +61,10 @@ export default function BatteryWidget() {
 
       <div>
         <div style={{ fontSize: 16, fontWeight: 500, color: "white", lineHeight: 1 }}>
-          {pct}%
-          {charging && <span style={{ fontSize: 12, marginLeft: 4 }}>⚡</span>}
+          {localize(pct)}{localize("%")}{localize(charging && <span style={{ fontSize: 12, marginLeft: 4 }}>{localize("⚡")}</span>)}
         </div>
         <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 2 }}>
-          {charging ? "Charging" : level === null ? "Estimated" : pct > 20 ? "Normal" : "Low battery"}
+          {localize(charging ? "Charging" : level === null ? "Estimated" : pct > 20 ? "Normal" : "Low battery")}
         </div>
       </div>
     </div>

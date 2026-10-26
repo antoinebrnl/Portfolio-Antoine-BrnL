@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import { launchpadApps } from "~/configs";
 import { useStore } from "~/stores";
 import { motion, AnimatePresence } from "framer-motion";
@@ -41,8 +42,8 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
       >
         <img
           src={src}
-          alt={alt}
-          title={alt}
+          alt={localize(alt)}
+          title={localize(alt)}
           style={{
             width: isLibrary ? '60%' : '100%',
             height: isLibrary ? '60%' : '100%',
@@ -66,7 +67,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
     if (searchText === "") return appsToRender;
     const text = searchText.toLowerCase();
     return appsToRender.filter((item) =>
-      item.title.toLowerCase().includes(text) || item.id.toLowerCase().includes(text)
+      localize(item.title).toLowerCase().includes(text) || item.id.toLowerCase().includes(text)
     );
   };
 
@@ -85,7 +86,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
 
   return (
     <AnimatePresence>
-      {show && (
+      {localize(show && (
         <motion.div
           className="z-30 size-full fixed overflow-hidden bg-center bg-cover"
           id="launchpad"
@@ -126,11 +127,11 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
               onBlur={() => setFocus(false)}
             >
               <div className={`${focus ? "w-6 duration-200" : "w-26 delay-250"} hstack justify-end`}>
-                <img src="/img/icons/sf-icons/search.svg" alt="Search" className="ml-2" style={{ width: "16px", height: "16px", filter: "invert(1)", opacity: 0.6 }} />
+                <img src="/img/icons/sf-icons/search.svg" alt={localize("Search")} className="ml-2" style={{ width: "16px", height: "16px", filter: "invert(1)", opacity: 0.6 }} />
               </div>
               <input
                 className="flex-1 min-w-0 no-outline bg-transparent px-1.5 text-sm text-white"
-                placeholder={placeholderText}
+                placeholder={localize(placeholderText)}
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
                 style={{ fontSize: '13px', fontWeight: 300 }}
@@ -142,7 +143,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
               className="max-w-[1100px] mx-auto mt-10 w-full px-4 sm:px-10"
               grid="~ flow-row cols-4 sm:cols-7"
             >
-              {mainApps.map((app, index) => (
+              {localize(mainApps.map((app, index) => (
                 <motion.div
                   key={`launchpad-${app.id}`}
                   h="32 sm:36"
@@ -164,20 +165,20 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
                     onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.1)'; }}
                     onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; }}
                   >
-                    <AppIcon src={app.img} alt={app.title} />
+                    <AppIcon src={app.img} alt={localize(app.title)} />
                   </a>
                   <span
                     m="t-2 x-auto"
                     text="white xs sm:sm"
                     style={{ fontWeight: 300, letterSpacing: '0.2px', textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}
                   >
-                    {app.title}
+                    {localize(app.title)}
                   </span>
                 </motion.div>
-              ))}
+              )))}
 
               {/* Folder icon for overflow apps */}
-              {hasFolder && (
+              {localize(hasFolder && (
                 <motion.div
                   h="32 sm:36"
                   flex="~ col"
@@ -215,11 +216,11 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
                           gap: '4%',
                         }}
                       >
-                        {folderApps.slice(0, 9).map((a) => (
+                        {localize(folderApps.slice(0, 9).map((a) => (
                           <div key={a.id} style={{ width: '100%', aspectRatio: '1 / 1' }}>
-                            <AppIcon src={a.img} alt={a.title} />
+                            <AppIcon src={a.img} alt={localize(a.title)} />
                           </div>
-                        ))}
+                        )))}
                       </div>
                     </div>
                   </div>
@@ -228,15 +229,14 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
                     text="white xs sm:sm"
                     style={{ fontWeight: 300, letterSpacing: '0.2px', textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}
                   >
-                    More
-                  </span>
+                    {localize("More")}</span>
                 </motion.div>
-              )}
+              ))}
             </div>
 
             {/* Folder expanded overlay */}
             <AnimatePresence>
-              {openFolder && (
+              {localize(openFolder && (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.85 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -256,7 +256,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-                    {folderApps.map((app, i) => (
+                    {localize(folderApps.map((app, i) => (
                       <motion.div
                         key={app.id}
                         flex="~ col"
@@ -271,16 +271,16 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
                           onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1.1)'; }}
                           onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; }}
                         >
-                          <AppIcon src={app.img} alt={app.title} />
+                          <AppIcon src={app.img} alt={localize(app.title)} />
                         </a>
                         <span style={{ color: 'white', fontSize: 11, fontWeight: 300, textAlign: 'center', textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
-                          {app.title}
+                          {localize(app.title)}
                         </span>
                       </motion.div>
-                    ))}
+                    )))}
                   </div>
                 </motion.div>
-              )}
+              ))}
             </AnimatePresence>
 
             {/* Page dots */}
@@ -295,7 +295,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
             </motion.div>
           </div>
         </motion.div>
-      )}
+      ))}
     </AnimatePresence>
   );
 }

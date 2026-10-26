@@ -1,5 +1,6 @@
+import { localize } from "~/i18n";
 import React from "react";
-import { format } from "date-fns";
+import { formatDate as format } from "~/i18n";
 import { AnimatePresence } from "framer-motion";
 import { isFullScreen } from "~/utils";
 import type { MacActions } from "~/types";
@@ -33,7 +34,7 @@ const TopBarItem = forwardRef(
         onClick={props.onClick}
         onMouseEnter={props.onMouseEnter}
       >
-        {props.children}
+        {localize(props.children)}
       </div>
     );
   }
@@ -188,7 +189,7 @@ const TopBar = (props: TopBarProps) => {
           onClick={toggleAppleMenu}
           ref={appleBtnRef}
         >
-          <img src="/img/icons/sf-icons/general.svg" alt="Apple Logo" style={{ width: "16px", height: "16px", filter: "invert(1)" }} />
+          <img src="/img/icons/sf-icons/general.svg" alt={localize("Apple Logo")} style={{ width: "16px", height: "16px", filter: "invert(1)" }} />
         </TopBarItem>
         <TopBarItem
           className="font-semibold px-2"
@@ -196,12 +197,12 @@ const TopBar = (props: TopBarProps) => {
             if (state.showAppleMenu) toggleAppleMenu();
           }}
         >
-          {props.title}
+          {localize(props.title)}
         </TopBarItem>
       </div>
 
       {/* Open this when clicking on Apple logo */}
-      {state.showAppleMenu && (
+      {localize(state.showAppleMenu && (
         <AppleMenu
           logout={logout}
           shut={shut}
@@ -212,7 +213,7 @@ const TopBar = (props: TopBarProps) => {
           openAboutMac={props.openAboutMac}
           btnRef={appleBtnRef}
         />
-      )}
+      ))}
 
       <div className="hstack flex-row justify-end space-x-1.5">
         <TopBarItem hideOnMobile={true}>
@@ -224,14 +225,14 @@ const TopBar = (props: TopBarProps) => {
           onClick={toggleWifiMenu}
           ref={wifiBtnRef}
         >
-          {wifi ? (
-            <img src="/img/icons/sf-icons/wifi.svg" alt="Wi-Fi" style={{ width: "18px", height: "18px", filter: "invert(1)" }} />
+          {localize(wifi ? (
+            <img src="/img/icons/sf-icons/wifi.svg" alt={localize("Wi-Fi")} style={{ width: "18px", height: "18px", filter: "invert(1)" }} />
           ) : (
-            <img src="/img/icons/sf-icons/wifi.svg" alt="Wi-Fi Off" style={{ width: "18px", height: "18px", filter: "invert(1)", opacity: 0.5 }} />
-          )}
+            <img src="/img/icons/sf-icons/wifi.svg" alt={localize("Wi-Fi Off")} style={{ width: "18px", height: "18px", filter: "invert(1)", opacity: 0.5 }} />
+          ))}
         </TopBarItem>
         <TopBarItem ref={spotlightBtnRef} onClick={props.toggleSpotlight}>
-          <img src="/img/icons/sf-icons/search.svg" alt="Spotlight Search" style={{ width: "17px", height: "17px", filter: "invert(1)" }} />
+          <img src="/img/icons/sf-icons/search.svg" alt={localize("Spotlight Search")} style={{ width: "17px", height: "17px", filter: "invert(1)" }} />
         </TopBarItem>
         <TopBarItem
           forceHover={state.showControlCenter}
@@ -242,13 +243,13 @@ const TopBar = (props: TopBarProps) => {
         </TopBarItem>
 
         {/* Open this when clicking on Wifi button */}
-        {state.showWifiMenu && (
+        {localize(state.showWifiMenu && (
           <WifiMenu toggleWifiMenu={toggleWifiMenu} btnRef={wifiBtnRef} />
-        )}
+        ))}
 
         {/* Open this when clicking on Control Center button */}
         <AnimatePresence>
-          {state.showControlCenter && (
+          {localize(state.showControlCenter && (
             <ControlCenterMenu
               playing={audioState.playing}
               toggleAudio={controls.toggle}
@@ -257,20 +258,20 @@ const TopBar = (props: TopBarProps) => {
               toggleControlCenter={toggleControlCenter}
               btnRef={controlCenterBtnRef}
             />
-          )}
+          ))}
         </AnimatePresence>
 
         <TopBarItem
           forceHover={props.showNotificationCenter}
           onClick={props.toggleNotificationCenter}
         >
-          <span className="font-tabular">{format(state.date, "eee MMM d")}</span>
-          <span className="font-tabular">{format(state.date, "h:mm aa")}</span>
+          <span className="font-tabular">{localize(format(state.date, "eee MMM d"))}</span>
+          <span className="font-tabular">{localize(format(state.date, "h:mm aa"))}</span>
         </TopBarItem>
       </div>
 
       {/* Invisible Swipe Zones for Mobile Gestures */}
-      {isMobile && (
+      {localize(isMobile && (
         <>
           <div
             className="fixed top-0 left-0 w-1/2 h-12 z-[99998]"
@@ -309,7 +310,7 @@ const TopBar = (props: TopBarProps) => {
             onClick={toggleControlCenter}
           />
         </>
-      )}
+      ))}
     </div>
   );
 };

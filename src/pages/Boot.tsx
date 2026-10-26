@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import { useEffect, useState } from "react";
 
 interface BootProps {
@@ -40,14 +41,14 @@ export default function Boot({ restart, sleep, onComplete }: BootProps) {
 
   return (
     <div className="size-full bg-black text-white" style={{ position: "relative" }}>
-      {loading ? (
+      {localize(loading ? (
         <>
           <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <div style={{ width: "min(200px, 55vw)", display: "flex", alignItems: "center", flexDirection: "column", transform: "translateY(-16px)" }}>
-              <div aria-label="Apple" role="img" className="i-fa6-brands:apple" style={{ width: 76, height: 90, flexShrink: 0 }} />
+              <div aria-label={localize("Apple")} role="img" className="i-fa6-brands:apple" style={{ width: 76, height: 90, flexShrink: 0 }} />
               <div
                 role="progressbar"
-                aria-label="Démarrage du portfolio"
+                aria-label={localize("Démarrage du portfolio")}
                 aria-valuemin={0}
                 aria-valuemax={100}
                 aria-valuenow={Math.round(percent)}
@@ -65,9 +66,9 @@ export default function Boot({ restart, sleep, onComplete }: BootProps) {
           style={{ color: "#aaa", background: "transparent", border: 0, cursor: "pointer" }}
           onClick={() => sleep ? onComplete(false) : setLoading(true)}
         >
-          {sleep ? "Cliquer pour réactiver" : "Démarrer"}
+          {localize(sleep ? "Cliquer pour réactiver" : "Démarrer")}
         </button>
-      )}
+      ))}
     </div>
   );
 }

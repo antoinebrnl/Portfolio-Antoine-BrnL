@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface AboutThisMacModalProps {
@@ -30,7 +31,7 @@ const SPECS = [
 export default function AboutThisMacModal({ show, onClose }: AboutThisMacModalProps) {
   return (
     <AnimatePresence>
-      {show && (
+      {localize(show && (
         <>
           {/* Backdrop */}
           <motion.div
@@ -91,16 +92,14 @@ export default function AboutThisMacModal({ show, onClose }: AboutThisMacModalPr
             {/* Model name */}
             <div style={{ textAlign: "center", paddingBottom: 14 }}>
               <div style={{ fontSize: 17, fontWeight: 700, color: "var(--color-c-black, #1c1c1e)", lineHeight: 1.3 }}>
-                MacBook Air
-              </div>
+                {localize("MacBook Air")}</div>
               <div style={{ fontSize: 12, color: "rgba(100,100,100,0.75)", marginTop: 2 }}>
-                26, 2025
-              </div>
+                {localize("26, 2025")}</div>
             </div>
 
             {/* Spec rows */}
             <div style={{ margin: "0 16px 12px", borderRadius: 10, overflow: "hidden", border: "0.5px solid rgba(0,0,0,0.1)" }}>
-              {SPECS.map((row, i) => (
+              {localize(SPECS.map((row, i) => (
                 <div
                   key={row.label}
                   style={{
@@ -113,10 +112,10 @@ export default function AboutThisMacModal({ show, onClose }: AboutThisMacModalPr
                     fontSize: 12,
                   }}
                 >
-                  <span style={{ color: "rgba(0,0,0,0.55)" }}>{row.label}</span>
-                  <span style={{ color: "#1c1c1e", fontWeight: 500 }}>{row.value}</span>
+                  <span style={{ color: "rgba(0,0,0,0.55)" }}>{localize(row.label)}</span>
+                  <span style={{ color: "#1c1c1e", fontWeight: 500 }}>{localize(row.value)}</span>
                 </div>
-              ))}
+              )))}
             </div>
 
             {/* More info button */}
@@ -133,18 +132,17 @@ export default function AboutThisMacModal({ show, onClose }: AboutThisMacModalPr
                   fontFamily: "var(--font-system)",
                 }}
               >
-                More info...
-              </button>
+                {localize("More info...")}</button>
             </div>
 
             {/* Copyright */}
             <div style={{ textAlign: "center", padding: "0 16px 14px", fontSize: 10, color: "rgba(0,0,0,0.35)", lineHeight: 1.5 }}>
-              <div>Antoine BrnL</div>
-              <div>© 2024–2026 Antoine BrnL. All rights reserved.</div>
+              <div>{localize("Antoine BrnL")}</div>
+              <div>{localize("© 2024–2026 Antoine BrnL. All rights reserved.")}</div>
             </div>
           </motion.div>
         </>
-      )}
+      ))}
     </AnimatePresence>
   );
 }

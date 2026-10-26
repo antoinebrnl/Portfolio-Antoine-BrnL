@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import { motion } from "framer-motion";
 
 const PLACES = [
@@ -45,7 +46,7 @@ export default function Maps() {
           <line x1="0" y1="80" x2="400" y2="220" stroke={mapStyle === "satellite" ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.8)"} strokeWidth="3" />
           <line x1="0" y1="220" x2="400" y2="80" stroke={mapStyle === "satellite" ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.8)"} strokeWidth="3" />
           {/* Blocks */}
-          {[60, 130, 270, 340].map((x) =>
+          {localize([60, 130, 270, 340].map((x) =>
             [50, 110, 190, 250].map((y) => (
               <rect
                 key={`${x}-${y}`}
@@ -63,12 +64,12 @@ export default function Maps() {
                 }
               />
             ))
-          )}
+          ))}
           {/* Water */}
           <ellipse cx="320" cy="230" rx="60" ry="40" fill={mapStyle === "satellite" ? "rgba(20,60,100,0.7)" : "rgba(140,190,230,0.7)"} />
 
           {/* Place pins */}
-          {PLACES.map((place, i) => {
+          {localize(PLACES.map((place, i) => {
             const x = 80 + i * 80;
             const y = 60 + (i % 2) * 80;
             const isActive = activePlace.id === place.id;
@@ -82,12 +83,12 @@ export default function Maps() {
                   opacity={isActive ? 1 : 0.8}
                 />
                 <circle cx={x} cy={y} r={isActive ? 7 : 5} fill="white" />
-                {isActive && (
+                {localize(isActive && (
                   <circle cx={x} cy={y} r={22} fill="none" stroke={place.color} strokeWidth="2" opacity="0.4" />
-                )}
+                ))}
               </g>
             );
-          })}
+          }))}
         </svg>
 
         {/* Map style switcher */}
@@ -105,7 +106,7 @@ export default function Maps() {
             boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
           }}
         >
-          {(["standard", "satellite", "transit"] as const).map((s) => (
+          {localize((["standard", "satellite", "transit"] as const).map((s) => (
             <button
               key={s}
               onClick={() => setMapStyle(s)}
@@ -122,9 +123,9 @@ export default function Maps() {
                 transition: "all 0.15s ease",
               }}
             >
-              {s}
+              {localize(s)}
             </button>
-          ))}
+          )))}
         </div>
 
         {/* Zoom controls */}
@@ -142,7 +143,7 @@ export default function Maps() {
             boxShadow: "0 2px 12px rgba(0,0,0,0.15)",
           }}
         >
-          {["+", "−"].map((btn) => (
+          {localize(["+", "−"].map((btn) => (
             <button
               key={btn}
               style={{
@@ -159,9 +160,9 @@ export default function Maps() {
                 borderBottom: btn === "+" ? "0.5px solid rgba(0,0,0,0.1)" : "none",
               }}
             >
-              {btn}
+              {localize(btn)}
             </button>
-          ))}
+          )))}
         </div>
 
         {/* Active place card */}
@@ -200,11 +201,10 @@ export default function Maps() {
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: "14px", fontWeight: 600, color: "#1c1c1e" }}>
-              {activePlace.name}
+              {localize(activePlace.name)}
             </div>
             <div style={{ fontSize: "11px", color: "rgba(0,0,0,0.5)" }}>
-              {activePlace.type} · Jodhpur, Rajasthan
-            </div>
+              {localize(activePlace.type)} {localize("· Jodhpur, Rajasthan")}</div>
           </div>
           <button
             style={{
@@ -218,8 +218,7 @@ export default function Maps() {
               flexShrink: 0,
             }}
           >
-            Directions
-          </button>
+            {localize("Directions")}</button>
         </motion.div>
       </div>
     </div>
@@ -261,7 +260,7 @@ export default function Maps() {
           >
             <span className="i-ph:magnifying-glass" style={{ width: "12px", height: "12px", opacity: 0.5 }} />
             <input
-              placeholder="Search Maps"
+              placeholder={localize("Search Maps")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               style={{
@@ -287,9 +286,8 @@ export default function Maps() {
             padding: "4px 14px 4px",
           }}
         >
-          Favourites
-        </div>
-        {filtered.map((place) => (
+          {localize("Favourites")}</div>
+        {localize(filtered.map((place) => (
           <button
             key={place.id}
             onClick={() => setActivePlace(place)}
@@ -332,12 +330,12 @@ export default function Maps() {
                   whiteSpace: "nowrap",
                 }}
               >
-                {place.name}
+                {localize(place.name)}
               </div>
-              <div style={{ fontSize: "11px", color: "rgba(0,0,0,0.4)" }}>{place.type}</div>
+              <div style={{ fontSize: "11px", color: "rgba(0,0,0,0.4)" }}>{localize(place.type)}</div>
             </div>
           </button>
-        ))}
+        )))}
       </div>
 
       {/* Map */}

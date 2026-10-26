@@ -1,3 +1,5 @@
+import { getLanguage } from "~/i18n";
+import { localize } from "~/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { useStore } from "~/stores";
@@ -150,7 +152,7 @@ const Select = ({
         outline: "none",
       }}
     >
-      {options.map((opt) => {
+      {localize(options.map((opt) => {
         const label = typeof opt === "string" ? opt : opt.label;
         const val = typeof opt === "string" ? opt : opt.value;
         return (
@@ -162,10 +164,10 @@ const Select = ({
               color: dark ? "#fff" : "#1c1c1e",
             }}
           >
-            {label}
+            {localize(label)}
           </option>
         );
-      })}
+      }))}
     </select>
   );
 };
@@ -188,8 +190,8 @@ const Row = ({
         borderBottom: dark ? "0.5px solid rgba(255,255,255,0.08)" : "0.5px solid rgba(0,0,0,0.06)",
       }}
     >
-      <span style={{ fontSize: "13px", color: dark ? "#f5f5f7" : "#1c1c1e" }}>{label}</span>
-      {children}
+      <span style={{ fontSize: "13px", color: dark ? "#f5f5f7" : "#1c1c1e" }}>{localize(label)}</span>
+      {localize(children)}
     </div>
   );
 };
@@ -207,7 +209,7 @@ const SectionTitle = ({ children }: { children: React.ReactNode }) => {
         padding: "12px 16px 4px",
       }}
     >
-      {children}
+      {localize(children)}
     </div>
   );
 };
@@ -224,34 +226,30 @@ const Card = ({ children }: { children: React.ReactNode }) => {
         overflow: "hidden",
       }}
     >
-      {children}
+      {localize(children)}
     </div>
   );
 };
 
 // ─── Panel Components ─────────────────────────────────────────────────────────
 const GeneralPanel = () => {
-  const [lang, setLang] = useState("English");
+
   const dark = useStore((s) => s.dark);
   return (
     <div>
-      <SectionTitle>Language & Region</SectionTitle>
+      <SectionTitle>{localize("Language & Region")}</SectionTitle>
       <Card>
-        <Row label="Language">
-          <Select
-            value={lang}
-            onChange={setLang}
-            options={["English", "Hindi", "Spanish"]}
-          />
+        <Row label={localize("Language")}>
+          <span>{getLanguage() === "fr" ? "Français" : "English"}</span>
         </Row>
-        <Row label="Region">
-          <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>India</span>
+        <Row label={localize("Region")}>
+          <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{getLanguage() === "fr" ? "France" : "United Kingdom"}</span>
         </Row>
       </Card>
-      <SectionTitle>Sharing</SectionTitle>
+      <SectionTitle>{localize("Sharing")}</SectionTitle>
       <Card>
-        <Row label="Computer Name">
-          <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>Antoine's MacBook Pro</span>
+        <Row label={localize("Computer Name")}>
+          <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Antoine's MacBook Pro")}</span>
         </Row>
       </Card>
     </div>
@@ -305,10 +303,10 @@ const AppearancePanel = () => {
 
   return (
     <div>
-      <SectionTitle>Appearance</SectionTitle>
+      <SectionTitle>{localize("Appearance")}</SectionTitle>
       <Card>
         <div style={{ padding: "12px 16px", display: "flex", gap: "12px" }}>
-          {appearanceOptions.map((opt) => {
+          {localize(appearanceOptions.map((opt) => {
             const active = appearanceMode === opt.value;
             return (
               <button
@@ -343,21 +341,21 @@ const AppearancePanel = () => {
                   <div style={{ position: "absolute", inset: 0, background: opt.preview, opacity: 0.55 }} />
                 </div>
                 <span style={{ fontSize: "12px", fontWeight: active ? 600 : 400, color: dark ? "#f5f5f7" : "#1c1c1e" }}>
-                  {opt.label}
+                  {localize(opt.label)}
                 </span>
               </button>
             );
-          })}
+          }))}
         </div>
       </Card>
 
-      <SectionTitle>Theme</SectionTitle>
+      <SectionTitle>{localize("Theme")}</SectionTitle>
       <Card>
-        <Row label="Color">
+        <Row label={localize("Color")}>
           <div style={{ display: "flex", gap: "7px", alignItems: "center", flexWrap: "wrap", justifyContent: "flex-end" }}>
             {/* Multicolor swatch */}
             <button
-              title="Multicolor"
+              title={localize("Multicolor")}
               onClick={() => setAccentColor("#007AFF")}
               style={{
                 width: "20px",
@@ -369,10 +367,10 @@ const AppearancePanel = () => {
                 padding: 0,
               }}
             />
-            {colors.map((c) => (
+            {localize(colors.map((c) => (
               <button
                 key={c.value}
-                title={c.label}
+                title={localize(c.label)}
                 onClick={() => setAccentColor(c.value)}
                 style={{
                   width: "20px",
@@ -392,18 +390,18 @@ const AppearancePanel = () => {
                   transition: "outline 0.15s ease",
                 }}
               />
-            ))}
+            )))}
           </div>
         </Row>
-        <Row label="Text highlight color">
+        <Row label={localize("Text highlight color")}>
           <Select value="Automatic" onChange={() => {}} options={["Automatic", "Blue", "Purple", "Pink", "Red", "Orange", "Green"]} />
         </Row>
       </Card>
 
-      <SectionTitle>Icon &amp; Widget Style</SectionTitle>
+      <SectionTitle>{localize("Icon & Widget Style")}</SectionTitle>
       <Card>
         <div style={{ padding: "12px 16px", display: "flex", gap: "10px" }}>
-          {iconStyles.map((opt) => {
+          {localize(iconStyles.map((opt) => {
             const active = iconStyle === opt.value;
             return (
               <button
@@ -432,23 +430,23 @@ const AppearancePanel = () => {
                   }}
                 />
                 <span style={{ fontSize: "11px", fontWeight: active ? 600 : 400, color: dark ? "#f5f5f7" : "#1c1c1e" }}>
-                  {opt.label}
+                  {localize(opt.label)}
                 </span>
               </button>
             );
-          })}
+          }))}
         </div>
-        <Row label="Folder color">
+        <Row label={localize("Folder color")}>
           <Select value="Automatic" onChange={() => {}} options={["Automatic", "Blue", "Graphite", "Green", "Orange"]} />
         </Row>
       </Card>
 
-      <SectionTitle>Windows</SectionTitle>
+      <SectionTitle>{localize("Windows")}</SectionTitle>
       <Card>
-        <Row label="Sidebar icon size">
+        <Row label={localize("Sidebar icon size")}>
           <Select value="Medium" onChange={() => {}} options={["Small", "Medium", "Large"]} />
         </Row>
-        <Row label="Tint window background with wallpaper color">
+        <Row label={localize("Tint window background with wallpaper color")}>
           <Toggle checked={tintWindows} onChange={setTintWindows} />
         </Row>
       </Card>
@@ -466,7 +464,7 @@ const WallpaperPanel = () => {
 
   return (
     <div>
-      <SectionTitle>Wallpaper</SectionTitle>
+      <SectionTitle>{localize("Wallpaper")}</SectionTitle>
       <div
         style={{
           display: "grid",
@@ -475,7 +473,7 @@ const WallpaperPanel = () => {
           padding: "0 16px",
         }}
       >
-        {wallpaperSets.map((set) => {
+        {localize(wallpaperSets.map((set) => {
           const active = set.id === activeWallpaperSet;
           const preview = dark ? set.night : set.day;
           return (
@@ -497,10 +495,10 @@ const WallpaperPanel = () => {
             >
               <img
                 src={preview}
-                alt={set.name}
+                alt={localize(set.name)}
                 style={{ width: "100%", height: "90px", objectFit: "cover", display: "block", borderRadius: "10px" }}
               />
-              {active && (
+              {localize(active && (
                 <div
                   style={{
                     position: "absolute",
@@ -517,9 +515,8 @@ const WallpaperPanel = () => {
                     color: "#fff",
                   }}
                 >
-                  ✓
-                </div>
-              )}
+                  {localize("✓")}</div>
+              ))}
               <div
                 style={{
                   padding: "4px 8px",
@@ -529,11 +526,11 @@ const WallpaperPanel = () => {
                   textAlign: "left",
                 }}
               >
-                {set.name}
+                {localize(set.name)}
               </div>
             </motion.button>
           );
-        })}
+        }))}
       </div>
     </div>
   );
@@ -577,7 +574,7 @@ const DockPanel = () => {
   }) => {
     const dark = useStore((s) => s.dark);
     return (
-      <Row label={label}>
+      <Row label={localize(label)}>
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
           <input
             type="range"
@@ -588,7 +585,7 @@ const DockPanel = () => {
             style={{ width: "120px", accentColor: "#007AFF" }}
           />
           <span style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
-            {displayVal ?? value}
+            {localize(displayVal ?? value)}
           </span>
         </div>
       </Row>
@@ -597,15 +594,15 @@ const DockPanel = () => {
 
   return (
     <div>
-      <SectionTitle>Size & Magnification</SectionTitle>
+      <SectionTitle>{localize("Size & Magnification")}</SectionTitle>
       <Card>
-        <SliderRow label="Size" value={dockSize} min={32} max={80} onChange={setDockSize} displayVal={`${dockSize}px`} />
-        <SliderRow label="Magnification" value={dockMag} min={1} max={2.5} onChange={(v) => setDockMag(parseFloat(v.toFixed(1)))} displayVal={`${dockMag}×`} />
+        <SliderRow label={localize("Size")} value={dockSize} min={32} max={80} onChange={setDockSize} displayVal={`${dockSize}px`} />
+        <SliderRow label={localize("Magnification")} value={dockMag} min={1} max={2.5} onChange={(v) => setDockMag(parseFloat(v.toFixed(1)))} displayVal={`${dockMag}×`} />
       </Card>
 
-      <SectionTitle>Position & Behavior</SectionTitle>
+      <SectionTitle>{localize("Position & Behavior")}</SectionTitle>
       <Card>
-        <Row label="Position on Screen">
+        <Row label={localize("Position on Screen")}>
           <Select
             value={dockPosition}
             onChange={(pos) => setDockPosition(pos as any)}
@@ -616,7 +613,7 @@ const DockPanel = () => {
             ]}
           />
         </Row>
-        <Row label="Automatically hide and show the Dock">
+        <Row label={localize("Automatically hide and show the Dock")}>
           <Toggle checked={dockAutoHide} onChange={setDockAutoHide} />
         </Row>
       </Card>
@@ -638,24 +635,24 @@ const NotificationsPanel = () => {
 
   return (
     <div>
-      <SectionTitle>Focus & Previews</SectionTitle>
+      <SectionTitle>{localize("Focus & Previews")}</SectionTitle>
       <Card>
-        <Row label="Show Previews">
+        <Row label={localize("Show Previews")}>
           <Select
             value={showPreviews}
             onChange={setShowPreviews}
             options={["Always", "When Unlocked", "Never"]}
           />
         </Row>
-        <Row label="Allow Notifications">
+        <Row label={localize("Allow Notifications")}>
           <Toggle checked={allowNotifications} onChange={setAllowNotifications} />
         </Row>
       </Card>
 
-      <SectionTitle>App Notifications</SectionTitle>
+      <SectionTitle>{localize("App Notifications")}</SectionTitle>
       <Card>
-        {Object.entries(appNotifications).map(([app, enabled]) => (
-          <Row key={app} label={app}>
+        {localize(Object.entries(appNotifications).map(([app, enabled]) => (
+          <Row key={app} label={localize(app)}>
             <Toggle
               checked={enabled}
               onChange={(val) =>
@@ -663,7 +660,7 @@ const NotificationsPanel = () => {
               }
             />
           </Row>
-        ))}
+        )))}
       </Card>
     </div>
   );
@@ -703,25 +700,25 @@ const SoundPanel = () => {
 
   return (
     <div>
-      <SectionTitle>Sound Effects</SectionTitle>
+      <SectionTitle>{localize("Sound Effects")}</SectionTitle>
       <Card>
-        <Row label="Alert Sound">
+        <Row label={localize("Alert Sound")}>
           <Select
             value={notificationSound}
             onChange={handleSoundChange}
             options={alertSounds}
           />
         </Row>
-        <Row label="Play sound on startup">
+        <Row label={localize("Play sound on startup")}>
           <Toggle checked={startupSound} onChange={setStartupSound} />
         </Row>
       </Card>
 
-      <SectionTitle>Volume</SectionTitle>
+      <SectionTitle>{localize("Volume")}</SectionTitle>
       <Card>
-        <Row label="Output Volume">
+        <Row label={localize("Output Volume")}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", flex: 1, justifyContent: "flex-end" }}>
-            <img src="/img/icons/sf-icons/audio.svg" alt="audio" style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
+            <img src="/img/icons/sf-icons/audio.svg" alt={localize("audio")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
             <input
               type="range"
               min="0"
@@ -730,17 +727,16 @@ const SoundPanel = () => {
               onChange={(e) => setVolume(Number(e.target.value))}
               style={{ width: "120px", accentColor: "#007AFF" }}
             />
-            <img src="/img/icons/sf-icons/sound.svg" alt="sound" style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
+            <img src="/img/icons/sf-icons/sound.svg" alt={localize("sound")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
             <span style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
-              {volume}%
-            </span>
+              {localize(volume)}{localize("%")}</span>
           </div>
         </Row>
       </Card>
 
-      <SectionTitle>Input & Output</SectionTitle>
+      <SectionTitle>{localize("Input & Output")}</SectionTitle>
       <Card>
-        <Row label="Output Device">
+        <Row label={localize("Output Device")}>
           <Select
             value={outputDevice}
             onChange={setOutputDevice}
@@ -751,7 +747,7 @@ const SoundPanel = () => {
             ]}
           />
         </Row>
-        <Row label="Input Device">
+        <Row label={localize("Input Device")}>
           <Select
             value={inputDevice}
             onChange={setInputDevice}
@@ -840,11 +836,11 @@ const DisplaysPanel = () => {
         </div>
       </div>
 
-      <SectionTitle>Brightness</SectionTitle>
+      <SectionTitle>{localize("Brightness")}</SectionTitle>
       <Card>
-        <Row label="Brightness">
+        <Row label={localize("Brightness")}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", flex: 1, justifyContent: "flex-end" }}>
-            <img src="/img/icons/sf-icons/display-brightness.svg" alt="dim" style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
+            <img src="/img/icons/sf-icons/display-brightness.svg" alt={localize("dim")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
             <input
               type="range"
               min="10"
@@ -853,20 +849,19 @@ const DisplaysPanel = () => {
               onChange={(e) => setBrightness(Number(e.target.value))}
               style={{ width: "120px", accentColor: "#007AFF" }}
             />
-            <img src="/img/icons/sf-icons/sun.svg" alt="sun" style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
+            <img src="/img/icons/sf-icons/sun.svg" alt={localize("sun")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
             <span style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
-              {brightness}%
-            </span>
+              {localize(brightness)}{localize("%")}</span>
           </div>
         </Row>
-        <Row label="True Tone">
+        <Row label={localize("True Tone")}>
           <Toggle checked={trueTone} onChange={setTrueTone} />
         </Row>
       </Card>
 
-      <SectionTitle>Resolution & Refresh Rate</SectionTitle>
+      <SectionTitle>{localize("Resolution & Refresh Rate")}</SectionTitle>
       <Card>
-        <Row label="Resolution">
+        <Row label={localize("Resolution")}>
           <Select
             value={resolution}
             onChange={setResolution}
@@ -878,7 +873,7 @@ const DisplaysPanel = () => {
             ]}
           />
         </Row>
-        <Row label="Refresh Rate">
+        <Row label={localize("Refresh Rate")}>
           <Select
             value={refreshRate}
             onChange={setRefreshRate}
@@ -935,28 +930,25 @@ const BatteryPanel = () => {
               textShadow: "0 1px 2px rgba(0,0,0,0.5)",
             }}
           >
-            94%
-          </div>
+            {localize("94%")}</div>
         </div>
         <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#1c1c1e", marginTop: "12px" }}>
-          Power Source: Battery
-        </div>
+          {localize("Power Source: Battery")}</div>
         <div style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>
-          Battery Health: 100% (Maximum Capacity)
-        </div>
+          {localize("Battery Health: 100% (Maximum Capacity)")}</div>
       </div>
 
-      <SectionTitle>Battery Settings</SectionTitle>
+      <SectionTitle>{localize("Battery Settings")}</SectionTitle>
       <Card>
-        <Row label="Low Power Mode">
+        <Row label={localize("Low Power Mode")}>
           <Toggle checked={lowPowerMode} onChange={setLowPowerMode} />
         </Row>
-        <Row label="Optimized Battery Charging">
+        <Row label={localize("Optimized Battery Charging")}>
           <Toggle checked={optimizedCharging} onChange={setOptimizedCharging} />
         </Row>
       </Card>
 
-      <SectionTitle>Battery level (Last 24 Hours)</SectionTitle>
+      <SectionTitle>{localize("Battery level (Last 24 Hours)")}</SectionTitle>
       <Card>
         <div style={{ padding: "16px 16px 8px" }}>
           <div
@@ -969,7 +961,7 @@ const BatteryPanel = () => {
               paddingBottom: "4px",
             }}
           >
-            {batteryLevels.map((level, i) => (
+            {localize(batteryLevels.map((level, i) => (
               <div
                 key={i}
                 style={{
@@ -979,14 +971,14 @@ const BatteryPanel = () => {
                   borderRadius: "2px",
                   transition: "background-color 0.2s ease, height 0.3s ease",
                 }}
-                title={`${level}%`}
+                title={localize(`${level}%`)}
               />
-            ))}
+            )))}
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "4px" }}>
-            <span style={{ fontSize: "9px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>24h ago</span>
-            <span style={{ fontSize: "9px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>12h ago</span>
-            <span style={{ fontSize: "9px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>Now</span>
+            <span style={{ fontSize: "9px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>{localize("24h ago")}</span>
+            <span style={{ fontSize: "9px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>{localize("12h ago")}</span>
+            <span style={{ fontSize: "9px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>{localize("Now")}</span>
           </div>
         </div>
       </Card>
@@ -1009,11 +1001,9 @@ const StoragePanel = () => {
     <div>
       <div style={{ padding: "16px 16px 4px" }}>
         <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#1c1c1e" }}>
-          Macintosh HD
-        </div>
+          {localize("Macintosh HD")}</div>
         <div style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>
-          311 GB used of 512 GB
-        </div>
+          {localize("311 GB used of 512 GB")}</div>
       </div>
 
       {/* Storage stacked bar */}
@@ -1028,7 +1018,7 @@ const StoragePanel = () => {
           background: dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.03)",
         }}
       >
-        {storageCategories.map((cat) => {
+        {localize(storageCategories.map((cat) => {
           const pct = (cat.size / totalSize) * 100;
           return (
             <div
@@ -1039,16 +1029,16 @@ const StoragePanel = () => {
                 height: "100%",
                 transition: "width 0.3s ease",
               }}
-              title={`${cat.name}: ${cat.size} GB`}
+              title={localize(`${cat.name}: ${cat.size} GB`)}
             />
           );
-        })}
+        }))}
       </div>
 
-      <SectionTitle>Storage Categories</SectionTitle>
+      <SectionTitle>{localize("Storage Categories")}</SectionTitle>
       <Card>
-        {storageCategories.map((cat) => (
-          <Row key={cat.name} label={cat.name}>
+        {localize(storageCategories.map((cat) => (
+          <Row key={cat.name} label={localize(cat.name)}>
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <div
                 style={{
@@ -1059,11 +1049,10 @@ const StoragePanel = () => {
                 }}
               />
               <span style={{ fontSize: "12px", fontWeight: 500, color: dark ? "#fff" : "#1c1c1e" }}>
-                {cat.size} GB
-              </span>
+                {localize(cat.size)} {localize("GB")}</span>
             </div>
           </Row>
-        ))}
+        )))}
       </Card>
     </div>
   );
@@ -1073,26 +1062,24 @@ const CloudPanel = () => {
   const dark = useStore((s) => s.dark);
   return (
     <div>
-      <SectionTitle>Cloud Integrations</SectionTitle>
+      <SectionTitle>{localize("Cloud Integrations")}</SectionTitle>
       <Card>
         <div style={{ padding: "16px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <span style={{ fontSize: "24px" }}>
-                <img src="/img/icons/sf-icons/cloud.svg" alt="Google Drive" style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
+                <img src="/img/icons/sf-icons/cloud.svg" alt={localize("Google Drive")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
               </span>
               <div>
-                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#1c1c1e" }}>Google Drive</div>
-                <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>Not connected</div>
+                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#1c1c1e" }}>{localize("Google Drive")}</div>
+                <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
               </div>
             </div>
             <button style={{ background: "#007AFF", color: "#fff", border: "none", borderRadius: "8px", padding: "6px 14px", fontSize: "12px", cursor: "pointer" }}>
-              Connect
-            </button>
+              {localize("Connect")}</button>
           </div>
           <div style={{ background: dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)", borderRadius: "8px", padding: "10px", fontSize: "11px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.5)", textAlign: "center" }}>
-            ⚡ Will be fully integrated in a future update
-          </div>
+            {localize("⚡ Will be fully integrated in a future update")}</div>
         </div>
       </Card>
       <Card>
@@ -1100,16 +1087,15 @@ const CloudPanel = () => {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <span style={{ fontSize: "24px" }}>
-                <img src="/img/icons/sf-icons/cloud.svg" alt="Dropbox" style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
+                <img src="/img/icons/sf-icons/cloud.svg" alt={localize("Dropbox")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
               </span>
               <div>
-                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#1c1c1e" }}>Dropbox</div>
-                <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>Not connected</div>
+                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#1c1c1e" }}>{localize("Dropbox")}</div>
+                <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
               </div>
             </div>
             <button style={{ background: dark ? "rgba(255,255,255,0.08)" : "#f0f0f0", color: dark ? "rgba(255,255,255,0.3)" : "#888", border: "none", borderRadius: "8px", padding: "6px 14px", fontSize: "12px", cursor: "not-allowed" }}>
-              Coming Soon
-            </button>
+              {localize("Coming Soon")}</button>
           </div>
         </div>
       </Card>
@@ -1118,16 +1104,15 @@ const CloudPanel = () => {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <span style={{ fontSize: "24px" }}>
-                <img src="/img/icons/sf-icons/cloud.svg" alt="OneDrive" style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
+                <img src="/img/icons/sf-icons/cloud.svg" alt={localize("OneDrive")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
               </span>
               <div>
-                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#1c1c1e" }}>OneDrive</div>
-                <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>Not connected</div>
+                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#1c1c1e" }}>{localize("OneDrive")}</div>
+                <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
               </div>
             </div>
             <button style={{ background: dark ? "rgba(255,255,255,0.08)" : "#f0f0f0", color: dark ? "rgba(255,255,255,0.3)" : "#888", border: "none", borderRadius: "8px", padding: "6px 14px", fontSize: "12px", cursor: "not-allowed" }}>
-              Coming Soon
-            </button>
+              {localize("Coming Soon")}</button>
           </div>
         </div>
       </Card>
@@ -1152,19 +1137,19 @@ const PrivacyPanel = () => {
 
   return (
     <div>
-      <SectionTitle>Security Settings</SectionTitle>
+      <SectionTitle>{localize("Security Settings")}</SectionTitle>
       <Card>
-        <Row label="Location Services">
+        <Row label={localize("Location Services")}>
           <Toggle checked={locationServices} onChange={setLocationServices} />
         </Row>
-        <Row label="Developer Mode">
+        <Row label={localize("Developer Mode")}>
           <Toggle checked={developerMode} onChange={setDeveloperMode} />
         </Row>
       </Card>
 
-      <SectionTitle>App Permissions</SectionTitle>
+      <SectionTitle>{localize("App Permissions")}</SectionTitle>
       <Card>
-        {permissions.map((p) => (
+        {localize(permissions.map((p) => (
           <div key={p.name}>
             <div
               onClick={() => setSelectedPermission(selectedPermission === p.name ? null : p.name)}
@@ -1180,25 +1165,25 @@ const PrivacyPanel = () => {
               }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                {p.icon.startsWith("i-ph:") ? <span className={p.icon} style={{ width: "18px", height: "18px" }} /> : <img src={p.icon} alt={p.name} style={{ width: "18px", height: "18px", filter: dark ? "invert(1)" : "none" }} />}
-                <span style={{ fontSize: "13px", color: dark ? "#f5f5f7" : "#1c1c1e" }}>{p.name}</span>
+                {localize(p.icon.startsWith("i-ph:") ? <span className={p.icon} style={{ width: "18px", height: "18px" }} /> : <img src={p.icon} alt={localize(p.name)} style={{ width: "18px", height: "18px", filter: dark ? "invert(1)" : "none" }} />)}
+                <span style={{ fontSize: "13px", color: dark ? "#f5f5f7" : "#1c1c1e" }}>{localize(p.name)}</span>
               </div>
               <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>
-                {p.apps.length} {p.apps.length === 1 ? "app" : "apps"} {selectedPermission === p.name ? "▲" : "▼"}
+                {localize(p.apps.length)} {localize(p.apps.length === 1 ? "app" : "apps")} {localize(selectedPermission === p.name ? "▲" : "▼")}
               </span>
             </div>
-            {selectedPermission === p.name && (
+            {localize(selectedPermission === p.name && (
               <div style={{ background: dark ? "rgba(0,0,0,0.2)" : "rgba(0,0,0,0.03)", padding: "4px 16px" }}>
-                {p.apps.map((app) => (
+                {localize(p.apps.map((app) => (
                   <div key={app} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: dark ? "0.5px solid rgba(255,255,255,0.05)" : "0.5px solid rgba(0,0,0,0.04)" }}>
-                    <span style={{ fontSize: "12px", color: dark ? "#f5f5f7" : "#1c1c1e", paddingLeft: "24px" }}>{app}</span>
+                    <span style={{ fontSize: "12px", color: dark ? "#f5f5f7" : "#1c1c1e", paddingLeft: "24px" }}>{localize(app)}</span>
                     <Toggle checked={true} onChange={() => {}} />
                   </div>
-                ))}
+                )))}
               </div>
-            )}
+            ))}
           </div>
-        ))}
+        )))}
       </Card>
     </div>
   );
@@ -1212,11 +1197,11 @@ const AboutPanel = () => {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1, marginTop: "8px" }}>
           <span className="i-fa6-brands:apple" style={{ width: "72px", height: "72px" }} />
         </div>
-        <div style={{ fontSize: "22px", fontWeight: 700, color: dark ? "#fff" : "#1c1c1e", marginTop: "8px" }}>macOS Tahoe</div>
-        <div style={{ fontSize: "13px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>Version 26.0 (Portfolio Edition)</div>
+        <div style={{ fontSize: "22px", fontWeight: 700, color: dark ? "#fff" : "#1c1c1e", marginTop: "8px" }}>{localize("macOS Tahoe")}</div>
+        <div style={{ fontSize: "13px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Version 26.0 (Portfolio Edition)")}</div>
       </div>
       <Card>
-        {[
+        {localize([
           ["Chip", "Apple M4 Pro (simulated)"],
           ["Memory", "16 GB"],
           ["Storage", "Powered by Cloud"],
@@ -1224,10 +1209,10 @@ const AboutPanel = () => {
           ["Developer", "Antoine BrnL"],
           ["GitHub", "@antoinebrnl"],
         ].map(([key, val]) => (
-          <Row key={key} label={key}>
-            <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{val}</span>
+          <Row key={key} label={localize(key)}>
+            <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize(val)}</span>
           </Row>
-        ))}
+        )))}
       </Card>
     </div>
   );
@@ -1262,9 +1247,9 @@ const GenericPanel = ({ id }: { id: SettingsPanel }) => {
         </div>
       </div>
       <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#1c1c1e", marginBottom: "4px" }}>
-        {PANEL_ITEMS.find((p) => p.id === id)?.label}
+        {localize(PANEL_ITEMS.find((p) => p.id === id)?.label)}
       </div>
-      <div style={{ fontSize: "12px" }}>Settings coming soon</div>
+      <div style={{ fontSize: "12px" }}>{localize("Settings coming soon")}</div>
     </div>
   );
 };
@@ -1280,7 +1265,7 @@ export default function SystemSettings() {
 
   const filtered = search.trim()
     ? PANEL_ITEMS.filter((p) =>
-        p.label.toLowerCase().includes(search.toLowerCase())
+        localize(p.label).toLowerCase().includes(search.toLowerCase())
       )
     : PANEL_ITEMS;
 
@@ -1315,7 +1300,7 @@ export default function SystemSettings() {
       }}
     >
       {/* ── Sidebar / List View ── */}
-      {(!isMobile || mobileView === "list") && (
+      {localize((!isMobile || mobileView === "list") && (
         <div
           style={{
             width: isMobile ? "100%" : "220px",
@@ -1329,11 +1314,10 @@ export default function SystemSettings() {
             overflowY: "auto",
           }}
         >
-          {isMobile && (
+          {localize(isMobile && (
             <div style={{ fontSize: "32px", fontWeight: 700, padding: "20px 16px 10px", color: dark ? "#fff" : "#000" }}>
-              Settings
-            </div>
-          )}
+              {localize("Settings")}</div>
+          ))}
           {/* Search */}
           <div style={{ padding: isMobile ? "0 16px 16px" : "10px 12px" }}>
           <div
@@ -1346,9 +1330,9 @@ export default function SystemSettings() {
               padding: isMobile ? "8px 12px" : "5px 10px",
             }}
           >
-            <img src="/img/icons/sf-icons/search.svg" alt="search" style={{ width: "12px", height: "12px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
+            <img src="/img/icons/sf-icons/search.svg" alt={localize("search")} style={{ width: "12px", height: "12px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
             <input
-              placeholder="Search settings"
+              placeholder={localize("Search settings")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               style={{
@@ -1365,7 +1349,7 @@ export default function SystemSettings() {
 
         {/* Items */}
         <div style={{ flex: 1, paddingBottom: isMobile ? "20px" : "0" }}>
-          {isMobile && !search.trim() && (
+          {localize(isMobile && !search.trim() && (
             <div
               style={{
                 background: dark ? "#1c1c1e" : "#fff",
@@ -1391,19 +1375,19 @@ export default function SystemSettings() {
                   overflow: "hidden"
                 }}
               >
-                <img src="/img/ui/avatar.jpg" alt="profile" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <img src="/img/ui/avatar.jpg" alt={localize("profile")} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               <div>
-                <div style={{ fontSize: "20px", fontWeight: 400, color: dark ? "#fff" : "#000", letterSpacing: "-0.5px" }}>Antoine BrnL</div>
-                <div style={{ fontSize: "13px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>Apple ID, iCloud, Media & App Store</div>
+                <div style={{ fontSize: "20px", fontWeight: 400, color: dark ? "#fff" : "#000", letterSpacing: "-0.5px" }}>{localize("Antoine BrnL")}</div>
+                <div style={{ fontSize: "13px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>{localize("Apple ID, iCloud, Media & App Store")}</div>
               </div>
             </div>
-          )}
+          ))}
 
-          {isMobile ? (
+          {localize(isMobile ? (
             search.trim() ? (
               <div style={{ margin: "0 16px", background: dark ? "#1c1c1e" : "#fff", borderRadius: "10px", overflow: "hidden" }}>
-                {filtered.map((item, idx) => {
+                {localize(filtered.map((item, idx) => {
                   return (
                     <motion.button
                       key={item.id}
@@ -1428,12 +1412,12 @@ export default function SystemSettings() {
                         <div style={{ width: "18px", height: "18px", backgroundColor: "#fff", WebkitMask: `url(${item.icon}) center/contain no-repeat`, mask: `url(${item.icon}) center/contain no-repeat` }} />
                       </div>
                       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flex: 1, padding: "12px 16px 12px 0", borderBottom: idx !== filtered.length - 1 ? (dark ? "0.5px solid rgba(255,255,255,0.15)" : "0.5px solid rgba(0,0,0,0.1)") : "none" }}>
-                        <span style={{ fontSize: "16px", color: dark ? "#fff" : "#000" }}>{item.label}</span>
-                        <img src="/img/icons/sf-icons/caret-right.svg" alt="chevron" style={{ width: "12px", height: "12px", opacity: 0.3, filter: dark ? "invert(1)" : "none", transform: "rotate(180deg)" }} />
+                        <span style={{ fontSize: "16px", color: dark ? "#fff" : "#000" }}>{localize(item.label)}</span>
+                        <img src="/img/icons/sf-icons/caret-right.svg" alt={localize("chevron")} style={{ width: "12px", height: "12px", opacity: 0.3, filter: dark ? "invert(1)" : "none", transform: "rotate(180deg)" }} />
                       </div>
                     </motion.button>
                   );
-                })}
+                }))}
               </div>
             ) : (
               PANEL_GROUPS.map((group, gIdx) => {
@@ -1441,7 +1425,7 @@ export default function SystemSettings() {
                 if (groupItems.length === 0) return null;
                 return (
                   <div key={gIdx} style={{ margin: "0 16px 20px", background: dark ? "#1c1c1e" : "#fff", borderRadius: "10px", overflow: "hidden" }}>
-                    {groupItems.map((item, idx) => {
+                    {localize(groupItems.map((item, idx) => {
                       return (
                         <motion.button
                           key={item.id}
@@ -1466,12 +1450,12 @@ export default function SystemSettings() {
                             <div style={{ width: "18px", height: "18px", backgroundColor: "#fff", WebkitMask: `url(${item.icon}) center/contain no-repeat`, mask: `url(${item.icon}) center/contain no-repeat` }} />
                           </div>
                           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flex: 1, padding: "12px 16px 12px 0", borderBottom: idx !== groupItems.length - 1 ? (dark ? "0.5px solid rgba(255,255,255,0.15)" : "0.5px solid rgba(0,0,0,0.1)") : "none" }}>
-                            <span style={{ fontSize: "16px", color: dark ? "#fff" : "#000" }}>{item.label}</span>
-                            <img src="/img/icons/sf-icons/caret-right.svg" alt="chevron" style={{ width: "12px", height: "12px", opacity: 0.3, filter: dark ? "invert(1)" : "none", transform: "rotate(180deg)" }} />
+                            <span style={{ fontSize: "16px", color: dark ? "#fff" : "#000" }}>{localize(item.label)}</span>
+                            <img src="/img/icons/sf-icons/caret-right.svg" alt={localize("chevron")} style={{ width: "12px", height: "12px", opacity: 0.3, filter: dark ? "invert(1)" : "none", transform: "rotate(180deg)" }} />
                           </div>
                         </motion.button>
                       );
-                    })}
+                    }))}
                   </div>
                 );
               })
@@ -1510,7 +1494,7 @@ export default function SystemSettings() {
                       (e.currentTarget as HTMLElement).style.background = "transparent";
                   }}
                 >
-                  {active && (
+                  {localize(active && (
                     <motion.div
                       layoutId="settings-sidebar-indicator"
                       style={{
@@ -1524,7 +1508,7 @@ export default function SystemSettings() {
                       }}
                       transition={{ type: "spring", stiffness: 500, damping: 35 }}
                     />
-                  )}
+                  ))}
                   <div
                     style={{
                       width: "28px",
@@ -1560,20 +1544,20 @@ export default function SystemSettings() {
                       whiteSpace: "nowrap",
                     }}
                   >
-                    {item.label}
+                    {localize(item.label)}
                   </span>
                 </motion.button>
               );
             })
-          )}
+          ))}
         </div>
       </div>
-      )}
+      ))}
 
       {/* ── Content ── */}
-      {(!isMobile || mobileView === "panel") && (
+      {localize((!isMobile || mobileView === "panel") && (
         <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", background: isMobile ? (dark ? "#000" : "#f2f2f7") : "transparent" }}>
-          {isMobile && (
+          {localize(isMobile && (
             <div style={{ display: "flex", alignItems: "center", padding: "12px 16px", borderBottom: dark ? "0.5px solid rgba(255,255,255,0.1)" : "0.5px solid rgba(0,0,0,0.1)" }}>
               <button
                 onClick={() => setMobileView("list")}
@@ -1581,11 +1565,10 @@ export default function SystemSettings() {
                   background: "none", border: "none", color: "#007AFF", fontSize: "16px", display: "flex", alignItems: "center", gap: "4px", cursor: "pointer", padding: 0
                 }}
               >
-                <img src="/img/icons/sf-icons/caret-right.svg" alt="back" style={{ width: "12px", height: "12px", transform: "rotate(180deg)", filter: "invert(40%) sepia(100%) saturate(3000%) hue-rotate(200deg) brightness(100%) contrast(100%)" }} />
-                Settings
-              </button>
+                <img src="/img/icons/sf-icons/caret-right.svg" alt={localize("back")} style={{ width: "12px", height: "12px", transform: "rotate(180deg)", filter: "invert(40%) sepia(100%) saturate(3000%) hue-rotate(200deg) brightness(100%) contrast(100%)" }} />
+                {localize("Settings")}</button>
             </div>
-          )}
+          ))}
           <div style={{ flex: 1, overflowY: "auto" }}>
             <AnimatePresence mode="wait">
               <motion.div
@@ -1597,7 +1580,7 @@ export default function SystemSettings() {
                 style={{ paddingBottom: "24px" }}
               >
                 {/* Panel title */}
-                {!isMobile && (
+                {localize(!isMobile && (
                   <div
                     style={{
                       fontSize: "20px",
@@ -1608,20 +1591,20 @@ export default function SystemSettings() {
                       marginBottom: "4px",
                     }}
                   >
-                    {PANEL_ITEMS.find((p) => p.id === activePanel)?.label}
+                    {localize(PANEL_ITEMS.find((p) => p.id === activePanel)?.label)}
                   </div>
-                )}
-                {isMobile && (
+                ))}
+                {localize(isMobile && (
                    <div style={{ fontSize: "28px", fontWeight: 700, padding: "16px 16px 8px", color: dark ? "#fff" : "#000" }}>
-                     {PANEL_ITEMS.find((p) => p.id === activePanel)?.label}
+                     {localize(PANEL_ITEMS.find((p) => p.id === activePanel)?.label)}
                    </div>
-                )}
-                {renderPanel()}
+                ))}
+                {localize(renderPanel())}
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
-      )}
+      ))}
     </div>
   );
 }

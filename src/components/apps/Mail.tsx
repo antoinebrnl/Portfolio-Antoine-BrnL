@@ -1,3 +1,4 @@
+import { localize } from "~/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface MailMessage {
@@ -81,9 +82,9 @@ export default function Mail() {
   const filtered = search.trim()
     ? MESSAGES.filter(
         (m) =>
-          m.subject.toLowerCase().includes(search.toLowerCase()) ||
+          localize(m.subject).toLowerCase().includes(search.toLowerCase()) ||
           m.from.toLowerCase().includes(search.toLowerCase()) ||
-          m.preview.toLowerCase().includes(search.toLowerCase())
+          localize(m.preview).toLowerCase().includes(search.toLowerCase())
       )
     : MESSAGES;
 
@@ -122,9 +123,8 @@ export default function Mail() {
             padding: "6px 14px 4px",
           }}
         >
-          Mailboxes
-        </div>
-        {FOLDERS.map((folder) => (
+          {localize("Mailboxes")}</div>
+        {localize(FOLDERS.map((folder) => (
           <div
             key={folder}
             onClick={() => setActiveFolder(folder)}
@@ -142,8 +142,8 @@ export default function Mail() {
               transition: "background 0.15s ease",
             }}
           >
-            <span>{folder}</span>
-            {folder === "Inbox" && (
+            <span>{localize(folder)}</span>
+            {localize(folder === "Inbox" && (
               <span
                 style={{
                   background: "#007AFF",
@@ -156,11 +156,11 @@ export default function Mail() {
                   textAlign: "center",
                 }}
               >
-                {MESSAGES.filter((m) => m.unread).length}
+                {localize(MESSAGES.filter((m) => m.unread).length)}
               </span>
-            )}
+            ))}
           </div>
-        ))}
+        )))}
         <div style={{ flex: 1 }} />
         <button
           onClick={() => setComposing(true)}
@@ -180,8 +180,7 @@ export default function Mail() {
             gap: "4px",
           }}
         >
-          <span style={{ fontSize: "16px", lineHeight: 1 }}>+</span> Compose
-        </button>
+          <span style={{ fontSize: "16px", lineHeight: 1 }}>{localize("+")}</span> {localize("Compose")}</button>
       </div>
 
       {/* Message list */}
@@ -210,7 +209,7 @@ export default function Mail() {
           >
             <span className="i-ph:magnifying-glass" style={{ width: "11px", height: "11px", opacity: 0.5 }} />
             <input
-              placeholder="Search"
+              placeholder={localize("Search")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               style={{
@@ -226,7 +225,7 @@ export default function Mail() {
         </div>
 
         <div style={{ overflowY: "auto", flex: 1 }}>
-          {filtered.map((msg) => (
+          {localize(filtered.map((msg) => (
             <motion.div
               key={msg.id}
               onClick={() => setSelected(msg.id)}
@@ -261,9 +260,9 @@ export default function Mail() {
                     color: msg.unread ? "#007AFF" : "#666",
                   }}
                 >
-                  {msg.avatar.startsWith("i-")
+                  {localize(msg.avatar.startsWith("i-")
                     ? <span className={msg.avatar} style={{ width: "18px", height: "18px" }} />
-                    : msg.avatar}
+                    : msg.avatar)}
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -278,10 +277,10 @@ export default function Mail() {
                         flex: 1,
                       }}
                     >
-                      {msg.from}
+                      {localize(msg.from)}
                     </span>
                     <span style={{ fontSize: "10px", color: "rgba(0,0,0,0.4)", flexShrink: 0, marginLeft: "6px" }}>
-                      {msg.time}
+                      {localize(msg.time)}
                     </span>
                   </div>
                   <div
@@ -295,7 +294,7 @@ export default function Mail() {
                       marginTop: "1px",
                     }}
                   >
-                    {msg.subject}
+                    {localize(msg.subject)}
                   </div>
                   <div
                     style={{
@@ -307,11 +306,11 @@ export default function Mail() {
                       marginTop: "1px",
                     }}
                   >
-                    {msg.preview}
+                    {localize(msg.preview)}
                   </div>
                 </div>
               </div>
-              {msg.unread && (
+              {localize(msg.unread && (
                 <div
                   style={{
                     position: "absolute",
@@ -324,15 +323,15 @@ export default function Mail() {
                     background: "#007AFF",
                   }}
                 />
-              )}
+              ))}
             </motion.div>
-          ))}
+          )))}
         </div>
       </div>
 
       {/* Message view */}
       <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
-        {activeMsg ? (
+        {localize(activeMsg ? (
           <AnimatePresence mode="wait">
             <motion.div
               key={activeMsg.id}
@@ -357,7 +356,7 @@ export default function Mail() {
                   margin: "0 0 12px",
                 }}
               >
-                {activeMsg.subject}
+                {localize(activeMsg.subject)}
               </h2>
               <div style={{ display: "flex", gap: "12px", alignItems: "center", marginBottom: "20px" }}>
                 <div
@@ -374,21 +373,21 @@ export default function Mail() {
                     color: "#007AFF",
                   }}
                 >
-                  {activeMsg.avatar.startsWith("i-")
+                  {localize(activeMsg.avatar.startsWith("i-")
                     ? <span className={activeMsg.avatar} style={{ width: "20px", height: "20px" }} />
-                    : activeMsg.avatar}
+                    : activeMsg.avatar)}
                 </div>
                 <div>
-                  <div style={{ fontSize: "14px", fontWeight: 600, color: "#1c1c1e" }}>{activeMsg.from}</div>
+                  <div style={{ fontSize: "14px", fontWeight: 600, color: "#1c1c1e" }}>{localize(activeMsg.from)}</div>
                   <div style={{ fontSize: "11px", color: "rgba(0,0,0,0.4)" }}>
-                    {activeMsg.fromEmail} · {activeMsg.time}
+                    {localize(activeMsg.fromEmail)} {localize(" · ")}{localize(activeMsg.time)}
                   </div>
                 </div>
-                {activeMsg.starred && (
+                {localize(activeMsg.starred && (
                   <span style={{ marginLeft: "auto" }}>
                     <span className="i-ph:star-fill" style={{ width: "18px", height: "18px", color: "#FF9500" }} />
                   </span>
-                )}
+                ))}
               </div>
               <div
                 style={{
@@ -398,7 +397,7 @@ export default function Mail() {
                   whiteSpace: "pre-wrap",
                 }}
               >
-                {activeMsg.body}
+                {localize(activeMsg.body)}
               </div>
             </motion.div>
           </AnimatePresence>
@@ -413,14 +412,13 @@ export default function Mail() {
               fontSize: "14px",
             }}
           >
-            Select a message
-          </div>
-        )}
+            {localize("Select a message")}</div>
+        ))}
       </div>
 
       {/* Compose overlay */}
       <AnimatePresence>
-        {composing && (
+        {localize(composing && (
           <motion.div
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -451,7 +449,7 @@ export default function Mail() {
                 justifyContent: "space-between",
               }}
             >
-              <span style={{ fontSize: "13px", fontWeight: 600, color: "#1c1c1e" }}>New Message</span>
+              <span style={{ fontSize: "13px", fontWeight: 600, color: "#1c1c1e" }}>{localize("New Message")}</span>
               <button
                 onClick={() => setComposing(false)}
                 style={{
@@ -464,10 +462,9 @@ export default function Mail() {
                   padding: "2px",
                 }}
               >
-                ×
-              </button>
+                {localize("×")}</button>
             </div>
-            {["To", "Subject"].map((label) => (
+            {localize(["To", "Subject"].map((label) => (
               <div
                 key={label}
                 style={{
@@ -478,7 +475,7 @@ export default function Mail() {
                   alignItems: "center",
                 }}
               >
-                <span style={{ fontSize: "12px", color: "rgba(0,0,0,0.4)", width: "46px" }}>{label}:</span>
+                <span style={{ fontSize: "12px", color: "rgba(0,0,0,0.4)", width: "46px" }}>{localize(label)}{localize(":")}</span>
                 <input
                   style={{
                     flex: 1,
@@ -490,9 +487,9 @@ export default function Mail() {
                   }}
                 />
               </div>
-            ))}
+            )))}
             <textarea
-              placeholder="Write your message..."
+              placeholder={localize("Write your message...")}
               style={{
                 flex: 1,
                 border: "none",
@@ -526,11 +523,10 @@ export default function Mail() {
                   cursor: "pointer",
                 }}
               >
-                Send
-              </button>
+                {localize("Send")}</button>
             </div>
           </motion.div>
-        )}
+        ))}
       </AnimatePresence>
     </div>
   );

@@ -1,3 +1,5 @@
+import { getLocale } from "~/i18n";
+import { localize } from "~/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 
 const WORLD_CLOCKS = [
@@ -90,7 +92,7 @@ export default function Clock() {
   };
 
   const getTimeInZone = (tz: string) => {
-    return new Date().toLocaleTimeString("en-US", {
+    return new Date().toLocaleTimeString(getLocale(), {
       timeZone: tz,
       hour: "2-digit",
       minute: "2-digit",
@@ -99,7 +101,7 @@ export default function Clock() {
   };
 
   const isDayInZone = (tz: string) => {
-    const h = parseInt(new Date().toLocaleString("en-US", { timeZone: tz, hour: "numeric", hour12: false }));
+    const h = parseInt(new Date().toLocaleString(getLocale(), { timeZone: tz, hour: "numeric", hour12: false }));
     return h >= 6 && h < 20;
   };
 
@@ -116,14 +118,14 @@ export default function Clock() {
       {/* Face */}
       <circle cx="60" cy="60" r="58" fill="var(--c-bg-secondary, rgba(30,30,35,0.95))" stroke="var(--c-border, rgba(255,255,255,0.1))" strokeWidth="1" />
       {/* Hour markers */}
-      {Array.from({ length: 12 }).map((_, i) => {
+      {localize(Array.from({ length: 12 }).map((_, i) => {
         const angle = (i * 30 * Math.PI) / 180;
         const x1 = 60 + 50 * Math.sin(angle);
         const y1 = 60 - 50 * Math.cos(angle);
         const x2 = 60 + 54 * Math.sin(angle);
         const y2 = 60 - 54 * Math.cos(angle);
         return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="var(--c-text-tertiary, rgba(255,255,255,0.4))" strokeWidth="2" strokeLinecap="round" />;
-      })}
+      }))}
       {/* Hour hand */}
       <line
         x1="60" y1="60"
@@ -190,7 +192,7 @@ export default function Clock() {
           borderRadius: "8px",
           gap: "2px"
         }}>
-          {TABS.map((t) => (
+          {localize(TABS.map((t) => (
             <button
               key={t.id}
               onClick={() => setTab(t.id)}
@@ -207,9 +209,9 @@ export default function Clock() {
                 transition: "all 0.15s ease",
               }}
             >
-              {t.label}
+              {localize(t.label)}
             </button>
-          ))}
+          )))}
         </div>
       </div>
 
@@ -224,19 +226,19 @@ export default function Clock() {
             transition={{ duration: 0.2 }}
             style={{ height: "100%" }}
           >
-            {tab === "world" && (
+            {localize(tab === "world" && (
               <div>
                 {/* Big local clock */}
                 <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "24px 0 16px" }}>
                   <AnalogClock size={140} />
                   <div style={{ marginTop: "12px", fontSize: "13px", color: "var(--c-text-secondary)" }}>
-                    {time.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
+                    {localize(time.toLocaleDateString(getLocale(), { weekday: "long", month: "long", day: "numeric" }))}
                   </div>
                 </div>
 
                 {/* World clocks */}
                 <div style={{ padding: "0 16px" }}>
-                  {WORLD_CLOCKS.map((clock, i) => (
+                  {localize(WORLD_CLOCKS.map((clock, i) => (
                     <motion.div
                       key={clock.city}
                       initial={{ opacity: 0, x: -8 }}
@@ -251,14 +253,14 @@ export default function Clock() {
                     >
                       <div style={{ flex: 1 }}>
                         <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-                          <span style={{ fontSize: "16px" }}>{clock.flag}</span>
-                          <span style={{ fontSize: "14px", fontWeight: 500 }}>{clock.city}</span>
+                          <span style={{ fontSize: "16px" }}>{localize(clock.flag)}</span>
+                          <span style={{ fontSize: "14px", fontWeight: 500 }}>{localize(clock.city)}</span>
                         </div>
                         <div style={{ fontSize: "11px", color: "var(--c-text-secondary)", marginTop: "2px" }}>
                           <span style={{ display: "inline-flex", alignItems: "center", gap: "3px" }}>
                             <span className={isDayInZone(clock.timezone) ? "i-ph:sun" : "i-ph:moon"} style={{ width: "11px", height: "11px" }} />
-                            {isDayInZone(clock.timezone) ? "Day" : "Night"}
-                          </span> · UTC{clock.offset}
+                            {localize(isDayInZone(clock.timezone) ? "Day" : "Night")}
+                          </span> {localize(" · UTC")}{localize(clock.offset)}
                         </div>
                       </div>
                       <div
@@ -270,18 +272,18 @@ export default function Clock() {
                           letterSpacing: "-0.5px"
                         }}
                       >
-                        {getTimeInZone(clock.timezone)}
+                        {localize(getTimeInZone(clock.timezone))}
                       </div>
                     </motion.div>
-                  ))}
+                  )))}
                 </div>
               </div>
-            )}
+            ))}
 
-            {tab === "alarm" && (
+            {localize(tab === "alarm" && (
               <div style={{ padding: "16px" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                  <span style={{ fontSize: "16px", fontWeight: 700 }}>Alarms</span>
+                  <span style={{ fontSize: "16px", fontWeight: 700 }}>{localize("Alarms")}</span>
                   <button
                     style={{
                       background: "var(--c-bg-tertiary)",
@@ -293,10 +295,9 @@ export default function Clock() {
                       cursor: "pointer",
                     }}
                   >
-                    + Add
-                  </button>
+                    {localize("+ Add")}</button>
                 </div>
-                {alarms.map((alarm) => (
+                {localize(alarms.map((alarm) => (
                   <motion.div
                     key={alarm.id}
                     layout
@@ -317,10 +318,10 @@ export default function Clock() {
                           color: alarm.enabled ? "var(--c-text)" : "var(--c-text-tertiary)"
                         }}
                       >
-                        {alarm.time}
+                        {localize(alarm.time)}
                       </div>
                       <div style={{ fontSize: "12px", color: "var(--c-text-secondary)", marginTop: "2px" }}>
-                        {alarm.label} · {alarm.days}
+                        {localize(alarm.label)} {localize(" · ")}{localize(alarm.days)}
                       </div>
                     </div>
                     {/* Toggle */}
@@ -356,11 +357,11 @@ export default function Clock() {
                       />
                     </div>
                   </motion.div>
-                ))}
+                )))}
               </div>
-            )}
+            ))}
 
-            {tab === "stopwatch" && (
+            {localize(tab === "stopwatch" && (
               <div
                 style={{
                   display: "flex",
@@ -379,7 +380,7 @@ export default function Clock() {
                     color: "var(--c-text)"
                   }}
                 >
-                  {fmtMs(stopwatch.elapsed)}
+                  {localize(fmtMs(stopwatch.elapsed))}
                 </div>
                 <div style={{ display: "flex", gap: "16px" }}>
                   <button
@@ -403,7 +404,7 @@ export default function Clock() {
                       fontWeight: 500,
                     }}
                   >
-                    {stopwatch.running ? "Lap" : "Reset"}
+                    {localize(stopwatch.running ? "Lap" : "Reset")}
                   </button>
                   <button
                     onClick={() => setStopwatch((s) => ({ ...s, running: !s.running }))}
@@ -419,12 +420,12 @@ export default function Clock() {
                       fontWeight: 600,
                     }}
                   >
-                    {stopwatch.running ? "Stop" : "Start"}
+                    {localize(stopwatch.running ? "Stop" : "Start")}
                   </button>
                 </div>
-                {stopwatch.laps.length > 0 && (
+                {localize(stopwatch.laps.length > 0 && (
                   <div style={{ width: "100%", maxWidth: 280 }}>
-                    {stopwatch.laps.map((lap, i) => (
+                    {localize(stopwatch.laps.map((lap, i) => (
                       <div
                         key={i}
                         style={{
@@ -436,16 +437,16 @@ export default function Clock() {
                           color: "var(--c-text-secondary)",
                         }}
                       >
-                        <span>Lap {i + 1}</span>
-                        <span style={{ fontVariantNumeric: "tabular-nums" }}>{fmtMs(lap)}</span>
+                        <span>{localize("Lap ")}{localize(i + 1)}</span>
+                        <span style={{ fontVariantNumeric: "tabular-nums" }}>{localize(fmtMs(lap))}</span>
                       </div>
-                    ))}
+                    )))}
                   </div>
-                )}
+                ))}
               </div>
-            )}
+            ))}
 
-            {tab === "timer" && (
+            {localize(tab === "timer" && (
               <div
                 style={{
                   display: "flex",
@@ -458,9 +459,9 @@ export default function Clock() {
                 }}
               >
                 {/* Adjust row (hidden while running) */}
-                {!timer.running && (
+                {localize(!timer.running && (
                   <div style={{ display: "flex", gap: "10px" }}>
-                    {[
+                    {localize([
                       { label: "−5m", d: -5 * 60000 },
                       { label: "−1m", d: -60000 },
                       { label: "+1m", d: 60000 },
@@ -481,11 +482,11 @@ export default function Clock() {
                           fontVariantNumeric: "tabular-nums",
                         }}
                       >
-                        {b.label}
+                        {localize(b.label)}
                       </button>
-                    ))}
+                    )))}
                   </div>
-                )}
+                ))}
 
                 {/* Countdown display */}
                 <div
@@ -498,7 +499,7 @@ export default function Clock() {
                     transition: "color 0.3s ease"
                   }}
                 >
-                  {fmtTimer(timer.remaining)}
+                  {localize(fmtTimer(timer.remaining))}
                 </div>
 
                 {/* Controls */}
@@ -517,8 +518,7 @@ export default function Clock() {
                       fontWeight: 500,
                     }}
                   >
-                    Reset
-                  </button>
+                    {localize("Reset")}</button>
                   <button
                     onClick={() =>
                       setTimer((t) => {
@@ -540,11 +540,11 @@ export default function Clock() {
                       fontWeight: 600,
                     }}
                   >
-                    {timer.running ? "Pause" : "Start"}
+                    {localize(timer.running ? "Pause" : "Start")}
                   </button>
                 </div>
               </div>
-            )}
+            ))}
           </motion.div>
         </AnimatePresence>
       </div>

@@ -1,4 +1,4 @@
-# About Me
+# À propos de moi
 
 ## Introduction
 

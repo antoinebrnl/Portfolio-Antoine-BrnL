@@ -1,6 +1,7 @@
+import { localize } from "~/i18n";
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { format } from "date-fns";
+import { formatDate as format } from "~/i18n";
 import music from "~/configs/music";
 import { useAudioContext } from "~/context/AudioContext";
 
@@ -134,7 +135,7 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
         }}
       >
         <AnimatePresence mode="wait">
-          {state === "expanded" ? (
+          {localize(state === "expanded" ? (
             <motion.div
               key="expanded"
               initial={{ opacity: 0, y: 4 }}
@@ -143,7 +144,7 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
               transition={{ duration: 0.2 }}
               style={{ padding: "12px 16px" }}
             >
-              {notification ? (
+              {localize(notification ? (
                 <div className="flex items-center gap-3">
                   <div
                     style={{
@@ -169,13 +170,13 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
                         letterSpacing: "0.5px",
                       }}
                     >
-                      {notification.type === "music" ? "Now Playing" :
+                      {localize(notification.type === "music" ? "Now Playing" :
                        notification.type === "appLaunch" ? "App Launched" :
-                       notification.type === "timer" ? "Timer" : "Notification"}
+                       notification.type === "timer" ? "Timer" : "Notification")}
                     </div>
-                    {notification.type === "timer" ? (
+                    {localize(notification.type === "timer" ? (
                       <div style={{ color: "white", fontSize: 22, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>
-                        {timerDisplay}
+                        {localize(timerDisplay)}
                       </div>
                     ) : (
                       <div
@@ -188,9 +189,9 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
                           textOverflow: "ellipsis",
                         }}
                       >
-                        {notification.message}
+                        {localize(notification.message)}
                       </div>
-                    )}
+                    ))}
                   </div>
                 </div>
               ) : (
@@ -199,21 +200,21 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
                   <div className="flex items-center gap-3">
                     <img
                       src={music.cover}
-                      alt="album"
+                      alt={localize("album")}
                       style={{ width: 40, height: 40, borderRadius: 8, objectFit: "cover" }}
                     />
                     <div style={{ flex: 1, minWidth: 0 }}>
                       <div style={{ color: "white", fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                        {music.title}
+                        {localize(music.title)}
                       </div>
-                      <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 11 }}>{music.artist}</div>
+                      <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 11 }}>{localize(music.artist)}</div>
                     </div>
                     <div className="flex items-center gap-2">
                       <button
                         onClick={(e) => { e.stopPropagation(); controls.toggle(!audioState.playing); }}
                         style={{ background: "none", border: "none", color: "white", cursor: "pointer", padding: 4, display: "flex", alignItems: "center" }}
                       >
-                        {audioState.playing ? <span className="i-ph:pause-fill text-xl" /> : <span className="i-ph:play-fill text-xl" />}
+                        {localize(audioState.playing ? <span className="i-ph:pause-fill text-xl" /> : <span className="i-ph:play-fill text-xl" />)}
                       </button>
                       <button
                         onClick={(e) => e.stopPropagation()}
@@ -232,7 +233,7 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
                     />
                   </div>
                 </div>
-              )}
+              ))}
             </motion.div>
           ) : (
             <motion.div
@@ -245,23 +246,23 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
               style={{ height: 32 }}
             >
               <div className="flex items-center gap-1.5">
-                {audioState.playing && (
+                {localize(audioState.playing && (
                   <motion.div
                     className="flex items-center gap-0.5"
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: "spring", stiffness: 500, damping: 25 }}
                   >
-                    {[0, 1, 2].map((i) => (
+                    {localize([0, 1, 2].map((i) => (
                       <motion.div
                         key={i}
                         animate={{ height: [3, 10, 5, 8, 3] }}
                         transition={{ duration: 0.8, repeat: Infinity, delay: i * 0.15, ease: "easeInOut" }}
                         style={{ width: 2.5, borderRadius: 2, background: "var(--accent-green)" }}
                       />
-                    ))}
+                    )))}
                   </motion.div>
-                )}
+                ))}
               </div>
               <div
                 style={{
@@ -274,7 +275,7 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
                 }}
               />
             </motion.div>
-          )}
+          ))}
         </AnimatePresence>
       </motion.div>
     </div>

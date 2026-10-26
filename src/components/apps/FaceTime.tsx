@@ -1,6 +1,7 @@
+import { localize } from "~/i18n";
 import React, { useRef, useState } from "react";
 import Webcam from "react-webcam";
-import { format } from "date-fns";
+import { formatDate as format } from "~/i18n";
 import { useStore } from "~/stores";
 import { motion } from "framer-motion";
 
@@ -58,11 +59,10 @@ const SidebarItem = ({ date, active }: SidebarItemProps) => {
 
       <div style={{ textAlign: "left", flex: 1, minWidth: 0 }}>
         <div style={{ fontWeight: 600, fontSize: "14px", color: "rgba(255,255,255,0.9)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-          FaceTime Link
-        </div>
+          {localize("FaceTime Link")}</div>
         <div style={{ display: "flex", alignItems: "center", gap: "4px", color: "rgba(255,255,255,0.6)", fontSize: "12px", marginTop: "2px" }}>
           <span className="i-ph:video-camera" />
-          <span>FaceTime · {format(Number(date), "hh:mm")}</span>
+          <span>{localize("FaceTime · ")}{localize(format(Number(date), "hh:mm"))}</span>
         </div>
       </div>
 
@@ -129,7 +129,7 @@ const Sidebar = ({ state, onTake, onSave, onSelect }: SidebarProps) => {
           onClick={onTake}
         >
           <span className="i-ph:aperture" style={{ fontSize: "16px" }} />
-          <span>{state.curImage ? "Retake" : "Take a Picture"}</span>
+          <span>{localize(state.curImage ? "Retake" : "Take a Picture")}</span>
         </button>
         <button
           style={{
@@ -155,15 +155,14 @@ const Sidebar = ({ state, onTake, onSave, onSelect }: SidebarProps) => {
             className={state.canSave ? "i-ph:download-simple" : "i-ph:download-simple"}
             style={{ fontSize: "16px" }}
           />
-          <span>Save Picture</span>
+          <span>{localize("Save Picture")}</span>
         </button>
       </div>
 
       <div style={{ flex: 1, overflowY: "auto", padding: "16px 12px" }}>
         <div style={{ padding: "0 10px", color: "rgba(255,255,255,0.4)", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "8px" }}>
-            Recent
-        </div>
-        {Object.keys(images)
+            {localize("Recent")}</div>
+        {localize(Object.keys(images)
           .reverse()
           .map((date) => (
             <button
@@ -179,7 +178,7 @@ const Sidebar = ({ state, onTake, onSave, onSelect }: SidebarProps) => {
             >
               <SidebarItem date={date} active={state.curImage === images[date]} />
             </button>
-          ))}
+          )))}
       </div>
     </div>
   );
@@ -213,7 +212,7 @@ const FaceTime = () => {
       />
 
       <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        {!state.curImage ? (
+        {localize(!state.curImage ? (
           <Webcam
             mirrored={true}
             audio={false}
@@ -226,8 +225,8 @@ const FaceTime = () => {
             }}
           />
         ) : (
-          state.curImage && <img src={state.curImage} alt="your-image" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-        )}
+          state.curImage && <img src={state.curImage} alt={localize("your-image")} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        ))}
       </div>
     </div>
   );
