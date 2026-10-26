@@ -1,0 +1,39 @@
+{
+  "hosting": {
+    "site": "antoine-brnl-c3bfb111",
+    "public": "dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "**/*.dmg",
+      "**/*.icns",
+      "**/*.heic",
+      "**/*.HEIC"
+    ],
+    "predeploy": [
+      "pnpm run verifier",
+      "pnpm run build"
+    ],
+    "headers": [
+      {
+        "source": "**",
+        "headers": [
+          { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" },
+          { "key": "X-Content-Type-Options", "value": "nosniff" },
+          { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        ]
+      }
+    ],
+    "rewrites": [
+      { "source": "**", "destination": "/index.html" }
+    ]
+  },
+  "emulators": {
+    "hosting": {
+      "host": "127.0.0.1",
+      "port": 5000
+    },
+    "ui": { "enabled": false }
+  }
+}

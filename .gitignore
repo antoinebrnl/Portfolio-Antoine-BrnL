@@ -4,6 +4,11 @@
 node_modules/
 dist/
 .env
+.env.*
+!.env.example
+.firebase/
+firebase-debug.log*
+gha-creds-*.json
 public/wallpapers/Tahoe Day.mov
 
 /scratch/

@@ -5,7 +5,12 @@ import autoImport from "unplugin-auto-import/vite";
 import path from "path";
 
 // https://vitejs.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  // A production bundle is public: keep the optional local Groq key out of it.
+  // Siri's hosted AI integration will need a server endpoint before activation.
+  define: command === "build" ? {
+    "import.meta.env.VITE_GROQ_API_KEY": JSON.stringify("")
+  } : {},
   plugins: [
     unocss(),
     react(),
@@ -20,4 +25,4 @@ export default defineConfig({
       "~/": `${path.resolve(__dirname, "src")}/`
     }
   }
-});
+}));

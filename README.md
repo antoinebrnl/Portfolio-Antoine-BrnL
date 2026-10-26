@@ -1,33 +1,43 @@
-# macOS Tahoe Portfolio
+# Portfolio Antoine BrnL
 
-**Live Demo:** [https://aakash-sharma.vercel.app](https://aakash-sharma.vercel.app)
+Portfolio interactif inspiré de macOS : React, TypeScript, Vite, Zustand et UnoCSS. Interface français/anglais, présentation adaptée aux ordinateurs, tablettes et téléphones, palette et typographies Antoine BrnL.
 
-I've never owned a MacBook. But I've always been kind of obsessed with how macOS looks and feels — the way everything just... flows. So at some point I stopped wishing and started building.
+## Développement
 
-This is my attempt at recreating that experience on the web — the Liquid Glass surfaces, the soft animations, the little details that make Apple's design so satisfying. It's not a clone, more like a love letter to a design language I genuinely admire.
-
-Built with [React](https://reactjs.org/), [Zustand](https://zustand-demo.pmnd.rs/), [UnoCSS](https://uno.antfu.me/), [TypeScript](https://www.typescriptlang.org/), and [Vite](https://vitejs.dev/).
-
-&nbsp;
-
-## Little Previews
-
-<img width="1583" height="883" alt="image" src="https://github.com/user-attachments/assets/1ff2961d-316a-4a86-be16-4754c42badc3" />
-<img width="1597" height="883" alt="Screenshot from 2026-06-11 16-49-36" src="https://github.com/user-attachments/assets/bbfe9948-cead-49e0-95ab-8cc3b17c46b1" />
-
-&nbsp;
-
-## Usage
+Avec Node.js 22 ou 24 et pnpm 9.0.6 :
 
 ```bash
-pnpm install
-pnpm dev      # dev server with hot reloading
-pnpm build    # production build → dist/
+pnpm install --frozen-lockfile
+pnpm dev
 ```
 
-&nbsp;
+## Publication sur Firebase Hosting
 
-## Credits
+La configuration cible le projet Google Cloud `project-c3bfb111-69c7-4d37-9c0` et son site Hosting dédié `antoine-brnl-c3bfb111`.
 
-- [macOS Tahoe 26](https://www.apple.com/newsroom/2025/06/macos-tahoe-26-makes-the-mac-more-capable-productive-and-intelligent-than-ever/)
-- [iOS 26](https://support.apple.com/en-us/123075)
+Première connexion Google et préparation du site :
+
+```bash
+pnpm run configurer:firebase
+```
+
+Puis, pour publier la version du dossier local en une commande :
+
+```bash
+pnpm run publier
+```
+
+Cette commande vérifie le code, reconstruit le site et publie le dossier `dist`. La connexion initiale au compte Google est nécessaire. Les détails du domaine, de la publication GitHub automatique et des statistiques sont dans [le guide Firebase](docs/firebase-hosting.md).
+
+## Vérifications
+
+```bash
+pnpm run verifier
+pnpm run tester:hebergement
+```
+
+Le test d'hébergement utilise un émulateur local et un projet de démonstration. Il ne publie rien sur le projet réel.
+
+## Crédits
+
+Basé sur [macOS-Portfolio par aakashsharma003](https://github.com/aakashsharma003/macOS-Portfolio), personnalisé pour Antoine BrnL. Voir les licences conservées dans le dépôt et [les sources des ressources](docs/asset-sources.md).
