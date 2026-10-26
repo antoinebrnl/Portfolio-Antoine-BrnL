@@ -21,7 +21,7 @@ const INITIAL_NOTES: Note[] = [
     date: "Thursday",
     dateISO: "2025-09-11",
     pinned: true,
-    color: "#C86A52",
+    color: "#c86a52",
   },
   {
     id: "2",
@@ -235,7 +235,7 @@ export default function Notes() {
         display: "flex",
         height: "100%",
         
-        background: "rgba(250,250,248,0.99)",
+        background: "rgba(244,244,246,0.99)",
         borderRadius: "0 0 14px 14px",
         overflow: "hidden",
       }}
@@ -247,7 +247,7 @@ export default function Notes() {
           width: isMobile ? "100%" : "180px",
           flexShrink: 0,
           borderRight: "0.5px solid rgba(0,0,0,0.1)",
-          background: "rgba(244,242,236,0.99)",
+          background: "rgba(244,244,246,0.99)",
           display: "flex",
           flexDirection: "column",
           paddingTop: "8px",
@@ -273,7 +273,7 @@ export default function Notes() {
               cursor: "pointer",
               padding: "2px 4px",
               borderRadius: "5px",
-              color: "#964833",
+              color: "#000000",
             }}
           >
             <span className="i-ph:note-pencil" style={{ width: "16px", height: "16px" }} />
@@ -364,7 +364,7 @@ export default function Notes() {
           width: isMobile ? "100%" : "220px",
           flexShrink: 0,
           borderRight: "0.5px solid rgba(0,0,0,0.1)",
-          background: "rgba(248,246,240,0.99)",
+          background: "rgba(244,244,246,0.99)",
           display: "flex",
           flexDirection: "column",
         }}
@@ -414,7 +414,7 @@ export default function Notes() {
               flexShrink: 0,
             }}
           >
-            <span style={{ fontSize: "18px", lineHeight: 1, color: "#964833" }}>{localize("+")}</span>
+            <span style={{ fontSize: "18px", lineHeight: 1, color: "#000000" }}>{localize("+")}</span>
           </button>
         </div>
 
@@ -455,7 +455,7 @@ export default function Notes() {
               display: "flex",
               alignItems: "center",
               gap: "2px",
-              background: "rgba(250,250,248,0.99)",
+              background: "rgba(244,244,246,0.99)",
             }}
           >
             {localize(toolbarIcons.map((t) => (

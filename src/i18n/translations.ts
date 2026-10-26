@@ -447,5 +447,8 @@ export const translations: Record<string, string> = {
   "Your project portfolio has been deployed to production.\n\nDeployment URL: https://portfolio.vercel.app\nBranch: main\nCommit: e160e02\n\nThis deployment is now live.": "Votre portfolio a été déployé en production.\n\nAdresse : https://portfolio.vercel.app\nBranche : main\nCommit : e160e02\n\nCe déploiement est maintenant en ligne.",
   "Hi Antoine,\n\nI came across your portfolio and was really impressed by your macOS-style portfolio project — the attention to detail with the Liquid Glass UI is exceptional.\n\nWe have an exciting Software Engineer opening at Google that I think would be a great fit. Would you be open to a quick call this week?\n\nBest,\nThe Google Recruiting Team": "Bonjour Antoine,\n\nJ’ai découvert votre portfolio inspiré de macOS et j’ai été impressionné par le soin apporté aux détails de l’interface Liquid Glass.\n\nNous proposons un poste d’ingénieur logiciel chez Google qui pourrait vous intéresser. Seriez-vous disponible pour un court appel cette semaine ?\n\nCordialement,\nL’équipe de recrutement Google",
   "Your weekly npm audit found:\n\n✓ 0 vulnerabilities\n✓ All packages up to date\n✓ No deprecated packages\n\nKeep up the great work!": "Votre audit npm hebdomadaire a relevé :\n\n✓ Aucune vulnérabilité\n✓ Tous les paquets sont à jour\n✓ Aucun paquet obsolète\n\nContinuez comme ça !",
-  "Web OS Experience.": "Une expérience de bureau sur le Web."
+  "Web OS Experience.": "Une expérience de bureau sur le Web.",
+  "Dim gray": "Gris foncé",
+  "Taupe gray": "Gris taupe",
+  "Platinum": "Platine"
 };

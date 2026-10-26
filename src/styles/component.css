@@ -4,26 +4,26 @@
 
 :root {
   /* Liquid Glass Core */
-  --lg-bg-clear: rgba(255, 255, 255, 0.18);
-  --lg-bg-tinted: rgba(255, 255, 255, 0.38);
-  --lg-bg-solid: rgba(255, 255, 255, 0.72);
-  --lg-bg-dock: rgba(255, 255, 255, 0.22);
-  --lg-bg-menu: rgba(255, 255, 255, 0.55);
-  --lg-bg-topbar: rgba(255, 255, 255, 0.001);
+  --lg-bg-clear: rgba(244,244,246, 0.18);
+  --lg-bg-tinted: rgba(244,244,246, 0.38);
+  --lg-bg-solid: rgba(244,244,246, 0.72);
+  --lg-bg-dock: rgba(244,244,246, 0.22);
+  --lg-bg-menu: rgba(244,244,246, 0.55);
+  --lg-bg-topbar: rgba(244,244,246, 0.001);
 
-  --lg-blur: blur(80px) saturate(220%);
-  --lg-blur-heavy: blur(120px) saturate(250%);
-  --lg-blur-light: blur(40px) saturate(180%);
-  --lg-blur-menu: blur(60px) saturate(200%);
+  --lg-blur: blur(80px) saturate(100%);
+  --lg-blur-heavy: blur(120px) saturate(100%);
+  --lg-blur-light: blur(40px) saturate(100%);
+  --lg-blur-menu: blur(60px) saturate(100%);
 
-  --lg-border: 0.5px solid rgba(255, 255, 255, 0.28);
-  --lg-border-strong: 0.5px solid rgba(255, 255, 255, 0.4);
-  --lg-border-subtle: 0.5px solid rgba(255, 255, 255, 0.12);
+  --lg-border: 0.5px solid rgba(244,244,246, 0.28);
+  --lg-border-strong: 0.5px solid rgba(244,244,246, 0.4);
+  --lg-border-subtle: 0.5px solid rgba(244,244,246, 0.12);
 
   --lg-refraction: brightness(1.04) contrast(1.02);
-  --lg-glow: 0 0 40px rgba(255, 255, 255, 0.06);
-  --lg-inner-highlight: inset 0 0.5px 0 rgba(255, 255, 255, 0.45);
-  --lg-inner-highlight-strong: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --lg-glow: 0 0 40px rgba(244,244,246, 0.06);
+  --lg-inner-highlight: inset 0 0.5px 0 rgba(244,244,246, 0.45);
+  --lg-inner-highlight-strong: inset 0 1px 0 rgba(244,244,246, 0.6);
 
   /* Shadows */
   --shadow-window: 0 24px 80px rgba(0,0,0,0.22), 0 8px 30px rgba(0,0,0,0.12);
@@ -58,30 +58,30 @@
   --font-avenir: 'Metropolis', sans-serif;
 
   /* Accent Colors */
-  --accent-blue: #007AFF;
-  --accent-purple: #AF52DE;
-  --accent-pink: #FF2D55;
-  --accent-red: #FF3B30;
-  --accent-orange: #FF9500;
-  --accent-yellow: #FFCC00;
-  --accent-green: #34C759;
-  --accent-graphite: #8E8E93;
+  --accent-blue: #c86a52;
+  --accent-purple: #66666e;
+  --accent-pink: #c86a52;
+  --accent-red: #c86a52;
+  --accent-orange: #c86a52;
+  --accent-yellow: #c86a52;
+  --accent-green: #c86a52;
+  --accent-graphite: #9999a1;
 }
 
 /* Dark Mode */
 .dark {
-  --lg-bg-clear: rgba(30, 30, 30, 0.25);
-  --lg-bg-tinted: rgba(40, 40, 40, 0.45);
-  --lg-bg-solid: rgba(30, 30, 30, 0.78);
-  --lg-bg-dock: rgba(30, 30, 30, 0.3);
-  --lg-bg-menu: rgba(35, 35, 35, 0.65);
-  --lg-bg-topbar: rgba(0, 0, 0, 0.001);
-  --lg-border: 0.5px solid rgba(255, 255, 255, 0.1);
-  --lg-border-strong: 0.5px solid rgba(255, 255, 255, 0.18);
-  --lg-border-subtle: 0.5px solid rgba(255, 255, 255, 0.06);
-  --lg-inner-highlight: inset 0 0.5px 0 rgba(255, 255, 255, 0.12);
-  --lg-inner-highlight-strong: inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  --lg-glow: 0 0 40px rgba(0, 0, 0, 0.15);
+  --lg-bg-clear: rgba(0,0,0, 0.25);
+  --lg-bg-tinted: rgba(0,0,0, 0.45);
+  --lg-bg-solid: rgba(0,0,0, 0.78);
+  --lg-bg-dock: rgba(0,0,0, 0.3);
+  --lg-bg-menu: rgba(0,0,0, 0.65);
+  --lg-bg-topbar: rgba(0,0,0, 0.001);
+  --lg-border: 0.5px solid rgba(244,244,246, 0.1);
+  --lg-border-strong: 0.5px solid rgba(244,244,246, 0.18);
+  --lg-border-subtle: 0.5px solid rgba(244,244,246, 0.06);
+  --lg-inner-highlight: inset 0 0.5px 0 rgba(244,244,246, 0.12);
+  --lg-inner-highlight-strong: inset 0 1px 0 rgba(244,244,246, 0.2);
+  --lg-glow: 0 0 40px rgba(0,0,0, 0.15);
 }
 
 /* --------- Login --------- */
@@ -92,9 +92,9 @@
 /* --------- Spotlight --------- */
 .spotlight {
   @apply fixed z-20 h-max top-1/4 -mt-16 w-165 -ml-82.5 left-1/2;
-  background: rgba(246, 246, 248, 0.85);
-  backdrop-filter: blur(72px) saturate(240%);
-  -webkit-backdrop-filter: blur(72px) saturate(240%);
+  background: rgba(244,244,246, 0.85);
+  backdrop-filter: blur(72px) saturate(100%);
+  -webkit-backdrop-filter: blur(72px) saturate(100%);
   box-shadow: var(--shadow-menu), var(--lg-inner-highlight);
   border: var(--lg-border-strong);
   border-radius: var(--radius-menu);
@@ -169,7 +169,7 @@
 .dark .dock ul {
   background: var(--lg-bg-dock);
   border: var(--lg-border);
-  border-top: 0.5px solid rgba(255,255,255,0.14);
+  border-top: 0.5px solid rgba(244,244,246,0.14);
 }
 
 .dock li .tooltip {
@@ -203,7 +203,7 @@
 
 .slider .rangeslider .rangeslider__handle {
   @apply border border-c-300 outline-none size-7 text-white bg-white;
-  box-shadow: -3px 0px 8px 0px rgba(17, 17, 17, 0.15);
+  box-shadow: -3px 0px 8px 0px rgba(0,0,0, 0.15);
 }
 
 .slider .rangeslider .rangeslider__handle::after {
@@ -237,7 +237,7 @@
 }
 
 .switch-toggle input:focus + .slider-toggle {
-  box-shadow: 0 0 1px #3b82f6;
+  box-shadow: 0 0 1px #9999a1;
 }
 
 /* --------- Menu Box --------- */
@@ -254,7 +254,7 @@
 .dark .menu-box {
   background: var(--lg-bg-menu);
   border: var(--lg-border);
-  border-top: 0.5px solid rgba(255,255,255,0.16);
+  border-top: 0.5px solid rgba(244,244,246,0.16);
 }
 
 /* --------- Control Center Grid --------- */
@@ -276,7 +276,7 @@
 }
 
 .dark .cc-grid {
-  background: rgba(50, 50, 50, 0.45);
+  background: rgba(0,0,0, 0.45);
   border: var(--lg-border-subtle);
 }
 
@@ -403,7 +403,7 @@
 .lg-window {
   box-shadow: var(--shadow-window), var(--lg-inner-highlight);
   border: var(--lg-border-subtle);
-  border-top: 0.5px solid rgba(255,255,255,0.32);
+  border-top: 0.5px solid rgba(244,244,246,0.32);
   border-radius: var(--radius-window);
   overflow: hidden;
 }
@@ -411,7 +411,7 @@
 .lg-window:focus-within,
 .lg-window.focused {
   box-shadow: var(--shadow-window-focused), var(--lg-inner-highlight-strong);
-  border-top: 0.5px solid rgba(255,255,255,0.42);
+  border-top: 0.5px solid rgba(244,244,246,0.42);
 }
 
 /* Photos app thumbnail label reveal */
@@ -429,10 +429,10 @@
    native macOS instead of the chunky platform default. */
 * {
   scrollbar-width: thin;                              /* Firefox */
-  scrollbar-color: rgba(0, 0, 0, 0.28) transparent;
+  scrollbar-color: rgba(0,0,0, 0.28) transparent;
 }
 .dark * {
-  scrollbar-color: rgba(255, 255, 255, 0.26) transparent;
+  scrollbar-color: rgba(244,244,246, 0.26) transparent;
 }
 ::-webkit-scrollbar {
   width: 9px;
@@ -442,22 +442,22 @@
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.22);
+  background: rgba(0,0,0, 0.22);
   border-radius: 8px;
   border: 2px solid transparent;
   background-clip: content-box;
   min-height: 28px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0,0,0, 0.4);
   background-clip: content-box;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(244,244,246, 0.22);
   background-clip: content-box;
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.38);
+  background: rgba(244,244,246, 0.38);
   background-clip: content-box;
 }
 ::-webkit-scrollbar-corner {
@@ -490,22 +490,20 @@
   --window-bar-bg: var(--lg-bg-tinted);
 }
 [data-tint-windows="off"] {
-  --window-bar-bg: rgba(244, 244, 246, 0.9);
+  --window-bar-bg: rgba(244,244,246, 0.9);
 }
 .dark[data-tint-windows="off"],
 [data-tint-windows="off"].dark {
-  --window-bar-bg: rgba(0, 0, 0, 0.9);
+  --window-bar-bg: rgba(0,0,0, 0.9);
 }
 
-/* Icon & widget style — applied to dock app icons.
-   Default: untouched. Dark: dimmed. Clear: glassy/desaturated.
-   Tinted: monochrome leaning on the accent. */
+/* All appearance modes retain the shared brand treatment. */
 [data-icon-style="dark"] .dock img {
-  filter: brightness(0.82) contrast(1.06);
+  filter: brightness(0.82) contrast(1.06) var(--brand-image-filter);
 }
 [data-icon-style="clear"] .dock img {
-  filter: saturate(0.55) brightness(1.12) opacity(0.9);
+  filter: brightness(1.12) var(--brand-image-filter) opacity(0.9);
 }
 [data-icon-style="tinted"] .dock img {
-  filter: grayscale(0.85) brightness(0.95) sepia(0.25) hue-rotate(335deg) saturate(1.3);
+  filter: brightness(0.95) var(--brand-image-filter);
 }

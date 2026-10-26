@@ -143,8 +143,8 @@ export default function DockItem({
             ref={imgRef as any}
             style={
               winWidth < 640
-                ? { width: dockSize, height: dockSize, borderRadius: "22.5%", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: id === 'skill-exchange' ? '#000' : '#fff', boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.2)", overflow: 'hidden' }
-                : { width, height: width, borderRadius: "22.5%", display: "flex", alignItems: "center", justifyContent: "center", willChange: "width, height", backgroundColor: id === 'skill-exchange' ? '#000' : '#fff', boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.2)", overflow: 'hidden' }
+                ? { width: dockSize, height: dockSize, borderRadius: "22.5%", display: "flex", alignItems: "center", justifyContent: "center", backgroundColor: id === 'skill-exchange' ? '#000000' : '#f4f4f6', boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.2)", overflow: 'hidden' }
+                : { width, height: width, borderRadius: "22.5%", display: "flex", alignItems: "center", justifyContent: "center", willChange: "width, height", backgroundColor: id === 'skill-exchange' ? '#000000' : '#f4f4f6', boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.1), 0 4px 6px rgba(0,0,0,0.2)", overflow: 'hidden' }
             }
           >
             <img
@@ -200,8 +200,8 @@ export default function DockItem({
           height: 4,
           margin: '1px auto 0',
           borderRadius: '50%',
-          backgroundColor: 'rgba(255,255,255,0.9)',
-          boxShadow: '0 0 6px rgba(255,255,255,0.5)',
+          backgroundColor: 'rgba(244,244,246,0.9)',
+          boxShadow: '0 0 6px rgba(244,244,246,0.5)',
         }}
       />
     </li>

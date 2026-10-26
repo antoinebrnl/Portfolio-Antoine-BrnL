@@ -45,10 +45,10 @@ const HowDare = ({ setRMRF }: { setRMRF: (value: boolean) => void }) => {
 
     const ctx = canvas.getContext("2d")!;
 
-    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillStyle = "rgba(0,0,0, 0.05)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-    ctx.fillStyle = "#2e9244";
+    ctx.fillStyle = "#66666e";
     ctx.font = `${FONT_SIZE}px arial`;
 
     drops.forEach((y, x) => {

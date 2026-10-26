@@ -106,7 +106,7 @@ export default function Mail() {
         style={{
           width: "160px",
           flexShrink: 0,
-          background: "rgba(235,235,240,0.98)",
+          background: "rgba(230,230,233,0.98)",
           borderRight: "0.5px solid rgba(0,0,0,0.1)",
           display: "flex",
           flexDirection: "column",
@@ -189,7 +189,7 @@ export default function Mail() {
           width: "260px",
           flexShrink: 0,
           borderRight: "0.5px solid rgba(0,0,0,0.1)",
-          background: "rgba(248,248,252,0.99)",
+          background: "rgba(244,244,246,0.99)",
           display: "flex",
           flexDirection: "column",
           overflow: "hidden",
@@ -257,7 +257,7 @@ export default function Mail() {
                     fontSize: "16px",
                     flexShrink: 0,
                     fontWeight: 600,
-                    color: msg.unread ? "#c86a52" : "#666",
+                    color: msg.unread ? "#c86a52" : "#66666e",
                   }}
                 >
                   {localize(msg.avatar.startsWith("i-")
@@ -345,7 +345,7 @@ export default function Mail() {
                 flexDirection: "column",
                 padding: "24px 28px",
                 overflowY: "auto",
-                background: "#fff",
+                background: "#f4f4f6",
               }}
             >
               <h2
@@ -429,7 +429,7 @@ export default function Mail() {
               bottom: "20px",
               right: "20px",
               width: "420px",
-              background: "rgba(248,248,252,0.98)",
+              background: "rgba(244,244,246,0.98)",
               borderRadius: "12px",
               boxShadow: "0 16px 60px rgba(0,0,0,0.2), 0 4px 16px rgba(0,0,0,0.1)",
               border: "0.5px solid rgba(0,0,0,0.12)",
@@ -442,7 +442,7 @@ export default function Mail() {
             <div
               style={{
                 padding: "10px 14px",
-                background: "rgba(235,235,240,0.99)",
+                background: "rgba(230,230,233,0.99)",
                 borderBottom: "0.5px solid rgba(0,0,0,0.08)",
                 display: "flex",
                 alignItems: "center",

@@ -8,14 +8,21 @@ export type AccentColorKey =
 export type AccentColor = AccentColorKey | string; // allow hex
 
 export const ACCENT_HEX: Record<AccentColorKey, string> = {
-  blue: "#007AFF",
-  purple: "#AF52DE",
-  pink: "#FF2D55",
-  red: "#FF3B30",
-  orange: "#FF9500",
-  yellow: "#FFCC00",
-  green: "#34C759",
-  graphite: "#8E8E93",
+  blue: "#c86a52",
+  purple: "#66666e",
+  pink: "#c86a52",
+  red: "#c86a52",
+  orange: "#c86a52",
+  yellow: "#c86a52",
+  green: "#c86a52",
+  graphite: "#9999a1",
+};
+
+const palette = new Set(["#000000", "#f4f4f6", "#66666e", "#9999a1", "#e6e6e9", "#c86a52"]);
+const resolveBrandAccent = (color: string) => {
+  if (typeof color !== "string") return "#c86a52";
+  const hex = (ACCENT_HEX[color as AccentColorKey] ?? color).toLowerCase();
+  return palette.has(hex) ? hex : "#c86a52";
 };
 
 export type DockPosition = "bottom" | "left" | "right";
@@ -32,9 +39,9 @@ export const wallpaperSets: WallpaperSet[] = [
   {
     id: "pro-black",
     name: "MacBook Pro — Pro Black",
-    day: "/wallpapers/pro-black.jpg",
-    night: "/wallpapers/pro-black.jpg",
-    thumbnail: "/wallpapers/pro-black.jpg",
+    day: "/wallpapers/pro-black-terracotta.png",
+    night: "/wallpapers/pro-black-terracotta.png",
+    thumbnail: "/wallpapers/pro-black-terracotta.png",
   },
   {
     id: "tahoe",
@@ -127,7 +134,7 @@ const initialWallpaperSet = (() => {
 
 // Refresh legacy system-color preferences once when adopting the brand palette.
 if (loadSetting("brandPaletteVersion", 0) < 1) {
-  saveSetting("accentColor", "#C86A52");
+  saveSetting("accentColor", "#c86a52");
   saveSetting("brandPaletteVersion", 1);
 }
 
@@ -153,10 +160,10 @@ export const createSettingsSlice: StateCreator<SettingsSlice> = (set, get) => ({
   },
 
   // Accent color — stored as hex string
-  accentColor: loadSetting("accentColor", "#C86A52"),
+  accentColor: resolveBrandAccent(loadSetting("accentColor", "#c86a52")),
   setAccentColor: (color) => {
     // If named key, resolve to hex
-    const hex = ACCENT_HEX[color as AccentColorKey] ?? color;
+    const hex = resolveBrandAccent(color);
     saveSetting("accentColor", hex);
     set({ accentColor: hex });
     // Apply to CSS variable
@@ -164,7 +171,7 @@ export const createSettingsSlice: StateCreator<SettingsSlice> = (set, get) => ({
   },
   getAccentHex: () => {
     const color = get().accentColor;
-    return ACCENT_HEX[color as AccentColorKey] ?? color;
+    return resolveBrandAccent(color);
   },
 
   // Dock position

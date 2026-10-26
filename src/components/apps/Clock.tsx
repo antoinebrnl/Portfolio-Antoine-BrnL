@@ -116,7 +116,7 @@ export default function Clock() {
   const AnalogClock = ({ size = 120 }: { size?: number }) => (
     <svg width={size} height={size} viewBox="0 0 120 120">
       {/* Face */}
-      <circle cx="60" cy="60" r="58" fill="var(--c-bg-secondary, rgba(30,30,35,0.95))" stroke="var(--c-border, rgba(255,255,255,0.1))" strokeWidth="1" />
+      <circle cx="60" cy="60" r="58" fill="var(--c-bg-secondary, rgba(0,0,0,0.95))" stroke="var(--c-border, rgba(244,244,246,0.1))" strokeWidth="1" />
       {/* Hour markers */}
       {localize(Array.from({ length: 12 }).map((_, i) => {
         const angle = (i * 30 * Math.PI) / 180;
@@ -124,14 +124,14 @@ export default function Clock() {
         const y1 = 60 - 50 * Math.cos(angle);
         const x2 = 60 + 54 * Math.sin(angle);
         const y2 = 60 - 54 * Math.cos(angle);
-        return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="var(--c-text-tertiary, rgba(255,255,255,0.4))" strokeWidth="2" strokeLinecap="round" />;
+        return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="var(--c-text-tertiary, rgba(244,244,246,0.4))" strokeWidth="2" strokeLinecap="round" />;
       }))}
       {/* Hour hand */}
       <line
         x1="60" y1="60"
         x2={60 + 28 * Math.sin((hrDeg * Math.PI) / 180)}
         y2={60 - 28 * Math.cos((hrDeg * Math.PI) / 180)}
-        stroke="var(--c-text, white)" strokeWidth="3" strokeLinecap="round"
+        stroke="var(--c-text, #f4f4f6)" strokeWidth="3" strokeLinecap="round"
         style={{ transition: "all 0.5s ease" }}
       />
       {/* Minute hand */}
@@ -139,7 +139,7 @@ export default function Clock() {
         x1="60" y1="60"
         x2={60 + 38 * Math.sin((minDeg * Math.PI) / 180)}
         y2={60 - 38 * Math.cos((minDeg * Math.PI) / 180)}
-        stroke="var(--c-text, white)" strokeWidth="2" strokeLinecap="round"
+        stroke="var(--c-text, #f4f4f6)" strokeWidth="2" strokeLinecap="round"
         style={{ transition: "all 0.5s ease" }}
       />
       {/* Second hand */}
@@ -335,7 +335,7 @@ export default function Clock() {
                         width: 44,
                         height: 26,
                         borderRadius: 13,
-                        background: alarm.enabled ? "#C86A52" : "var(--c-bg-tertiary)",
+                        background: alarm.enabled ? "#c86a52" : "var(--c-bg-tertiary)",
                         cursor: "pointer",
                         position: "relative",
                         transition: "background 0.25s ease",
@@ -350,7 +350,7 @@ export default function Clock() {
                           width: 20,
                           height: 20,
                           borderRadius: "50%",
-                          background: "white",
+                          background: "#f4f4f6",
                           transition: "left 0.25s ease",
                           boxShadow: "0 1px 4px rgba(0,0,0,0.3)",
                         }}
@@ -413,9 +413,9 @@ export default function Clock() {
                       height: 64,
                       borderRadius: "50%",
                       background: stopwatch.running ? "rgba(200,106,82,0.15)" : "rgba(102,102,110,0.15)",
-                      border: `2px solid ${stopwatch.running ? "#66666e" : "#C86A52"}`,
+                      border: `2px solid ${stopwatch.running ? "#66666e" : "#c86a52"}`,
                       cursor: "pointer",
-                      color: stopwatch.running ? "#66666e" : "#C86A52",
+                      color: stopwatch.running ? "#66666e" : "#c86a52",
                       fontSize: "14px",
                       fontWeight: 600,
                     }}
@@ -532,10 +532,10 @@ export default function Clock() {
                       height: 64,
                       borderRadius: "50%",
                       background: timer.running ? "rgba(200,106,82,0.15)" : "rgba(102,102,110,0.15)",
-                      border: `2px solid ${timer.running ? "#66666e" : "#C86A52"}`,
+                      border: `2px solid ${timer.running ? "#66666e" : "#c86a52"}`,
                       cursor: timer.remaining === 0 ? "default" : "pointer",
                       opacity: timer.remaining === 0 ? 0.4 : 1,
-                      color: timer.running ? "#66666e" : "#C86A52",
+                      color: timer.running ? "#66666e" : "#c86a52",
                       fontSize: "14px",
                       fontWeight: 600,
                     }}

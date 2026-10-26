@@ -85,7 +85,7 @@ export default function Photos() {
             font-size: 28px !important;
             font-weight: 700 !important;
             font-family: system-ui, -apple-system, sans-serif !important;
-            color: #000 !important;
+            color: #000000 !important;
             margin-bottom: 2px !important;
             line-height: 1.2 !important;
           }
@@ -129,13 +129,13 @@ export default function Photos() {
             padding: 6px 14px !important;
             white-space: nowrap !important;
             border: none !important;
-            color: #000 !important;
+            color: #000000 !important;
             font-weight: 500 !important;
             cursor: pointer;
           }
           .photos-chip.active {
-            background: #000 !important;
-            color: #fff !important;
+            background: #000000 !important;
+            color: #f4f4f6 !important;
           }
           
           .photos-grid-container {
@@ -167,7 +167,7 @@ export default function Photos() {
             left: 0;
             right: 0;
             height: 83px;
-            background: rgba(255,255,255,0.85);
+            background: rgba(244,244,246,0.85);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-top: 0.5px solid rgba(0,0,0,0.1);
@@ -194,12 +194,12 @@ export default function Photos() {
           .mobile-tab-item.active { color: #c86a52; }
           
           @media (prefers-color-scheme: dark) {
-            .photos-main-area, .photos-header, .photos-mobile-chips { background: #000 !important; }
-            .photos-header-title { color: #fff !important; }
-            .photos-chip { background: #333 !important; color: #fff !important; }
-            .photos-chip.active { background: #fff !important; color: #000 !important; }
-            .mobile-tab-bar { background: rgba(0,0,0,0.85); border-top: 0.5px solid rgba(255,255,255,0.1); }
-            .photos-select-btn { background: rgba(255,255,255,0.2) !important; }
+            .photos-main-area, .photos-header, .photos-mobile-chips { background: #000000 !important; }
+            .photos-header-title { color: #f4f4f6 !important; }
+            .photos-chip { background: #000000 !important; color: #f4f4f6 !important; }
+            .photos-chip.active { background: #f4f4f6 !important; color: #000000 !important; }
+            .mobile-tab-bar { background: rgba(0,0,0,0.85); border-top: 0.5px solid rgba(244,244,246,0.1); }
+            .photos-select-btn { background: rgba(244,244,246,0.2) !important; }
           }
         }
       `)}</style>
@@ -387,7 +387,7 @@ export default function Photos() {
                 }}
                 className="photo-hover-label"
               >
-                <span style={{ fontSize: "10px", color: "rgba(255,255,255,0.9)", fontWeight: 500, lineHeight: 1.2 }}>
+                <span style={{ fontSize: "10px", color: "rgba(244,244,246,0.9)", fontWeight: 500, lineHeight: 1.2 }}>
                   {localize(photo.label)}
                 </span>
               </div>
@@ -415,8 +415,8 @@ export default function Photos() {
               position: "absolute",
               inset: 0,
               background: "rgba(0,0,0,0.72)",
-              backdropFilter: "blur(28px) saturate(180%)",
-              WebkitBackdropFilter: "blur(28px) saturate(180%)",
+              backdropFilter: "blur(28px) saturate(100%)",
+              WebkitBackdropFilter: "blur(28px) saturate(100%)",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -452,24 +452,24 @@ export default function Photos() {
                 display: "flex",
                 alignItems: "center",
                 gap: "14px",
-                background: "rgba(255,255,255,0.14)",
-                backdropFilter: "blur(40px) saturate(160%)",
-                WebkitBackdropFilter: "blur(40px) saturate(160%)",
-                border: "0.5px solid rgba(255,255,255,0.22)",
+                background: "rgba(244,244,246,0.14)",
+                backdropFilter: "blur(40px) saturate(100%)",
+                WebkitBackdropFilter: "blur(40px) saturate(100%)",
+                border: "0.5px solid rgba(244,244,246,0.22)",
                 borderRadius: "14px",
                 padding: "10px 18px",
-                boxShadow: "0 8px 32px rgba(0,0,0,0.28), inset 0 0.5px 0 rgba(255,255,255,0.3)",
+                boxShadow: "0 8px 32px rgba(0,0,0,0.28), inset 0 0.5px 0 rgba(244,244,246,0.3)",
               }}
             >
               <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-                <span style={{ fontSize: "13px", color: "rgba(255,255,255,0.95)", fontWeight: 600 }}>
+                <span style={{ fontSize: "13px", color: "rgba(244,244,246,0.95)", fontWeight: 600 }}>
                   {localize(viewPhoto.label)}
                 </span>
-                <span style={{ fontSize: "11px", color: "rgba(255,255,255,0.5)" }}>
+                <span style={{ fontSize: "11px", color: "rgba(244,244,246,0.5)" }}>
                   {localize(viewPhoto.date)}
                 </span>
               </div>
-              <div style={{ width: "0.5px", height: "28px", background: "rgba(255,255,255,0.2)" }} />
+              <div style={{ width: "0.5px", height: "28px", background: "rgba(244,244,246,0.2)" }} />
               <button
                 onClick={() => toggleLike(viewPhoto.id)}
                 style={{
@@ -486,19 +486,19 @@ export default function Photos() {
               >
                 <span
                   className={viewPhoto.liked ? "i-ph:heart-fill" : "i-ph:heart"}
-                  style={{ width: "16px", height: "16px", color: viewPhoto.liked ? "var(--system-pink, #c86a52)" : "rgba(255,255,255,0.7)" }}
+                  style={{ width: "16px", height: "16px", color: viewPhoto.liked ? "var(--system-pink, #c86a52)" : "rgba(244,244,246,0.7)" }}
                 />
               </button>
               <button
                 onClick={() => setViewPhoto(null)}
                 style={{
-                  background: "rgba(255,255,255,0.15)",
-                  border: "0.5px solid rgba(255,255,255,0.2)",
+                  background: "rgba(244,244,246,0.15)",
+                  border: "0.5px solid rgba(244,244,246,0.2)",
                   borderRadius: "8px",
                   padding: "5px 14px",
                   fontSize: "12px",
                   fontWeight: 500,
-                  color: "rgba(255,255,255,0.9)",
+                  color: "rgba(244,244,246,0.9)",
                   cursor: "pointer",
                   transition: "background 0.15s ease",
                 }}

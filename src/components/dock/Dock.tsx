@@ -131,7 +131,7 @@ export default function Dock({
               style={{
                 width: '1px',
                 height: '55%',
-                background: 'rgba(128,128,128,0.35)',
+                background: 'rgba(102,102,110,0.35)',
                 borderRadius: '1px',
               }}
             />

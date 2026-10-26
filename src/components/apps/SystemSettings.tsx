@@ -1,4 +1,5 @@
 import { getLanguage } from "~/i18n";
+import Wallpaper from "~/components/Wallpaper";
 import { localize } from "~/i18n";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
@@ -50,7 +51,7 @@ const PANEL_ITEMS: PanelItem[] = [
   { id: "wifi", label: "Wi-Fi", icon: "/img/icons/sf-icons/wifi.svg", color: "var(--brand-link)" },
   { id: "bluetooth", label: "Bluetooth", icon: "/img/icons/sf-icons/bluetooth.svg", color: "var(--brand-link)" },
   { id: "network", label: "Network", icon: "/img/icons/sf-icons/network.svg", color: "var(--brand-link)" },
-  { id: "notifications", label: "Notifications", icon: "/img/icons/sf-icons/notifications.svg", color: "#C86A52" },
+  { id: "notifications", label: "Notifications", icon: "/img/icons/sf-icons/notifications.svg", color: "#c86a52" },
   { id: "sound", label: "Sound", icon: "/img/icons/sf-icons/sound.svg", color: "var(--brand-link)" },
   { id: "focus", label: "Focus", icon: "/img/icons/sf-icons/focus.svg", color: "#66666e" },
   { id: "screen-time", label: "Screen Time", icon: "/img/icons/sf-icons/screen-time.svg", color: "#66666e" },
@@ -104,7 +105,7 @@ const Toggle = ({ checked, onChange }: { checked: boolean; onChange: (v: boolean
         width: "36px",
         height: "20px",
         borderRadius: "10px",
-        background: checked ? "#c86a52" : dark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.12)",
+        background: checked ? "#c86a52" : dark ? "rgba(244,244,246,0.15)" : "rgba(0,0,0,0.12)",
         position: "relative",
         cursor: "pointer",
         transition: "background-color 0.2s ease",
@@ -117,7 +118,7 @@ const Toggle = ({ checked, onChange }: { checked: boolean; onChange: (v: boolean
           width: "16px",
           height: "16px",
           borderRadius: "50%",
-          background: "#fff",
+          background: "#f4f4f6",
           boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
           position: "absolute",
           top: "2px",
@@ -143,12 +144,12 @@ const Select = ({
       onChange={(e) => onChange(e.target.value)}
       style={{
         fontSize: "12px",
-        background: dark ? "rgba(255,255,255,0.15)" : "rgba(0,0,0,0.05)",
+        background: dark ? "rgba(244,244,246,0.15)" : "rgba(0,0,0,0.05)",
         border: "none",
         borderRadius: "6px",
         padding: "4px 8px",
         cursor: "pointer",
-        color: dark ? "#fff" : "#000000",
+        color: dark ? "#f4f4f6" : "#000000",
         outline: "none",
       }}
     >
@@ -160,8 +161,8 @@ const Select = ({
             key={val}
             value={val}
             style={{
-              background: dark ? "#1e1e1e" : "#fff",
-              color: dark ? "#fff" : "#000000",
+              background: dark ? "#000000" : "#f4f4f6",
+              color: dark ? "#f4f4f6" : "#000000",
             }}
           >
             {localize(label)}
@@ -187,7 +188,7 @@ const Row = ({
         alignItems: "center",
         justifyContent: "space-between",
         padding: "10px 16px",
-        borderBottom: dark ? "0.5px solid rgba(255,255,255,0.08)" : "0.5px solid rgba(0,0,0,0.06)",
+        borderBottom: dark ? "0.5px solid rgba(244,244,246,0.08)" : "0.5px solid rgba(0,0,0,0.06)",
       }}
     >
       <span style={{ fontSize: "13px", color: dark ? "#f4f4f6" : "#000000" }}>{localize(label)}</span>
@@ -203,7 +204,7 @@ const SectionTitle = ({ children }: { children: React.ReactNode }) => {
       style={{
         fontSize: "11px",
         fontWeight: 700,
-        color: dark ? "rgba(255,255,255,0.45)" : "rgba(0,0,0,0.45)",
+        color: dark ? "rgba(244,244,246,0.45)" : "rgba(0,0,0,0.45)",
         textTransform: "uppercase",
         letterSpacing: "0.5px",
         padding: "12px 16px 4px",
@@ -219,8 +220,8 @@ const Card = ({ children }: { children: React.ReactNode }) => {
   return (
     <div
       style={{
-        background: dark ? "rgba(45,45,45,0.5)" : "rgba(255,255,255,0.75)",
-        border: dark ? "0.5px solid rgba(255,255,255,0.12)" : "0.5px solid rgba(0,0,0,0.08)",
+        background: dark ? "rgba(0,0,0,0.5)" : "rgba(244,244,246,0.75)",
+        border: dark ? "0.5px solid rgba(244,244,246,0.12)" : "0.5px solid rgba(0,0,0,0.08)",
         borderRadius: "12px",
         margin: "0 16px 12px",
         overflow: "hidden",
@@ -243,13 +244,13 @@ const GeneralPanel = () => {
           <span>{getLanguage() === "fr" ? "Français" : "English"}</span>
         </Row>
         <Row label={localize("Region")}>
-          <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{getLanguage() === "fr" ? "France" : "United Kingdom"}</span>
+          <span style={{ fontSize: "12px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)" }}>{getLanguage() === "fr" ? "France" : "United Kingdom"}</span>
         </Row>
       </Card>
       <SectionTitle>{localize("Sharing")}</SectionTitle>
       <Card>
         <Row label={localize("Computer Name")}>
-          <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Antoine's MacBook Pro")}</span>
+          <span style={{ fontSize: "12px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Antoine's MacBook Pro")}</span>
         </Row>
       </Card>
     </div>
@@ -277,18 +278,18 @@ const AppearancePanel = () => {
   }));
 
   const wallpaper = getWallpaper();
-  const colors = [{ label: "Terracotta", value: "#C86A52" }];
+  const colors = [{ label: "Terracotta", value: "#c86a52" }];
 
   const appearanceOptions: { label: string; value: "auto" | "light" | "dark"; preview: string }[] = [
     { label: "Auto", value: "auto", preview: "linear-gradient(135deg,#f4f4f6 0% 50%,#000000 50% 100%)" },
     { label: "Light", value: "light", preview: "linear-gradient(135deg,#f4f4f6,#e6e6e9)" },
-    { label: "Dark", value: "dark", preview: "linear-gradient(135deg,#2c2c2e,#000000)" },
+    { label: "Dark", value: "dark", preview: "linear-gradient(135deg,#000000,#000000)" },
   ];
 
   const iconStyles: { label: string; value: "default" | "dark" | "clear" | "tinted"; preview: string }[] = [
-    { label: "Default", value: "default", preview: "linear-gradient(135deg,#C86A52,#66666e)" },
-    { label: "Dark", value: "dark", preview: "linear-gradient(135deg,#3a3a3c,#000000)" },
-    { label: "Clear", value: "clear", preview: "linear-gradient(135deg,rgba(255,255,255,0.5),rgba(200,200,210,0.35))" },
+    { label: "Default", value: "default", preview: "linear-gradient(135deg,#c86a52,#66666e)" },
+    { label: "Dark", value: "dark", preview: "linear-gradient(135deg,#66666e,#000000)" },
+    { label: "Clear", value: "clear", preview: "linear-gradient(135deg,rgba(244,244,246,0.5),rgba(230,230,233,0.35))" },
     { label: "Tinted", value: "tinted", preview: `linear-gradient(135deg,${accentColor},${accentColor}99)` },
   ];
 
@@ -320,15 +321,15 @@ const AppearancePanel = () => {
                     width: "100%",
                     height: "46px",
                     borderRadius: "8px",
-                    backgroundImage: `url(${wallpaper.day})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     position: "relative",
                     overflow: "hidden",
-                    border: active ? "2px solid #c86a52" : dark ? "2px solid rgba(255,255,255,0.12)" : "2px solid rgba(0,0,0,0.1)",
+                    border: active ? "2px solid #c86a52" : dark ? "2px solid rgba(244,244,246,0.12)" : "2px solid rgba(0,0,0,0.1)",
                     boxShadow: "inset 0 0 0 100px transparent",
                   }}
                 >
+                  <Wallpaper src={wallpaper.day} />
                   <div style={{ position: "absolute", inset: 0, background: opt.preview, opacity: 0.55 }} />
                 </div>
                 <span style={{ fontSize: "12px", fontWeight: active ? 600 : 400, color: dark ? "#f4f4f6" : "#000000" }}>
@@ -357,7 +358,7 @@ const AppearancePanel = () => {
                   border:
                     accentColor === c.value
                       ? dark
-                        ? "2px solid rgba(255,255,255,0.75)"
+                        ? "2px solid rgba(244,244,246,0.75)"
                         : "2px solid rgba(0,0,0,0.5)"
                       : "2px solid transparent",
                   cursor: "pointer",
@@ -371,7 +372,7 @@ const AppearancePanel = () => {
           </div>
         </Row>
         <Row label={localize("Text highlight color")}>
-          <Select value="Automatic" onChange={() => {}} options={["Automatic", "Blue", "Purple", "Pink", "Red", "Orange", "Green"]} />
+          <Select value="Automatic" onChange={() => {}} options={["Automatic", "Terracotta"]} />
         </Row>
       </Card>
 
@@ -402,7 +403,7 @@ const AppearancePanel = () => {
                     height: "42px",
                     borderRadius: "10px",
                     background: opt.preview,
-                    border: active ? "2px solid #c86a52" : dark ? "2px solid rgba(255,255,255,0.12)" : "2px solid rgba(0,0,0,0.1)",
+                    border: active ? "2px solid #c86a52" : dark ? "2px solid rgba(244,244,246,0.12)" : "2px solid rgba(0,0,0,0.1)",
                     boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
                   }}
                 />
@@ -414,7 +415,7 @@ const AppearancePanel = () => {
           }))}
         </div>
         <Row label={localize("Folder color")}>
-          <Select value="Automatic" onChange={() => {}} options={["Automatic", "Blue", "Graphite", "Green", "Orange"]} />
+          <Select value="Automatic" onChange={() => {}} options={["Automatic", "Terracotta", "Graphite"]} />
         </Row>
       </Card>
 
@@ -561,7 +562,7 @@ const DockPanel = () => {
             onChange={(e) => onChange(Number(e.target.value))}
             style={{ width: "120px", accentColor: "var(--brand-cta)" }}
           />
-          <span style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
+          <span style={{ fontSize: "11px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
             {localize(displayVal ?? value)}
           </span>
         </div>
@@ -695,7 +696,7 @@ const SoundPanel = () => {
       <Card>
         <Row label={localize("Output Volume")}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", flex: 1, justifyContent: "flex-end" }}>
-            <img src="/img/icons/sf-icons/audio.svg" alt={localize("audio")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
+            <img src="/img/icons/sf-icons/audio.svg" alt={localize("audio")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)", opacity: 0.5 }} />
             <input
               type="range"
               min="0"
@@ -704,8 +705,8 @@ const SoundPanel = () => {
               onChange={(e) => setVolume(Number(e.target.value))}
               style={{ width: "120px", accentColor: "var(--brand-cta)" }}
             />
-            <img src="/img/icons/sf-icons/sound.svg" alt={localize("sound")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
-            <span style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
+            <img src="/img/icons/sf-icons/sound.svg" alt={localize("sound")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)", opacity: 0.5 }} />
+            <span style={{ fontSize: "11px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
               {localize(volume)}{localize("%")}</span>
           </div>
         </Row>
@@ -761,10 +762,9 @@ const DisplaysPanel = () => {
           style={{
             width: "180px",
             height: "112px",
-            border: "6px solid #2c2c2e",
+            border: "6px solid #000000",
             borderRadius: "10px",
             position: "relative",
-            background: `url(${bgUrl}) center/cover no-repeat`,
             filter: `brightness(${30 + (brightness * 0.7)}%)`,
             boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
             display: "flex",
@@ -775,12 +775,13 @@ const DisplaysPanel = () => {
             transition: "filter 0.1s ease",
           }}
         >
+          <Wallpaper src={bgUrl} />
           {/* Dock preview */}
           <div
             style={{
               width: "80px",
               height: "8px",
-              background: "rgba(255,255,255,0.4)",
+              background: "rgba(244,244,246,0.4)",
               backdropFilter: "blur(4px)",
               borderRadius: "3px",
             }}
@@ -794,7 +795,7 @@ const DisplaysPanel = () => {
               transform: "translateX(-50%)",
               width: "24px",
               height: "10px",
-              background: "#48484a",
+              background: "#66666e",
               borderRadius: "2px",
             }}
           />
@@ -806,7 +807,7 @@ const DisplaysPanel = () => {
               transform: "translateX(-50%)",
               width: "48px",
               height: "4px",
-              background: "#3a3a3c",
+              background: "#66666e",
               borderRadius: "2px 2px 0 0",
             }}
           />
@@ -817,7 +818,7 @@ const DisplaysPanel = () => {
       <Card>
         <Row label={localize("Brightness")}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px", flex: 1, justifyContent: "flex-end" }}>
-            <img src="/img/icons/sf-icons/display-brightness.svg" alt={localize("dim")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
+            <img src="/img/icons/sf-icons/display-brightness.svg" alt={localize("dim")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)", opacity: 0.5 }} />
             <input
               type="range"
               min="10"
@@ -826,8 +827,8 @@ const DisplaysPanel = () => {
               onChange={(e) => setBrightness(Number(e.target.value))}
               style={{ width: "120px", accentColor: "var(--brand-cta)" }}
             />
-            <img src="/img/icons/sf-icons/sun.svg" alt={localize("sun")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
-            <span style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
+            <img src="/img/icons/sf-icons/sun.svg" alt={localize("sun")} style={{ width: "16px", height: "16px", filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)", opacity: 0.5 }} />
+            <span style={{ fontSize: "11px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)", minWidth: "30px", textAlign: "right" }}>
               {localize(brightness)}{localize("%")}</span>
           </div>
         </Row>
@@ -872,12 +873,12 @@ const BatteryPanel = () => {
     <div>
       {/* Battery Status Display */}
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", padding: "24px 16px 12px" }}>
-        <div style={{ position: "relative", width: "80px", height: "40px", border: `3.5px solid ${dark ? "#fff" : "#000000"}`, borderRadius: "8px", display: "flex", alignItems: "center", padding: "2px" }}>
+        <div style={{ position: "relative", width: "80px", height: "40px", border: `3.5px solid ${dark ? "#f4f4f6" : "#000000"}`, borderRadius: "8px", display: "flex", alignItems: "center", padding: "2px" }}>
           <div
             style={{
               height: "100%",
               width: "94%",
-              background: lowPowerMode ? "#FFCC00" : "#34C759",
+              background: lowPowerMode ? "#c86a52" : "#c86a52",
               borderRadius: "4px",
               transition: "background-color 0.2s ease, width 0.3s ease",
             }}
@@ -891,7 +892,7 @@ const BatteryPanel = () => {
               transform: "translateY(-50%)",
               width: "5px",
               height: "12px",
-              background: dark ? "#fff" : "#000000",
+              background: dark ? "#f4f4f6" : "#000000",
               borderRadius: "0 2px 2px 0",
             }}
           />
@@ -903,15 +904,15 @@ const BatteryPanel = () => {
               textAlign: "center",
               fontSize: "12px",
               fontWeight: 700,
-              color: dark ? "#000" : "#fff",
+              color: dark ? "#000000" : "#f4f4f6",
               textShadow: "0 1px 2px rgba(0,0,0,0.5)",
             }}
           >
             {localize("94%")}</div>
         </div>
-        <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#000000", marginTop: "12px" }}>
+        <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#f4f4f6" : "#000000", marginTop: "12px" }}>
           {localize("Power Source: Battery")}</div>
-        <div style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>
+        <div style={{ fontSize: "12px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>
           {localize("Battery Health: 100% (Maximum Capacity)")}</div>
       </div>
 
@@ -934,7 +935,7 @@ const BatteryPanel = () => {
               alignItems: "flex-end",
               justifyContent: "space-between",
               height: "80px",
-              borderBottom: `1px solid ${dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"}`,
+              borderBottom: `1px solid ${dark ? "rgba(244,244,246,0.1)" : "rgba(0,0,0,0.1)"}`,
               paddingBottom: "4px",
             }}
           >
@@ -944,7 +945,7 @@ const BatteryPanel = () => {
                 style={{
                   width: "8px",
                   height: `${level * 0.7}px`,
-                  background: lowPowerMode ? "#FFCC00" : level < 20 ? "#FF3B30" : "#34C759",
+                  background: lowPowerMode ? "#c86a52" : level < 20 ? "#c86a52" : "#c86a52",
                   borderRadius: "2px",
                   transition: "background-color 0.2s ease, height 0.3s ease",
                 }}
@@ -953,9 +954,9 @@ const BatteryPanel = () => {
             )))}
           </div>
           <div style={{ display: "flex", justifyContent: "space-between", marginTop: "4px" }}>
-            <span style={{ fontSize: "9px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>{localize("24h ago")}</span>
-            <span style={{ fontSize: "9px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>{localize("12h ago")}</span>
-            <span style={{ fontSize: "9px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>{localize("Now")}</span>
+            <span style={{ fontSize: "9px", color: dark ? "rgba(244,244,246,0.4)" : "rgba(0,0,0,0.4)" }}>{localize("24h ago")}</span>
+            <span style={{ fontSize: "9px", color: dark ? "rgba(244,244,246,0.4)" : "rgba(0,0,0,0.4)" }}>{localize("12h ago")}</span>
+            <span style={{ fontSize: "9px", color: dark ? "rgba(244,244,246,0.4)" : "rgba(0,0,0,0.4)" }}>{localize("Now")}</span>
           </div>
         </div>
       </Card>
@@ -968,8 +969,8 @@ const StoragePanel = () => {
   const totalSize = 512;
   const storageCategories = [
     { name: "System Data", size: 64, color: "#9999a1" },
-    { name: "Apps", size: 42, color: "#FF3B30" },
-    { name: "Documents", size: 120, color: "#34C759" },
+    { name: "Apps", size: 42, color: "#c86a52" },
+    { name: "Documents", size: 120, color: "#c86a52" },
     { name: "Developer", size: 85, color: "var(--brand-link)" },
     { name: "Free Space", size: 201, color: "rgba(0,0,0,0.08)" },
   ];
@@ -977,9 +978,9 @@ const StoragePanel = () => {
   return (
     <div>
       <div style={{ padding: "16px 16px 4px" }}>
-        <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#000000" }}>
+        <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#f4f4f6" : "#000000" }}>
           {localize("Macintosh HD")}</div>
-        <div style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>
+        <div style={{ fontSize: "12px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>
           {localize("311 GB used of 512 GB")}</div>
       </div>
 
@@ -991,8 +992,8 @@ const StoragePanel = () => {
           borderRadius: "10px",
           overflow: "hidden",
           margin: "12px 16px 20px",
-          border: dark ? "0.5px solid rgba(255,255,255,0.15)" : "0.5px solid rgba(0,0,0,0.08)",
-          background: dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.03)",
+          border: dark ? "0.5px solid rgba(244,244,246,0.15)" : "0.5px solid rgba(0,0,0,0.08)",
+          background: dark ? "rgba(244,244,246,0.05)" : "rgba(0,0,0,0.03)",
         }}
       >
         {localize(storageCategories.map((cat) => {
@@ -1002,7 +1003,7 @@ const StoragePanel = () => {
               key={cat.name}
               style={{
                 width: `${pct}%`,
-                background: cat.name === "Free Space" && dark ? "rgba(255,255,255,0.12)" : cat.color,
+                background: cat.name === "Free Space" && dark ? "rgba(244,244,246,0.12)" : cat.color,
                 height: "100%",
                 transition: "width 0.3s ease",
               }}
@@ -1022,10 +1023,10 @@ const StoragePanel = () => {
                   width: "10px",
                   height: "10px",
                   borderRadius: "50%",
-                  background: cat.name === "Free Space" && dark ? "#444" : cat.color,
+                  background: cat.name === "Free Space" && dark ? "#66666e" : cat.color,
                 }}
               />
-              <span style={{ fontSize: "12px", fontWeight: 500, color: dark ? "#fff" : "#000000" }}>
+              <span style={{ fontSize: "12px", fontWeight: 500, color: dark ? "#f4f4f6" : "#000000" }}>
                 {localize(cat.size)} {localize("GB")}</span>
             </div>
           </Row>
@@ -1045,17 +1046,17 @@ const CloudPanel = () => {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <span style={{ fontSize: "24px" }}>
-                <img src="/img/icons/sf-icons/cloud.svg" alt={localize("Google Drive")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
+                <img src="/img/icons/sf-icons/cloud.svg" alt={localize("Google Drive")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)" }} />
               </span>
               <div>
-                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#000000" }}>{localize("Google Drive")}</div>
-                <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
+                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#f4f4f6" : "#000000" }}>{localize("Google Drive")}</div>
+                <div style={{ fontSize: "11px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
               </div>
             </div>
             <button style={{ background: "var(--brand-cta)", color: "var(--brand-cta-ink)", border: "none", borderRadius: "8px", padding: "6px 14px", fontSize: "12px", cursor: "pointer" }}>
               {localize("Connect")}</button>
           </div>
-          <div style={{ background: dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)", borderRadius: "8px", padding: "10px", fontSize: "11px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.5)", textAlign: "center" }}>
+          <div style={{ background: dark ? "rgba(244,244,246,0.06)" : "rgba(0,0,0,0.04)", borderRadius: "8px", padding: "10px", fontSize: "11px", color: dark ? "rgba(244,244,246,0.4)" : "rgba(0,0,0,0.5)", textAlign: "center" }}>
             {localize("⚡ Will be fully integrated in a future update")}</div>
         </div>
       </Card>
@@ -1064,14 +1065,14 @@ const CloudPanel = () => {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <span style={{ fontSize: "24px" }}>
-                <img src="/img/icons/sf-icons/cloud.svg" alt={localize("Dropbox")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
+                <img src="/img/icons/sf-icons/cloud.svg" alt={localize("Dropbox")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)" }} />
               </span>
               <div>
-                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#000000" }}>{localize("Dropbox")}</div>
-                <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
+                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#f4f4f6" : "#000000" }}>{localize("Dropbox")}</div>
+                <div style={{ fontSize: "11px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
               </div>
             </div>
-            <button style={{ background: dark ? "rgba(255,255,255,0.08)" : "#f0f0f0", color: dark ? "rgba(255,255,255,0.3)" : "#888", border: "none", borderRadius: "8px", padding: "6px 14px", fontSize: "12px", cursor: "not-allowed" }}>
+            <button style={{ background: dark ? "rgba(244,244,246,0.08)" : "#f4f4f6", color: dark ? "rgba(244,244,246,0.3)" : "#9999a1", border: "none", borderRadius: "8px", padding: "6px 14px", fontSize: "12px", cursor: "not-allowed" }}>
               {localize("Coming Soon")}</button>
           </div>
         </div>
@@ -1081,14 +1082,14 @@ const CloudPanel = () => {
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
               <span style={{ fontSize: "24px" }}>
-                <img src="/img/icons/sf-icons/cloud.svg" alt={localize("OneDrive")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1)" : "none" }} />
+                <img src="/img/icons/sf-icons/cloud.svg" alt={localize("OneDrive")} style={{ width: "24px", height: "24px", filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)" }} />
               </span>
               <div>
-                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#fff" : "#000000" }}>{localize("OneDrive")}</div>
-                <div style={{ fontSize: "11px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
+                <div style={{ fontWeight: 600, fontSize: "13px", color: dark ? "#f4f4f6" : "#000000" }}>{localize("OneDrive")}</div>
+                <div style={{ fontSize: "11px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Not connected")}</div>
               </div>
             </div>
-            <button style={{ background: dark ? "rgba(255,255,255,0.08)" : "#f0f0f0", color: dark ? "rgba(255,255,255,0.3)" : "#888", border: "none", borderRadius: "8px", padding: "6px 14px", fontSize: "12px", cursor: "not-allowed" }}>
+            <button style={{ background: dark ? "rgba(244,244,246,0.08)" : "#f4f4f6", color: dark ? "rgba(244,244,246,0.3)" : "#9999a1", border: "none", borderRadius: "8px", padding: "6px 14px", fontSize: "12px", cursor: "not-allowed" }}>
               {localize("Coming Soon")}</button>
           </div>
         </div>
@@ -1136,23 +1137,23 @@ const PrivacyPanel = () => {
                 justifyContent: "space-between",
                 padding: "10px 16px",
                 cursor: "pointer",
-                borderBottom: dark ? "0.5px solid rgba(255,255,255,0.1)" : "0.5px solid rgba(0,0,0,0.06)",
-                background: selectedPermission === p.name ? (dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.02)") : "transparent",
+                borderBottom: dark ? "0.5px solid rgba(244,244,246,0.1)" : "0.5px solid rgba(0,0,0,0.06)",
+                background: selectedPermission === p.name ? (dark ? "rgba(244,244,246,0.05)" : "rgba(0,0,0,0.02)") : "transparent",
                 transition: "background 0.2s ease",
               }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                {localize(p.icon.startsWith("i-ph:") ? <span className={p.icon} style={{ width: "18px", height: "18px" }} /> : <img src={p.icon} alt={localize(p.name)} style={{ width: "18px", height: "18px", filter: dark ? "invert(1)" : "none" }} />)}
+                {localize(p.icon.startsWith("i-ph:") ? <span className={p.icon} style={{ width: "18px", height: "18px" }} /> : <img src={p.icon} alt={localize(p.name)} style={{ width: "18px", height: "18px", filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)" }} />)}
                 <span style={{ fontSize: "13px", color: dark ? "#f4f4f6" : "#000000" }}>{localize(p.name)}</span>
               </div>
-              <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>
+              <span style={{ fontSize: "12px", color: dark ? "rgba(244,244,246,0.4)" : "rgba(0,0,0,0.4)" }}>
                 {localize(p.apps.length)} {localize(p.apps.length === 1 ? "app" : "apps")} {localize(selectedPermission === p.name ? "▲" : "▼")}
               </span>
             </div>
             {localize(selectedPermission === p.name && (
               <div style={{ background: dark ? "rgba(0,0,0,0.2)" : "rgba(0,0,0,0.03)", padding: "4px 16px" }}>
                 {localize(p.apps.map((app) => (
-                  <div key={app} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: dark ? "0.5px solid rgba(255,255,255,0.05)" : "0.5px solid rgba(0,0,0,0.04)" }}>
+                  <div key={app} style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", borderBottom: dark ? "0.5px solid rgba(244,244,246,0.05)" : "0.5px solid rgba(0,0,0,0.04)" }}>
                     <span style={{ fontSize: "12px", color: dark ? "#f4f4f6" : "#000000", paddingLeft: "24px" }}>{localize(app)}</span>
                     <Toggle checked={true} onChange={() => {}} />
                   </div>
@@ -1174,8 +1175,8 @@ const AboutPanel = () => {
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1, marginTop: "8px" }}>
           <span className="i-fa6-brands:apple" style={{ width: "72px", height: "72px" }} />
         </div>
-        <div style={{ fontSize: "22px", fontWeight: 700, color: dark ? "#fff" : "#000000", marginTop: "8px" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>{localize("macOS Tahoe")}</div>
-        <div style={{ fontSize: "13px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Version 26.0 (Portfolio Edition)")}</div>
+        <div style={{ fontSize: "22px", fontWeight: 700, color: dark ? "#f4f4f6" : "#000000", marginTop: "8px" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>{localize("macOS Tahoe")}</div>
+        <div style={{ fontSize: "13px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)" }}>{localize("Version 26.0 (Portfolio Edition)")}</div>
       </div>
       <Card>
         {localize([
@@ -1187,7 +1188,7 @@ const AboutPanel = () => {
           ["GitHub", "@antoinebrnl"],
         ].map(([key, val]) => (
           <Row key={key} label={localize(key)}>
-            <span style={{ fontSize: "12px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)" }}>{localize(val)}</span>
+            <span style={{ fontSize: "12px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)" }}>{localize(val)}</span>
           </Row>
         )))}
       </Card>
@@ -1198,7 +1199,7 @@ const AboutPanel = () => {
 const GenericPanel = ({ id }: { id: SettingsPanel }) => {
   const dark = useStore((s) => s.dark);
   return (
-    <div style={{ padding: "24px", textAlign: "center", color: dark ? "rgba(255,255,255,0.4)" : "rgba(0,0,0,0.4)" }}>
+    <div style={{ padding: "24px", textAlign: "center", color: dark ? "rgba(244,244,246,0.4)" : "rgba(0,0,0,0.4)" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "12px" }}>
         <div
           style={{
@@ -1216,14 +1217,14 @@ const GenericPanel = ({ id }: { id: SettingsPanel }) => {
             style={{
               width: "36px",
               height: "36px",
-              backgroundColor: "#fff",
+              backgroundColor: "#f4f4f6",
               WebkitMask: `url(${PANEL_ITEMS.find((p) => p.id === id)?.icon}) center/contain no-repeat`,
               mask: `url(${PANEL_ITEMS.find((p) => p.id === id)?.icon}) center/contain no-repeat`,
             }}
           />
         </div>
       </div>
-      <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#fff" : "#000000", marginBottom: "4px" }}>
+      <div style={{ fontSize: "14px", fontWeight: 600, color: dark ? "#f4f4f6" : "#000000", marginBottom: "4px" }}>
         {localize(PANEL_ITEMS.find((p) => p.id === id)?.label)}
       </div>
       <div style={{ fontSize: "12px" }}>{localize("Settings coming soon")}</div>
@@ -1270,7 +1271,7 @@ export default function SystemSettings() {
         display: "flex",
         height: "100%",
         flexDirection: isMobile ? "column" : "row",
-        background: dark ? "rgba(30,30,30,0.95)" : "rgba(242,242,247,0.98)",
+        background: dark ? "rgba(0,0,0,0.95)" : "rgba(244,244,246,0.98)",
         color: dark ? "#f4f4f6" : "#000000",
         borderRadius: isMobile ? "0" : "0 0 14px 14px",
         overflow: "hidden",
@@ -1282,8 +1283,8 @@ export default function SystemSettings() {
           style={{
             width: isMobile ? "100%" : "220px",
             flexShrink: 0,
-            borderRight: isMobile ? "none" : (dark ? "0.5px solid rgba(255,255,255,0.1)" : "var(--lg-border)"),
-            background: isMobile ? (dark ? "#000" : "#f4f4f6") : (dark ? "rgba(42,42,42,0.95)" : "var(--lg-bg-tinted)"),
+            borderRight: isMobile ? "none" : (dark ? "0.5px solid rgba(244,244,246,0.1)" : "var(--lg-border)"),
+            background: isMobile ? (dark ? "#000000" : "#f4f4f6") : (dark ? "rgba(0,0,0,0.95)" : "var(--lg-bg-tinted)"),
             backdropFilter: isMobile ? "none" : "var(--lg-blur-light)",
             WebkitBackdropFilter: isMobile ? "none" : "var(--lg-blur-light)",
             display: "flex",
@@ -1292,7 +1293,7 @@ export default function SystemSettings() {
           }}
         >
           {localize(isMobile && (
-            <div style={{ fontSize: "32px", fontWeight: 700, padding: "20px 16px 10px", color: dark ? "#fff" : "#000" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>
+            <div style={{ fontSize: "32px", fontWeight: 700, padding: "20px 16px 10px", color: dark ? "#f4f4f6" : "#000000" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>
               {localize("Settings")}</div>
           ))}
           {/* Search */}
@@ -1302,12 +1303,12 @@ export default function SystemSettings() {
               display: "flex",
               alignItems: "center",
               gap: "8px",
-              background: isMobile ? (dark ? "#000000" : "#e3e3e8") : (dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.06)"),
+              background: isMobile ? (dark ? "#000000" : "#e6e6e9") : (dark ? "rgba(244,244,246,0.1)" : "rgba(0,0,0,0.06)"),
               borderRadius: isMobile ? "10px" : "8px",
               padding: isMobile ? "8px 12px" : "5px 10px",
             }}
           >
-            <img src="/img/icons/sf-icons/search.svg" alt={localize("search")} style={{ width: "12px", height: "12px", filter: dark ? "invert(1)" : "none", opacity: 0.5 }} />
+            <img src="/img/icons/sf-icons/search.svg" alt={localize("search")} style={{ width: "12px", height: "12px", filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)", opacity: 0.5 }} />
             <input
               placeholder={localize("Search settings")}
               value={search}
@@ -1318,7 +1319,7 @@ export default function SystemSettings() {
                 outline: "none",
                 fontSize: "12px",
                 width: "100%",
-                color: dark ? "#fff" : "#000000",
+                color: dark ? "#f4f4f6" : "#000000",
               }}
             />
           </div>
@@ -1329,7 +1330,7 @@ export default function SystemSettings() {
           {localize(isMobile && !search.trim() && (
             <div
               style={{
-                background: dark ? "#000000" : "#fff",
+                background: dark ? "#000000" : "#f4f4f6",
                 borderRadius: "10px",
                 padding: "12px 16px",
                 display: "flex",
@@ -1348,27 +1349,27 @@ export default function SystemSettings() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  color: "#fff",
+                  color: "#f4f4f6",
                   overflow: "hidden"
                 }}
               >
                 <img src="/img/ui/avatar.jpg" alt={localize("profile")} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
               </div>
               <div>
-                <div style={{ fontSize: "20px", fontWeight: 400, color: dark ? "#fff" : "#000", letterSpacing: "-0.5px" }}>{localize("Antoine BrnL")}</div>
-                <div style={{ fontSize: "13px", color: dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>{localize("Apple ID, iCloud, Media & App Store")}</div>
+                <div style={{ fontSize: "20px", fontWeight: 400, color: dark ? "#f4f4f6" : "#000000", letterSpacing: "-0.5px" }}>{localize("Antoine BrnL")}</div>
+                <div style={{ fontSize: "13px", color: dark ? "rgba(244,244,246,0.5)" : "rgba(0,0,0,0.5)", marginTop: "2px" }}>{localize("Apple ID, iCloud, Media & App Store")}</div>
               </div>
             </div>
           ))}
 
           {localize(isMobile ? (
             search.trim() ? (
-              <div style={{ margin: "0 16px", background: dark ? "#000000" : "#fff", borderRadius: "10px", overflow: "hidden" }}>
+              <div style={{ margin: "0 16px", background: dark ? "#000000" : "#f4f4f6", borderRadius: "10px", overflow: "hidden" }}>
                 {localize(filtered.map((item, idx) => {
                   return (
                     <motion.button
                       key={item.id}
-                      whileTap={{ backgroundColor: dark ? "#2c2c2e" : "#e6e6e9" }}
+                      whileTap={{ backgroundColor: dark ? "#000000" : "#e6e6e9" }}
                       onClick={() => {
                         setActivePanel(item.id);
                         setMobileView("panel");
@@ -1386,11 +1387,11 @@ export default function SystemSettings() {
                       }}
                     >
                       <div style={{ width: "28px", height: "28px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, background: item.color, borderRadius: "6px", marginRight: "14px" }}>
-                        <div style={{ width: "18px", height: "18px", backgroundColor: "#fff", WebkitMask: `url(${item.icon}) center/contain no-repeat`, mask: `url(${item.icon}) center/contain no-repeat` }} />
+                        <div style={{ width: "18px", height: "18px", backgroundColor: "#f4f4f6", WebkitMask: `url(${item.icon}) center/contain no-repeat`, mask: `url(${item.icon}) center/contain no-repeat` }} />
                       </div>
-                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flex: 1, padding: "12px 16px 12px 0", borderBottom: idx !== filtered.length - 1 ? (dark ? "0.5px solid rgba(255,255,255,0.15)" : "0.5px solid rgba(0,0,0,0.1)") : "none" }}>
-                        <span style={{ fontSize: "16px", color: dark ? "#fff" : "#000" }}>{localize(item.label)}</span>
-                        <img src="/img/icons/sf-icons/caret-right.svg" alt={localize("chevron")} style={{ width: "12px", height: "12px", opacity: 0.3, filter: dark ? "invert(1)" : "none", transform: "rotate(180deg)" }} />
+                      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flex: 1, padding: "12px 16px 12px 0", borderBottom: idx !== filtered.length - 1 ? (dark ? "0.5px solid rgba(244,244,246,0.15)" : "0.5px solid rgba(0,0,0,0.1)") : "none" }}>
+                        <span style={{ fontSize: "16px", color: dark ? "#f4f4f6" : "#000000" }}>{localize(item.label)}</span>
+                        <img src="/img/icons/sf-icons/caret-right.svg" alt={localize("chevron")} style={{ width: "12px", height: "12px", opacity: 0.3, filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)", transform: "rotate(180deg)" }} />
                       </div>
                     </motion.button>
                   );
@@ -1401,12 +1402,12 @@ export default function SystemSettings() {
                 const groupItems = group.map(id => PANEL_ITEMS.find(p => p.id === id)).filter(Boolean) as PanelItem[];
                 if (groupItems.length === 0) return null;
                 return (
-                  <div key={gIdx} style={{ margin: "0 16px 20px", background: dark ? "#000000" : "#fff", borderRadius: "10px", overflow: "hidden" }}>
+                  <div key={gIdx} style={{ margin: "0 16px 20px", background: dark ? "#000000" : "#f4f4f6", borderRadius: "10px", overflow: "hidden" }}>
                     {localize(groupItems.map((item, idx) => {
                       return (
                         <motion.button
                           key={item.id}
-                          whileTap={{ backgroundColor: dark ? "#2c2c2e" : "#e6e6e9" }}
+                          whileTap={{ backgroundColor: dark ? "#000000" : "#e6e6e9" }}
                           onClick={() => {
                             setActivePanel(item.id);
                             setMobileView("panel");
@@ -1424,11 +1425,11 @@ export default function SystemSettings() {
                           }}
                         >
                           <div style={{ width: "28px", height: "28px", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, background: item.color, borderRadius: "6px", marginRight: "14px" }}>
-                            <div style={{ width: "18px", height: "18px", backgroundColor: "#fff", WebkitMask: `url(${item.icon}) center/contain no-repeat`, mask: `url(${item.icon}) center/contain no-repeat` }} />
+                            <div style={{ width: "18px", height: "18px", backgroundColor: "#f4f4f6", WebkitMask: `url(${item.icon}) center/contain no-repeat`, mask: `url(${item.icon}) center/contain no-repeat` }} />
                           </div>
-                          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flex: 1, padding: "12px 16px 12px 0", borderBottom: idx !== groupItems.length - 1 ? (dark ? "0.5px solid rgba(255,255,255,0.15)" : "0.5px solid rgba(0,0,0,0.1)") : "none" }}>
-                            <span style={{ fontSize: "16px", color: dark ? "#fff" : "#000" }}>{localize(item.label)}</span>
-                            <img src="/img/icons/sf-icons/caret-right.svg" alt={localize("chevron")} style={{ width: "12px", height: "12px", opacity: 0.3, filter: dark ? "invert(1)" : "none", transform: "rotate(180deg)" }} />
+                          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flex: 1, padding: "12px 16px 12px 0", borderBottom: idx !== groupItems.length - 1 ? (dark ? "0.5px solid rgba(244,244,246,0.15)" : "0.5px solid rgba(0,0,0,0.1)") : "none" }}>
+                            <span style={{ fontSize: "16px", color: dark ? "#f4f4f6" : "#000000" }}>{localize(item.label)}</span>
+                            <img src="/img/icons/sf-icons/caret-right.svg" alt={localize("chevron")} style={{ width: "12px", height: "12px", opacity: 0.3, filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)", transform: "rotate(180deg)" }} />
                           </div>
                         </motion.button>
                       );
@@ -1464,7 +1465,7 @@ export default function SystemSettings() {
                   onMouseEnter={(e) => {
                     if (!active)
                       (e.currentTarget as HTMLElement).style.background =
-                        dark ? "rgba(255,255,255,0.07)" : "rgba(0,0,0,0.05)";
+                        dark ? "rgba(244,244,246,0.07)" : "rgba(0,0,0,0.05)";
                   }}
                   onMouseLeave={(e) => {
                     if (!active)
@@ -1497,14 +1498,14 @@ export default function SystemSettings() {
                       background: item.color,
                       borderRadius: "6px",
                       boxShadow: "0 1px 2px rgba(0,0,0,0.1)",
-                      border: dark ? "0.5px solid rgba(255,255,255,0.2)" : "0.5px solid rgba(0,0,0,0.05)",
+                      border: dark ? "0.5px solid rgba(244,244,246,0.2)" : "0.5px solid rgba(0,0,0,0.05)",
                     }}
                   >
                     <div
                       style={{
                         width: "16px",
                         height: "16px",
-                        backgroundColor: "#fff",
+                        backgroundColor: "#f4f4f6",
                         WebkitMask: `url(${item.icon}) center/contain no-repeat`,
                         mask: `url(${item.icon}) center/contain no-repeat`,
                       }}
@@ -1533,16 +1534,16 @@ export default function SystemSettings() {
 
       {/* ── Content ── */}
       {localize((!isMobile || mobileView === "panel") && (
-        <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", background: isMobile ? (dark ? "#000" : "#f4f4f6") : "transparent" }}>
+        <div style={{ flex: 1, overflowY: "auto", display: "flex", flexDirection: "column", background: isMobile ? (dark ? "#000000" : "#f4f4f6") : "transparent" }}>
           {localize(isMobile && (
-            <div style={{ display: "flex", alignItems: "center", padding: "12px 16px", borderBottom: dark ? "0.5px solid rgba(255,255,255,0.1)" : "0.5px solid rgba(0,0,0,0.1)" }}>
+            <div style={{ display: "flex", alignItems: "center", padding: "12px 16px", borderBottom: dark ? "0.5px solid rgba(244,244,246,0.1)" : "0.5px solid rgba(0,0,0,0.1)" }}>
               <button
                 onClick={() => setMobileView("list")}
                 style={{
                   background: "none", border: "none", color: "var(--brand-link)", fontSize: "16px", display: "flex", alignItems: "center", gap: "4px", cursor: "pointer", padding: 0
                 }}
               >
-                <img src="/img/icons/sf-icons/caret-right.svg" alt={localize("back")} style={{ width: "12px", height: "12px", transform: "rotate(180deg)", filter: "invert(40%) sepia(100%) saturate(3000%) hue-rotate(200deg) brightness(100%) contrast(100%)" }} />
+                <img src="/img/icons/sf-icons/caret-right.svg" alt={localize("back")} style={{ width: "12px", height: "12px", transform: "rotate(180deg)", filter: dark ? "invert(1) var(--brand-image-filter)" : "var(--brand-image-filter)" }} />
                 {localize("Settings")}</button>
             </div>
           ))}
@@ -1562,9 +1563,9 @@ export default function SystemSettings() {
                     style={{
                       fontSize: "20px",
                       fontWeight: 700,
-                      color: dark ? "#fff" : "#000000",
+                      color: dark ? "#f4f4f6" : "#000000",
                       padding: "16px 16px 8px",
-                      borderBottom: dark ? "0.5px solid rgba(255,255,255,0.1)" : "0.5px solid rgba(0,0,0,0.06)",
+                      borderBottom: dark ? "0.5px solid rgba(244,244,246,0.1)" : "0.5px solid rgba(0,0,0,0.06)",
                       marginBottom: "4px",
                     }}
                   >
@@ -1572,7 +1573,7 @@ export default function SystemSettings() {
                   </div>
                 ))}
                 {localize(isMobile && (
-                   <div style={{ fontSize: "28px", fontWeight: 700, padding: "16px 16px 8px", color: dark ? "#fff" : "#000" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>
+                   <div style={{ fontSize: "28px", fontWeight: 700, padding: "16px 16px 8px", color: dark ? "#f4f4f6" : "#000000" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>
                      {localize(PANEL_ITEMS.find((p) => p.id === activePanel)?.label)}
                    </div>
                 ))}

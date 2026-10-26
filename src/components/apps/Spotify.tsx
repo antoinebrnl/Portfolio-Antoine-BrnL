@@ -14,7 +14,7 @@ export default function Spotify() {
         height: "100%",
         overflow: "hidden",
         fontFamily: "var(--font-system)",
-        backgroundColor: dark ? "#000000" : "#ffffff",
+        backgroundColor: dark ? "#000000" : "#f4f4f6",
       }}
     >
       <iframe

@@ -29,10 +29,10 @@ const cardVariants = {
 };
 
 const CARD: React.CSSProperties = {
-  background: "rgba(28,28,30,0.75)",
-  backdropFilter: "blur(48px) saturate(190%)",
-  WebkitBackdropFilter: "blur(48px) saturate(190%)",
-  border: "0.5px solid rgba(255,255,255,0.13)",
+  background: "rgba(0,0,0,0.75)",
+  backdropFilter: "blur(48px) saturate(100%)",
+  WebkitBackdropFilter: "blur(48px) saturate(100%)",
+  border: "0.5px solid rgba(244,244,246,0.13)",
   borderRadius: 16,
 };
 
@@ -101,11 +101,11 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
               variants={cardVariants}
               style={{ ...CARD, padding: "12px 16px", display: "flex", alignItems: "center", justifyContent: "space-between" }}
             >
-              <span style={{ fontSize: 15, fontWeight: 600, color: "white" }}>
+              <span style={{ fontSize: 15, fontWeight: 600, color: "#f4f4f6" }}>
                 {localize("Notification Center")}{localize(unread > 0 && (
                   <span style={{
                     background: "var(--accent-red)",
-                    color: "white",
+                    color: "#f4f4f6",
                     borderRadius: 10,
                     fontSize: 10,
                     fontWeight: 700,
@@ -118,19 +118,19 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
                 {localize(notifications.length > 0 && (
                   <button
                     onClick={clearAllNotifications}
-                    style={{ background: "none", border: "none", color: "rgba(255,255,255,0.4)", fontSize: 11, cursor: "pointer", padding: "2px 4px" }}
+                    style={{ background: "none", border: "none", color: "rgba(244,244,246,0.4)", fontSize: 11, cursor: "pointer", padding: "2px 4px" }}
                   >
                     {localize("Clear All")}</button>
                 ))}
                 <button
                   onClick={toggleFocus}
                   style={{
-                    background: focusMode ? "var(--accent-purple)" : "rgba(255,255,255,0.12)",
+                    background: focusMode ? "var(--accent-purple)" : "rgba(244,244,246,0.12)",
                     border: "none",
                     borderRadius: 20,
                     padding: "3px 10px",
                     fontSize: 11,
-                    color: "white",
+                    color: "#f4f4f6",
                     cursor: "pointer",
                     fontWeight: 500,
                     transition: "background 0.2s ease",
@@ -144,7 +144,7 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
             {/* Notifications card */}
             <motion.div variants={cardVariants} style={{ ...CARD, overflow: "hidden" }}>
               {localize(notifications.length === 0 ? (
-                <div style={{ padding: "20px 16px", textAlign: "center", color: "rgba(255,255,255,0.3)", fontSize: 13 }}>
+                <div style={{ padding: "20px 16px", textAlign: "center", color: "rgba(244,244,246,0.3)", fontSize: 13 }}>
                   {localize("No notifications")}</div>
               ) : (
                 <div style={{ padding: "6px 8px", display: "flex", flexDirection: "column", gap: 4 }}>
@@ -157,8 +157,8 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
                         exit={{ opacity: 0, x: 60, scale: 0.92, transition: { duration: 0.18 } }}
                         transition={{ type: "spring", stiffness: 380, damping: 28 }}
                         style={{
-                          background: n.read ? "rgba(255,255,255,0.05)" : "rgba(255,255,255,0.09)",
-                          border: "0.5px solid rgba(255,255,255,0.08)",
+                          background: n.read ? "rgba(244,244,246,0.05)" : "rgba(244,244,246,0.09)",
+                          border: "0.5px solid rgba(244,244,246,0.08)",
                           borderRadius: 10,
                           padding: "10px 12px",
                           display: "flex",
@@ -169,21 +169,21 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
                         <img src={n.icon} alt={localize(n.app)} style={{ width: 30, height: 30, borderRadius: 7, flexShrink: 0 }} />
                         <div style={{ flex: 1, minWidth: 0 }}>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 2 }}>
-                            <span style={{ fontSize: 12, fontWeight: 600, color: "rgba(255,255,255,0.85)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                            <span style={{ fontSize: 12, fontWeight: 600, color: "rgba(244,244,246,0.85)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                               {localize(n.title)}
                             </span>
-                            <span style={{ fontSize: 10, color: "rgba(255,255,255,0.35)", flexShrink: 0, marginLeft: 6 }}>
+                            <span style={{ fontSize: 10, color: "rgba(244,244,246,0.35)", flexShrink: 0, marginLeft: 6 }}>
                               {localize(formatDistanceToNow(n.timestamp, { addSuffix: true }))}
                             </span>
                           </div>
-                          <p style={{ fontSize: 12, color: "rgba(255,255,255,0.55)", margin: 0, lineHeight: 1.4, overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
+                          <p style={{ fontSize: 12, color: "rgba(244,244,246,0.55)", margin: 0, lineHeight: 1.4, overflow: "hidden", display: "-webkit-box", WebkitLineClamp: 2, WebkitBoxOrient: "vertical" }}>
                             {localize(n.message)}
                           </p>
                         </div>
                         <button
                           onClick={() => dismissNotification(n.id)}
                           style={{
-                            background: "rgba(255,255,255,0.12)",
+                            background: "rgba(244,244,246,0.12)",
                             border: "none",
                             borderRadius: "50%",
                             width: 18,
@@ -193,7 +193,7 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
                             justifyContent: "center",
                             cursor: "pointer",
                             flexShrink: 0,
-                            color: "rgba(255,255,255,0.6)",
+                            color: "rgba(244,244,246,0.6)",
                             fontSize: 10,
                             fontWeight: 700,
                             marginTop: -2,
@@ -221,7 +221,7 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
             <motion.div variants={cardVariants} style={{ display: "flex", justifyContent: "center", paddingTop: 2 }}>
               <button
                 style={{
-                  background: "rgba(120,120,128,0.32)",
+                  background: "rgba(102,102,110,0.32)",
                   backdropFilter: "blur(20px)",
                   WebkitBackdropFilter: "blur(20px)",
                   border: "none",
@@ -229,7 +229,7 @@ export default function NotificationCenter({ show, onClose }: NotificationCenter
                   padding: "5px 14px",
                   fontSize: 12,
                   fontWeight: 500,
-                  color: "white",
+                  color: "#f4f4f6",
                   cursor: "pointer",
                 }}
               >

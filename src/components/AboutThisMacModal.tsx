@@ -12,12 +12,12 @@ const MacBookSVG = () => (
     <rect x="18" y="6" width="84" height="54" rx="4" fill="#e6e6e9" />
     <rect x="20" y="8" width="80" height="50" rx="3" fill="#000000" />
     {/* Apple logo on screen */}
-    <text x="60" y="38" textAnchor="middle" fontSize="16" fill="rgba(255,255,255,0.15)"></text>
+    <text x="60" y="38" textAnchor="middle" fontSize="16" fill="rgba(244,244,246,0.15)"></text>
     {/* Base */}
-    <path d="M10 62 L14 60 H106 L110 62 L114 70 H6 L10 62Z" fill="#b0b0b5" />
-    <rect x="6" y="70" width="108" height="3" rx="1.5" fill="#a0a0a5" />
+    <path d="M10 62 L14 60 H106 L110 62 L114 70 H6 L10 62Z" fill="#9999a1" />
+    <rect x="6" y="70" width="108" height="3" rx="1.5" fill="#9999a1" />
     {/* Notch */}
-    <rect x="52" y="6" width="16" height="4" rx="2" fill="#b0b0b5" />
+    <rect x="52" y="6" width="16" height="4" rx="2" fill="#9999a1" />
   </svg>
 );
 
@@ -79,9 +79,9 @@ export default function AboutThisMacModal({ show, onClose }: AboutThisMacModalPr
           >
             {/* Traffic lights */}
             <div style={{ display: "flex", gap: 8, padding: "12px 14px 0", alignItems: "center" }}>
-              <button onClick={onClose} style={{ width: 12, height: 12, borderRadius: "50%", background: "#FF5F57", border: "none", cursor: "pointer" }} />
-              <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#FDBC40" }} />
-              <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#28C840" }} />
+              <button onClick={onClose} style={{ width: 12, height: 12, borderRadius: "50%", background: "#c86a52", border: "none", cursor: "pointer" }} />
+              <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#9999a1" }} />
+              <div style={{ width: 12, height: 12, borderRadius: "50%", background: "#66666e" }} />
             </div>
 
             {/* MacBook image */}
@@ -93,7 +93,7 @@ export default function AboutThisMacModal({ show, onClose }: AboutThisMacModalPr
             <div style={{ textAlign: "center", paddingBottom: 14 }}>
               <div style={{ fontSize: 17, fontWeight: 700, color: "var(--color-c-black, #000000)", lineHeight: 1.3 }}>
                 {localize("MacBook Air")}</div>
-              <div style={{ fontSize: 12, color: "rgba(100,100,100,0.75)", marginTop: 2 }}>
+              <div style={{ fontSize: 12, color: "rgba(102,102,110,0.75)", marginTop: 2 }}>
                 {localize("26, 2025")}</div>
             </div>
 
@@ -107,7 +107,7 @@ export default function AboutThisMacModal({ show, onClose }: AboutThisMacModalPr
                     justifyContent: "space-between",
                     alignItems: "center",
                     padding: "8px 14px",
-                    background: i % 2 === 0 ? "rgba(0,0,0,0.025)" : "rgba(255,255,255,0.6)",
+                    background: i % 2 === 0 ? "rgba(0,0,0,0.025)" : "rgba(244,244,246,0.6)",
                     borderBottom: i < SPECS.length - 1 ? "0.5px solid rgba(0,0,0,0.07)" : "none",
                     fontSize: 12,
                   }}

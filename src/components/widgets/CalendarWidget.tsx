@@ -8,11 +8,11 @@ interface CalendarWidgetProps {
 }
 
 const GLASS: React.CSSProperties = {
-  background: "rgba(18, 18, 20, 0.72)",
-  backdropFilter: "blur(64px) saturate(210%)",
-  WebkitBackdropFilter: "blur(64px) saturate(210%)",
-  border: "0.5px solid rgba(255,255,255,0.11)",
-  boxShadow: "0 4px 32px rgba(0,0,0,0.40), inset 0 0.5px 0 rgba(255,255,255,0.14)",
+  background: "rgba(0,0,0, 0.72)",
+  backdropFilter: "blur(64px) saturate(100%)",
+  WebkitBackdropFilter: "blur(64px) saturate(100%)",
+  border: "0.5px solid rgba(244,244,246,0.11)",
+  boxShadow: "0 4px 32px rgba(0,0,0,0.40), inset 0 0.5px 0 rgba(244,244,246,0.14)",
 };
 
 export default function CalendarWidget({ compact }: CalendarWidgetProps) {
@@ -38,7 +38,7 @@ export default function CalendarWidget({ compact }: CalendarWidgetProps) {
         <span style={{
           fontSize: compact ? 10 : 11,
           fontWeight: 700,
-          color: "#C86A52",
+          color: "#c86a52",
           textTransform: "uppercase",
           letterSpacing: "0.08em",
           display: "block",
@@ -54,7 +54,7 @@ export default function CalendarWidget({ compact }: CalendarWidgetProps) {
             textAlign: "center",
             fontSize: compact ? 8 : 9,
             fontWeight: 600,
-            color: "rgba(255,255,255,0.32)",
+            color: "rgba(244,244,246,0.32)",
             paddingBottom: 3,
           }}>
             {localize(d)}
@@ -73,8 +73,8 @@ export default function CalendarWidget({ compact }: CalendarWidgetProps) {
               textAlign: "center",
               fontSize: compact ? 9 : 10,
               fontWeight: isToday ? 700 : inMonth ? 400 : 300,
-              color: isToday ? "var(--brand-cta-ink)" : inMonth ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.20)",
-              background: isToday ? "#C86A52" : "transparent",
+              color: isToday ? "var(--brand-cta-ink)" : inMonth ? "rgba(244,244,246,0.85)" : "rgba(244,244,246,0.20)",
+              background: isToday ? "#c86a52" : "transparent",
               borderRadius: "50%",
               width: size,
               height: size,

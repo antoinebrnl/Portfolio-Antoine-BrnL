@@ -33,7 +33,7 @@ export default function ClockWidget() {
     >
       {/* Analog clock */}
       <svg width={54} height={54} viewBox="0 0 54 54">
-        <circle cx={27} cy={27} r={26} fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.15)" strokeWidth={0.5} />
+        <circle cx={27} cy={27} r={26} fill="rgba(244,244,246,0.07)" stroke="rgba(244,244,246,0.15)" strokeWidth={0.5} />
         {/* tick marks */}
         {localize(Array.from({ length: 12 }).map((_, i) => {
           const angle = (i * 30 * Math.PI) / 180;
@@ -41,21 +41,21 @@ export default function ClockWidget() {
           const y1 = 27 - 22 * Math.cos(angle);
           const x2 = 27 + 24 * Math.sin(angle);
           const y2 = 27 - 24 * Math.cos(angle);
-          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(255,255,255,0.4)" strokeWidth={1} />;
+          return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="rgba(244,244,246,0.4)" strokeWidth={1} />;
         }))}
         {/* hour hand */}
         <line
           x1={27} y1={27}
           x2={27 + 13 * Math.sin((hrDeg * Math.PI) / 180)}
           y2={27 - 13 * Math.cos((hrDeg * Math.PI) / 180)}
-          stroke="white" strokeWidth={2.5} strokeLinecap="round"
+          stroke="#f4f4f6" strokeWidth={2.5} strokeLinecap="round"
         />
         {/* minute hand */}
         <line
           x1={27} y1={27}
           x2={27 + 18 * Math.sin((minDeg * Math.PI) / 180)}
           y2={27 - 18 * Math.cos((minDeg * Math.PI) / 180)}
-          stroke="white" strokeWidth={1.8} strokeLinecap="round"
+          stroke="#f4f4f6" strokeWidth={1.8} strokeLinecap="round"
         />
         {/* second hand */}
         <line
@@ -64,16 +64,16 @@ export default function ClockWidget() {
           y2={27 - 20 * Math.cos((secDeg * Math.PI) / 180)}
           stroke="var(--accent-red)" strokeWidth={1} strokeLinecap="round"
         />
-        <circle cx={27} cy={27} r={2} fill="white" />
+        <circle cx={27} cy={27} r={2} fill="#f4f4f6" />
       </svg>
 
       {/* Digital */}
       <div>
-        <div style={{ fontSize: 22, fontWeight: 300, color: "white", letterSpacing: "-0.5px", lineHeight: 1.1, fontVariantNumeric: "tabular-nums" }}>
+        <div style={{ fontSize: 22, fontWeight: 300, color: "#f4f4f6", letterSpacing: "-0.5px", lineHeight: 1.1, fontVariantNumeric: "tabular-nums" }}>
           {localize(format(now, "h:mm"))}
           <span style={{ fontSize: 14, opacity: 0.6, marginLeft: 3 }}>{localize(format(now, "ss"))}</span>
         </div>
-        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.55)", marginTop: 2 }}>
+        <div style={{ fontSize: 11, color: "rgba(244,244,246,0.55)", marginTop: 2 }}>
           {localize(format(now, "EEEE, MMMM d"))}
         </div>
       </div>

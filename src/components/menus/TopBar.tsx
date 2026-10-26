@@ -189,7 +189,7 @@ const TopBar = (props: TopBarProps) => {
           onClick={toggleAppleMenu}
           ref={appleBtnRef}
         >
-          <img src="/img/icons/sf-icons/general.svg" alt={localize("Apple Logo")} style={{ width: "16px", height: "16px", filter: "invert(1)" }} />
+          <img src="/img/icons/sf-icons/general.svg" alt={localize("Apple Logo")} style={{ width: "16px", height: "16px", filter: "invert(1) var(--brand-image-filter)" }} />
         </TopBarItem>
         <TopBarItem
           className="font-semibold px-2"
@@ -226,13 +226,13 @@ const TopBar = (props: TopBarProps) => {
           ref={wifiBtnRef}
         >
           {localize(wifi ? (
-            <img src="/img/icons/sf-icons/wifi.svg" alt={localize("Wi-Fi")} style={{ width: "18px", height: "18px", filter: "invert(1)" }} />
+            <img src="/img/icons/sf-icons/wifi.svg" alt={localize("Wi-Fi")} style={{ width: "18px", height: "18px", filter: "invert(1) var(--brand-image-filter)" }} />
           ) : (
-            <img src="/img/icons/sf-icons/wifi.svg" alt={localize("Wi-Fi Off")} style={{ width: "18px", height: "18px", filter: "invert(1)", opacity: 0.5 }} />
+            <img src="/img/icons/sf-icons/wifi.svg" alt={localize("Wi-Fi Off")} style={{ width: "18px", height: "18px", filter: "invert(1) var(--brand-image-filter)", opacity: 0.5 }} />
           ))}
         </TopBarItem>
         <TopBarItem ref={spotlightBtnRef} onClick={props.toggleSpotlight}>
-          <img src="/img/icons/sf-icons/search.svg" alt={localize("Spotlight Search")} style={{ width: "17px", height: "17px", filter: "invert(1)" }} />
+          <img src="/img/icons/sf-icons/search.svg" alt={localize("Spotlight Search")} style={{ width: "17px", height: "17px", filter: "invert(1) var(--brand-image-filter)" }} />
         </TopBarItem>
         <TopBarItem
           forceHover={state.showControlCenter}

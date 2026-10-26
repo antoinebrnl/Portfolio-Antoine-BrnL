@@ -112,7 +112,7 @@ export default function MessagesApp() {
         display: "flex",
         height: "100%",
         
-        background: "rgba(248,248,250,0.99)",
+        background: "rgba(244,244,246,0.99)",
         borderRadius: "0 0 14px 14px",
         overflow: "hidden",
       }}
@@ -123,7 +123,7 @@ export default function MessagesApp() {
           width: "230px",
           flexShrink: 0,
           borderRight: "0.5px solid rgba(0,0,0,0.1)",
-          background: "rgba(242,242,247,0.98)",
+          background: "rgba(244,244,246,0.98)",
           display: "flex",
           flexDirection: "column",
         }}
@@ -220,7 +220,7 @@ export default function MessagesApp() {
                   }}
                 >
                   {localize(conv.avatar.startsWith("i-")
-                    ? <span className={conv.avatar} style={{ width: "20px", height: "20px", color: "white" }} />
+                    ? <span className={conv.avatar} style={{ width: "20px", height: "20px", color: "#f4f4f6" }} />
                     : conv.avatar)}
                 </div>
                 {localize(conv.online && (
@@ -232,8 +232,8 @@ export default function MessagesApp() {
                       width: 10,
                       height: 10,
                       borderRadius: "50%",
-                      background: "#34C759",
-                      border: "2px solid rgba(242,242,247,0.98)",
+                      background: "#c86a52",
+                      border: "2px solid rgba(244,244,246,0.98)",
                     }}
                   />
                 ))}
@@ -309,7 +309,7 @@ export default function MessagesApp() {
             display: "flex",
             alignItems: "center",
             gap: "10px",
-            background: "rgba(248,248,250,0.99)",
+            background: "rgba(244,244,246,0.99)",
           }}
         >
           <div
@@ -325,7 +325,7 @@ export default function MessagesApp() {
             }}
           >
             {localize(activeConv.avatar.startsWith("i-")
-              ? <span className={activeConv.avatar} style={{ width: "16px", height: "16px", color: "white" }} />
+              ? <span className={activeConv.avatar} style={{ width: "16px", height: "16px", color: "#f4f4f6" }} />
               : activeConv.avatar)}
           </div>
           <div>
@@ -333,7 +333,7 @@ export default function MessagesApp() {
               {localize(activeConv.name)}
             </div>
             {localize(activeConv.online && (
-              <div style={{ fontSize: "11px", color: "#34C759" }}>{localize("Active now")}</div>
+              <div style={{ fontSize: "11px", color: "#c86a52" }}>{localize("Active now")}</div>
             ))}
           </div>
         </div>
@@ -372,9 +372,9 @@ export default function MessagesApp() {
                         : "18px 18px 18px 4px",
                     background:
                       msg.from === "me"
-                        ? "linear-gradient(135deg, #c86a52, #964833)"
-                        : "rgba(229,229,234,0.9)",
-                    color: msg.from === "me" ? "white" : "#000000",
+                        ? "linear-gradient(135deg, #c86a52, #000000)"
+                        : "rgba(230,230,233,0.9)",
+                    color: msg.from === "me" ? "#f4f4f6" : "#000000",
                     fontSize: "14px",
                     lineHeight: "1.4",
                     boxShadow: "0 1px 4px rgba(0,0,0,0.08)",
@@ -395,7 +395,7 @@ export default function MessagesApp() {
             display: "flex",
             alignItems: "center",
             gap: "8px",
-            background: "rgba(248,248,250,0.99)",
+            background: "rgba(244,244,246,0.99)",
           }}
         >
           <div
@@ -438,7 +438,7 @@ export default function MessagesApp() {
               alignItems: "center",
               justifyContent: "center",
               fontSize: "14px",
-              color: input.trim() ? "white" : "rgba(0,0,0,0.3)",
+              color: input.trim() ? "#f4f4f6" : "rgba(0,0,0,0.3)",
               flexShrink: 0,
               transition: "background 0.15s ease",
             }}

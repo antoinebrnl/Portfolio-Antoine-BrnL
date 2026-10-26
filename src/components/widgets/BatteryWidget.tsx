@@ -36,7 +36,7 @@ export default function BatteryWidget() {
       <div style={{ position: "relative", width: 36, height: 18 }}>
         <div style={{
           width: 32, height: 18,
-          border: "1.5px solid rgba(255,255,255,0.5)",
+          border: "1.5px solid rgba(244,244,246,0.5)",
           borderRadius: 4,
           position: "absolute", left: 0, top: 0,
           overflow: "hidden",
@@ -50,7 +50,7 @@ export default function BatteryWidget() {
         </div>
         <div style={{
           width: 3, height: 8,
-          background: "rgba(255,255,255,0.5)",
+          background: "rgba(244,244,246,0.5)",
           borderRadius: "0 2px 2px 0",
           position: "absolute",
           right: 0,
@@ -60,10 +60,10 @@ export default function BatteryWidget() {
       </div>
 
       <div>
-        <div style={{ fontSize: 16, fontWeight: 500, color: "white", lineHeight: 1 }}>
+        <div style={{ fontSize: 16, fontWeight: 500, color: "#f4f4f6", lineHeight: 1 }}>
           {localize(pct)}{localize("%")}{localize(charging && <span style={{ fontSize: 12, marginLeft: 4 }}>{localize("⚡")}</span>)}
         </div>
-        <div style={{ fontSize: 11, color: "rgba(255,255,255,0.5)", marginTop: 2 }}>
+        <div style={{ fontSize: 11, color: "rgba(244,244,246,0.5)", marginTop: 2 }}>
           {localize(charging ? "Charging" : level === null ? "Estimated" : pct > 20 ? "Normal" : "Low battery")}
         </div>
       </div>

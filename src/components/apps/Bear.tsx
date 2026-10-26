@@ -5,7 +5,6 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import rehypeExternalLinks from "rehype-external-links";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dracula, prism } from "react-syntax-highlighter/dist/esm/styles/prism";
 import bear from "~/configs/bear";
 import type { BearMdData } from "~/types";
 
@@ -32,6 +31,15 @@ interface BearState extends ContentProps {
 }
 
 const Highlighter = (dark: boolean): any => {
+  const codeTheme = {
+    'code[class*="language-"]': { color: dark ? '#f4f4f6' : '#000000', fontFamily: 'var(--font-mono)', textShadow: 'none' },
+    'pre[class*="language-"]': { background: dark ? '#000000' : '#e6e6e9', color: dark ? '#f4f4f6' : '#000000', padding: '1rem', overflow: 'auto', borderRadius: '8px' },
+    comment: { color: dark ? '#9999a1' : '#66666e' },
+    keyword: { color: '#c86a52' },
+    function: { color: '#c86a52' },
+    string: { color: dark ? '#e6e6e9' : '#000000' },
+    number: { color: dark ? '#9999a1' : '#66666e' },
+  };
   interface codeProps {
     node: any;
     inline: boolean;
@@ -44,7 +52,7 @@ const Highlighter = (dark: boolean): any => {
       const match = /language-(\w+)/.exec(className || "");
       return !inline && match ? (
         <SyntaxHighlighter
-          style={dark ? dracula : prism}
+          style={codeTheme}
           language={match[1]}
           PreTag="div"
           {...props}

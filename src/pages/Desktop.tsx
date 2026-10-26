@@ -58,15 +58,8 @@ export default function Desktop(props: MacActions) {
     useState<React.RefObject<HTMLDivElement> | null>(null);
   const [showAboutMac, setShowAboutMac] = useState(false);
 
-  const { dark, brightness, getWallpaper } = useStore((s) => ({
-    dark: s.dark,
-    brightness: s.brightness,
-    getWallpaper: s.getWallpaper,
-  }));
-
   const { isMobile } = useWindowSize();
 
-  const activeWallpaper = getWallpaper();
 
   const handleLaunchpadAppClick = (e: React.MouseEvent, link: string) => {
     e.stopPropagation();
@@ -267,13 +260,6 @@ export default function Desktop(props: MacActions) {
     });
   };
 
-  const bgStyle: any = {
-    backgroundImage: `url(${dark ? activeWallpaper.night : activeWallpaper.day})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    filter: `brightness(${(brightness as number) * 0.7 + 50}%)`
-  };
-  bgStyle["trans" + "ition"] = "filter 0.3s ea" + "se";
 
   const [contextMenu, setContextMenu] = useState({ show: false, x: 0, y: 0 });
 
@@ -285,7 +271,6 @@ export default function Desktop(props: MacActions) {
   return (
     <div
       className="size-full overflow-hidden bg-center bg-cover"
-      style={bgStyle}
       onContextMenu={handleContextMenu}
     >
       {/* Top Menu Bar */}

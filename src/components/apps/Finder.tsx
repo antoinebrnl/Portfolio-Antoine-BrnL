@@ -40,11 +40,11 @@ const FILESYSTEM: Record<string, FileItem[]> = {
       kind: "folder",
       date: "Yesterday",
       icon: "/img/icons/sf-icons/folder.svg",
-      color: "#C86A52",
+      color: "#c86a52",
       children: [
         { id: "resume", name: "Antoine_BrnL_Resume.pdf", kind: "file", ext: "pdf", size: "340 KB", date: "Jun 1", icon: "/img/icons/sf-icons/doc.svg" },
         { id: "cover", name: "CoverLetter.docx", kind: "file", ext: "docx", size: "28 KB", date: "Jun 2", icon: "/img/icons/sf-icons/doc.svg" },
-        { id: "projects-folder", name: "Projects", kind: "folder", date: "Jun 3", icon: "/img/icons/sf-icons/folder.svg", color: "#C86A52" },
+        { id: "projects-folder", name: "Projects", kind: "folder", date: "Jun 3", icon: "/img/icons/sf-icons/folder.svg", color: "#c86a52" },
       ],
     },
     {
@@ -65,7 +65,7 @@ const FILESYSTEM: Record<string, FileItem[]> = {
       kind: "folder",
       date: "Jun 3",
       icon: "/img/icons/sf-icons/image.svg",
-      color: "#C86A52",
+      color: "#c86a52",
       children: [
         { id: "avatar", name: "avatar.png", kind: "file", ext: "png", size: "120 KB", date: "May 28", icon: "/img/icons/sf-icons/image.svg" },
       ],
@@ -88,10 +88,10 @@ const FILESYSTEM: Record<string, FileItem[]> = {
       kind: "folder",
       date: "Today",
       icon: "/img/icons/sf-icons/desktop.svg",
-      color: "#34C759",
+      color: "#c86a52",
       children: [
-        { id: "macos-portfolio", name: "macOS-Portfolio", kind: "folder", date: "Today", icon: "/img/icons/sf-icons/folder.svg", color: "#34C759" },
-        { id: "lib-project", name: "lib", kind: "folder", date: "Jun 3", icon: "/img/icons/sf-icons/folder.svg", color: "#34C759" },
+        { id: "macos-portfolio", name: "macOS-Portfolio", kind: "folder", date: "Today", icon: "/img/icons/sf-icons/folder.svg", color: "#c86a52" },
+        { id: "lib-project", name: "lib", kind: "folder", date: "Jun 3", icon: "/img/icons/sf-icons/folder.svg", color: "#c86a52" },
       ],
     },
   ],
@@ -133,10 +133,10 @@ const SIDEBAR_SECTIONS = [
   {
     title: "Tags",
     items: [
-      { id: "tag-red", label: "Red", tagColor: "#FF3B30" },
-      { id: "tag-orange", label: "Orange", tagColor: "#c86a52" },
-      { id: "tag-blue", label: "Blue", tagColor: "#c86a52" },
-      { id: "tag-green", label: "Green", tagColor: "#34C759" },
+      { id: "tag-red", label: "Terracotta", tagColor: "#c86a52" },
+      { id: "tag-orange", label: "Dim gray", tagColor: "#66666e" },
+      { id: "tag-blue", label: "Taupe gray", tagColor: "#9999a1" },
+      { id: "tag-green", label: "Platinum", tagColor: "#e6e6e9" },
     ],
   },
 ];
@@ -155,7 +155,7 @@ const FileIcon = ({ item, size = 56 }: { item: FileItem; size?: number }) => {
       <img
         src={customImg}
         alt={localize(item.name)}
-        style={{ width: size, height: size, display: "inline-block", filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))", objectFit: "contain" }}
+        style={{ width: size, height: size, display: "inline-block", filter: "var(--brand-image-filter) drop-shadow(0 2px 4px rgba(0,0,0,0.1))", objectFit: "contain" }}
       />
     );
   }
@@ -171,7 +171,7 @@ const FileIcon = ({ item, size = 56 }: { item: FileItem; size?: number }) => {
     <img
       src={customImg}
       alt={localize(item.name)}
-      style={{ width: size, height: size, display: "inline-block", filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.1))", objectFit: "contain" }}
+      style={{ width: size, height: size, display: "inline-block", filter: "var(--brand-image-filter) drop-shadow(0 2px 4px rgba(0,0,0,0.1))", objectFit: "contain" }}
     />
   );
 };
@@ -333,12 +333,12 @@ export default function Finder() {
                     cursor: "default",
                     userSelect: "none",
                     background: highlight ? "rgba(200,106,82,0.9)" : "transparent",
-                    color: highlight ? "#fff" : "#000000",
+                    color: highlight ? "#f4f4f6" : "#000000",
                     transition: "background 0.1s ease",
                   }}
                   onMouseEnter={(e) => {
                     if (!highlight)
-                      (e.currentTarget as HTMLElement).style.background = "rgba(120,120,128,0.12)";
+                      (e.currentTarget as HTMLElement).style.background = "rgba(102,102,110,0.12)";
                   }}
                   onMouseLeave={(e) => {
                     if (!highlight)
@@ -362,7 +362,7 @@ export default function Finder() {
                       style={{
                         width: "11px",
                         height: "11px",
-                        backgroundColor: highlight ? "rgba(255,255,255,0.9)" : "rgba(0,0,0,0.35)",
+                        backgroundColor: highlight ? "rgba(244,244,246,0.9)" : "rgba(0,0,0,0.35)",
                         WebkitMask: `url(/img/icons/sf-icons/caret-right.svg) center/contain no-repeat`,
                         mask: `url(/img/icons/sf-icons/caret-right.svg) center/contain no-repeat`,
                       }}
@@ -413,7 +413,7 @@ export default function Finder() {
           onMouseEnter={(e) => {
             if (selected !== item.id)
               (e.currentTarget as HTMLElement).style.background =
-                "rgba(120,120,128,0.12)";
+                "rgba(102,102,110,0.12)";
           }}
           onMouseLeave={(e) => {
             if (selected !== item.id)
@@ -554,7 +554,7 @@ export default function Finder() {
         flexDirection: "column",
         height: "100%",
 
-        background: "rgba(248,248,248,0.98)",
+        background: "rgba(244,244,246,0.98)",
         borderRadius: "0 0 14px 14px",
         overflow: "hidden",
       }}
@@ -567,7 +567,7 @@ export default function Finder() {
           gap: "8px",
           padding: "6px 12px",
           borderBottom: "0.5px solid rgba(0,0,0,0.1)",
-          background: "rgba(245,245,247,0.98)",
+          background: "rgba(244,244,246,0.98)",
           backdropFilter: "blur(20px)",
           flexWrap: isMobile ? "wrap" : "nowrap",
         }}
@@ -686,7 +686,7 @@ export default function Finder() {
           gap: "2px",
           padding: "3px 12px",
           borderBottom: "0.5px solid rgba(0,0,0,0.08)",
-          background: "rgba(245,245,247,0.95)",
+          background: "rgba(244,244,246,0.95)",
           overflowX: "auto",
         }}
       >
@@ -857,7 +857,7 @@ export default function Finder() {
           gap: "4px",
           padding: "4px 12px",
           borderTop: "0.5px solid rgba(0,0,0,0.08)",
-          background: "rgba(245,245,247,0.98)",
+          background: "rgba(244,244,246,0.98)",
           fontSize: "11px",
           color: "rgba(0,0,0,0.5)",
         }}

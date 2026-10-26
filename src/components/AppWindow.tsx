@@ -78,20 +78,20 @@ const TrafficLights = ({ id, close, aspectRatio, max, setMax, setMin }: TrafficP
       onMouseLeave={() => setHovered(false)}
     >
       <button
-        style={{ ...btnStyle, backgroundColor: "#FF5F57" }}
+        style={{ ...btnStyle, backgroundColor: "#c86a52" }}
         onClick={(e) => { e.stopPropagation(); close(id); }}
       >
         {localize(hovered && <span className="icon i-ph:x-bold" style={{ fontSize: "8px", color: "rgba(0,0,0,0.5)" }} />)}
       </button>
       <button
-        style={{ ...btnStyle, backgroundColor: max ? "#999" : "#FDBC40", opacity: max ? 0.5 : 1 }}
+        style={{ ...btnStyle, backgroundColor: max ? "#9999a1" : "#9999a1", opacity: max ? 0.5 : 1 }}
         onClick={(e) => { e.stopPropagation(); setMin(id); }}
         disabled={max}
       >
         {localize(hovered && !max && <span className="icon i-ph:minus-bold" style={{ fontSize: "9px", color: "rgba(0,0,0,0.5)" }} />)}
       </button>
       <button
-        style={{ ...btnStyle, backgroundColor: disableMax ? "#999" : "#28C840", opacity: disableMax ? 0.5 : 1 }}
+        style={{ ...btnStyle, backgroundColor: disableMax ? "#9999a1" : "#66666e", opacity: disableMax ? 0.5 : 1 }}
         onClick={(e) => { e.stopPropagation(); !disableMax && setMax(id); }}
         disabled={disableMax}
       >

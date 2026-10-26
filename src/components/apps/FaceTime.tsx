@@ -54,13 +54,13 @@ const SidebarItem = ({ date, active }: SidebarItemProps) => {
             flexShrink: 0
         }}
       >
-        <span className="i-ph:link-bold" style={{ fontSize: "20px", color: "rgba(255,255,255,0.8)" }} />
+        <span className="i-ph:link-bold" style={{ fontSize: "20px", color: "rgba(244,244,246,0.8)" }} />
       </div>
 
       <div style={{ textAlign: "left", flex: 1, minWidth: 0 }}>
-        <div style={{ fontWeight: 600, fontSize: "14px", color: "rgba(255,255,255,0.9)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+        <div style={{ fontWeight: 600, fontSize: "14px", color: "rgba(244,244,246,0.9)", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
           {localize("FaceTime Link")}</div>
-        <div style={{ display: "flex", alignItems: "center", gap: "4px", color: "rgba(255,255,255,0.6)", fontSize: "12px", marginTop: "2px" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "4px", color: "rgba(244,244,246,0.6)", fontSize: "12px", marginTop: "2px" }}>
           <span className="i-ph:video-camera" />
           <span>{localize("FaceTime · ")}{localize(format(Number(date), "hh:mm"))}</span>
         </div>
@@ -72,13 +72,13 @@ const SidebarItem = ({ date, active }: SidebarItemProps) => {
             position: "absolute",
             right: "10px",
             fontSize: "18px",
-            color: "rgba(255,255,255,0.4)",
+            color: "rgba(244,244,246,0.4)",
             opacity: hover ? 1 : 0,
             transition: "all 0.15s ease",
             cursor: "pointer"
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
-        onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(244,244,246,0.8)")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(244,244,246,0.4)")}
         onClick={(e) => {
           e.stopPropagation();
           deleteImage(date);
@@ -102,13 +102,13 @@ const Sidebar = ({ state, onTake, onSave, onSelect }: SidebarProps) => {
             top: 0,
             display: "flex",
             flexDirection: "column",
-            background: "rgba(30,30,32,0.6)",
-            backdropFilter: "blur(40px) saturate(150%)",
-            WebkitBackdropFilter: "blur(40px) saturate(150%)",
-            borderRight: "1px solid rgba(255,255,255,0.1)",
+            background: "rgba(0,0,0,0.6)",
+            backdropFilter: "blur(40px) saturate(100%)",
+            WebkitBackdropFilter: "blur(40px) saturate(100%)",
+            borderRight: "1px solid rgba(244,244,246,0.1)",
         }}
     >
-      <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "10px", borderBottom: "1px solid rgba(255,255,255,0.05)" }}>
+      <div style={{ padding: "20px", display: "flex", flexDirection: "column", gap: "10px", borderBottom: "1px solid rgba(244,244,246,0.05)" }}>
         <button
           style={{
             display: "flex",
@@ -117,7 +117,7 @@ const Sidebar = ({ state, onTake, onSave, onSelect }: SidebarProps) => {
             gap: "6px",
             width: "100%",
             padding: "8px 0",
-            color: "white",
+            color: "#f4f4f6",
             background: "rgba(102,102,110,0.9)",
             border: "none",
             borderRadius: "8px",
@@ -139,9 +139,9 @@ const Sidebar = ({ state, onTake, onSave, onSelect }: SidebarProps) => {
             gap: "6px",
             width: "100%",
             padding: "8px 0",
-            color: "white",
-            background: "rgba(255,255,255,0.1)",
-            border: "1px solid rgba(255,255,255,0.1)",
+            color: "#f4f4f6",
+            background: "rgba(244,244,246,0.1)",
+            border: "1px solid rgba(244,244,246,0.1)",
             borderRadius: "8px",
             fontSize: "14px",
             fontWeight: 500,
@@ -160,7 +160,7 @@ const Sidebar = ({ state, onTake, onSave, onSelect }: SidebarProps) => {
       </div>
 
       <div style={{ flex: 1, overflowY: "auto", padding: "16px 12px" }}>
-        <div style={{ padding: "0 10px", color: "rgba(255,255,255,0.4)", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "8px" }}>
+        <div style={{ padding: "0 10px", color: "rgba(244,244,246,0.4)", fontSize: "11px", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.5px", marginBottom: "8px" }}>
             {localize("Recent")}</div>
         {localize(Object.keys(images)
           .reverse()
@@ -193,7 +193,7 @@ const FaceTime = () => {
   });
 
   return (
-    <div style={{ position: "relative", height: "100%", width: "100%", backgroundColor: "#000", }}>
+    <div style={{ position: "relative", height: "100%", width: "100%", backgroundColor: "#000000", }}>
       <Sidebar
         state={state}
         onTake={() => {

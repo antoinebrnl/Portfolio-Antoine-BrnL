@@ -10,6 +10,9 @@ import {
 
 const colorReg = (prefix: string) => new RegExp("^" + prefix + "-([0-9a-z]+)(/(\\d+))?$");
 
+const neutralPalette = { 50: '#f4f4f6', 100: '#e6e6e9', 200: '#e6e6e9', 300: '#9999a1', 400: '#9999a1', 500: '#66666e', 600: '#66666e', 700: '#000000', 800: '#000000', 900: '#000000', 950: '#000000' };
+const accentPalette = { ...neutralPalette, 400: '#c86a52', 500: '#c86a52', 600: '#c86a52' };
+
 const colorAttr = (prefix: string, [, color, , opacity]: RegExpMatchArray) => {
   let lightColor = "",
     darkColor = "";
@@ -82,9 +85,13 @@ export default defineConfig({
       'brand-link': 'var(--brand-link)',
       black: '#000000',
       white: '#f4f4f6',
-      gray: { 50: '#f4f4f6', 100: '#e6e6e9', 200: '#e6e6e9', 300: '#9999a1', 400: '#9999a1', 500: '#66666e', 600: '#66666e', 700: '#000000', 800: '#000000', 900: '#000000', 950: '#000000' },
-      // Legacy utility names now resolve to the brand accent, not system blue.
-      blue: { 50: '#f4f4f6', 100: '#e6e6e9', 200: '#e6e6e9', 300: '#db8f7b', 400: '#c86a52', 500: '#c86a52', 600: '#964833', 700: '#964833', 800: '#964833', 900: '#000000' },
+      gray: neutralPalette,
+      slate: neutralPalette, zinc: neutralPalette, neutral: neutralPalette, stone: neutralPalette,
+      // Legacy semantic and syntax utility names cannot reintroduce system colors.
+      blue: accentPalette, red: accentPalette, orange: accentPalette, amber: accentPalette,
+      yellow: accentPalette, lime: neutralPalette, green: neutralPalette, emerald: neutralPalette,
+      teal: neutralPalette, cyan: neutralPalette, sky: neutralPalette, indigo: neutralPalette,
+      violet: neutralPalette, purple: neutralPalette, fuchsia: accentPalette, pink: accentPalette, rose: accentPalette,
       neon: {
         purple: '#66666e',
         cyan: '#9999a1',

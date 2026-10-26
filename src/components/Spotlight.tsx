@@ -412,8 +412,8 @@ export default function Spotlight({
               if (label !== "All") setSearchText("");
             }}
             style={{
-              background: activeTab === label ? "rgba(200,106,82,0.1)" : "rgba(120,120,128,0.12)",
-              color: activeTab === label ? "#c86a52" : "var(--color-c-600, #555)",
+              background: activeTab === label ? "rgba(200,106,82,0.1)" : "rgba(102,102,110,0.12)",
+              color: activeTab === label ? "#c86a52" : "var(--color-c-600, #66666e)",
               borderRadius: 8,
               padding: "4px 11px",
               fontSize: 12,

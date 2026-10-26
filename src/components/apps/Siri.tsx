@@ -626,17 +626,17 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
           animation: siri-aura-pulse 2s ease-in-out infinite;
         }
         .siri-glass-panel {
-          background: rgba(255, 255, 255, 0.4);
-          backdrop-filter: blur(50px) saturate(180%);
-          -webkit-backdrop-filter: blur(50px) saturate(180%);
-          border: 1px solid rgba(255, 255, 255, 0.4);
+          background: rgba(244,244,246, 0.4);
+          backdrop-filter: blur(50px) saturate(100%);
+          -webkit-backdrop-filter: blur(50px) saturate(100%);
+          border: 1px solid rgba(244,244,246, 0.4);
           border-radius: 20px;
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), inset 0 0 0 0.5px rgba(255, 255, 255, 0.5);
+          box-shadow: 0 8px 32px rgba(0,0,0, 0.12), inset 0 0 0 0.5px rgba(244,244,246, 0.5);
         }
         .dark .siri-glass-panel {
-          background: rgba(35, 35, 35, 0.45);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 0 0.5px rgba(255, 255, 255, 0.1);
+          background: rgba(0,0,0, 0.45);
+          border: 1px solid rgba(244,244,246, 0.1);
+          box-shadow: 0 8px 32px rgba(0,0,0, 0.5), inset 0 0 0 0.5px rgba(244,244,246, 0.1);
         }
       `)}</style>
 

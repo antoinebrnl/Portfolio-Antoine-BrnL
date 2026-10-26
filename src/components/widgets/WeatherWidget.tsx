@@ -22,17 +22,17 @@ const WeatherIcon = ({ type, size = 36 }: { type: string; size?: number }) => {
   const s = size;
   if (type === "sunny") return (
     <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
-      <circle cx="12" cy="12" r="4.5" fill="#FFD60A" />
+      <circle cx="12" cy="12" r="4.5" fill="#c86a52" />
       {localize([0,45,90,135,180,225,270,315].map((deg, i) => (
         <line key={i} x1="12" y1="2.5" x2="12" y2="5"
-          stroke="#FFD60A" strokeWidth="2" strokeLinecap="round"
+          stroke="#c86a52" strokeWidth="2" strokeLinecap="round"
           transform={`rotate(${deg} 12 12)`} />
       )))}
     </svg>
   );
   if (type === "rainy") return (
     <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
-      <path d="M6 13a5 5 0 1 1 9.9-1H17a3 3 0 0 1 0 6H7a4 4 0 0 1-1-7.87" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5" fill="none"/>
+      <path d="M6 13a5 5 0 1 1 9.9-1H17a3 3 0 0 1 0 6H7a4 4 0 0 1-1-7.87" stroke="rgba(244,244,246,0.8)" strokeWidth="1.5" fill="none"/>
       <line x1="9" y1="19" x2="7" y2="22" stroke="#9999a1" strokeWidth="1.5" strokeLinecap="round"/>
       <line x1="13" y1="19" x2="11" y2="22" stroke="#9999a1" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
@@ -51,14 +51,14 @@ const WeatherIcon = ({ type, size = 36 }: { type: string; size?: number }) => {
   // partly-cloudy default
   return (
     <svg width={s} height={s} viewBox="0 0 24 24" fill="none">
-      <circle cx="9" cy="8.5" r="3.5" fill="#FFD60A" opacity="0.95"/>
+      <circle cx="9" cy="8.5" r="3.5" fill="#c86a52" opacity="0.95"/>
       {localize([0,60,120,180,240,300].map((deg, i) => (
         <line key={i} x1="9" y1="1.5" x2="9" y2="3.2"
-          stroke="#FFD60A" strokeWidth="1.6" strokeLinecap="round"
+          stroke="#c86a52" strokeWidth="1.6" strokeLinecap="round"
           transform={`rotate(${deg} 9 8.5)`} />
       )))}
       <path d="M8 14a4.5 4.5 0 1 1 8.9-.9H18a2.8 2.8 0 0 1 0 5.6H9a3.4 3.4 0 0 1-1-6.35"
-        stroke="rgba(255,255,255,0.82)" strokeWidth="1.4" fill="rgba(255,255,255,0.14)"/>
+        stroke="rgba(244,244,246,0.82)" strokeWidth="1.4" fill="rgba(244,244,246,0.14)"/>
     </svg>
   );
 };
@@ -70,10 +70,10 @@ interface WeatherWidgetProps {
 export default function WeatherWidget({ compact }: WeatherWidgetProps) {
   const GLASS: React.CSSProperties = {
     background: "linear-gradient(145deg, rgba(0,0,0,0.84) 0%, rgba(102,102,110,0.72) 100%)",
-    backdropFilter: "blur(64px) saturate(200%)",
-    WebkitBackdropFilter: "blur(64px) saturate(200%)",
-    border: "0.5px solid rgba(255,255,255,0.12)",
-    boxShadow: "0 4px 32px rgba(0,0,0,0.42), inset 0 0.5px 0 rgba(255,255,255,0.16)",
+    backdropFilter: "blur(64px) saturate(100%)",
+    WebkitBackdropFilter: "blur(64px) saturate(100%)",
+    border: "0.5px solid rgba(244,244,246,0.12)",
+    boxShadow: "0 4px 32px rgba(0,0,0,0.42), inset 0 0.5px 0 rgba(244,244,246,0.16)",
     fontFamily: "var(--font-system)",
   };
 
@@ -87,14 +87,14 @@ export default function WeatherWidget({ compact }: WeatherWidgetProps) {
         width: 162,
       }}>
         {/* Location */}
-        <div style={{ fontSize: 11, fontWeight: 600, color: "rgba(255,255,255,0.72)", marginBottom: 4 }}>
+        <div style={{ fontSize: 11, fontWeight: 600, color: "rgba(244,244,246,0.72)", marginBottom: 4 }}>
           {localize(WEATHER_DATA.location)}
         </div>
         {/* Big temp */}
         <div style={{
           fontSize: 48,
           fontWeight: 200,
-          color: "white",
+          color: "#f4f4f6",
           lineHeight: 1,
           letterSpacing: "-2px",
           fontVariantNumeric: "tabular-nums",
@@ -107,10 +107,10 @@ export default function WeatherWidget({ compact }: WeatherWidgetProps) {
           alignItems: "center",
           gap: 5,
           paddingTop: 8,
-          borderTop: "0.5px solid rgba(255,255,255,0.09)",
+          borderTop: "0.5px solid rgba(244,244,246,0.09)",
         }}>
           <WeatherIcon type="moon" size={14} />
-          <span style={{ fontSize: 10, color: "rgba(255,255,255,0.55)", letterSpacing: "0.01em" }}>
+          <span style={{ fontSize: 10, color: "rgba(244,244,246,0.55)", letterSpacing: "0.01em" }}>
             {localize(WEATHER_DATA.alert)}
           </span>
         </div>
@@ -123,12 +123,12 @@ export default function WeatherWidget({ compact }: WeatherWidgetProps) {
       {/* Top row */}
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
         <div>
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.65)", marginBottom: 4, fontWeight: 500 }}>
+          <div style={{ fontSize: 13, color: "rgba(244,244,246,0.65)", marginBottom: 4, fontWeight: 500 }}>
             {localize(WEATHER_DATA.location)}
           </div>
-          <div style={{ fontSize: 42, fontWeight: 200, color: "white", lineHeight: 1, letterSpacing: "-1.5px" }}>
+          <div style={{ fontSize: 42, fontWeight: 200, color: "#f4f4f6", lineHeight: 1, letterSpacing: "-1.5px" }}>
             {localize(WEATHER_DATA.temp)}{localize("°")}</div>
-          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.65)", marginTop: 5 }}>
+          <div style={{ fontSize: 12, color: "rgba(244,244,246,0.65)", marginTop: 5 }}>
             {localize(WEATHER_DATA.condition)}
           </div>
         </div>
@@ -136,10 +136,10 @@ export default function WeatherWidget({ compact }: WeatherWidgetProps) {
       </div>
 
       {/* Stats */}
-      <div style={{ display: "flex", gap: 14, marginTop: 12, paddingTop: 10, borderTop: "0.5px solid rgba(255,255,255,0.09)" }}>
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.55)" }}>{localize("H:")}{localize(WEATHER_DATA.high)}{localize("° L:")}{localize(WEATHER_DATA.low)}{localize("°")}</span>
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.55)" }}>{localize("💧 ")}{localize(WEATHER_DATA.humidity)}{localize("%")}</span>
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.55)" }}>{localize("💨 ")}{localize(WEATHER_DATA.wind)}{localize("km/h")}</span>
+      <div style={{ display: "flex", gap: 14, marginTop: 12, paddingTop: 10, borderTop: "0.5px solid rgba(244,244,246,0.09)" }}>
+        <span style={{ fontSize: 11, color: "rgba(244,244,246,0.55)" }}>{localize("H:")}{localize(WEATHER_DATA.high)}{localize("° L:")}{localize(WEATHER_DATA.low)}{localize("°")}</span>
+        <span style={{ fontSize: 11, color: "rgba(244,244,246,0.55)" }}>{localize("💧 ")}{localize(WEATHER_DATA.humidity)}{localize("%")}</span>
+        <span style={{ fontSize: 11, color: "rgba(244,244,246,0.55)" }}>{localize("💨 ")}{localize(WEATHER_DATA.wind)}{localize("km/h")}</span>
       </div>
 
       {/* Alert */}
@@ -149,10 +149,10 @@ export default function WeatherWidget({ compact }: WeatherWidgetProps) {
         gap: 6,
         marginTop: 10,
         paddingTop: 8,
-        borderTop: "0.5px solid rgba(255,255,255,0.07)",
+        borderTop: "0.5px solid rgba(244,244,246,0.07)",
       }}>
         <WeatherIcon type="moon" size={16} />
-        <span style={{ fontSize: 11, color: "rgba(255,255,255,0.50)" }}>{localize(WEATHER_DATA.alert)}</span>
+        <span style={{ fontSize: 11, color: "rgba(244,244,246,0.50)" }}>{localize(WEATHER_DATA.alert)}</span>
       </div>
     </div>
   );

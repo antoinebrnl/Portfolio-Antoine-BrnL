@@ -52,8 +52,8 @@ export default function Login(props: MacActions) {
             className="size-full absolute inset-0"
             style={{
               backgroundColor: 'rgba(0,0,0,0.15)',
-              backdropFilter: 'blur(60px) saturate(200%)',
-              WebkitBackdropFilter: 'blur(60px) saturate(200%)',
+              backdropFilter: 'blur(60px) saturate(100%)',
+              WebkitBackdropFilter: 'blur(60px) saturate(100%)',
             }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -76,7 +76,7 @@ export default function Login(props: MacActions) {
                   margin: '0 auto',
                   borderRadius: '50%',
                   padding: '3px',
-                  background: 'rgba(255,255,255,0.2)',
+                  background: 'rgba(244,244,246,0.2)',
                   boxShadow: '0 4px 20px rgba(0,0,0,0.2)',
                 }}
               >
@@ -86,7 +86,7 @@ export default function Login(props: MacActions) {
                   alt={localize("avatar")}
                   style={{
                     objectFit: 'cover',
-                    border: '2px solid rgba(255,255,255,0.15)',
+                    border: '2px solid rgba(244,244,246,0.15)',
                   }}
                 />
               </div>
@@ -98,7 +98,7 @@ export default function Login(props: MacActions) {
                   marginTop: '12px',
                   fontSize: '17px',
                   fontWeight: 500,
-                  color: 'white',
+                  color: '#f4f4f6',
                   letterSpacing: '0.3px',
                   textShadow: '0 1px 4px rgba(0,0,0,0.3)',
                 }}
@@ -121,11 +121,11 @@ export default function Login(props: MacActions) {
                     gap: '8px',
                     padding: '6px 24px',
                     borderRadius: '20px',
-                    border: '0.5px solid rgba(255,255,255,0.25)',
-                    background: 'rgba(255,255,255,0.12)',
+                    border: '0.5px solid rgba(244,244,246,0.25)',
+                    background: 'rgba(244,244,246,0.12)',
                     backdropFilter: 'blur(10px)',
                     WebkitBackdropFilter: 'blur(10px)',
-                    color: 'white',
+                    color: '#f4f4f6',
                     fontSize: '13px',
                     fontWeight: 400,
                     letterSpacing: '0.3px',
@@ -140,8 +140,8 @@ export default function Login(props: MacActions) {
                     (e.currentTarget as HTMLElement).style.boxShadow = '0 0 12px rgba(200,106,82, 0.4)';
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.12)';
-                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.25)';
+                    (e.currentTarget as HTMLElement).style.background = 'rgba(244,244,246,0.12)';
+                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(244,244,246,0.25)';
                     (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
                   }}
                   onClick={(e) => {
@@ -161,7 +161,7 @@ export default function Login(props: MacActions) {
                 style={{
                   marginTop: '16px',
                   fontSize: '11px',
-                  color: 'rgba(255,255,255,0.5)',
+                  color: 'rgba(244,244,246,0.5)',
                   letterSpacing: '0.2px',
                 }}
                 initial={{ opacity: 0 }}
@@ -221,11 +221,11 @@ export default function Login(props: MacActions) {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      background: 'rgba(255,255,255,0.1)',
+                      background: 'rgba(244,244,246,0.1)',
                       backdropFilter: 'blur(10px)',
-                      border: '0.5px solid rgba(255,255,255,0.15)',
+                      border: '0.5px solid rgba(244,244,246,0.15)',
                       transition: 'background 0.2s ease, transform 0.15s ease',
-                      color: 'white',
+                      color: '#f4f4f6',
                     }}
                     onMouseEnter={(e) => {
                       (e.currentTarget as HTMLElement).style.background = 'rgba(200,106,82, 0.25)';
@@ -233,8 +233,8 @@ export default function Login(props: MacActions) {
                       (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)';
                     }}
                     onMouseLeave={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.1)';
-                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.15)';
+                      (e.currentTarget as HTMLElement).style.background = 'rgba(244,244,246,0.1)';
+                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(244,244,246,0.15)';
                       (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
                     }}
                   >
@@ -244,7 +244,7 @@ export default function Login(props: MacActions) {
                     style={{
                       marginTop: '6px',
                       fontSize: '11px',
-                      color: 'rgba(255,255,255,0.7)',
+                      color: 'rgba(244,244,246,0.7)',
                       fontWeight: 400,
                     }}
                   >
@@ -276,7 +276,7 @@ export default function Login(props: MacActions) {
                 style={{
                   fontSize: 'clamp(72px, 12vw, 110px)',
                   fontWeight: 800,
-                  color: 'white',
+                  color: '#f4f4f6',
                   letterSpacing: '-2px',
                   lineHeight: 1,
                   textShadow: '0 2px 20px rgba(0,0,0,0.3)',
@@ -290,7 +290,7 @@ export default function Login(props: MacActions) {
                   marginTop: '8px',
                   fontSize: 'clamp(16px, 2.5vw, 22px)',
                   fontWeight: 600,
-                  color: 'rgba(255,255,255,0.85)',
+                  color: 'rgba(244,244,246,0.85)',
                   letterSpacing: '0.5px',
                   textShadow: '0 1px 8px rgba(0,0,0,0.2)',
                 }}
@@ -312,7 +312,7 @@ export default function Login(props: MacActions) {
                 style={{
                   fontSize: '13px',
                   fontWeight: 300,
-                  color: 'rgba(255,255,255,0.6)',
+                  color: 'rgba(244,244,246,0.6)',
                   letterSpacing: '0.5px',
                   animation: 'subtlePulse 3s ease-in-out infinite',
                   cursor: 'pointer',

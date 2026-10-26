@@ -21,7 +21,7 @@ const PROJECTS: AppEntry[] = [
     category: "Portfolio",
     icon: "img/icons/mac-icon.png",
     description: "A complete macOS Tahoe simulation built with React and Framer Motion.",
-    color: "linear-gradient(135deg, #c86a52 0%, #964833 100%)",
+    color: "linear-gradient(135deg, #c86a52 0%, #000000 100%)",
     preview: "img/previews/macos.png"
   },
   {
@@ -31,7 +31,7 @@ const PROJECTS: AppEntry[] = [
     category: "Education",
     icon: "img/icons/skill-exchange.png",
     description: "Exchange skills with peers. Learn anything, teach what you know.",
-    color: "linear-gradient(135deg, #C86A52 0%, #66666e 100%)",
+    color: "linear-gradient(135deg, #c86a52 0%, #66666e 100%)",
     preview: "img/previews/skill.png"
   },
   {
@@ -41,7 +41,7 @@ const PROJECTS: AppEntry[] = [
     category: "Finance",
     icon: "img/icons/paytm.png",
     description: "A full-stack Paytm-inspired payments app with modern UI.",
-    color: "linear-gradient(135deg, #C86A52 0%, #66666e 100%)",
+    color: "linear-gradient(135deg, #c86a52 0%, #66666e 100%)",
     preview: "img/previews/paytm.png"
   },
   {
@@ -81,7 +81,7 @@ function AppIcon({ icon, color, size = 64 }: { icon: string; color: string; size
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        boxShadow: isImage ? "none" : "0 4px 12px rgba(0,0,0,0.15), inset 0 1px 1px rgba(255,255,255,0.3)",
+        boxShadow: isImage ? "none" : "0 4px 12px rgba(0,0,0,0.15), inset 0 1px 1px rgba(244,244,246,0.3)",
         border: isImage ? "none" : "0.5px solid rgba(0,0,0,0.1)",
         flexShrink: 0,
         overflow: "hidden"
@@ -90,7 +90,7 @@ function AppIcon({ icon, color, size = 64 }: { icon: string; color: string; size
       {localize(isImage ? (
         <img src={icon} alt={localize("App Icon")} style={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: size * 0.225 }} onError={(e) => { e.currentTarget.style.display = 'none'; e.currentTarget.parentElement!.style.background = color; }} />
       ) : (
-        <span className={icon} style={{ width: size * 0.5, height: size * 0.5, color: "white" }} />
+        <span className={icon} style={{ width: size * 0.5, height: size * 0.5, color: "#f4f4f6" }} />
       ))}
     </div>
   );
@@ -138,7 +138,7 @@ function FeaturedCard({ app, index }: { app: AppEntry; index: number }) {
           />
         ) : null)}
         {/* Fallback pattern if image is missing */}
-        <div style={{ position: "absolute", opacity: 0.1, backgroundImage: "radial-gradient(circle at 2px 2px, white 1px, transparent 0)", backgroundSize: "16px 16px", inset: 0 }} />
+        <div style={{ position: "absolute", opacity: 0.1, backgroundImage: "radial-gradient(circle at 2px 2px, #f4f4f6 1px, transparent 0)", backgroundSize: "16px 16px", inset: 0 }} />
       </div>
       
       <div 

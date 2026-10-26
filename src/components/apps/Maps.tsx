@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 const PLACES = [
   { id: "1", name: "MBM University", type: "University", lat: 26.285, lng: 73.006, color: "var(--brand-link)" },
   { id: "2", name: "Jodhpur", type: "City", lat: 26.292, lng: 73.014, color: "var(--brand-link)" },
-  { id: "3", name: "Mehrangarh Fort", type: "Landmark", lat: 26.298, lng: 72.978, color: "#FF3B30" },
+  { id: "3", name: "Mehrangarh Fort", type: "Landmark", lat: 26.298, lng: 72.978, color: "#c86a52" },
   { id: "4", name: "Umaid Bhawan", type: "Palace", lat: 26.280, lng: 73.022, color: "#66666e" },
 ];
 
@@ -41,10 +41,10 @@ export default function Maps() {
           preserveAspectRatio="xMidYMid slice"
         >
           {/* Main roads */}
-          <line x1="0" y1="150" x2="400" y2="150" stroke={mapStyle === "satellite" ? "rgba(255,255,255,0.3)" : "white"} strokeWidth="6" />
-          <line x1="200" y1="0" x2="200" y2="300" stroke={mapStyle === "satellite" ? "rgba(255,255,255,0.3)" : "white"} strokeWidth="6" />
-          <line x1="0" y1="80" x2="400" y2="220" stroke={mapStyle === "satellite" ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.8)"} strokeWidth="3" />
-          <line x1="0" y1="220" x2="400" y2="80" stroke={mapStyle === "satellite" ? "rgba(255,255,255,0.2)" : "rgba(255,255,255,0.8)"} strokeWidth="3" />
+          <line x1="0" y1="150" x2="400" y2="150" stroke={mapStyle === "satellite" ? "rgba(244,244,246,0.3)" : "#f4f4f6"} strokeWidth="6" />
+          <line x1="200" y1="0" x2="200" y2="300" stroke={mapStyle === "satellite" ? "rgba(244,244,246,0.3)" : "#f4f4f6"} strokeWidth="6" />
+          <line x1="0" y1="80" x2="400" y2="220" stroke={mapStyle === "satellite" ? "rgba(244,244,246,0.2)" : "rgba(244,244,246,0.8)"} strokeWidth="3" />
+          <line x1="0" y1="220" x2="400" y2="80" stroke={mapStyle === "satellite" ? "rgba(244,244,246,0.2)" : "rgba(244,244,246,0.8)"} strokeWidth="3" />
           {/* Blocks */}
           {localize([60, 130, 270, 340].map((x) =>
             [50, 110, 190, 250].map((y) => (
@@ -82,7 +82,7 @@ export default function Maps() {
                   fill={place.color}
                   opacity={isActive ? 1 : 0.8}
                 />
-                <circle cx={x} cy={y} r={isActive ? 7 : 5} fill="white" />
+                <circle cx={x} cy={y} r={isActive ? 7 : 5} fill="#f4f4f6" />
                 {localize(isActive && (
                   <circle cx={x} cy={y} r={22} fill="none" stroke={place.color} strokeWidth="2" opacity="0.4" />
                 ))}
@@ -99,7 +99,7 @@ export default function Maps() {
             right: 12,
             display: "flex",
             gap: "4px",
-            background: "rgba(255,255,255,0.9)",
+            background: "rgba(244,244,246,0.9)",
             borderRadius: "10px",
             padding: "3px",
             backdropFilter: "blur(10px)",
@@ -117,7 +117,7 @@ export default function Maps() {
                 padding: "4px 8px",
                 fontSize: "10px",
                 cursor: "pointer",
-                color: mapStyle === s ? "white" : "#000000",
+                color: mapStyle === s ? "#f4f4f6" : "#000000",
                 fontWeight: mapStyle === s ? 600 : 400,
                 textTransform: "capitalize",
                 transition: "all 0.15s ease",
@@ -136,7 +136,7 @@ export default function Maps() {
             right: 12,
             display: "flex",
             flexDirection: "column",
-            background: "rgba(255,255,255,0.9)",
+            background: "rgba(244,244,246,0.9)",
             borderRadius: "10px",
             overflow: "hidden",
             backdropFilter: "blur(10px)",
@@ -175,7 +175,7 @@ export default function Maps() {
             bottom: 12,
             left: 12,
             right: 52,
-            background: "rgba(255,255,255,0.95)",
+            background: "rgba(244,244,246,0.95)",
             backdropFilter: "blur(20px)",
             borderRadius: "14px",
             padding: "12px 14px",
@@ -197,7 +197,7 @@ export default function Maps() {
               flexShrink: 0,
             }}
           >
-            <span className="i-ph:map-pin" style={{ width: "18px", height: "18px", color: "white" }} />
+            <span className="i-ph:map-pin" style={{ width: "18px", height: "18px", color: "#f4f4f6" }} />
           </div>
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ fontSize: "14px", fontWeight: 600, color: "#000000" }}>
@@ -240,7 +240,7 @@ export default function Maps() {
         style={{
           width: "220px",
           flexShrink: 0,
-          background: "rgba(248,248,250,0.98)",
+          background: "rgba(244,244,246,0.98)",
           borderRight: "0.5px solid rgba(0,0,0,0.1)",
           display: "flex",
           flexDirection: "column",
@@ -317,7 +317,7 @@ export default function Maps() {
                 flexShrink: 0,
               }}
             >
-              <span className="i-ph:map-pin" style={{ width: "14px", height: "14px", color: "white" }} />
+              <span className="i-ph:map-pin" style={{ width: "14px", height: "14px", color: "#f4f4f6" }} />
             </div>
             <div style={{ textAlign: "left", minWidth: 0 }}>
               <div

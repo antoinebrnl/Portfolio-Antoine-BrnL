@@ -1,4 +1,5 @@
 import { localize } from "~/i18n";
+import Wallpaper from "~/components/Wallpaper";
 import React, { useState, useEffect } from "react";
 import websites from "~/configs/websites";
 import wallpapers from "~/configs/wallpapers";
@@ -78,11 +79,10 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
         width: "100%",
         height: "100%",
         overflowY: "auto",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`,
+        position: "relative",
       }}
     >
+      <Wallpaper src={dark ? wallpapers.night : wallpapers.day} />
       <div style={{ 
           width: "100%", 
           minHeight: "100%", 
@@ -104,15 +104,15 @@ const NavPage = ({ width, setGoURL }: NavProps) => {
                 width: "100%",
                 display: "flex",
                 alignItems: "center",
-                background: "rgba(255,255,255,0.4)",
-                border: "1px solid rgba(255,255,255,0.2)",
+                background: "rgba(244,244,246,0.4)",
+                border: "1px solid rgba(244,244,246,0.2)",
                 boxShadow: "0 4px 16px rgba(0,0,0,0.05)",
                 borderRadius: "16px",
                 padding: "0 20px"
             }}
           >
             <div style={{ display: "flex", alignItems: "center", gap: "12px", borderRight: "1px solid rgba(0,0,0,0.1)", paddingRight: "20px" }}>
-              <span className="i-ph:shield-check-fill" style={{ fontSize: "24px", color: "#34C759" }} />
+              <span className="i-ph:shield-check-fill" style={{ fontSize: "24px", color: "#c86a52" }} />
               <span style={{ fontSize: "24px", fontWeight: 700, color: "var(--lg-text-primary, #000000)" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>{localize(numTracker)}</span>
             </div>
             <div style={{ paddingLeft: "20px", fontSize: "14px", color: "var(--lg-text-secondary, rgba(0,0,0,0.6))" }}>
@@ -133,11 +133,10 @@ const NoInternetPage = () => {
         width: "100%",
         height: "100%",
         overflowY: "auto",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundImage: `url(${dark ? wallpapers.night : wallpapers.day})`,
+        position: "relative",
       }}
     >
+      <Wallpaper src={dark ? wallpapers.night : wallpapers.day} />
       <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", background: "var(--lg-bg-tinted)", backdropFilter: "var(--lg-blur-heavy)" }}>
         <div style={{ textAlign: "center" }}>
           <div style={{ fontSize: "24px", fontWeight: 700, color: "var(--lg-text-primary, #000000)" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>{localize("You Are Not Connected to the Internet")}</div>
@@ -324,7 +323,7 @@ const Safari = ({ width = 800 }: SafariProps) => {
             <iframe
                 title={localize("Safari clone browser")}
                 src={state.goURL}
-                style={{ width: "100%", height: "100%", border: "none", background: "#fff" }}
+                style={{ width: "100%", height: "100%", border: "none", background: "#f4f4f6" }}
             />
             )
         ) : (

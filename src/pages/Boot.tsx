@@ -52,9 +52,9 @@ export default function Boot({ restart, sleep, onComplete }: BootProps) {
                 aria-valuemin={0}
                 aria-valuemax={100}
                 aria-valuenow={Math.round(percent)}
-                style={{ marginTop: 52, width: "100%", height: 5, borderRadius: 3, background: "#333", overflow: "hidden" }}
+                style={{ marginTop: 52, width: "100%", height: 5, borderRadius: 3, background: "#000000", overflow: "hidden" }}
               >
-                <div style={{ width: `${percent}%`, height: "100%", background: "#eee", borderRadius: 3 }} />
+                <div style={{ width: `${percent}%`, height: "100%", background: "#f4f4f6", borderRadius: 3 }} />
               </div>
             </div>
           </div>
@@ -63,7 +63,7 @@ export default function Boot({ restart, sleep, onComplete }: BootProps) {
         <button
           type="button"
           className="size-full flex-center"
-          style={{ color: "#aaa", background: "transparent", border: 0, cursor: "pointer" }}
+          style={{ color: "#9999a1", background: "transparent", border: 0, cursor: "pointer" }}
           onClick={() => sleep ? onComplete(false) : setLoading(true)}
         >
           {localize(sleep ? "Cliquer pour réactiver" : "Démarrer")}

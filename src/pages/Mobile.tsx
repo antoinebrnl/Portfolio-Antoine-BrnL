@@ -20,12 +20,7 @@ export default function Mobile(props: MacActions) {
 
   const { audioState, controls } = useAudioContext();
 
-  const { dark, brightness, getWallpaper, volume } = useStore((s) => ({
-    dark: s.dark,
-    brightness: s.brightness,
-    getWallpaper: s.getWallpaper,
-    volume: s.volume,
-  }));
+  const volume = useStore((s) => s.volume);
 
   const { setVolume, setBrightness } = useStore((s) => ({
     setVolume: s.setVolume,
@@ -41,7 +36,6 @@ export default function Mobile(props: MacActions) {
     setBrightness(value);
   };
 
-  const activeWallpaper = getWallpaper();
 
   const openApp = (id: string) => {
     setActiveApp(id);
@@ -51,18 +45,11 @@ export default function Mobile(props: MacActions) {
     setActiveApp(null);
   };
 
-  const bgStyle: React.CSSProperties = {
-    backgroundImage: `url(${dark ? activeWallpaper.night : activeWallpaper.day})`,
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    filter: `brightness(${(brightness as number) * 0.7 + 50}%)`,
-    transition: "filter 0.3s ease",
-  };
 
   const dockApps = ["facetime", "messages", "safari", "music"];
 
   return (
-    <div className="size-full overflow-hidden relative" style={bgStyle}>
+    <div className="size-full overflow-hidden relative">
       <StatusBar 
         isAppOpen={activeApp !== null} 
         appTitle={activeApp ? (activeApp === 'finder' ? 'Files' : apps.find(a => a.id === activeApp)?.title) : ""} 

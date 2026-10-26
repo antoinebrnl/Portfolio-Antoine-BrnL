@@ -21,7 +21,7 @@ const BTN_ROWS = [
 const btnStyle = (label: string) => {
   if (label === "AC" || label === "+/-" || label === "%") {
     return {
-      background: "rgba(160,160,160,0.35)",
+      background: "rgba(153,153,161,0.35)",
       color: "#000000",
     };
   }
@@ -32,8 +32,8 @@ const btnStyle = (label: string) => {
     };
   }
   return {
-    background: "rgba(80,80,80,0.35)",
-    color: "#fff",
+    background: "rgba(102,102,110,0.35)",
+    color: "#f4f4f6",
   };
 };
 
@@ -131,7 +131,7 @@ export default function Calculator() {
     <div
       className="flex flex-col size-full select-none"
       style={{
-        background: "rgba(28,28,30,0.96)",
+        background: "rgba(0,0,0,0.96)",
         borderRadius: "0 0 14px 14px",
         overflow: "hidden",
       }}
@@ -148,7 +148,7 @@ export default function Calculator() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.1 }}
           style={{
-            color: "#fff",
+            color: "#f4f4f6",
             fontSize: state.display.length > 9 ? "28px" : "48px",
             fontWeight: 200,
             letterSpacing: "-1px",
@@ -166,7 +166,7 @@ export default function Calculator() {
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: "1px",
-          background: "rgba(255,255,255,0.06)",
+          background: "rgba(244,244,246,0.06)",
           padding: "1px",
         }}
       >

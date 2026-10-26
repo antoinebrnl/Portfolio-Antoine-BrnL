@@ -126,7 +126,7 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
           mass: 0.6,
         }}
         style={{
-          background: "#1a1a1a",
+          background: "#000000",
           borderRadius: state === "expanded" ? 24 : 36,
           cursor: "pointer",
           overflow: "hidden",
@@ -163,7 +163,7 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div
                       style={{
-                        color: "rgba(255,255,255,0.6)",
+                        color: "rgba(244,244,246,0.6)",
                         fontSize: 11,
                         fontWeight: 500,
                         textTransform: "uppercase",
@@ -175,13 +175,13 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
                        notification.type === "timer" ? "Timer" : "Notification")}
                     </div>
                     {localize(notification.type === "timer" ? (
-                      <div style={{ color: "white", fontSize: 22, fontWeight: 700, fontVariantNumeric: "tabular-nums" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>
+                      <div style={{ color: "#f4f4f6", fontSize: 22, fontWeight: 700, fontVariantNumeric: "tabular-nums" , fontFamily: "var(--font-display)", overflowWrap: "anywhere" }}>
                         {localize(timerDisplay)}
                       </div>
                     ) : (
                       <div
                         style={{
-                          color: "white",
+                          color: "#f4f4f6",
                           fontSize: 13,
                           fontWeight: 500,
                           whiteSpace: "nowrap",
@@ -204,28 +204,28 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
                       style={{ width: 40, height: 40, borderRadius: 8, objectFit: "cover" }}
                     />
                     <div style={{ flex: 1, minWidth: 0 }}>
-                      <div style={{ color: "white", fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
+                      <div style={{ color: "#f4f4f6", fontSize: 13, fontWeight: 600, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                         {localize(music.title)}
                       </div>
-                      <div style={{ color: "rgba(255,255,255,0.5)", fontSize: 11 }}>{localize(music.artist)}</div>
+                      <div style={{ color: "rgba(244,244,246,0.5)", fontSize: 11 }}>{localize(music.artist)}</div>
                     </div>
                     <div className="flex items-center gap-2">
                       <button
                         onClick={(e) => { e.stopPropagation(); controls.toggle(!audioState.playing); }}
-                        style={{ background: "none", border: "none", color: "white", cursor: "pointer", padding: 4, display: "flex", alignItems: "center" }}
+                        style={{ background: "none", border: "none", color: "#f4f4f6", cursor: "pointer", padding: 4, display: "flex", alignItems: "center" }}
                       >
                         {localize(audioState.playing ? <span className="i-ph:pause-fill text-xl" /> : <span className="i-ph:play-fill text-xl" />)}
                       </button>
                       <button
                         onClick={(e) => e.stopPropagation()}
-                        style={{ background: "none", border: "none", color: "white", cursor: "pointer", padding: 4, display: "flex", alignItems: "center" }}
+                        style={{ background: "none", border: "none", color: "#f4f4f6", cursor: "pointer", padding: 4, display: "flex", alignItems: "center" }}
                       >
                         <span className="i-ph:skip-forward-fill text-base" />
                       </button>
                     </div>
                   </div>
                   {/* Progress bar */}
-                  <div style={{ width: "100%", height: 3, borderRadius: 2, background: "rgba(255,255,255,0.15)", overflow: "hidden" }}>
+                  <div style={{ width: "100%", height: 3, borderRadius: 2, background: "rgba(244,244,246,0.15)", overflow: "hidden" }}>
                     <motion.div
                       style={{ height: "100%", borderRadius: 2, background: "var(--accent-green)", originX: 0 }}
                       animate={{ scaleX: audioState.playing ? [0.1, 0.9] : 0.1 }}
@@ -269,8 +269,8 @@ export default function DynamicIsland({ currentApp }: DynamicIslandProps) {
                   width: 8,
                   height: 8,
                   borderRadius: "50%",
-                  background: "radial-gradient(circle, #1f1f1f 30%, #0a0a0a 100%)",
-                  border: "1px solid rgba(255,255,255,0.08)",
+                  background: "radial-gradient(circle, #000000 30%, #000000 100%)",
+                  border: "1px solid rgba(244,244,246,0.08)",
                   boxShadow: "inset 0 1px 2px rgba(0,0,0,0.5)",
                 }}
               />

@@ -1,4 +1,5 @@
 import { localize } from "~/i18n";
+import Wallpaper from "~/components/Wallpaper";
 import { launchpadApps } from "~/configs";
 import { useStore } from "~/stores";
 import { motion, AnimatePresence } from "framer-motion";
@@ -90,21 +91,19 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
         <motion.div
           className="z-30 size-full fixed overflow-hidden bg-center bg-cover"
           id="launchpad"
-          style={{
-            backgroundImage: `url(${dark ? activeWallpaper.night : activeWallpaper.day})`
-          }}
           onClick={() => { setOpenFolder(null); toggleLaunchpad(false); }}
           initial={{ opacity: 0, scale: 1.15 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.15 }}
           transition={{ duration: 0.3, ease: [0.19, 1, 0.22, 1] }}
         >
+          <Wallpaper src={dark ? activeWallpaper.night : activeWallpaper.day} />
           <div
             className="size-full absolute"
             style={{
               backgroundColor: 'rgba(0,0,0,0.25)',
-              backdropFilter: 'blur(50px) saturate(200%)',
-              WebkitBackdropFilter: 'blur(50px) saturate(200%)',
+              backdropFilter: 'blur(50px) saturate(100%)',
+              WebkitBackdropFilter: 'blur(50px) saturate(100%)',
             }}
           >
             {/* Search bar */}
@@ -114,10 +113,10 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
                 height: '36px',
                 width: '260px',
                 borderRadius: '10px',
-                background: 'rgba(255,255,255,0.15)',
-                border: '0.5px solid rgba(255,255,255,0.28)',
-                backdropFilter: 'blur(20px) saturate(180%)',
-                boxShadow: 'inset 0 0.5px 0 rgba(255,255,255,0.25), 0 2px 12px rgba(0,0,0,0.12)',
+                background: 'rgba(244,244,246,0.15)',
+                border: '0.5px solid rgba(244,244,246,0.28)',
+                backdropFilter: 'blur(20px) saturate(100%)',
+                boxShadow: 'inset 0 0.5px 0 rgba(244,244,246,0.25), 0 2px 12px rgba(0,0,0,0.12)',
               }}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -127,7 +126,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
               onBlur={() => setFocus(false)}
             >
               <div className={`${focus ? "w-6 duration-200" : "w-26 delay-250"} hstack justify-end`}>
-                <img src="/img/icons/sf-icons/search.svg" alt={localize("Search")} className="ml-2" style={{ width: "16px", height: "16px", filter: "invert(1)", opacity: 0.6 }} />
+                <img src="/img/icons/sf-icons/search.svg" alt={localize("Search")} className="ml-2" style={{ width: "16px", height: "16px", filter: "invert(1) var(--brand-image-filter)", opacity: 0.6 }} />
               </div>
               <input
                 className="flex-1 min-w-0 no-outline bg-transparent px-1.5 text-sm text-white"
@@ -199,9 +198,9 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
                         width: '100%',
                         paddingBottom: '100%',
                         borderRadius: '22%',
-                        background: 'rgba(255,255,255,0.18)',
+                        background: 'rgba(244,244,246,0.18)',
                         backdropFilter: 'blur(20px)',
-                        border: '0.5px solid rgba(255,255,255,0.25)',
+                        border: '0.5px solid rgba(244,244,246,0.25)',
                         boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
                         position: 'relative',
                         overflow: 'hidden',
@@ -245,9 +244,9 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
                   className="absolute left-1/2 top-1/2"
                   style={{
                     transform: 'translate(-50%, -50%)',
-                    background: 'rgba(255,255,255,0.12)',
-                    backdropFilter: 'blur(40px) saturate(200%)',
-                    border: '0.5px solid rgba(255,255,255,0.22)',
+                    background: 'rgba(244,244,246,0.12)',
+                    backdropFilter: 'blur(40px) saturate(100%)',
+                    border: '0.5px solid rgba(244,244,246,0.22)',
                     borderRadius: 20,
                     padding: '20px 24px',
                     minWidth: 280,
@@ -273,7 +272,7 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
                         >
                           <AppIcon src={app.img} alt={localize(app.title)} />
                         </a>
-                        <span style={{ color: 'white', fontSize: 11, fontWeight: 300, textAlign: 'center', textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
+                        <span style={{ color: '#f4f4f6', fontSize: 11, fontWeight: 300, textAlign: 'center', textShadow: '0 1px 3px rgba(0,0,0,0.3)' }}>
                           {localize(app.title)}
                         </span>
                       </motion.div>
@@ -290,8 +289,8 @@ export default function Launchpad({ show, toggleLaunchpad }: LaunchpadProps) {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.8)' }} />
-              <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.3)' }} />
+              <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(244,244,246,0.8)' }} />
+              <div style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'rgba(244,244,246,0.3)' }} />
             </motion.div>
           </div>
         </motion.div>

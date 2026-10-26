@@ -1,5 +1,7 @@
 import { localize, useLanguage } from "~/i18n";
 import Welcome from "~/pages/Welcome";
+import BrandFilters from "~/components/BrandFilters";
+import Wallpaper from "~/components/Wallpaper";
 import { getStartupDevice } from "~/utils/device";
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -75,8 +77,9 @@ export default function App() {
   const { winWidth } = useWindowSize();
   const isMobile = winWidth < 768;
 
-  const { dark, getWallpaper, iconStyle, tintWindows, accentColor } = useStore((s) => ({
+  const { dark, getWallpaper, iconStyle, tintWindows, accentColor, brightness } = useStore((s) => ({
     dark: s.dark,
+    brightness: s.brightness,
     getWallpaper: s.getWallpaper,
     iconStyle: s.iconStyle,
     tintWindows: s.tintWindows,
@@ -144,16 +147,8 @@ export default function App() {
   return (
     <div style={{ position: "relative", width: "100%", height: "100%", background: "transparent" }}>
       {/* Persistent wallpaper — always visible, never absent during transitions */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          backgroundImage: `url(${dark ? activeWallpaper.night : activeWallpaper.day})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          zIndex: 0,
-        }}
-      />
+      <BrandFilters />
+      <Wallpaper src={dark ? activeWallpaper.night : activeWallpaper.day} brightness={brightness * .7 + 50} />
 
       <AnimatePresence mode="popLayout">
         {page === "boot" && (
@@ -226,13 +221,13 @@ export default function App() {
         <button
           type="button"
           onClick={startupChime.play}
-          style={{ position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)", zIndex: 10000, padding: "10px 18px", borderRadius: 20, border: "1px solid #666", background: "#171717", color: "#eee", fontSize: 13, cursor: "pointer", maxWidth: "90vw" }}
+          style={{ position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)", zIndex: 10000, padding: "10px 18px", borderRadius: 20, border: "1px solid #66666e", background: "#000000", color: "#f4f4f6", fontSize: 13, cursor: "pointer", maxWidth: "90vw" }}
         >
           {localize("Écouter le son de démarrage")}
         </button>
       )}
       {startupChime.status === "error" && (
-        <p role="status" style={{ position: "fixed", bottom: 24, insetInline: 20, zIndex: 10000, textAlign: "center", color: "white" }}>
+        <p role="status" style={{ position: "fixed", bottom: 24, insetInline: 20, zIndex: 10000, textAlign: "center", color: "#f4f4f6" }}>
           {localize("Le son de démarrage n’a pas pu être chargé.")}
         </p>
       )}
@@ -245,7 +240,7 @@ export default function App() {
             style={{
               position: "absolute",
               inset: 0,
-              background: "white",
+              background: "#f4f4f6",
               pointerEvents: "none",
               zIndex: 9999,
             }}
