@@ -13,6 +13,8 @@ pnpm run domaines
 
 Cette commande réutilise la connexion Google de la CLI Firebase. Elle ajoute les domaines dans Firebase s'ils manquent et récupère les instructions DNS réelles de Google, y compris les éventuelles validations du certificat. Elle n'invente ni adresse IP ni valeur de validation et ne modifie pas les DNS.
 
+Une création de domaine peut rester en cours tant que les DNS ne sont pas configurés. Le script lit donc aussi les instructions de l'opération Google en attente, puis traite l'autre domaine sans attendre l'activation HTTPS. Une nouvelle exécution reprend l'opération existante. Si Google n'a pas encore publié les instructions, le domaine est signalé comme en préparation ; cela ne demande pas de se reconnecter à Firebase.
+
 Elle vérifie ensuite les zones publiques accessibles dans Cloud DNS, leur délégation réelle et les enregistrements existants. Le rapport et le plan sont conservés localement dans `.cache/firebase-domains-plan.json` (ignoré par Git). Aucun jeton OAuth n'est affiché ou écrit dans ce rapport.
 
 Si les zones correspondantes sont effectivement gérées dans Cloud DNS et que le plan est complet :
@@ -62,6 +64,16 @@ Repères habituels du plan Blaze, en USD hors taxes, à confirmer dans le [barè
 Le plan Spark impose ses quotas gratuits et peut suspendre le service après dépassement ; Blaze permet le dépassement facturé à l'usage. Les quotas gratuits ne se multiplient pas avec les noms de domaine. Les anciennes versions conservées peuvent aussi consommer du stockage.
 
 Exemple purement illustratif : si une première visite transfère 5 Mo, 10 Go représentent de l'ordre de 2 000 premières visites. Ce n'est pas un quota de visiteurs : le poids réel chargé, la navigation et le cache changent le résultat.
+
+| Trafic par première visite, hypothèse | Premières visites pour une enveloppe de 10 Go |
+| --- | ---: |
+| 2 Mo | environ 5 000 |
+| 5 Mo | environ 2 000 |
+| 10 Mo | environ 1 000 |
+
+Ces exemples ne mesurent pas encore le poids d'une visite réelle du portfolio et ne confirment pas le quota du compte. Les retours avec des fichiers en cache peuvent transférer moins de données, tandis que les robots, les téléchargements et la navigation ajoutent du trafic. Le quota effectif et sa période de réinitialisation se lisent dans Utilisation et facturation du projet.
+
+Sur Spark sans facturation activée, le dépassement des quotas gratuits ne se transforme pas en dépassement payant automatique : le service peut être limité ou suspendu. Sur Blaze, les frais vont au compte Cloud Billing rattaché au projet. Les crédits éligibles peuvent s'appliquer selon leurs conditions ; leur fin peut entraîner des frais sur un compte payant actif ou une interruption dans le cas de certains essais non convertis. L'absence de carte personnellement saisie par l'utilisateur ne prouve donc pas qu'aucun compte de facturation n'est lié : il peut s'agir d'un autre profil de paiement ou d'une organisation. La connexion Firebase et les scripts de domaine ne rattachent pas de compte de facturation.
 
 L'achat/renouvellement annuel des domaines et, le cas échéant, les zones et requêtes Cloud DNS sont facturés séparément. Les crédits Google Cloud dépendent du compte de facturation, de leur expiration et de leurs conditions d'éligibilité ; ils ne constituent pas un plafond général de dépenses. La commande peut afficher si la facturation Google Cloud est activée, mais elle ne change pas le plan ni le compte de facturation et n'a pas accès au solde des crédits.
 

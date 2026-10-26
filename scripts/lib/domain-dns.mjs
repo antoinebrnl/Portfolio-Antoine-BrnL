@@ -12,7 +12,7 @@ export function dnsValue(type, value) {
 
 /** All values come from Hosting, including optional DNS certificate challenges. */
 export function requiredRecords(domain) {
-  const updates = [domain.requiredDnsUpdates, domain.cert?.verification?.dns];
+  const updates = [domain.requiredDnsUpdates, domain.cert?.verification?.dns, ...(domain._operationDnsUpdates ?? [])];
   const records = updates.flatMap(update => [
     ...(update?.desired ?? []), ...(update?.discovered ?? []),
   ]).flatMap(set => set.records ?? []);

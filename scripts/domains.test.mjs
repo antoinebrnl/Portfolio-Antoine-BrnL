@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { authoritativeZone, dnsName, ownsName, planDnsChanges, requiredRecords } from './lib/domain-dns.mjs';
+import { prepareDomain, readDomainOperation } from './lib/domain-provisioning.mjs';
 
 const domain = 'antoine-brnl.com';
 const record = (type, value, action = 'ADD', name = domain) => ({ domainName: name, type, rdata: value, requiredAction: action });
@@ -51,4 +52,42 @@ test('both ownership and HTTPS challenge instructions are included and deduplica
   const data = { requiredDnsUpdates: { desired: [{ records: [ownership] }], discovered: [{ records: [ownership] }] }, cert: { verification: { dns: { desired: [{ records: [challenge] }] } } } };
   assert.equal(requiredRecords(data).length, 2);
   assert.equal(planDnsChanges([], requiredRecords(data), [domain]).additions.length, 2);
+});
+
+const domainPath = '/projects/project-test/sites/portfolio/customDomains/antoine-brnl.com';
+const pending = { name: domainPath.slice(1) + '/operations/create-domain', done: false, metadata: { hostState: 'HOST_UNHOSTED', ownershipState: 'OWNERSHIP_MISSING', certState: 'CERT_PREPARING', quickSetupUpdates: { desired: [{ records: [record('TXT', 'hosting-site=portfolio')] }] } } };
+const missing = () => { throw Object.assign(new Error('not found'), { status: 404 }); };
+
+test('pending domain creation exposes DNS instructions without waiting for HTTPS completion', async () => {
+  let creates = 0;
+  const client = { get: async () => missing() };
+  const result = await prepareDomain(client, domainPath, {
+    create: async () => { creates++; return pending; },
+    pause: async () => { throw new Error('Must not wait when DNS instructions are available'); },
+  });
+  assert.equal(creates, 1);
+  assert.equal(result._operationPending, true);
+  assert.equal(requiredRecords(result)[0].rdata, 'hosting-site=portfolio');
+});
+test('a resumed command reuses the existing creation instead of submitting it again', async () => {
+  const client = { get: async path => path.endsWith('/operations') ? { body: { operations: [pending] } } : missing() };
+  const result = await prepareDomain(client, domainPath, { create: async () => { throw new Error('Duplicate creation'); } });
+  assert.equal(result._operation, pending.name);
+  assert.equal(requiredRecords(result).length, 1);
+});
+test('a preparing domain without DNS instructions returns pending rather than aborting other domains', async () => {
+  const operation = { ...pending, metadata: { certState: 'CERT_PREPARING' } };
+  const client = { get: async path => path === domainPath ? missing() : { body: operation } };
+  const result = await readDomainOperation(client, domainPath, operation, { attempts: 2, pause: async () => {} });
+  assert.equal(result._operationPending, true);
+  assert.equal(requiredRecords(result).length, 0);
+});
+test('operation metadata also provides the zero-downtime HTTPS challenge', async () => {
+  const operation = { ...pending, metadata: { ...pending.metadata, liveMigrationSteps: [{ certVerification: { dns: { desired: [{ records: [record('TXT', 'proof', 'ADD', '_acme-challenge.' + domain)] }] } } }] } };
+  const result = await readDomainOperation({ get: async () => missing() }, domainPath, operation);
+  assert.equal(requiredRecords(result).length, 2);
+});
+test('Google provisioning failures and denied access remain actual errors', async () => {
+  await assert.rejects(readDomainOperation({ get: async () => missing() }, domainPath, { done: true, error: { message: 'Access denied' } }), /Access denied/);
+  await assert.rejects(prepareDomain({ get: async () => { throw Object.assign(new Error('Permission denied'), { status: 403 }); } }, domainPath, { readOnly: true }), /Permission denied/);
 });

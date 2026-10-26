@@ -4,6 +4,7 @@ import { resolve, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { Resolver } from "node:dns/promises";
 import { authoritativeZone, dnsName, ownsName, planDnsChanges, requiredRecords } from "./lib/domain-dns.mjs";
+import { domainIsActive, prepareDomain, readDomainOperation } from './lib/domain-provisioning.mjs';
 
 const root = resolve(fileURLToPath(new URL("../", import.meta.url)));
 const args = process.argv.slice(2);
@@ -48,20 +49,10 @@ const hosting = projectClient('https://firebasehosting.googleapis.com', 'v1beta1
 const dns = projectClient('https://dns.googleapis.com', 'dns/v1', dnsProject);
 const billing = projectClient('https://cloudbilling.googleapis.com', 'v1', project);
 const resolver = new Resolver({ timeout: 4000, tries: 1 });
-const sleep = ms => new Promise(done => setTimeout(done, ms));
 const report = { project, site, dnsProject, generatedAt: new Date().toISOString(), domains: [], plans: [], warnings: [] };
 
 function apiError(error) {
   return error.context?.body?.error?.message ?? error.original?.context?.body?.error?.message ?? error.message;
-}
-async function finishOperation(operation) {
-  for (let attempt = 0; !operation.done && attempt < 20; attempt++) {
-    if (!operation.name) throw new Error('Google ne fournit pas de suivi de création du domaine. Relance la commande.');
-    await sleep(2500);
-    operation = (await hosting.get(`/${operation.name}`)).body;
-  }
-  if (operation.error) throw new Error(operation.error.message);
-  if (!operation.done) throw new Error('Google prépare encore le domaine. Relance la commande dans quelques minutes.');
 }
 async function listAll(client, path, field) {
   const all = [];
@@ -85,34 +76,34 @@ try {
     const result = (await billing.get(`/projects/${project}/billingInfo`)).body;
     report.billingEnabled = result.billingEnabled;
     console.log(`Facturation Google Cloud du projet : ${result.billingEnabled ? 'activée' : 'désactivée'}. Les crédits et leur éligibilité restent à vérifier dans Facturation.`);
-  } catch {
-    console.log('Informations de facturation non accessibles avec cette connexion. Aucun changement de facturation effectué.');
+  } catch (error) {
+    console.log(`Informations de facturation non accessibles : ${apiError(error)}. Aucun changement de facturation effectué.`);
   }
   for (const item of domains) {
     const path = `${parent}/customDomains/${encodeURIComponent(item.domain)}`;
-    let resource;
-    try { resource = (await hosting.get(path)).body; }
-    catch (error) {
-      if (error.status !== 404) throw error;
-      if (statusOnly) { console.log(`${item.domain} : pas encore ajouté à Firebase.`); continue; }
-      console.log(`Ajout de ${item.domain}${item.redirectTarget ? ` → ${item.redirectTarget}` : ''}…`);
-      await finishOperation((await hosting.post(`${parent}/customDomains`, {
-        certPreference: 'GROUPED', ...(item.redirectTarget ? { redirectTarget: item.redirectTarget } : {}),
-      }, { queryParams: { customDomainId: item.domain } })).body);
-      resource = (await hosting.get(path)).body;
-    }
+    let resource = await prepareDomain(hosting, path, {
+      readOnly: statusOnly,
+      create: async () => {
+        console.log(`Ajout de ${item.domain}${item.redirectTarget ? ` → ${item.redirectTarget}` : ''}…`);
+        return (await hosting.post(`${parent}/customDomains`, {
+          certPreference: 'GROUPED', ...(item.redirectTarget ? { redirectTarget: item.redirectTarget } : {}),
+        }, { queryParams: { customDomainId: item.domain } })).body;
+      },
+    });
+    if (!resource) { console.log(`${item.domain} : pas encore ajouté à Firebase.`); continue; }
+    if (resource._operationPending) console.log(`${item.domain} : demande déjà enregistrée chez Google, DNS et HTTPS en préparation.`);
     if (resource.deleteTime) throw new Error(`${item.domain} est en cours de suppression chez Firebase. Vérifie son état avant de continuer.`);
     if ((resource.redirectTarget ?? '') !== (item.redirectTarget ?? '')) {
       console.log(`Redirection prévue pour ${item.domain} : ${item.redirectTarget || 'aucune'}.`);
-      if (apply) {
-        await finishOperation((await hosting.patch(path, { name: resource.name, redirectTarget: item.redirectTarget ?? '' }, { queryParams: { updateMask: 'redirectTarget' } })).body);
-        resource = (await hosting.get(path)).body;
+      if (apply && !resource._operationPending) {
+        const operation = (await hosting.patch(path, { name: resource.name, redirectTarget: item.redirectTarget ?? '' }, { queryParams: { updateMask: 'redirectTarget' } })).body;
+        resource = await readDomainOperation(hosting, path, operation);
       }
     }
     const records = requiredRecords(resource);
-    const connected = resource.hostState === 'HOST_ACTIVE' && resource.ownershipState === 'OWNERSHIP_ACTIVE' && ['CERT_ACTIVE', 'CERT_EXPIRING_SOON'].includes(resource.cert?.state);
+    const connected = domainIsActive(resource);
     if (!records.length && !connected) report.warnings.push(`${item.domain} : Firebase prépare encore les instructions DNS ou le certificat. Relance la commande dans quelques minutes.`);
-    report.domains.push({ domain: item.domain, hostState: resource.hostState, ownershipState: resource.ownershipState, certificate: resource.cert?.state, records, issues: [...(resource.issues ?? []), ...(resource.cert?.issues ?? [])].map(issue => issue.message) });
+    report.domains.push({ domain: item.domain, hostState: resource.hostState, ownershipState: resource.ownershipState, certificate: resource.cert?.state, operation: resource._operation, operationPending: resource._operationPending, records, issues: [...(resource.issues ?? []), ...(resource.cert?.issues ?? [])].map(issue => issue.message) });
     console.log(`\n${item.domain} : DNS ${resource.hostState}, propriété ${resource.ownershipState}, HTTPS ${resource.cert?.state ?? 'en préparation'}`);
     console.table(records.filter(record => (record.requiredAction ?? 'NONE') !== 'NONE').map(record => ({ action: record.requiredAction, type: record.type, nom: record.domainName, valeur: record.rdata })));
     for (const issue of [...(resource.issues ?? []), ...(resource.cert?.issues ?? [])]) console.log(`Google : ${issue.message}`);
@@ -157,7 +148,9 @@ try {
   if (report.warnings.length) process.exitCode = 1;
 } catch (error) {
   console.error(`Raccordement interrompu : ${apiError(error)}`);
-  console.error('Connexion Firebase : pnpm exec firebase login. Utilise --help pour les options.');
+  if (error.status === 401 || /authenticate|firebase login|UNAUTHENTICATED|invalid_grant/i.test(apiError(error))) {
+    console.error('Connexion Firebase : pnpm exec firebase login.');
+  } else console.error('Relance pnpm run domaines pour reprendre les domaines déjà enregistrés. Le rapport est conservé dans .cache/firebase-domains-plan.json.');
   process.exitCode = 1;
 } finally {
   const folder = join(root, '.cache');
