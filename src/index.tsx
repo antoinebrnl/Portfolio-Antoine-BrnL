@@ -45,20 +45,18 @@ const desktopEnterVariants = {
 };
 
 const bootVariants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 0.6 } },
+  initial: { opacity: 1 },
+  animate: { opacity: 1 },
   exit: {
     opacity: 0,
-    scale: 1.04,
-    filter: "brightness(3)",
-    transition: { duration: 0.5, ease: [0.4, 0, 0.6, 1] },
+    transition: { duration: 0.35 },
   },
 };
 
 export default function App() {
   const [login, setLogin] = useState<boolean>(false);
-  const [booting, setBooting] = useState<boolean>(false);
-  const [restart, setRestart] = useState<boolean>(false);
+  const [booting, setBooting] = useState<boolean>(true);
+  const [restart, setRestart] = useState<boolean>(true);
   const [sleep, setSleep] = useState<boolean>(false);
 
   const { winWidth } = useWindowSize();

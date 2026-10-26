@@ -680,7 +680,8 @@ const SoundPanel = () => {
   }));
   const [outputDevice, setOutputDevice] = useState("MacBook Pro Speakers");
   const [inputDevice, setInputDevice] = useState("MacBook Pro Microphone");
-  const [playFeedback, setPlayFeedback] = useState(true);
+  const startupSound = useStore((s) => s.startupSound);
+  const setStartupSound = useStore((s) => s.setStartupSound);
 
   const alertSounds = [
     { label: "Samantha (Legacy)", value: "music/Samantha (Legacy)-2024_08_12-6.wav" },
@@ -712,7 +713,7 @@ const SoundPanel = () => {
           />
         </Row>
         <Row label="Play sound on startup">
-          <Toggle checked={playFeedback} onChange={setPlayFeedback} />
+          <Toggle checked={startupSound} onChange={setStartupSound} />
         </Row>
       </Card>
 

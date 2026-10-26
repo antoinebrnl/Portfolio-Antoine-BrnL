@@ -83,6 +83,8 @@ export interface SettingsSlice {
   // Notification
   notificationSound: string;
   setNotificationSound: (sound: string) => void;
+  startupSound: boolean;
+  setStartupSound: (enabled: boolean) => void;
 }
 
 const loadSetting = <T>(key: string, fallback: T): T => {
@@ -153,6 +155,11 @@ export const createSettingsSlice: StateCreator<SettingsSlice> = (set, get) => ({
   },
 
   // Notification sound
+  startupSound: loadSetting("startupSound", true),
+  setStartupSound: (enabled) => {
+    saveSetting("startupSound", enabled);
+    set({ startupSound: enabled });
+  },
   notificationSound: loadSetting(
     "notificationSound",
     "music/Samantha (Legacy)-2024_08_12-6.wav"
