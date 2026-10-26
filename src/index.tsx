@@ -12,6 +12,7 @@ import "uno.css";
 import "katex/dist/katex.min.css";
 import "~/styles/index.css";
 import { AudioProvider } from "~/context/AudioContext";
+import { useStartupChime } from "~/hooks/useStartupChime";
 
 // macOS Tahoe transition variants
 // Login → Desktop: bright white bloom flash (exactly like macOS unlocking)
@@ -58,6 +59,11 @@ export default function App() {
   const [booting, setBooting] = useState<boolean>(true);
   const [restart, setRestart] = useState<boolean>(true);
   const [sleep, setSleep] = useState<boolean>(false);
+  const startupChime = useStartupChime();
+  const completeBoot = useCallback((withSound: boolean) => {
+    if (withSound) startupChime.play();
+    setBooting(false);
+  }, [startupChime.play]);
 
   const { winWidth } = useWindowSize();
   const isMobile = winWidth < 768;
@@ -94,6 +100,7 @@ export default function App() {
 
   const shutMac = (e: React.MouseEvent): void => {
     e.stopPropagation();
+    startupChime.cancel();
     setRestart(false);
     setSleep(false);
     setLogin(false);
@@ -102,6 +109,7 @@ export default function App() {
 
   const restartMac = (e: React.MouseEvent): void => {
     e.stopPropagation();
+    startupChime.cancel();
     setRestart(true);
     setSleep(false);
     setLogin(false);
@@ -110,6 +118,7 @@ export default function App() {
 
   const sleepMac = (e: React.MouseEvent): void => {
     e.stopPropagation();
+    startupChime.cancel();
     setRestart(false);
     setSleep(true);
     setLogin(false);
@@ -149,7 +158,7 @@ export default function App() {
             exit="exit"
             style={{ position: "absolute", inset: 0, zIndex: 1 }}
           >
-            <Boot restart={restart} sleep={sleep} setBooting={setBooting} />
+            <Boot restart={restart} sleep={sleep} onComplete={completeBoot} />
           </motion.div>
         )}
 
@@ -198,6 +207,21 @@ export default function App() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {startupChime.status === "blocked" && (
+        <button
+          type="button"
+          onClick={startupChime.play}
+          style={{ position: "fixed", bottom: 24, left: "50%", transform: "translateX(-50%)", zIndex: 10000, padding: "10px 18px", borderRadius: 20, border: "1px solid #666", background: "#171717", color: "#eee", fontSize: 13, cursor: "pointer", maxWidth: "90vw" }}
+        >
+          Écouter le son de démarrage
+        </button>
+      )}
+      {startupChime.status === "error" && (
+        <p role="status" style={{ position: "fixed", bottom: 24, insetInline: 20, zIndex: 10000, textAlign: "center", color: "white" }}>
+          Le son de démarrage n’a pas pu être chargé.
+        </p>
+      )}
 
       {/* White bloom flash — gentler fade-out on login→desktop */}
       <AnimatePresence>

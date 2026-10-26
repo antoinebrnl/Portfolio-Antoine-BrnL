@@ -30,6 +30,13 @@ export interface WallpaperSet {
 
 export const wallpaperSets: WallpaperSet[] = [
   {
+    id: "pro-black",
+    name: "MacBook Pro — Pro Black",
+    day: "/wallpapers/pro-black.jpg",
+    night: "/wallpapers/pro-black.jpg",
+    thumbnail: "/wallpapers/pro-black.jpg",
+  },
+  {
     id: "tahoe",
     name: "macOS Tahoe",
     day: "wallpapers/DefaultAerial_Tahoe_Beach.jpg",
@@ -104,17 +111,31 @@ const saveSetting = (key: string, value: unknown) => {
   }
 };
 
+// Upgrade the old default once; subsequent wallpaper choices remain persistent.
+const initialWallpaperSet = (() => {
+  const id = loadSetting("activeWallpaperSet", loadSetting("wallpaperId", "pro-black"));
+  if (loadSetting("wallpaperVersion", 0) < 1) {
+    saveSetting("wallpaperVersion", 1);
+    if (id === "tahoe" || id === "tahoe-beach") {
+      saveSetting("activeWallpaperSet", "pro-black");
+      saveSetting("wallpaperId", "pro-black");
+      return "pro-black";
+    }
+  }
+  return id;
+})();
+
 export const createSettingsSlice: StateCreator<SettingsSlice> = (set, get) => ({
   // Wallpaper
   wallpaperSets,
-  activeWallpaperSet: loadSetting("activeWallpaperSet", "tahoe"),
+  activeWallpaperSet: initialWallpaperSet,
   setActiveWallpaperSet: (id) => {
     saveSetting("activeWallpaperSet", id);
     saveSetting("wallpaperId", id);
     set({ activeWallpaperSet: id, wallpaperId: id });
   },
   /** @deprecated */
-  wallpaperId: loadSetting("wallpaperId", "tahoe"),
+  wallpaperId: initialWallpaperSet,
   setWallpaperId: (id) => {
     saveSetting("wallpaperId", id);
     saveSetting("activeWallpaperSet", id);

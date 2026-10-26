@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { useStore } from "~/stores";
 
 interface BootProps {
   restart: boolean;
   sleep: boolean;
-  setBooting: (value: boolean | ((prevVar: boolean) => boolean)) => void;
+  onComplete: (withSound: boolean) => void;
 }
 
 // Pauses and a slower final stretch, like the macOS startup screen.
@@ -13,13 +12,9 @@ const stages = [
   [3900, 67], [4400, 67], [5800, 94], [6400, 100],
 ];
 
-export default function Boot({ restart, sleep, setBooting }: BootProps) {
+export default function Boot({ restart, sleep, onComplete }: BootProps) {
   const [loading, setLoading] = useState(restart && !sleep);
   const [percent, setPercent] = useState(0);
-  const [soundBlocked, setSoundBlocked] = useState(false);
-  const startupSound = useStore((s) => s.startupSound);
-  const volume = useStore((s) => s.volume);
-
   useEffect(() => {
     if (!loading) return;
     const started = performance.now();
@@ -36,46 +31,12 @@ export default function Boot({ restart, sleep, setBooting }: BootProps) {
         }
       }
       setPercent(progress);
-      if (elapsed >= 6800) setBooting(false);
+      if (elapsed >= 6800) onComplete(true);
       else frame = requestAnimationFrame(advance);
     };
     frame = requestAnimationFrame(advance);
     return () => cancelAnimationFrame(frame);
-  }, [loading, setBooting]);
-
-  useEffect(() => {
-    if (!loading || !startupSound || volume <= 0) return;
-    const audio = new Audio("/music/into.wav");
-    audio.volume = Math.min(1, Math.max(0, volume / 100));
-    let active = true;
-    let playing = false;
-    let pending = false;
-    const play = () => {
-      if (playing || pending) return;
-      pending = true;
-      audio.play().then(() => {
-        playing = true;
-        if (active) setSoundBlocked(false);
-      }).catch(() => {
-        if (active) setSoundBlocked(true);
-      }).finally(() => { pending = false; });
-    };
-    const onKey = (event: KeyboardEvent) => {
-      if (!event.repeat) play();
-    };
-    // Retry inside a user gesture when the browser denies autoplay.
-    window.addEventListener("pointerdown", play);
-    window.addEventListener("keydown", onKey);
-    window.addEventListener("click", play);
-    play();
-    return () => {
-      active = false;
-      audio.pause();
-      window.removeEventListener("pointerdown", play);
-      window.removeEventListener("keydown", onKey);
-      window.removeEventListener("click", play);
-    };
-  }, [loading, startupSound, volume]);
+  }, [loading, onComplete]);
 
   return (
     <div className="size-full bg-black text-white" style={{ position: "relative" }}>
@@ -96,21 +57,13 @@ export default function Boot({ restart, sleep, setBooting }: BootProps) {
               </div>
             </div>
           </div>
-          {soundBlocked && (
-            <button
-              type="button"
-              style={{ position: "absolute", bottom: "8%", left: "50%", transform: "translateX(-50%)", padding: "10px 18px", borderRadius: 20, border: "1px solid #666", background: "#171717", color: "#eee", fontSize: 13, cursor: "pointer" }}
-            >
-              Activer le son de démarrage
-            </button>
-          )}
         </>
       ) : (
         <button
           type="button"
           className="size-full flex-center"
           style={{ color: "#aaa", background: "transparent", border: 0, cursor: "pointer" }}
-          onClick={() => sleep ? setBooting(false) : setLoading(true)}
+          onClick={() => sleep ? onComplete(false) : setLoading(true)}
         >
           {sleep ? "Cliquer pour réactiver" : "Démarrer"}
         </button>
