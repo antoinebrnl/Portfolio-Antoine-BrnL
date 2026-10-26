@@ -1,7 +1,8 @@
 # Github Stats
 
-My GitHub stats (powered by [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)):
+Mes statistiques GitHub (powered by [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)) :
 
-[![github stats](https://github-readme-stats.vercel.app/api?username=aakashsharma003&show_icons=true&hide_title=true&hide_border=true)](https://aakash-sharma.vercel.app)
+[![github stats](https://github-readme-stats.vercel.app/api?username=antoinebrnl&show_icons=true&hide_title=true&hide_border=true)](https://antoine-brnl.com)
 
-[![top langs](https://github-readme-stats.vercel.app/api/top-langs/?username=aakashsharma003&layout=compact&hide_border=true)](https://aakash-sharma.vercel.app)
+[![top langs](https://github-readme-stats.vercel.app/api/top-langs/?username=antoinebrnl&layout=compact&hide_border=true)](https://antoine-brnl.com)
+

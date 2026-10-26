@@ -64,11 +64,12 @@ export default function App() {
   const { winWidth } = useWindowSize();
   const isMobile = winWidth < 768;
 
-  const { dark, getWallpaper, iconStyle, tintWindows } = useStore((s) => ({
+  const { dark, getWallpaper, iconStyle, tintWindows, accentColor } = useStore((s) => ({
     dark: s.dark,
     getWallpaper: s.getWallpaper,
     iconStyle: s.iconStyle,
     tintWindows: s.tintWindows,
+    accentColor: s.accentColor,
   }));
   const activeWallpaper = getWallpaper();
 
@@ -77,6 +78,11 @@ export default function App() {
     if (dark) document.documentElement.classList.add("dark");
     else document.documentElement.classList.remove("dark");
   }, [dark]);
+
+  // Sync accent color
+  useEffect(() => {
+    document.documentElement.style.setProperty("--accent-primary", accentColor);
+  }, [accentColor]);
 
   // Drive icon-style + window-tint appearance from the root element so CSS
   // can react globally (matches the dark-class pattern above).

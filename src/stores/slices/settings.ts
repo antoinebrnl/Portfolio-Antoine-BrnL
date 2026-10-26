@@ -124,7 +124,7 @@ export const createSettingsSlice: StateCreator<SettingsSlice> = (set, get) => ({
   },
 
   // Accent color — stored as hex string
-  accentColor: loadSetting("accentColor", "#007AFF"),
+  accentColor: loadSetting("accentColor", "#C86A52"),
   setAccentColor: (color) => {
     // If named key, resolve to hex
     const hex = ACCENT_HEX[color as AccentColorKey] ?? color;

@@ -2,33 +2,30 @@
 
 ## Introduction
 
-Hey there! 👋
+Hey ! 👋
 
-I'm a B.Tech student at the [Computer Science and Engineering](https://www.mbm.ac.in/deptt-of-computer-science-engineering) department of [MBM University](https://www.mbm.ac.in/).
+Je suis **Antoine BrnL** — développeur, designer et entrepreneur.
 
-🚀 Passionate about Open Source, I've contributed to various organizations, helping build and improve projects that benefit the community. Coding for Open Source is not just a hobby for me — *it's a way of life!*
+🧠 *Je pense, j'invente, je code... Bref, j'entreprends.*
 
-💻 With 6 months of experience as a full stack developer, I'm constantly evolving and embracing new technologies.
+🚀 Passionné par l'innovation et le développement créatif, je conçois des expériences digitales qui repoussent les limites. Du design UI/UX au développement fullstack, en passant par la 3D et le motion design — je crée des produits qui marquent.
 
-🌱 Currently diving deep into Next.js, TypeScript, and WebSockets, while also working on building my own library.
+💡 Ma vision ? Transformer des idées révolutionnaires en produits concrets qui changent la donne.
 
-🤝 Always excited to collaborate on impactful Open Source projects.
-
-Let's build something amazing together! 🌟
+🎨 Compétences clés :
+- **Développement** : React, Next.js, TypeScript, Node.js
+- **Design** : UI/UX, Figma, Design Systems
+- **Créatif** : 3D, Motion Design, Branding
+- **Entrepreneuriat** : Idéation, MVP, Growth
 
 
 ## Contact
 
-Contact me by:
+Me contacter :
 
-- Email: [aakash@gmail.com](mailto:aakash6263264@gmail.com)
-- Github: [@aakashsharma003](https://github.com/macOS-Portfolio)
-- GSSOC: [GSSOC Contributer](https://gssoc.girlscript.tech/)
-- Linkedin: [aakashsharma003](https://www.linkedin.com/in/aakashsharma003)
-- Personal Website: [dev.me](https://aakash-sharma.vercel.app)
-
-
-## Resume
-
-- download: [English](https://drive.google.com/file/d/1EDQQZQvAWodAMgEdycBP7E_6UmmVlz-x/view?usp=sharing)
+- Email : [antoine.brnl@proton.me](mailto:antoine.brnl@proton.me)
+- Github : [@antoinebrnl](https://github.com/antoinebrnl)
+- Linkedin : [Antoine BrnL](https://www.linkedin.com/in/antoine-brnl-7a7791385)
+- Instagram : [@data_horizon1](https://www.instagram.com/data_horizon1)
+- Portfolio : [antoine-brnl.com](https://antoine-brnl.com)
 

@@ -13,8 +13,11 @@ const terminal: TerminalData[] = [
         content: (
           <div className="py-1">
             <div>
-              Hi, this is Akash. I am a Btech student at the Computer Science and
-              Engineering department of MBM University.
+              Je pense, j'invente, je code... Bref, j'entreprends.
+            </div>
+            <div className="mt-2">
+              Je suis Antoine BrnL — développeur, designer et entrepreneur.
+              Je crée des expériences digitales qui repoussent les limites du possible.
             </div>
           </div>
         )
@@ -23,14 +26,14 @@ const terminal: TerminalData[] = [
         id: "about-interests",
         title: "interests.txt",
         type: "file",
-        content: "MERN Stack / Open Source Contribution  / full stack developement"
+        content: "Développement créatif / Design UI-UX / 3D & Motion / Entrepreneuriat / Innovation"
       },
       {
-        id: "about-who-cares",
-        title: "who-cares.txt",
+        id: "about-vision",
+        title: "vision.txt",
         type: "file",
         content:
-          "I'm looking for a SDE internship. I'm open to collaboration on full stack projects."
+          "Je pense à des choses révolutionnaires. Mon objectif : transformer des idées en produits qui changent la donne."
       },
       {
         id: "about-contact",
@@ -42,55 +45,55 @@ const terminal: TerminalData[] = [
               Email:{" "}
               <a
                 className="text-blue-300"
-                href="mailto:aakash6263264@gmail.com"
+                href="mailto:antoine.brnl@proton.me"
                 target="_blank"
                 rel="noreferrer"
               >
-                aakash6263264@gmail.com
+                antoine.brnl@proton.me
               </a>
             </li>
             <li>
               Github:{" "}
               <a
                 className="text-blue-300"
-                href="https://github.com/aakashsharma003"
+                href="https://github.com/antoinebrnl"
                 target="_blank"
                 rel="noreferrer"
               >
-                @aakashsharma
+                @antoinebrnl
               </a>
             </li>
             <li>
               Linkedin:{" "}
               <a
                 className="text-blue-300"
-                href="https://www.linkedin.com/in/aakashsharma003"
+                href="https://www.linkedin.com/in/antoine-brnl-7a7791385"
                 target="_blank"
                 rel="noreferrer"
               >
-                akash-sharma
+                Antoine BrnL
               </a>
             </li>
             <li>
-              Personal Website:{" "}
+              Instagram:{" "}
               <a
                 className="text-blue-300"
-                href="https://aakash-sharma.vercel.app"
+                href="https://www.instagram.com/data_horizon1"
                 target="_blank"
                 rel="noreferrer"
               >
-                https://aakash-sharma.vercel.app
+                @data_horizon1
               </a>
             </li>
             <li>
-              X:{" "}
+              Portfolio:{" "}
               <a
                 className="text-blue-300"
-                href="https://x.com/aakashsharma003"
+                href="https://antoine-brnl.com"
                 target="_blank"
                 rel="noreferrer"
               >
-               find me on x.com
+                antoine-brnl.com
               </a>
             </li>
           </ul>
@@ -100,21 +103,44 @@ const terminal: TerminalData[] = [
   },
   {
     id: "about-dream",
-    title: "my-dream.cpp",
+    title: "my-vision.js",
     type: "file",
     content: (
       <div className="py-1">
         <div>
-          <span className="text-yellow-400">while</span>(
-          <span className="text-blue-400">sleeping</span>) <span>{"{"}</span>
+          <span className="text-purple-400">const</span>{" "}
+          <span className="text-blue-400">antoine</span> = {"{"} 
         </div>
-        <div>
-          <span className="text-blue-400 ml-9">money</span>
-          <span className="text-yellow-400">++</span>;
+        <div className="ml-6">
+          <span className="text-green-400">mindset</span>:{" "}
+          <span className="text-yellow-400">"think different"</span>,
         </div>
-        <div>
-          <span>{"}"}</span>
+        <div className="ml-6">
+          <span className="text-green-400">passion</span>:{" "}
+          <span className="text-yellow-400">"turning ideas into reality"</span>,
         </div>
+        <div className="ml-6">
+          <span className="text-green-400">motto</span>:{" "}
+          <span className="text-yellow-400">"je pense, j'invente, je code"</span>,
+        </div>
+        <div>{"}"}</div>
+        <div className="mt-2">
+          <span className="text-purple-400">while</span>(
+          <span className="text-blue-400">true</span>) {"{"}
+        </div>
+        <div className="ml-6">
+          <span className="text-blue-400">antoine</span>.
+          <span className="text-yellow-400">build</span>();
+        </div>
+        <div className="ml-6">
+          <span className="text-blue-400">antoine</span>.
+          <span className="text-yellow-400">innovate</span>();
+        </div>
+        <div className="ml-6">
+          <span className="text-blue-400">antoine</span>.
+          <span className="text-yellow-400">disrupt</span>();
+        </div>
+        <div>{"}"}</div>
       </div>
     )
   }

@@ -31,6 +31,12 @@ const colorAttr = (prefix: string, [, color, , opacity]: RegExpMatchArray) => {
 };
 
 export default defineConfig({
+  safelist: [
+    "i-ph:arrow-elbow-down-left",
+    "i-ph:moon-stars",
+    "i-ph:arrow-clockwise",
+    "i-ph:power"
+  ],
   shortcuts: [
     ["flex-center", "flex items-center justify-center"],
     ["hstack", "flex items-center"],
@@ -71,10 +77,25 @@ export default defineConfig({
     })
   ],
   theme: {
+    colors: {
+      accent: 'var(--accent-primary)',
+      neon: {
+        purple: '#5239fa',
+        cyan: '#1abcfe',
+        orange: '#fe8015',
+        mint: '#51cb9c',
+        yellow: '#fcc400'
+      },
+      dark: {
+        navy: '#1c1e53',
+        deep: '#151d53',
+        slate: '#282938'
+      }
+    },
     fontFamily: {
-      sans: ['var(--font-system)'],
-      display: ['var(--font-display)'],
-      rounded: ['var(--font-rounded)'],
+      sans: ['"Fira Sans"', 'var(--font-system)'],
+      display: ['Orbitron', 'var(--font-display)'],
+      rounded: ['Orbitron', 'var(--font-rounded)'],
       mono: ['var(--font-mono)'],
     }
   },

@@ -11,21 +11,21 @@ const bear: BearData[] = [
         title: "About Me",
         file: "markdown/about-me.md",
         icon: "i-ph:shield-star",
-        excerpt: "Hey there! I'm the one who is building his own universe..."
+        excerpt: "Je pense, j'invente, je code... Bref, j'entreprends."
       },
       {
         id: "github-stats",
         title: "Github Stats",
         file: "markdown/github-stats.md",
         icon: "i-fa6-brands:github",
-        excerpt: "Here are some status about my github account..."
+        excerpt: "Mes statistiques GitHub et langages les plus utilisés..."
       },
       {
         id: "about-site",
         title: "About This Site",
         file: "markdown/about-site.md",
         icon: "i-ph:browser",
-        excerpt: "Something about this personal portfolio site..."
+        excerpt: "À propos de ce portfolio interactif macOS..."
       }
     ]
   },
@@ -35,52 +35,28 @@ const bear: BearData[] = [
     icon: "i-ph:git-branch",
     md: [
       {
-        id: "paytm-web",
-        title: "PaytmWeb",
-        file: "https://raw.githubusercontent.com/aakashsharma003/PaytmWeb/main/README.md",
-        icon: "i-ph:credit-card",
-        excerpt: "A demonstration Project For Paytm transactions...",
-        link: "https://github.com/aakashsharma003/paytm-web"
+        id: "project-1",
+        title: "Projet Horizon",
+        file: "markdown/about-me.md",
+        icon: "i-ph:rocket-launch",
+        excerpt: "Plateforme SaaS innovante — Coming soon...",
+        link: "https://github.com/antoinebrnl"
       },
       {
-        id: "portfolio-macos",
+        id: "project-2",
         title: "Portfolio macOS",
-        file: "https://raw.githubusercontent.com/aakashsharma003/macOS-Portfolio/main/README.md",
+        file: "markdown/about-site.md",
         icon: "i-ph:desktop",
-        excerpt: "My portfolio website simulating macOS's GUI...",
-        link: "https://github.com/aakashsharma003/macos-portfolio"
+        excerpt: "Portfolio interactif simulant macOS Tahoe 26...",
+        link: "https://antoine-brnl.com"
       },
       {
-        id: "medium-2.0",
-        title: "Medium 2.0",
-        file: "https://raw.githubusercontent.com/aakashsharma003/Medium/main/README.md",
-        icon: "i-ph:globe",
-        excerpt: "A medium modified version with serverless backend...",
-        link: "https://github.com/aakashsharma003/Medium"
-      },
-      {
-        id: "attendance-web",
-        title: "Mbm Attendance Web",
-        file: "https://raw.githubusercontent.com/aakashsharma003/Mbm-Attendance-Application/main/README.md",
-        icon: "i-ph:clipboard-text",
-        excerpt: "A attendance website for mbm university...",
-        link: "https://github.com/aakashsharma003/Mbm-Attendance-Application"
-      },
-      {
-        id: "aero-pay",
-        title: "AeroPay",
-        file: "https://raw.githubusercontent.com/aakashsharma003/AeroPay/main/README.md",
-        icon: "i-ph:money",
-        excerpt: "A payment transactions simulator...",
-        link: "https://github.com/aakashsharma003/AeroPay"
-      },
-      {
-        id: "rasl",
-        title: "rasl",
-        file: "https://raw.githubusercontent.com/Open-Source-Collab-Community/rasl/main/README.md",
-        icon: "i-ph:headphones",
-        excerpt: "A audio streaming library...",
-        link: "https://github.com/Open-Source-Collab-Community/rasl"
+        id: "project-3",
+        title: "Projet Nexus",
+        file: "markdown/about-me.md",
+        icon: "i-ph:lightning",
+        excerpt: "Application mobile révolutionnaire — Coming soon...",
+        link: "https://github.com/antoinebrnl"
       }
     ]
   }

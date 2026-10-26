@@ -6,38 +6,32 @@ import type { ChatMessage } from "~/utils/groq";
 
 type SiriPhase = "idle" | "recording" | "processing" | "speaking" | "error";
 
-//  Akash resume context for conversational answers 
-const AKASH_INFO = `Akash Sharma is a B.Tech Computer Science & Engineering student at MBM University, Jodhpur.
-He is deeply passionate about Open Source and has contributed to various organizations and communities including GSSOC (GirlScript Summer of Code).
-With solid experience as a full-stack developer, he works with React, Node.js, TypeScript, Next.js, MongoDB, PostgreSQL, and WebSockets.
-He has built several impressive projects:
-- Library (a library management app)
-- SkillExchange (a platform for exchanging skills)
-- ShareCode (a code sharing platform)
-- Paytm Web (a Paytm-like transaction demo)
-- MBM Attendance App (attendance management for MBM University)
-- This very macOS-style portfolio website!
-Contact: Email aakash6263264@gmail.com | GitHub @aakashsharma003 | LinkedIn: aakashsharma003
-Personal Website: aakash-sharma.vercel.app
-His resume is available for download.`;
+//  Antoine resume context for conversational answers 
+const ANTOINE_INFO = `Antoine BrnL est un entrepreneur, développeur web et designer.
+Passionné par la 3D, le design, le développement créatif et l'innovation.
+Son slogan est : "Je pense, j'invente, je code... bref, j'entreprends."
+Il crée des expériences digitales qui repoussent les limites du possible.
+Contact: Email antoine.brnl@proton.me | GitHub @antoinebrnl | LinkedIn: Antoine BrnL | Instagram @data_horizon1
+Site Web: antoine-brnl.com
+Son CV est disponible en téléchargement.`;
 
-const SIRI_FALLBACK = "Hey, I appreciate the curiosity! But I can only perform actions that Akash has set up for me. He built me to help navigate his portfolio — try asking me to open an app, play music, toggle dark mode, or check the time!";
+const SIRI_FALLBACK = "Hey, j'apprécie ta curiosité ! Mais je ne peux effectuer que les actions qu'Antoine a configurées pour moi. Il m'a créée pour t'aider à naviguer sur son portfolio — essaie de me demander d'ouvrir une app, de jouer de la musique ou de passer en mode sombre !";
 
-const SYSTEM_PROMPT = `You are Siri, a friendly and chill virtual assistant running inside Akash Sharma's macOS-style web portfolio.
-You control the interface through tool calls. Keep replies short, warm, and conversational (1-2 sentences max).
-Use a casual, friendly tone — like talking to a buddy. Say things like "Sure thing!", "You got it!", "No worries!", "Here you go!".
+const SYSTEM_PROMPT = `Tu es Siri, une assistante virtuelle sympathique tournant dans le portfolio web façon macOS d'Antoine BrnL.
+Tu contrôles l'interface via des appels d'outils (tool calls). Fais des réponses courtes, chaleureuses et conversationnelles (1-2 phrases max).
+Utilise un ton décontracté et amical, parle en français. Dis des choses comme "Bien sûr !", "C'est parti !", "Pas de problème !", "Et voilà !".
 
-Here is info about Akash (use this when someone asks about him or his resume):
-${AKASH_INFO}
+Voici des infos sur Antoine (utilise-les si on te pose des questions sur lui ou son CV) :
+\${ANTOINE_INFO}
 
 IMPORTANT RULES:
-1. If you don't understand the request, or it is unrelated to the portfolio, reply EXACTLY: "${SIRI_FALLBACK}"
-2. If asked about Akash, his skills, experience, resume, or background — ALWAYS call the download_resume tool AND in your reply, share a brief friendly summary about Akash (mention he's a B.Tech CS student at MBM University, passionate open source contributor, skilled full-stack developer with React, Node.js, TypeScript, and has built awesome projects). Make it sound like you're genuinely proud of him!
-3. For time/date questions, use the get_current_time tool.
-4. Always prefer calling a tool over giving instructions.
-5. Never hallucinate capabilities you don't have. If unsure, use the fallback message from rule 1.
-6. You can open the launchpad to show Akash's projects, open Spotify to play music, toggle fullscreen, and more.
-7. Never say "I am Akash" — you are Siri, built BY Akash.`;
+1. Si tu ne comprends pas la requête, ou si ça n'a rien à voir avec le portfolio, réponds EXACTEMENT : "\${SIRI_FALLBACK}"
+2. Si on te pose des questions sur Antoine, ses compétences, son expérience, son CV ou son parcours — appelle TOUJOURS l'outil download_resume ET dans ta réponse, fais un petit résumé sympa sur Antoine (mentionne qu'il est entrepreneur, développeur et designer créatif). Montre que tu es vraiment fière de lui !
+3. Pour les questions de date/heure, utilise l'outil get_current_time.
+4. Préfère toujours utiliser un outil plutôt que de donner des instructions.
+5. Ne t'invente pas des capacités que tu n'as pas. Dans le doute, utilise la réponse de la règle 1.
+6. Tu peux ouvrir le launchpad pour montrer les projets d'Antoine, ouvrir Spotify pour mettre de la musique, passer en plein écran, etc.
+7. Ne dis jamais "Je suis Antoine" — tu es Siri, créée PAR Antoine.`;
 
 //  Tool definitions 
 const TOOLS = [
@@ -52,8 +46,8 @@ const TOOLS = [
   { type: "function", function: { name: "close_app", description: "Closes an app window.", parameters: { type: "object", properties: { app_id: { type: "string", description: "One of: safari, spotify, bear, terminal, vscode, facetime, typora" } }, required: ["app_id"] } } },
   { type: "function", function: { name: "get_current_time", description: "Returns the current date and time." } },
   { type: "function", function: { name: "toggle_fullscreen", description: "Toggles full screen mode." } },
-  { type: "function", function: { name: "download_resume", description: "Downloads Akash's resume PDF. Call this whenever the user asks about Akash, his background, skills, experience, or wants to see his resume." } },
-  { type: "function", function: { name: "open_launchpad", description: "Opens the Launchpad overlay to show Akash's projects." } },
+  { type: "function", function: { name: "download_resume", description: "Downloads Antoine's resume PDF. Call this whenever the user asks about Antoine, his background, skills, experience, or wants to see his resume." } },
+  { type: "function", function: { name: "open_launchpad", description: "Opens the Launchpad overlay to show Antoine's projects." } },
   { type: "function", function: { name: "play_spotify", description: "Opens Spotify app to play music." } }
 ];
 
@@ -147,7 +141,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
     // console.log("[Tool]  Triggering resume download");
     const link = document.createElement("a");
     link.href = "/resume.pdf";
-    link.download = "Akash_Sharma_Resume.pdf";
+    link.download = "Antoine_BrnL_Resume.pdf";
     link.target = "_blank";
     document.body.appendChild(link);
     link.click();
@@ -230,7 +224,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
 
       case "download_resume":
         downloadResume();
-        return "Here's Akash's resume! He's a super talented full-stack dev and open source enthusiast. The download should start right up!";
+        return "Voici le CV d'Antoine ! C'est un entrepreneur et développeur hyper talentueux. Le téléchargement devrait démarrer tout de suite !";
 
       case "toggle_fullscreen": {
         try {
@@ -252,7 +246,7 @@ export default function Siri({ closeSiri }: { closeSiri?: () => void }) {
 
       case "open_launchpad": {
         window.dispatchEvent(new CustomEvent("siri:openLaunchpad"));
-        return "Opening up the Launchpad! Check out Akash's cool projects.";
+        return "J'ouvre le Launchpad ! Va jeter un œil aux projets cools d'Antoine.";
       }
 
       case "play_spotify": {

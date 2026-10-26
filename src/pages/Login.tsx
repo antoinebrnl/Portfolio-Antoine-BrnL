@@ -135,10 +135,14 @@ export default function Login(props: MacActions) {
                     boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
                   }}
                   onMouseEnter={(e) => {
-                    (e.target as HTMLElement).style.background = 'rgba(255,255,255,0.2)';
+                    (e.currentTarget as HTMLElement).style.background = 'rgba(200, 106, 82, 0.25)';
+                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200, 106, 82, 0.6)';
+                    (e.currentTarget as HTMLElement).style.boxShadow = '0 0 12px rgba(200, 106, 82, 0.4)';
                   }}
                   onMouseLeave={(e) => {
-                    (e.target as HTMLElement).style.background = 'rgba(255,255,255,0.12)';
+                    (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.12)';
+                    (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.25)';
+                    (e.currentTarget as HTMLElement).style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
                   }}
                   onClick={(e) => {
                     e.stopPropagation();
@@ -146,7 +150,9 @@ export default function Login(props: MacActions) {
                   }}
                   onKeyDown={keyPress}
                 >
-                  <span className="i-ph:arrow-elbow-down-left" style={{ fontSize: '14px', opacity: 0.8 }} />
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 256 256" fill="currentColor" style={{ opacity: 0.8, flexShrink: 0 }}>
+                    <path d="M184,128a8,8,0,0,1-8,8H99.31l34.35,34.34a8,8,0,0,1-11.32,11.32l-48-48a8,8,0,0,1,0-11.32l48-48a8,8,0,0,1,11.32,11.32L99.31,120H176A8,8,0,0,1,184,128ZM216,32V224a8,8,0,0,1-16,0V32a8,8,0,0,1,16,0Z" />
+                  </svg>
                   Sign In
                 </button>
               </motion.div>
@@ -175,9 +181,33 @@ export default function Login(props: MacActions) {
               transition={{ delay: 0.4, duration: 0.5 }}
             >
               {[
-                { label: 'Sleep', icon: 'i-ph:moon-stars', action: props.sleepMac },
-                { label: 'Restart', icon: 'i-ph:arrow-clockwise', action: props.restartMac },
-                { label: 'Shut Down', icon: 'i-ph:power', action: props.shutMac },
+                {
+                  label: 'Sleep',
+                  svg: (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256" fill="currentColor">
+                      <path d="M235.54,150.21a104,104,0,0,1-131-131A8,8,0,0,0,94.58,8.53a120,120,0,1,0,152.88,152.89,8,8,0,0,0-11.92-11.21ZM152,216A104.11,104.11,0,0,1,35.73,94.12a121,121,0,0,0,26.15,37A120.8,120.8,0,0,0,152,168a121.1,121.1,0,0,0,36.88-5.73A104.09,104.09,0,0,1,152,216Zm12-100a12,12,0,1,1,12,12A12,12,0,0,1,164,116Zm-12-36a12,12,0,1,1,12,12A12,12,0,0,1,152,80Zm44,24a12,12,0,1,1,12,12A12,12,0,0,1,196,104Z" />
+                    </svg>
+                  ),
+                  action: props.sleepMac,
+                },
+                {
+                  label: 'Restart',
+                  svg: (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256" fill="currentColor">
+                      <path d="M240,56v48a8,8,0,0,1-8,8H184a8,8,0,0,1,0-16H211.4l-20.58-19A96,96,0,0,0,32.55,140.27,8,8,0,0,1,16.71,137,112,112,0,0,1,201.55,66l21.6,19.89A8,8,0,0,1,240,56ZM239.29,119a112,112,0,0,1-184.84,71l-21.6-19.89A8,8,0,0,1,16,200V152a8,8,0,0,1,8-8H72a8,8,0,0,1,0,16H44.6l20.58,19A96,96,0,0,0,223.45,115.73,8,8,0,0,1,239.29,119Z" />
+                    </svg>
+                  ),
+                  action: props.restartMac,
+                },
+                {
+                  label: 'Shut Down',
+                  svg: (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 256 256" fill="currentColor">
+                      <path d="M120,128V48a8,8,0,0,1,16,0v80a8,8,0,0,1-16,0Zm60-80.57a8,8,0,1,0-8,13.86,80,80,0,1,1-88,0,8,8,0,1,0-8-13.86,96,96,0,1,0,104,0Z" />
+                    </svg>
+                  ),
+                  action: props.shutMac,
+                },
               ].map((item) => (
                 <div
                   key={item.label}
@@ -197,17 +227,20 @@ export default function Login(props: MacActions) {
                       backdropFilter: 'blur(10px)',
                       border: '0.5px solid rgba(255,255,255,0.15)',
                       transition: 'background 0.2s ease, transform 0.15s ease',
+                      color: 'white',
                     }}
                     onMouseEnter={(e) => {
-                      (e.target as HTMLElement).style.background = 'rgba(255,255,255,0.2)';
-                      (e.target as HTMLElement).style.transform = 'scale(1.08)';
+                      (e.currentTarget as HTMLElement).style.background = 'rgba(200, 106, 82, 0.25)';
+                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(200, 106, 82, 0.6)';
+                      (e.currentTarget as HTMLElement).style.transform = 'scale(1.08)';
                     }}
                     onMouseLeave={(e) => {
-                      (e.target as HTMLElement).style.background = 'rgba(255,255,255,0.1)';
-                      (e.target as HTMLElement).style.transform = 'scale(1)';
+                      (e.currentTarget as HTMLElement).style.background = 'rgba(255,255,255,0.1)';
+                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(255,255,255,0.15)';
+                      (e.currentTarget as HTMLElement).style.transform = 'scale(1)';
                     }}
                   >
-                    <span className={`${item.icon} text-white text-lg`} />
+                    {item.svg}
                   </div>
                   <span
                     style={{

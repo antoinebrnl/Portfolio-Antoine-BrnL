@@ -1,19 +1,15 @@
 {
-  "short_name": "macos-portfolio",
-  "name": "Akash's Portfolio",
+  "short_name": "antoine-brnl",
+  "name": "Antoine BrnL — Portfolio",
   "icons": [
     {
-      "src": "/logo/logo64.png",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/logo/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
     },
     {
-      "src": "logo/logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo/logo512.png",
+      "src": "/logo/user-photo.png",
       "type": "image/png",
       "sizes": "512x512"
     }
