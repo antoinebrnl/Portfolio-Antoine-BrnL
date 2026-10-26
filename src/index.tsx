@@ -1,5 +1,6 @@
 import { localize, useLanguage } from "~/i18n";
 import Welcome from "~/pages/Welcome";
+import { getStartupDevice } from "~/utils/device";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import { motion, AnimatePresence } from "framer-motion";
@@ -57,17 +58,19 @@ const bootVariants = {
 };
 
 export default function App() {
+  const [startupDevice] = useState(getStartupDevice);
+  const showMacStartup = startupDevice === "desktop";
   const language = useLanguage();
   useEffect(() => { document.documentElement.lang = language ?? "fr"; }, [language]);
   const [login, setLogin] = useState<boolean>(false);
-  const [booting, setBooting] = useState<boolean>(true);
+  const [booting, setBooting] = useState<boolean>(showMacStartup);
   const [restart, setRestart] = useState<boolean>(true);
   const [sleep, setSleep] = useState<boolean>(false);
   const startupChime = useStartupChime();
   const completeBoot = useCallback((withSound: boolean) => {
-    if (withSound) startupChime.play();
+    if (withSound && showMacStartup) startupChime.play();
     setBooting(false);
-  }, [startupChime.play]);
+  }, [startupChime.play, showMacStartup]);
 
   const { winWidth } = useWindowSize();
   const isMobile = winWidth < 768;
@@ -108,7 +111,7 @@ export default function App() {
     setRestart(false);
     setSleep(false);
     setLogin(false);
-    setBooting(true);
+    setBooting(showMacStartup);
   };
 
   const restartMac = (e: React.MouseEvent): void => {
@@ -117,7 +120,7 @@ export default function App() {
     setRestart(true);
     setSleep(false);
     setLogin(false);
-    setBooting(true);
+    setBooting(showMacStartup);
   };
 
   const sleepMac = (e: React.MouseEvent): void => {
@@ -126,7 +129,7 @@ export default function App() {
     setRestart(false);
     setSleep(true);
     setLogin(false);
-    setBooting(true);
+    setBooting(showMacStartup);
   };
 
   const getPage = () => {
