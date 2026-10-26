@@ -1,0 +1,6 @@
+{
+  "domains": [
+    { "domain": "antoine-brnl.com" },
+    { "domain": "datahorizon.dev", "redirectTarget": "antoine-brnl.com" }
+  ]
+}

@@ -29,6 +29,8 @@ pnpm run publier
 
 Cette commande vérifie le code, reconstruit le site et publie le dossier `dist`. La connexion initiale au compte Google est nécessaire. Les détails du domaine, de la publication GitHub automatique et des statistiques sont dans [le guide Firebase](docs/firebase-hosting.md).
 
+Pour préparer les deux domaines depuis le Terminal : `pnpm run domaines`. Cette commande affiche les instructions Firebase et un plan DNS avant toute modification des zones. Voir [le guide des domaines et des coûts](docs/domains-and-costs.md).
+
 ## Vérifications
 
 ```bash

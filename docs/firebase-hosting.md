@@ -62,6 +62,8 @@ La configuration automatique modifie des permissions IAM : elle doit être exéc
 
 ## Domaine et facturation
 
+Le [guide des domaines et des coûts](domains-and-costs.md) décrit le raccordement depuis le Terminal avec `pnpm run domaines`, son plan DNS, l'application optionnelle dans Cloud DNS et le contrôle du HTTPS pour `antoine-brnl.com` et `datahorizon.dev`.
+
 Après la première publication, ouvrir Hosting dans la console Firebase, sélectionner `antoine-brnl-c3bfb111`, puis « Ajouter un domaine personnalisé ». Saisir le domaine souhaité et utiliser uniquement les enregistrements DNS fournis par Firebase pour ce domaine. Les éventuels enregistrements de messagerie doivent être conservés. Le certificat HTTPS est ensuite provisionné par Firebase ; l'activation DNS peut prendre du temps.
 
 Le domaine peut rester chez son gestionnaire actuel. Le compte de facturation et les crédits doivent être vérifiés dans Google Cloud : ce dépôt ne modifie pas la facturation et ne garantit pas l'éligibilité des crédits. Commencer par contrôler le compte rattaché au projet et les quotas applicables à Hosting.

@@ -10,6 +10,8 @@
     "configurer:firebase": "node scripts/setup-firebase.mjs",
     "configurer:publication-auto": "bash scripts/setup-google-deploy.sh",
     "publier": "firebase deploy --only hosting",
+    "domaines": "node scripts/connect-domains.mjs",
+    "tester:domaines": "node --test scripts/domains.test.mjs",
     "tester:hebergement": "pnpm run build && firebase emulators:exec --only hosting --project demo-portfolio-antoine \"node --test scripts/hosting.test.mjs\"",
     "prepare": "husky",
     "serve": "vite preview --host"
