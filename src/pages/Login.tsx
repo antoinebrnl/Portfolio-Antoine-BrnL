@@ -1,10 +1,8 @@
-import { getLanguage } from "~/i18n";
-import "moment/locale/fr";
+import { getLocale } from "~/i18n";
 import { localize } from "~/i18n";
 import React from "react";
 import { user } from "~/configs";
 import type { MacActions } from "~/types";
-import moment from "moment";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Login(props: MacActions) {
@@ -14,18 +12,17 @@ export default function Login(props: MacActions) {
   const getWallpaper = useStore((state) => state.getWallpaper);
   const activeWallpaper = getWallpaper();
   const [isloginOpen, setIsLoginOpen] = useState(false);
-  const [time, setTime] = useState(moment().locale(getLanguage()).format(getLanguage() === "fr" ? "HH:mm" : "h:mm"));
-  const [period, setPeriod] = useState(moment().locale(getLanguage()).format("A"));
-  const [date, setDate] = useState(moment().locale(getLanguage()).format("dddd, MMMM D"));
+  const [now, setNow] = useState(() => new Date());
+  const time = new Intl.DateTimeFormat(getLocale(), {
+    hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+  }).format(now);
+  const date = new Intl.DateTimeFormat(getLocale(), {
+    weekday: "long", day: "numeric", month: "long",
+  }).format(now);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(moment().locale(getLanguage()).format(getLanguage() === "fr" ? "HH:mm" : "h:mm"));
-      setPeriod(moment().locale(getLanguage()).format("A"));
-      setDate(moment().locale(getLanguage()).format("dddd, MMMM D"));
-    }, 1000);
-
-    return () => clearInterval(interval);
+    const interval = window.setInterval(() => setNow(new Date()), 1000);
+    return () => window.clearInterval(interval);
   }, []);
 
   const keyPress = (e: React.KeyboardEvent) => {
