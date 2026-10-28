@@ -116,16 +116,13 @@ export default class Terminal extends React.Component<{}, TerminalState> {
   }
 
   reset = () => {
-    const terminal = document.querySelector("#terminal-content") as HTMLElement;
-    terminal.innerHTML = "";
+    this.setState({ content: [] });
   };
 
   addRow = (row: JSX.Element) => {
-    if (this.state.content.find((item) => item.key === row.key)) return;
-
-    const content = this.state.content;
-    content.push(row);
-    this.setState({ content });
+    this.setState(({ content }) => ({
+      content: content.some((item) => item.key === row.key) ? content : [...content, row]
+    }));
   };
 
   getCurDirName = () => {
@@ -325,7 +322,7 @@ export default class Terminal extends React.Component<{}, TerminalState> {
 
   focusOnInput = (id: number) => {
     const input = document.querySelector(`#terminal-input-${id}`) as HTMLInputElement;
-    input.focus();
+    input?.focus({ preventScroll: true });
   };
 
   generateInputRow = (id: number) => {
@@ -341,7 +338,18 @@ export default class Terminal extends React.Component<{}, TerminalState> {
           id={`terminal-input-${id}`}
           className="flex-1 px-1 text-white outline-none bg-transparent"
           onKeyDown={this.keyPress}
-          autoFocus={true}
+          aria-label={localize("Terminal")}
+          autoCapitalize="none"
+          autoComplete="off"
+          spellCheck={false}
+          ref={(input) => {
+            if (!input || input.readOnly) return;
+            // The window animates in from below the viewport. Native autoFocus
+            // scrolls the entire desktop towards it, exposing a blank page.
+            input.focus({ preventScroll: true });
+            const container = input.closest(".terminal");
+            if (container) container.scrollTop = container.scrollHeight;
+          }}
         />
       </div>
     );
