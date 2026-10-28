@@ -72,7 +72,7 @@ const HowDare = ({ setRMRF }: { setRMRF: (value: boolean) => void }) => {
   return (
     <div
       ref={containerRef}
-      className="fixed size-full bg-black text-white"
+      className="absolute inset-0 z-10 size-full bg-black text-white"
       onClick={() => setRMRF(false)}
     >
       <canvas ref={canvasRef}></canvas>
